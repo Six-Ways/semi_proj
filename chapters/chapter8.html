@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8章：衬底与晶圆制备 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第8章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item active">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#substrate-materials" class="section-nav-item">
+                        衬底材料
+                    </a>
+                    <a href="#wafer-preparation" class="section-nav-item">
+                        晶圆制备
+                    </a>
+                    <a href="#quality-control" class="section-nav-item">
+                        质量控制
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第八章：衬底与晶圆制备</p>
+            </div>
+        <div class="chapter-header">
+            <h1>第八章：衬底与晶圆制备</h1>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">单晶生长</h2>
+            <p>单晶生长是半导体制造的第一步，决定了衬底材料的基本特性。本节介绍主流的单晶生长技术及其对晶体质量的影响。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('crystal-overview')">单晶生长概述</button>
+                    <button class="tab-button" onclick="showTab('crystal-interactive')">晶体生长模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="crystal-overview" class="tab-pane active">
+                        <div class="wafer-grid">
+                            <div class="wafer-card" onclick="selectCrystalMethod('czochralski')">
+                                <div class="wafer-icon"><i class="fas fa-arrow-up"></i></div>
+                                <div class="wafer-name">直拉法 (CZ)</div>
+                                <div class="wafer-description">通过籽晶从熔融硅中缓慢拉出单晶，适用于大直径晶圆生产</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectCrystalMethod('float-zone')">
+                                <div class="wafer-icon"><i class="fas fa-water"></i></div>
+                                <div class="wafer-name">悬浮区熔法 (FZ)</div>
+                                <div class="wafer-description">利用局部熔区移动实现晶体生长，可获得高纯度晶体</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectCrystalMethod('briodgman')">
+                                <div class="wafer-icon"><i class="fas fa-arrows-alt-v"></i></div>
+                                <div class="wafer-name">布里奇曼法</div>
+                                <div class="wafer-description">通过定向凝固实现晶体生长，适用于化合物半导体</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectCrystalMethod('epitaxy')">
+                                <div class="wafer-icon"><i class="fas fa-layer-group"></i></div>
+                                <div class="wafer-name">外延生长</div>
+                                <div class="wafer-description">在衬底表面生长单晶薄膜，实现异质结构</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="crystal-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">晶体生长模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="growth-method">生长方法</label>
+                                    <select id="growth-method">
+                                        <option value="czochralski">直拉法 (CZ)</option>
+                                        <option value="float-zone">悬浮区熔法 (FZ)</option>
+                                        <option value="epitaxy">外延生长</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="pull-rate">拉晶速率 (mm/min)</label>
+                                    <input type="range" id="pull-rate" min="0.1" max="5" step="0.1" value="1.5">
+                                    <span id="pull-rate-value">1.5</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="rotation-speed">旋转速度 (rpm)</label>
+                                    <input type="range" id="rotation-speed" min="1" max="30" value="10">
+                                    <span id="rotation-speed-value">10</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="temperature">温度 (°C)</label>
+                                    <input type="range" id="temperature" min="1400" max="1450" value="1420">
+                                    <span id="temperature-value">1420</span>
+                                </div>
+                            </div>
+                            
+                            <div class="animation-controls">
+                                <button id="start-animation" class="control-btn">开始生长</button>
+                                <button id="pause-animation" class="control-btn" disabled>暂停</button>
+                                <button id="reset-animation" class="control-btn">重置</button>
+                                <div class="speed-control">
+                                    <label>动画速度:</label>
+                                    <input type="range" id="animation-speed" min="1" max="5" value="3">
+                                </div>
+                            </div>
+                            
+                            <div class="crystal-visualization" id="crystal-viz">
+                                <div class="crystal-lattice" id="crystal-lattice"></div>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">晶体直径</span>
+                                    <span class="result-value" id="crystal-diameter">300 mm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">晶体长度</span>
+                                    <span class="result-value" id="crystal-length">0 mm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">缺陷密度</span>
+                                    <span class="result-value" id="defect-density">10³ /cm²</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">电阻率均匀性</span>
+                                    <span class="result-value" id="resistivity-uniformity">±5%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">氧含量</span>
+                                    <span class="result-value" id="oxygen-content">15 ppma</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">晶圆加工</h2>
+            <p>晶圆加工是将单晶锭切割、研磨、抛光成可用于器件制造的晶圆的过程。本节介绍晶圆加工的关键工艺步骤。</p>
+            
+            <div class="process-flow">
+                <h3>晶圆加工流程</h3>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-name">截断</div>
+                        <div class="step-description">去除单晶锭两端，获得合适长度</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-name">定向</div>
+                        <div class="step-description">确定晶体取向，标记主参考面</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-name">切片</div>
+                        <div class="step-description">使用金刚石线锯切割成薄片</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-name">倒角</div>
+                        <div class="step-description">处理晶圆边缘，防止碎裂</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-name">研磨</div>
+                        <div class="step-description">去除切片损伤，获得平整表面</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-name">抛光</div>
+                        <div class="step-description">化学机械抛光，获得镜面</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">7</div>
+                        <div class="step-name">清洗</div>
+                        <div class="step-description">去除表面污染物和颗粒</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">8</div>
+                        <div class="step-name">检测</div>
+                        <div class="step-description">质量检查，分选合格晶圆</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('wafer-overview')">晶圆规格概述</button>
+                    <button class="tab-button" onclick="showTab('wafer-interactive')">晶圆质量分析器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="wafer-overview" class="tab-pane active">
+                        <div class="wafer-grid">
+                            <div class="wafer-card" onclick="selectWaferSize('100mm')">
+                                <div class="wafer-icon"><i class="fas fa-circle"></i></div>
+                                <div class="wafer-name">100mm 晶圆</div>
+                                <div class="wafer-description">4英寸晶圆，用于小批量生产和研究</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectWaferSize('150mm')">
+                                <div class="wafer-icon"><i class="fas fa-circle"></i></div>
+                                <div class="wafer-name">150mm 晶圆</div>
+                                <div class="wafer-description">6英寸晶圆，中等规模生产</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectWaferSize('200mm')">
+                                <div class="wafer-icon"><i class="fas fa-circle"></i></div>
+                                <div class="wafer-name">200mm 晶圆</div>
+                                <div class="wafer-description">8英寸晶圆，主流生产规格</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectWaferSize('300mm')">
+                                <div class="wafer-icon"><i class="fas fa-circle"></i></div>
+                                <div class="wafer-name">300mm 晶圆</div>
+                                <div class="wafer-description">12英寸晶圆，大规模生产标准</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectWaferSize('450mm')">
+                                <div class="wafer-icon"><i class="fas fa-circle"></i></div>
+                                <div class="wafer-name">450mm 晶圆</div>
+                                <div class="wafer-description">18英寸晶圆，下一代技术</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="wafer-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">晶圆质量分析器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="wafer-size">晶圆尺寸</label>
+                                    <select id="wafer-size">
+                                        <option value="100">100mm</option>
+                                        <option value="150">150mm</option>
+                                        <option value="200">200mm</option>
+                                        <option value="300">300mm</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="surface-roughness">表面粗糙度 (nm)</label>
+                                    <input type="range" id="surface-roughness" min="0.1" max="5" step="0.1" value="0.5">
+                                    <span id="surface-roughness-value">0.5</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="bow-warp">弯曲度 (μm)</label>
+                                    <input type="range" id="bow-warp" min="5" max="100" value="30">
+                                    <span id="bow-warp-value">30</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="defect-density">缺陷密度 (/cm²)</label>
+                                    <input type="range" id="defect-density" min="10" max="10000" step="10" value="100">
+                                    <span id="defect-density-value">100</span>
+                                </div>
+                            </div>
+                            
+                            <div class="wafer-visualization" id="wafer-viz">
+                                <div class="wafer-circle" id="wafer-circle"></div>
+                                <div class="wafer-notch" id="wafer-notch"></div>
+                                <!-- 晶粒和缺陷将通过JavaScript动态生成 -->
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="wafer-quality-chart"></canvas>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">晶圆等级</span>
+                                    <span class="result-value" id="wafer-grade">Prime</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">可用面积</span>
+                                    <span class="result-value" id="usable-area">95%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">总厚度变化 (TTV)</span>
+                                    <span class="result-value" id="ttv">2 μm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">平整度</span>
+                                    <span class="result-value" id="flatness">1 μm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">预计良率</span>
+                                    <span class="result-value" id="yield">92%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">衬底质量与器件性能</h2>
+            <p>衬底质量直接影响半导体器件的性能和可靠性。本节探讨衬底参数对器件特性的影响机制。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('substrate-overview')">衬底参数概述</button>
+                    <button class="tab-button" onclick="showTab('substrate-interactive')">衬底影响模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="substrate-overview" class="tab-pane active">
+                        <div class="wafer-grid">
+                            <div class="wafer-card" onclick="selectSubstrateParam('resistivity')">
+                                <div class="wafer-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="wafer-name">电阻率</div>
+                                <div class="wafer-description">影响器件导通电阻、功耗和频率特性</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectSubstrateParam('lifetime')">
+                                <div class="wafer-icon"><i class="fas fa-clock"></i></div>
+                                <div class="wafer-name">少子寿命</div>
+                                <div class="wafer-description">影响双极器件的电流增益和开关速度</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectSubstrateParam('oxygen')">
+                                <div class="wafer-icon"><i class="fas fa-wind"></i></div>
+                                <div class="wafer-name">氧含量</div>
+                                <div class="wafer-description">影响机械强度和内吸杂能力</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectSubstrateParam('carbon')">
+                                <div class="wafer-icon"><i class="fas fa-cube"></i></div>
+                                <div class="wafer-name">碳含量</div>
+                                <div class="wafer-description">影响氧沉淀和缺陷形成</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectSubstrateParam('defects')">
+                                <div class="wafer-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                <div class="wafer-name">晶体缺陷</div>
+                                <div class="wafer-description">影响器件漏电、击穿电压和可靠性</div>
+                            </div>
+                            <div class="wafer-card" onclick="selectSubstrateParam('orientation')">
+                                <div class="wafer-icon"><i class="fas fa-compass"></i></div>
+                                <div class="wafer-name">晶向</div>
+                                <div class="wafer-description">影响器件结构和工艺特性</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="substrate-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">衬底参数影响模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="device-type">器件类型</label>
+                                    <select id="device-type">
+                                        <option value="mosfet">MOSFET</option>
+                                        <option value="bjt">BJT</option>
+                                        <option value="diode">二极管</option>
+                                        <option value="cmos">CMOS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="substrate-resistivity">衬底电阻率 (Ω·cm)</label>
+                                    <input type="range" id="substrate-resistivity" min="0.001" max="100" step="0.001" value="10">
+                                    <span id="substrate-resistivity-value">10</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="minority-lifetime">少子寿命 (μs)</label>
+                                    <input type="range" id="minority-lifetime" min="1" max="1000" value="100">
+                                    <span id="minority-lifetime-value">100</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="defect-level">缺陷水平</label>
+                                    <input type="range" id="defect-level" min="1" max="10" value="3">
+                                    <span id="defect-level-value">3</span>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="substrate-impact-chart"></canvas>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">阈值电压变化</span>
+                                    <span class="result-value" id="threshold-shift">0 V</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">漏电流变化</span>
+                                    <span class="result-value" id="leakage-current">1.0×</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">击穿电压变化</span>
+                                    <span class="result-value" id="breakdown-voltage">1.0×</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">载流子迁移率</span>
+                                    <span class="result-value" id="carrier-mobility">1350 cm²/V·s</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">器件可靠性</span>
+                                    <span class="result-value" id="device-reliability">95%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-summary">
+            <h3>本章小结</h3>
+            <p>衬底与晶圆制备是半导体制造的基础，决定了后续工艺的成败和器件性能的上限。单晶生长技术决定了晶体的基本质量和特性，晶圆加工工艺确保了晶圆的几何精度和表面质量，而衬底参数直接影响器件的电气特性和可靠性。掌握这些基础工艺对于理解半导体制造的全流程至关重要。</p>
+        </div>
+        
+        <div class="next-chapter">
+            <h3>下一章预告</h3>
+            <p>第9章将深入半导体掺杂与薄膜工艺，带你了解"如何精确控制掺杂浓度？""薄膜生长有哪些方法？"，并通过交互式模拟器直观感受掺杂和薄膜沉积的过程。前往第9章</p>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="window.location.href='chapter7.html'">
+                <i class="fas fa-arrow-left"></i> 上一章：专用功能器件
+            </button>
+            <button class="btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> 返回主页
+            </button>
+            <button class="btn" onclick="window.location.href='chapter9.html'">
+                下一章：器件掺杂与薄膜工艺 <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+    
+    <div class="progress-indicator">
+        <i class="fas fa-tasks"></i> 学习进度: <span id="progress">0</span>%
+    </div>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        // 全局变量
+        let crystalExperiments = 0;
+        let waferExperiments = 0;
+        let substrateExperiments = 0;
+        let crystalChart, waferChart, substrateChart;
+        let crystalAnimation = null;
+        let crystalLength = 0;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initCrystalSimulator();
+            initWaferAnalyzer();
+            initSubstrateSimulator();
+            updateProgress();
+        });
+        
+        // 标签切换功能
+        function showTab(tabId) {
+            // 获取当前标签容器
+            const tabContainer = event.target.closest('.tab-container');
+            
+            // 移除所有活动状态
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // 添加活动状态到选中的标签
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // 晶体生长方法选择
+        function selectCrystalMethod(method) {
+            // 更新生长方法选择器
+            document.getElementById('growth-method').value = method;
+            
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#crystal-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('crystal-interactive').classList.add('active');
+            
+            // 更新晶体生长模拟器
+            updateCrystalSimulator();
+        }
+        
+        // 晶圆尺寸选择
+        function selectWaferSize(size) {
+            // 更新晶圆尺寸选择器
+            document.getElementById('wafer-size').value = size;
+            
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#wafer-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('wafer-interactive').classList.add('active');
+            
+            // 更新晶圆质量分析器
+            updateWaferAnalyzer();
+        }
+        
+        // 衬底参数选择
+        function selectSubstrateParam(param) {
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#substrate-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('substrate-interactive').classList.add('active');
+            
+            // 更新衬底影响模拟器
+            updateSubstrateSimulator();
+        }
+        
+        // 初始化晶体生长模拟器
+        function initCrystalSimulator() {
+            const growthMethod = document.getElementById('growth-method');
+            const pullRate = document.getElementById('pull-rate');
+            const rotationSpeed = document.getElementById('rotation-speed');
+            const temperature = document.getElementById('temperature');
+            
+            const pullRateValue = document.getElementById('pull-rate-value');
+            const rotationSpeedValue = document.getElementById('rotation-speed-value');
+            const temperatureValue = document.getElementById('temperature-value');
+            
+            const crystalDiameter = document.getElementById('crystal-diameter');
+            const crystalLengthDisplay = document.getElementById('crystal-length');
+            const defectDensity = document.getElementById('defect-density');
+            const resistivityUniformity = document.getElementById('resistivity-uniformity');
+            const oxygenContent = document.getElementById('oxygen-content');
+            
+            const startBtn = document.getElementById('start-animation');
+            const pauseBtn = document.getElementById('pause-animation');
+            const resetBtn = document.getElementById('reset-animation');
+            const animationSpeed = document.getElementById('animation-speed');
+            
+            // 初始化晶体结构可视化
+            initCrystalLattice();
+            
+            function updateCrystal() {
+                const method = growthMethod.value;
+                const rate = parseFloat(pullRate.value);
+                const speed = parseFloat(rotationSpeed.value);
+                const temp = parseFloat(temperature.value);
+                
+                // 更新显示值
+                pullRateValue.textContent = rate;
+                rotationSpeedValue.textContent = speed;
+                temperatureValue.textContent = temp;
+                
+                // 计算晶体参数（简化模型）
+                let diameter, defects, uniformity, oxygen;
+                
+                switch(method) {
+                    case 'czochralski':
+                        diameter = 300;
+                        defects = Math.round(1000 * (1 + rate * 0.2) * (1 + (1420 - temp) * 0.1));
+                        uniformity = Math.round(5 * (1 + rate * 0.1) * (1 + (30 - speed) * 0.02));
+                        oxygen = Math.round(15 * (1 + (1420 - temp) * 0.05));
+                        break;
+                    case 'float-zone':
+                        diameter = 200;
+                        defects = Math.round(100 * (1 + rate * 0.3));
+                        uniformity = Math.round(3 * (1 + rate * 0.15));
+                        oxygen = Math.round(1 * (1 + (1420 - temp) * 0.01));
+                        break;
+                    case 'epitaxy':
+                        diameter = 300;
+                        defects = Math.round(500 * (1 + rate * 0.1) * (1 + (1420 - temp) * 0.05));
+                        uniformity = Math.round(2 * (1 + rate * 0.05));
+                        oxygen = Math.round(10 * (1 + (1420 - temp) * 0.02));
+                        break;
+                }
+                
+                // 更新显示
+                crystalDiameter.textContent = `${diameter} mm`;
+                defectDensity.textContent = `${defects} /cm²`;
+                resistivityUniformity.textContent = `±${uniformity}%`;
+                oxygenContent.textContent = `${oxygen} ppma`;
+                
+                // 更新晶体长度（动画过程中）
+                crystalLengthDisplay.textContent = `${crystalLength.toFixed(1)} mm`;
+            }
+            
+            // 动画控制
+            startBtn.addEventListener('click', function() {
+                if (crystalAnimation) return;
+                
+                startBtn.disabled = true;
+                pauseBtn.disabled = false;
+                
+                const rate = parseFloat(pullRate.value);
+                const speed = parseFloat(rotationSpeed.value);
+                const animSpeed = parseInt(animationSpeed.value);
+                
+                crystalAnimation = setInterval(() => {
+                    crystalLength += rate * 0.5 * animSpeed;
+                    if (crystalLength > 1000) {
+                        crystalLength = 1000;
+                        pauseAnimation();
+                    }
+                    updateCrystal();
+                    updateCrystalLattice(speed, crystalLength);
+                }, 100);
+            });
+            
+            pauseBtn.addEventListener('click', pauseAnimation);
+            
+            function pauseAnimation() {
+                if (crystalAnimation) {
+                    clearInterval(crystalAnimation);
+                    crystalAnimation = null;
+                }
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+            }
+            
+            resetBtn.addEventListener('click', function() {
+                pauseAnimation();
+                crystalLength = 0;
+                updateCrystal();
+                initCrystalLattice();
+            });
+            
+            // 事件监听
+            growthMethod.addEventListener('change', updateCrystal);
+            pullRate.addEventListener('input', updateCrystal);
+            rotationSpeed.addEventListener('input', updateCrystal);
+            temperature.addEventListener('input', updateCrystal);
+            
+            // 初始化
+            updateCrystal();
+        }
+        
+        // 初始化晶体结构可视化
+        function initCrystalLattice() {
+            const lattice = document.getElementById('crystal-lattice');
+            lattice.innerHTML = '';
+            
+            // 创建晶体格子
+            const rows = 10;
+            const cols = 10;
+            const spacing = 30;
+            
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const point = document.createElement('div');
+                    point.className = 'lattice-point';
+                    point.style.left = `${j * spacing + 20}px`;
+                    point.style.top = `${i * spacing + 20}px`;
+                    lattice.appendChild(point);
+                    
+                    // 添加连接线
+                    if (j < cols - 1) {
+                        const line = document.createElement('div');
+                        line.className = 'lattice-line';
+                        line.style.left = `${j * spacing + 25}px`;
+                        line.style.top = `${i * spacing + 20}px`;
+                        line.style.width = `${spacing - 10}px`;
+                        lattice.appendChild(line);
+                    }
+                    
+                    if (i < rows - 1) {
+                        const line = document.createElement('div');
+                        line.className = 'lattice-line';
+                        line.style.left = `${j * spacing + 20}px`;
+                        line.style.top = `${i * spacing + 25}px`;
+                        line.style.width = '2px';
+                        line.style.height = `${spacing - 10}px`;
+                        line.classList.add('lattice-line-vertical');
+                        lattice.appendChild(line);
+                    }
+                }
+            }
+        }
+        
+        // 更新晶体结构可视化
+        function updateCrystalLattice(rotationSpeed, crystalLength) {
+            const lattice = document.getElementById('crystal-lattice');
+            const points = lattice.querySelectorAll('.lattice-point');
+            
+            // 旋转效果
+            const rotation = (Date.now() / 1000 * rotationSpeed) % 360;
+            
+            // 添加新生长的晶体层
+            if (crystalLength > 0 && Math.random() > 0.7) {
+                const newPoint = document.createElement('div');
+                newPoint.className = 'lattice-point';
+                newPoint.style.left = `${Math.random() * 280 + 10}px`;
+                newPoint.style.top = `${Math.min(crystalLength / 3, 280)}px`;
+                lattice.appendChild(newPoint);
+            }
+            
+            // 添加杂质（随机）
+            if (Math.random() > 0.95) {
+                const impurity = document.createElement('div');
+                impurity.className = 'impurity';
+                impurity.style.left = `${Math.random() * 280 + 10}px`;
+                impurity.style.top = `${Math.random() * 280 + 10}px`;
+                lattice.appendChild(impurity);
+            }
+        }
+        
+        // 初始化晶圆质量分析器
+        function initWaferAnalyzer() {
+            const waferSize = document.getElementById('wafer-size');
+            const surfaceRoughness = document.getElementById('surface-roughness');
+            const bowWarp = document.getElementById('bow-warp');
+            const defectDensity = document.getElementById('defect-density');
+            
+            const surfaceRoughnessValue = document.getElementById('surface-roughness-value');
+            const bowWarpValue = document.getElementById('bow-warp-value');
+            const defectDensityValue = document.getElementById('defect-density-value');
+            
+            const waferGrade = document.getElementById('wafer-grade');
+            const usableArea = document.getElementById('usable-area');
+            const ttv = document.getElementById('ttv');
+            const flatness = document.getElementById('flatness');
+            const yield = document.getElementById('yield');
+            
+            // 创建图表
+            const ctx = document.getElementById('wafer-quality-chart').getContext('2d');
+            waferChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['表面粗糙度', '弯曲度', '缺陷密度', '厚度变化', '平整度'],
+                    datasets: [{
+                        label: '晶圆质量指标',
+                        data: [90, 80, 85, 90, 85],
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: '#3498db',
+                        pointBackgroundColor: '#3498db',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#3498db'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            function updateWafer() {
+                const size = parseInt(waferSize.value);
+                const roughness = parseFloat(surfaceRoughness.value);
+                const bow = parseFloat(bowWarp.value);
+                const defects = parseInt(defectDensity.value);
+                
+                // 更新显示值
+                surfaceRoughnessValue.textContent = roughness;
+                bowWarpValue.textContent = bow;
+                defectDensityValue.textContent = defects;
+                
+                // 计算晶圆质量参数（简化模型）
+                let grade, usable, ttvValue, flatnessValue, yieldValue;
+                
+                // 计算质量分数
+                const roughnessScore = Math.max(0, 100 - roughness * 20);
+                const bowScore = Math.max(0, 100 - bow);
+                const defectScore = Math.max(0, 100 - defects / 100);
+                const ttvScore = Math.max(0, 100 - bow * 0.5);
+                const flatnessScore = Math.max(0, 100 - bow * 0.8);
+                
+                // 更新图表
+                waferChart.data.datasets[0].data = [
+                    roughnessScore, bowScore, defectScore, ttvScore, flatnessScore
+                ];
+                waferChart.update();
+                
+                // 计算总体质量
+                const totalScore = (roughnessScore + bowScore + defectScore + ttvScore + flatnessScore) / 5;
+                
+                if (totalScore > 90) {
+                    grade = 'Prime';
+                } else if (totalScore > 80) {
+                    grade = 'Premium';
+                } else if (totalScore > 70) {
+                    grade = 'Standard';
+                } else {
+                    grade = 'Test';
+                }
+                
+                usable = Math.round(100 - defects / 100 - bow / 10);
+                ttvValue = Math.round(2 + bow * 0.1);
+                flatnessValue = Math.round(1 + bow * 0.05);
+                yieldValue = Math.round(95 - defects / 200 - bow / 20);
+                
+                // 更新显示
+                waferGrade.textContent = grade;
+                usableArea.textContent = `${usable}%`;
+                ttv.textContent = `${ttvValue} μm`;
+                flatness.textContent = `${flatnessValue} μm`;
+                yield.textContent = `${yieldValue}%`;
+                
+                // 更新晶圆可视化
+                updateWaferVisualization(size, defects);
+            }
+            
+            // 初始化晶圆可视化
+            function updateWaferVisualization(size, defects) {
+                const waferViz = document.getElementById('wafer-viz');
+                const waferCircle = document.getElementById('wafer-circle');
+                const waferNotch = document.getElementById('wafer-notch');
+                
+                // 清除旧的晶粒和缺陷
+                const oldDies = waferViz.querySelectorAll('.wafer-die');
+                const oldDefects = waferViz.querySelectorAll('.wafer-defect');
+                oldDies.forEach(die => die.remove());
+                oldDefects.forEach(defect => defect.remove());
+                
+                // 设置晶圆大小
+                const scale = size / 300; // 以300mm为基准
+                const waferSizePx = 400 * scale;
+                waferCircle.style.width = `${waferSizePx}px`;
+                waferCircle.style.height = `${waferSizePx}px`;
+                waferCircle.style.left = `${(500 - waferSizePx) / 2}px`;
+                waferCircle.style.top = `${(500 - waferSizePx) / 2}px`;
+                
+                // 设置晶圆缺口
+                waferNotch.style.width = '20px';
+                waferNotch.style.height = '10px';
+                waferNotch.style.left = `${(500 + waferSizePx / 2) - 10}px`;
+                waferNotch.style.top = `${(500 - waferSizePx) / 2 - 5}px`;
+                
+                // 添加晶粒
+                const dieSize = 20 * scale;
+                const dieGap = 2 * scale;
+                const rows = Math.floor(waferSizePx / (dieSize + dieGap));
+                const cols = Math.floor(waferSizePx / (dieSize + dieGap));
+                
+                for (let i = 0; i < rows; i++) {
+                    for (let j = 0; j < cols; j++) {
+                        const x = (500 - waferSizePx) / 2 + 10 + j * (dieSize + dieGap);
+                        const y = (500 - waferSizePx) / 2 + 10 + i * (dieSize + dieGap);
+                        
+                        // 检查是否在晶圆内
+                        const centerX = 500 / 2;
+                        const centerY = 500 / 2;
+                        const distance = Math.sqrt(Math.pow(x + dieSize/2 - centerX, 2) + Math.pow(y + dieSize/2 - centerY, 2));
+                        
+                        if (distance < waferSizePx / 2 - 10) {
+                            const die = document.createElement('div');
+                            die.className = 'wafer-die';
+                            die.style.width = `${dieSize}px`;
+                            die.style.height = `${dieSize}px`;
+                            die.style.left = `${x}px`;
+                            die.style.top = `${y}px`;
+                            waferViz.appendChild(die);
+                        }
+                    }
+                }
+                
+                // 添加缺陷
+                for (let i = 0; i < Math.min(defects / 10, 20); i++) {
+                    const angle = Math.random() * 2 * Math.PI;
+                    const radius = Math.random() * waferSizePx / 2 * 0.9;
+                    const x = 500 / 2 + radius * Math.cos(angle);
+                    const y = 500 / 2 + radius * Math.sin(angle);
+                    
+                    const defect = document.createElement('div');
+                    defect.className = 'wafer-defect';
+                    defect.style.left = `${x}px`;
+                    defect.style.top = `${y}px`;
+                    waferViz.appendChild(defect);
+                }
+            }
+            
+            // 事件监听
+            waferSize.addEventListener('change', updateWafer);
+            surfaceRoughness.addEventListener('input', updateWafer);
+            bowWarp.addEventListener('input', updateWafer);
+            defectDensity.addEventListener('input', updateWafer);
+            
+            // 初始化
+            updateWafer();
+        }
+        
+        // 初始化衬底影响模拟器
+        function initSubstrateSimulator() {
+            const deviceType = document.getElementById('device-type');
+            const substrateResistivity = document.getElementById('substrate-resistivity');
+            const minorityLifetime = document.getElementById('minority-lifetime');
+            const defectLevel = document.getElementById('defect-level');
+            
+            const substrateResistivityValue = document.getElementById('substrate-resistivity-value');
+            const minorityLifetimeValue = document.getElementById('minority-lifetime-value');
+            const defectLevelValue = document.getElementById('defect-level-value');
+            
+            const thresholdShift = document.getElementById('threshold-shift');
+            const leakageCurrent = document.getElementById('leakage-current');
+            const breakdownVoltage = document.getElementById('breakdown-voltage');
+            const carrierMobility = document.getElementById('carrier-mobility');
+            const deviceReliability = document.getElementById('device-reliability');
+            
+            // 创建图表
+            const ctx = document.getElementById('substrate-impact-chart').getContext('2d');
+            substrateChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['阈值电压', '漏电流', '击穿电压', '载流子迁移率', '器件可靠性'],
+                    datasets: [{
+                        label: '相对变化 (%)',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(155, 89, 182, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(155, 89, 182, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '相对变化 (%)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateSubstrate() {
+                const device = deviceType.value;
+                const resistivity = parseFloat(substrateResistivity.value);
+                const lifetime = parseFloat(minorityLifetime.value);
+                const defects = parseInt(defectLevel.value);
+                
+                // 更新显示值
+                substrateResistivityValue.textContent = resistivity;
+                minorityLifetimeValue.textContent = lifetime;
+                defectLevelValue.textContent = defects;
+                
+                // 计算衬底影响（简化模型）
+                let vthShift, leakage, breakdown, mobility, reliability;
+                
+                switch(device) {
+                    case 'mosfet':
+                        vthShift = 0.1 * Math.log10(resistivity / 10) - defects * 0.05;
+                        leakage = defects * 0.3 - 0.2 * Math.log10(resistivity);
+                        breakdown = 0.1 * Math.log10(resistivity) - defects * 0.2;
+                        mobility = 1350 * (1 - defects * 0.05);
+                        reliability = 100 - defects * 5;
+                        break;
+                    case 'bjt':
+                        vthShift = 0.05 * Math.log10(lifetime / 100) - defects * 0.03;
+                        leakage = defects * 0.2 - 0.1 * Math.log10(lifetime);
+                        breakdown = 0.05 * Math.log10(lifetime) - defects * 0.15;
+                        mobility = 1500 * (1 - defects * 0.03);
+                        reliability = 100 - defects * 3;
+                        break;
+                    case 'diode':
+                        vthShift = 0.02 * Math.log10(resistivity / 10) - defects * 0.02;
+                        leakage = defects * 0.1 - 0.05 * Math.log10(resistivity);
+                        breakdown = 0.2 * Math.log10(resistivity) - defects * 0.1;
+                        mobility = 1400 * (1 - defects * 0.02);
+                        reliability = 100 - defects * 2;
+                        break;
+                    case 'cmos':
+                        vthShift = 0.08 * Math.log10(resistivity / 10) - defects * 0.04;
+                        leakage = defects * 0.25 - 0.15 * Math.log10(resistivity);
+                        breakdown = 0.15 * Math.log10(resistivity) - defects * 0.18;
+                        mobility = 1300 * (1 - defects * 0.04);
+                        reliability = 100 - defects * 4;
+                        break;
+                }
+                
+                // 更新显示
+                thresholdShift.textContent = `${vthShift.toFixed(2)} V`;
+                leakageCurrent.textContent = `${Math.pow(10, leakage).toFixed(1)}×`;
+                breakdownVoltage.textContent = `${(1 + breakdown).toFixed(2)}×`;
+                carrierMobility.textContent = `${mobility.toFixed(0)} cm²/V·s`;
+                deviceReliability.textContent = `${reliability.toFixed(0)}%`;
+                
+                // 更新图表
+                substrateChart.data.datasets[0].data = [
+                    vthShift * 10,  // 转换为百分比
+                    leakage * 20,   // 转换为百分比
+                    breakdown * 20, // 转换为百分比
+                    (mobility - 1350) / 1350 * 100,  // 转换为百分比
+                    reliability - 100  // 转换为百分比
+                ];
+                substrateChart.update();
+            }
+            
+            // 事件监听
+            deviceType.addEventListener('change', updateSubstrate);
+            substrateResistivity.addEventListener('input', updateSubstrate);
+            minorityLifetime.addEventListener('input', updateSubstrate);
+            defectLevel.addEventListener('input', updateSubstrate);
+            
+            // 初始化
+            updateSubstrate();
+        }
+        
+        // 更新晶体生长模拟器
+        function updateCrystalSimulator() {
+            const event = new Event('change');
+            document.getElementById('growth-method').dispatchEvent(event);
+        }
+        
+        // 更新晶圆质量分析器
+        function updateWaferAnalyzer() {
+            const event = new Event('change');
+            document.getElementById('wafer-size').dispatchEvent(event);
+        }
+        
+        // 更新衬底影响模拟器
+        function updateSubstrateSimulator() {
+            const event = new Event('change');
+            document.getElementById('device-type').dispatchEvent(event);
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            const totalExperiments = 6; // 每个章节最多6次实验
+            const completedExperiments = crystalExperiments + waferExperiments + substrateExperiments;
+            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
+            
+            document.getElementById('progress').textContent = progress;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5章：数字集成器件 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item active">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#logic-gates" class="section-nav-item">
+                        逻辑门
+                    </a>
+                    <a href="#cmos-technology" class="section-nav-item">
+                        CMOS技术
+                    </a>
+                    <a href="#digital-circuits" class="section-nav-item">
+                        数字电路
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="../index.html#basics" class="nav-link">基础原理</a></li>
+                    <li><a href="../index.html#integration" class="nav-link">集成器件</a></li>
+                    <li><a href="../index.html#process" class="nav-link">制造工艺</a></li>
+                    <li><a href="../index.html#advanced" class="nav-link">先进技术</a></li>
+                    <li><a href="../index.html#tools" class="nav-link">工具资源</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第5章：数字集成器件</p>
+            </div>
+            <div class="chapter-header">
+                <h1>第5章：数字集成器件</h1>
+            </div>
+
+            <div class="section-nav">
+                <ul>
+                    <li><a href="#cmos-basics" class="section-link">CMOS基础</a></li>
+                    <li><a href="#cmos-inverter" class="section-link">CMOS反相器</a></li>
+                    <li><a href="#static-memory" class="section-link">静态存储器件</a></li>
+                    <li><a href="#dynamic-memory" class="section-link">动态存储器件</a></li>
+                    <li><a href="#logic-optimization" class="section-link">逻辑电路器件优化</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter-content">
+                <section id="cmos-basics" class="content-section">
+                    <h2>CMOS基础</h2>
+                    <p>互补金属氧化物半导体（CMOS）技术是现代数字集成电路的基础。CMOS通过结合nMOS和pMOS晶体管实现极低的静态功耗，成为数字电路设计的首选技术。</p>
+                    
+                    <div class="highlight-box">
+                        <h3>CMOS技术的优势</h3>
+                        <ul>
+                            <li><strong>低功耗：</strong>静态状态下几乎不消耗功率</li>
+                            <li><strong>高噪声容限：</strong>对电源波动和噪声具有良好的抵抗能力</li>
+                            <li><strong>高集成度：</strong>结构简单，适合大规模集成</li>
+                            <li><strong>宽工作电压范围：</strong>可适应不同的电源电压需求</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="device-3d">
+                        <div class="device-layer layer-substrate">硅衬底</div>
+                        <div class="device-layer layer-source">源极</div>
+                        <div class="device-layer layer-drain">漏极</div>
+                        <div class="device-layer layer-oxide">栅氧层</div>
+                        <div class="device-layer layer-gate">栅极</div>
+                    </div>
+                    
+                    <p>CMOS技术通过在同一芯片上制造nMOS和pMOS晶体管，利用它们的互补特性实现逻辑功能。nMOS晶体管在栅极高电平时导通，而pMOS晶体管在栅极低电平时导通，这种互补特性使得CMOS电路在静态状态下几乎没有电流流动。</p>
+                </section>
+
+                <section id="cmos-inverter" class="content-section">
+                    <h2>CMOS反相器 <span class="progress-indicator" id="inverter-progress">0/2 已完成</span></h2>
+                    <p>CMOS反相器是最基本的CMOS逻辑门，由一个pMOS和一个nMOS晶体管串联组成。它是构建更复杂CMOS电路的基础单元。</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>CMOS反相器功耗模拟器</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="supply-voltage">电源电压 (V)</label>
+                                <input type="range" id="supply-voltage" min="1" max="5" step="0.1" value="3.3">
+                                <span id="supply-voltage-value">3.3 V</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="input-frequency">输入频率 (MHz)</label>
+                                <input type="range" id="input-frequency" min="0.1" max="100" step="0.1" value="10">
+                                <span id="input-frequency-value">10 MHz</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="load-capacitance">负载电容 (pF)</label>
+                                <input type="range" id="load-capacitance" min="0.1" max="10" step="0.1" value="1">
+                                <span id="load-capacitance-value">1 pF</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="power-chart"></canvas>
+                            </div>
+                            <div class="formula-box">
+                                动态功耗: P<sub>dynamic</sub> = C<sub>L</sub> × V<sub>DD</sub>² × f
+                            </div>
+                            <div id="power-results" style="margin-top: 1rem;">
+                                <p><strong>动态功耗：</strong> <span id="dynamic-power">0</span> μW</p>
+                                <p><strong>静态功耗：</strong> <span id="static-power">0</span> μW</p>
+                                <p><strong>总功耗：</strong> <span id="total-power">0</span> μW</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="transfer">传输特性</button>
+                            <button class="tab-button" data-tab="timing">时序特性</button>
+                            <button class="tab-button" data-tab="noise">噪声容限</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="transfer">
+                                <h4>电压传输特性</h4>
+                                <p>CMOS反相器的电压传输特性曲线描述了输出电压随输入电压的变化关系。理想情况下，当输入电压低于阈值时，输出为高电平；当输入电压高于阈值时，输出为低电平。</p>
+                                <div class="chart-container">
+                                    <canvas id="transfer-curve"></canvas>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="timing">
+                                <h4>时序特性</h4>
+                                <p>CMOS反相器的时序特性主要包括上升时间、下降时间和传播延迟。这些参数决定了电路的工作速度和性能。</p>
+                                <div class="chart-container">
+                                    <canvas id="timing-diagram"></canvas>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="noise">
+                                <h4>噪声容限</h4>
+                                <p>噪声容限是指电路在保持正确逻辑状态的前提下能够承受的最大噪声电压。CMOS电路具有较大的噪声容限，这是其广泛应用的重要原因之一。</p>
+                                <div class="chart-container">
+                                    <canvas id="noise-margin"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="static-memory" class="content-section">
+                    <h2>静态存储器件 <span class="progress-indicator" id="sram-progress">0/2 已完成</span></h2>
+                    <p>静态随机存取存储器（SRAM）使用触发器电路存储每个比特，不需要刷新操作，具有快速访问速度和低功耗的特点。</p>
+                    
+                    <div class="circuit-diagram">
+                        <div class="circuit-element">M1</div>
+                        <div class="circuit-element">M2</div>
+                        <div class="circuit-element">M3</div>
+                        <div class="circuit-element">M4</div>
+                        <div class="circuit-element">M5</div>
+                        <div class="circuit-element">M6</div>
+                    </div>
+                    
+                    <p>典型的6T SRAM单元由两个交叉耦合的反相器（M1-M2和M3-M4）和两个访问晶体管（M5-M6）组成。这种结构提供了稳定的存储状态和快速的读写能力。</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>SRAM单元稳定性测试</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="supply-voltage-sram">电源电压 (V)</label>
+                                <input type="range" id="supply-voltage-sram" min="0.5" max="1.2" step="0.05" value="1.0">
+                                <span id="supply-voltage-sram-value">1.0 V</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="transistor-ratio">晶体管尺寸比 (W/L)</label>
+                                <input type="range" id="transistor-ratio" min="1" max="5" step="0.5" value="2">
+                                <span id="transistor-ratio-value">2.0</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="temperature">温度 (°C)</label>
+                                <input type="range" id="temperature" min="-40" max="125" step="5" value="25">
+                                <span id="temperature-value">25°C</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="sram-stability"></canvas>
+                            </div>
+                            <div id="sram-results" style="margin-top: 1rem;">
+                                <p><strong>静态噪声容限（SNM）：</strong> <span id="snm-value">0</span> mV</p>
+                                <p><strong>写入余量：</strong> <span id="write-margin-value">0</span> mV</p>
+                                <p><strong>保持电流：</strong> <span id="hold-current-value">0</span> nA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>SRAM的类型与应用</h3>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>SRAM类型</th>
+                                <th>特点</th>
+                                <th>应用场景</th>
+                            </tr>
+                            <tr>
+                                <td>高速SRAM</td>
+                                <td>极快访问速度，高功耗</td>
+                                <td>CPU缓存、高速缓冲存储器</td>
+                            </tr>
+                            <tr>
+                                <td>低功耗SRAM</td>
+                                <td>低功耗，中等速度</td>
+                                <td>移动设备、物联网设备</td>
+                            </tr>
+                            <tr>
+                                <td>高密度SRAM</td>
+                                <td>高集成度，较大面积</td>
+                                <td>片上存储器、嵌入式应用</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="dynamic-memory" class="content-section">
+                    <h2>动态存储器件 <span class="progress-indicator" id="dram-progress">0/2 已完成</span></h2>
+                    <p>动态随机存取存储器（DRAM）使用单个晶体管和电容存储每个比特，具有高密度和低成本的优势，但需要定期刷新以保持数据。</p>
+                    
+                    <div class="device-3d">
+                        <div class="device-layer layer-substrate">硅衬底</div>
+                        <div class="device-layer layer-source">源极</div>
+                        <div class="device-layer layer-drain">漏极</div>
+                        <div class="device-layer layer-oxide">栅氧层</div>
+                        <div class="device-layer layer-gate">字线</div>
+                        <div style="position: absolute; top: 50px; right: 15%; width: 30%; height: 80px; background-color: #FFD700; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #333; font-weight: 500; z-index: 5;">存储电容</div>
+                        <div style="position: absolute; top: 140px; right: 10%; width: 40%; height: 2px; background-color: #333; z-index: 6;">位线</div>
+                    </div>
+                    
+                    <p>DRAM单元由一个访问晶体管和一个存储电容组成。数据以电荷形式存储在电容中，通过晶体管控制读写操作。由于电容会漏电，需要定期刷新来保持数据。</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>DRAM刷新周期模拟器</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="capacitance">存储电容 (fF)</label>
+                                <input type="range" id="capacitance" min="10" max="50" step="1" value="30">
+                                <span id="capacitance-value">30 fF</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="leakage-current">漏电流 (pA)</label>
+                                <input type="range" id="leakage-current" min="0.1" max="5" step="0.1" value="1">
+                                <span id="leakage-current-value">1.0 pA</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="temperature-dram">温度 (°C)</label>
+                                <input type="range" id="temperature-dram" min="0" max="85" step="5" value="25">
+                                <span id="temperature-dram-value">25°C</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="refresh-cycle"></canvas>
+                            </div>
+                            <div id="dram-results" style="margin-top: 1rem;">
+                                <p><strong>数据保持时间：</strong> <span id="retention-time">0</span> ms</p>
+                                <p><strong>建议刷新周期：</strong> <span id="refresh-period">0</span> ms</p>
+                                <p><strong>刷新功耗：</strong> <span id="refresh-power">0</span> μW/bit</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h3>DRAM技术的演进</h3>
+                        <ul>
+                            <li><strong>SDRAM：</strong>同步DRAM，与系统时钟同步工作</li>
+                            <li><strong>DDR SDRAM：</strong>双倍数据速率SDRAM，在时钟上升沿和下降沿都传输数据</li>
+                            <li><strong>DDR2/DDR3/DDR4/DDR5：</strong>不断演进的高性能DDR技术，提高数据传输速率和降低功耗</li>
+                            <li><strong>LPDDR：</strong>低功耗DDR，专为移动设备优化</li>
+                            <li><strong>HBM：</strong>高带宽内存，通过3D堆叠技术实现极高带宽</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="logic-optimization" class="content-section">
+                    <h2>逻辑电路中的器件优化 <span class="progress-indicator" id="optimization-progress">0/2 已完成</span></h2>
+                    <p>在数字逻辑电路设计中，器件优化是提高电路性能、降低功耗和减小面积的关键。优化策略包括尺寸调整、阈值电压选择和电路结构改进等。</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="size-optimization">尺寸优化</button>
+                            <button class="tab-button" data-tab="threshold-optimization">阈值电压优化</button>
+                            <button class="tab-button" data-tab="structure-optimization">结构优化</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="size-optimization">
+                                <h4>晶体管尺寸优化</h4>
+                                <p>晶体管尺寸（宽长比）直接影响电路的驱动能力、速度和功耗。通过合理调整晶体管尺寸，可以在速度、功耗和面积之间取得平衡。</p>
+                                
+                                <div class="interactive-demo">
+                                    <h4>尺寸优化模拟器</h4>
+                                    <div class="demo-controls">
+                                        <div class="control-group">
+                                            <label for="nmos-width">nMOS宽度 (μm)</label>
+                                            <input type="range" id="nmos-width" min="0.1" max="10" step="0.1" value="1">
+                                            <span id="nmos-width-value">1.0 μm</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="pmos-width">pMOS宽度 (μm)</label>
+                                            <input type="range" id="pmos-width" min="0.1" max="10" step="0.1" value="2">
+                                            <span id="pmos-width-value">2.0 μm</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="load-capacitance-size">负载电容 (pF)</label>
+                                            <input type="range" id="load-capacitance-size" min="0.01" max="1" step="0.01" value="0.1">
+                                            <span id="load-capacitance-size-value">0.1 pF</span>
+                                        </div>
+                                    </div>
+                                    <div class="demo-output">
+                                        <div class="chart-container">
+                                            <canvas id="size-optimization-chart"></canvas>
+                                        </div>
+                                        <div id="size-results" style="margin-top: 1rem;">
+                                            <p><strong>传播延迟：</strong> <span id="propagation-delay">0</span> ns</p>
+                                            <p><strong>上升时间：</strong> <span id="rise-time">0</span> ns</p>
+                                            <p><strong>下降时间：</strong> <span id="fall-time">0</span> ns</p>
+                                            <p><strong>功耗：</strong> <span id="power-consumption">0</span> μW</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="threshold-optimization">
+                                <h4>阈值电压优化</h4>
+                                <p>阈值电压（Vth）是影响晶体管开关特性和漏电流的重要参数。通过多阈值电压技术，可以在性能和功耗之间实现更好的平衡。</p>
+                                
+                                <div class="interactive-demo">
+                                    <h4>阈值电压优化模拟器</h4>
+                                    <div class="demo-controls">
+                                        <div class="control-group">
+                                            <label for="nmos-vth">nMOS阈值电压 (V)</label>
+                                            <input type="range" id="nmos-vth" min="0.2" max="0.8" step="0.05" value="0.4">
+                                            <span id="nmos-vth-value">0.4 V</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="pmos-vth">pMOS阈值电压 (V)</label>
+                                            <input type="range" id="pmos-vth" min="-0.8" max="-0.2" step="0.05" value="-0.4">
+                                            <span id="pmos-vth-value">-0.4 V</span>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="supply-voltage-vth">电源电压 (V)</label>
+                                            <input type="range" id="supply-voltage-vth" min="0.8" max="1.2" step="0.05" value="1.0">
+                                            <span id="supply-voltage-vth-value">1.0 V</span>
+                                        </div>
+                                    </div>
+                                    <div class="demo-output">
+                                        <div class="chart-container">
+                                            <canvas id="threshold-optimization-chart"></canvas>
+                                        </div>
+                                        <div id="threshold-results" style="margin-top: 1rem;">
+                                            <p><strong>开关速度：</strong> <span id="switching-speed">0</span> ns</p>
+                                            <p><strong>静态功耗：</strong> <span id="static-power-vth">0</span> nW</p>
+                                            <p><strong>噪声容限：</strong> <span id="noise-margin-vth">0</span> mV</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="structure-optimization">
+                                <h4>电路结构优化</h4>
+                                <p>通过改进电路结构，可以在不改变晶体管参数的情况下提高电路性能。常见的优化技术包括传输门逻辑、动态逻辑和多米诺逻辑等。</p>
+                                
+                                <div class="highlight-box">
+                                    <h4>常见优化技术</h4>
+                                    <ul>
+                                        <li><strong>传输门逻辑：</strong>利用nMOS和pMOS的并联实现更好的电平传输</li>
+                                        <li><strong>动态逻辑：</strong>利用预充电和求值阶段实现更快的电路速度</li>
+                                        <li><strong>多米诺逻辑：</strong>动态逻辑的改进，解决级联问题</li>
+                                        <li><strong>时钟门控：</strong>通过控制时钟信号降低功耗</li>
+                                        <li><strong>电源门控：</strong>通过切断电源降低空闲模块的功耗</li>
+                                    </ul>
+                                </div>
+                                
+                                <table class="comparison-table">
+                                    <tr>
+                                        <th>优化技术</th>
+                                        <th>速度提升</th>
+                                        <th>功耗降低</th>
+                                        <th>面积增加</th>
+                                        <th>适用场景</th>
+                                    </tr>
+                                    <tr>
+                                        <td>传输门逻辑</td>
+                                        <td>中等</td>
+                                        <td>低</td>
+                                        <td>高</td>
+                                        <td>多路选择器、异或门</td>
+                                    </tr>
+                                    <tr>
+                                        <td>动态逻辑</td>
+                                        <td>高</td>
+                                        <td>中等</td>
+                                        <td>中等</td>
+                                        <td>高速数据路径</td>
+                                    </tr>
+                                    <tr>
+                                        <td>时钟门控</td>
+                                        <td>无</td>
+                                        <td>高</td>
+                                        <td>低</td>
+                                        <td>低功耗设计</td>
+                                    </tr>
+                                    <tr>
+                                        <td>电源门控</td>
+                                        <td>无</td>
+                                        <td>极高</td>
+                                        <td>中等</td>
+                                        <td>模块级功耗管理</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="content-section">
+                    <h2>本章小结</h2>
+                    <p>数字集成器件是现代电子系统的核心组件，CMOS技术因其低功耗和高集成度成为数字电路的主流技术。通过理解CMOS反相器的工作原理、SRAM和DRAM的存储机制以及器件优化技术，可以更好地设计和分析数字集成电路。</p>
+                    
+                    <div class="highlight-box">
+                        <h3>关键要点</h3>
+                        <ul>
+                            <li>CMOS技术通过nMOS和pMOS的互补特性实现低功耗数字电路</li>
+                            <li>CMOS反相器的功耗主要由动态功耗决定，与电源电压平方、负载电容和工作频率成正比</li>
+                            <li>SRAM使用触发器结构存储数据，具有快速访问和低功耗特点</li>
+                            <li>DRAM使用单晶体管-电容结构存储数据，具有高密度和低成本优势</li>
+                            <li>器件优化包括尺寸调整、阈值电压选择和电路结构改进，可提高电路性能、降低功耗</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="chapter-navigation">
+                        <a href="chapter4.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 上一章</a>
+                        <a href="chapter6.html" class="btn btn-primary">下一章 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于SEMI_PROJ</h3>
+                    <p>致力于打造半导体器件与制造技术的交互式学习平台，提供全面、深入、实用的知识体系。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../index.html#basics">基础原理</a></li>
+                        <li><a href="../index.html#integration">集成器件</a></li>
+                        <li><a href="../index.html#process">制造工艺</a></li>
+                        <li><a href="../index.html#advanced">先进技术</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：info@semiproj.com</p>
+                    <p>电话：+86 123-4567-8900</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEMI_PROJ. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // 进度跟踪变量
+        let inverterExperiments = 0;
+        let sramTests = 0;
+        let dramSimulations = 0;
+        let optimizationExercises = 0;
+        
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initSectionNavigation();
+            initTabs();
+            initCMOSInverterSimulator();
+            initSRAMStabilityTest();
+            initDRAMRefreshSimulator();
+            initSizeOptimization();
+            initThresholdOptimization();
+            initProgressTracking();
+        });
+        
+        // 章节导航
+        function initSectionNavigation() {
+            const sectionLinks = document.querySelectorAll('.section-link');
+            const sections = document.querySelectorAll('.content-section');
+            
+            sectionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    sectionLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // 添加active类到当前链接和对应部分
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        
+                        // 滚动到目标部分
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // 标签页功能
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // 移除所有active类
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // 添加active类到当前按钮和对应面板
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // CMOS反相器功耗模拟器
+        function initCMOSInverterSimulator() {
+            const supplyVoltage = document.getElementById('supply-voltage');
+            const inputFrequency = document.getElementById('input-frequency');
+            const loadCapacitance = document.getElementById('load-capacitance');
+            
+            const supplyVoltageValue = document.getElementById('supply-voltage-value');
+            const inputFrequencyValue = document.getElementById('input-frequency-value');
+            const loadCapacitanceValue = document.getElementById('load-capacitance-value');
+            
+            const dynamicPowerEl = document.getElementById('dynamic-power');
+            const staticPowerEl = document.getElementById('static-power');
+            const totalPowerEl = document.getElementById('total-power');
+            
+            // 创建图表
+            const ctx = document.getElementById('power-chart').getContext('2d');
+            const powerChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1MHz', '10MHz', '50MHz', '100MHz'],
+                    datasets: [{
+                        label: '动态功耗 (μW)',
+                        data: [0, 0, 0, 0],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '静态功耗 (μW)',
+                        data: [0.1, 0.1, 0.1, 0.1],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '功耗 (μW)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '频率'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updatePower() {
+                const Vdd = parseFloat(supplyVoltage.value);
+                const f = parseFloat(inputFrequency.value);
+                const CL = parseFloat(loadCapacitance.value);
+                
+                // 更新显示值
+                supplyVoltageValue.textContent = `${Vdd} V`;
+                inputFrequencyValue.textContent = `${f} MHz`;
+                loadCapacitanceValue.textContent = `${CL} pF`;
+                
+                // 计算功耗
+                const dynamicPower = CL * 1e-12 * Vdd * Vdd * f * 1e6 * 1e6; // 转换为μW
+                const staticPower = 0.1; // 假设静态功耗为0.1μW
+                const totalPower = dynamicPower + staticPower;
+                
+                // 更新显示
+                dynamicPowerEl.textContent = dynamicPower.toFixed(2);
+                staticPowerEl.textContent = staticPower.toFixed(2);
+                totalPowerEl.textContent = totalPower.toFixed(2);
+                
+                // 更新图表
+                const frequencies = [1, 10, 50, 100];
+                const dynamicPowerData = frequencies.map(freq => CL * 1e-12 * Vdd * Vdd * freq * 1e6 * 1e6);
+                const staticPowerData = frequencies.map(() => staticPower);
+                
+                powerChart.data.datasets[0].data = dynamicPowerData;
+                powerChart.data.datasets[1].data = staticPowerData;
+                powerChart.update();
+                
+                // 更新进度
+                if (inverterExperiments < 2) {
+                    inverterExperiments++;
+                    updateProgress();
+                }
+            }
+            
+            supplyVoltage.addEventListener('input', updatePower);
+            inputFrequency.addEventListener('input', updatePower);
+            loadCapacitance.addEventListener('input', updatePower);
+            
+            // 初始化传输特性曲线
+            const transferCtx = document.getElementById('transfer-curve').getContext('2d');
+            const transferChart = new Chart(transferCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => (i / 100).toFixed(2)),
+                    datasets: [{
+                        label: '输出电压 (V)',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const vin = i / 100;
+                            const vdd = 3.3;
+                            const vth = vdd / 2;
+                            
+                            if (vin < vth - 0.2) return vdd;
+                            if (vin > vth + 0.2) return 0;
+                            return vdd * (1 - vin / vdd);
+                        }),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3.3,
+                            title: {
+                                display: true,
+                                text: '输出电压 (V)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '输入电压 (V)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 初始化时序图
+            const timingCtx = document.getElementById('timing-diagram').getContext('2d');
+            const timingChart = new Chart(timingCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => i),
+                    datasets: [{
+                        label: '输入信号',
+                        data: Array.from({length: 101}, (_, i) => {
+                            if (i < 20) return 0;
+                            if (i < 30) return i - 20;
+                            if (i < 50) return 10;
+                            if (i < 60) return 60 - i;
+                            return 0;
+                        }),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: false
+                    }, {
+                        label: '输出信号',
+                        data: Array.from({length: 101}, (_, i) => {
+                            if (i < 30) return 10;
+                            if (i < 40) return 40 - i;
+                            if (i < 60) return 0;
+                            if (i < 70) return i - 60;
+                            return 10;
+                        }),
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: '电压 (V)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '时间 (ns)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 初始化噪声容限图
+            const noiseCtx = document.getElementById('noise-margin').getContext('2d');
+            const noiseChart = new Chart(noiseCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => (i / 100).toFixed(2)),
+                    datasets: [{
+                        label: '输出电压 (V)',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const vin = i / 100;
+                            const vdd = 3.3;
+                            const vth = vdd / 2;
+                            
+                            if (vin < vth - 0.2) return vdd;
+                            if (vin > vth + 0.2) return 0;
+                            return vdd * (1 - vin / vdd);
+                        }),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: false
+                    }, {
+                        label: '理想反相器',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const vin = i / 100;
+                            const vdd = 3.3;
+                            return vin < vdd / 2 ? vdd : 0;
+                        }),
+                        borderColor: '#95a5a6',
+                        borderDash: [5, 5],
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 3.3,
+                            title: {
+                                display: true,
+                                text: '输出电压 (V)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '输入电压 (V)'
+                            }
+                        }
+                    },
+                    annotation: {
+                        annotations: [{
+                            type: 'box',
+                            xMin: 0.8,
+                            xMax: 1.2,
+                            yMin: 0.8,
+                            yMax: 1.2,
+                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                            borderColor: 'rgba(46, 204, 113, 0.8)',
+                            borderWidth: 1
+                        }]
+                    }
+                }
+            });
+            
+            // 初始化
+            updatePower();
+        }
+        
+        // SRAM稳定性测试
+        function initSRAMStabilityTest() {
+            const supplyVoltage = document.getElementById('supply-voltage-sram');
+            const transistorRatio = document.getElementById('transistor-ratio');
+            const temperature = document.getElementById('temperature');
+            
+            const supplyVoltageValue = document.getElementById('supply-voltage-sram-value');
+            const transistorRatioValue = document.getElementById('transistor-ratio-value');
+            const temperatureValue = document.getElementById('temperature-value');
+            
+            const snmValue = document.getElementById('snm-value');
+            const writeMarginValue = document.getElementById('write-margin-value');
+            const holdCurrentValue = document.getElementById('hold-current-value');
+            
+            // 创建图表
+            const ctx = document.getElementById('sram-stability').getContext('2d');
+            const stabilityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.6V', '0.8V', '1.0V', '1.2V'],
+                    datasets: [{
+                        label: '静态噪声容限 (mV)',
+                        data: [120, 180, 220, 250],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '写入余量 (mV)',
+                        data: [150, 200, 240, 280],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '电压 (mV)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '电源电压'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateStability() {
+                const Vdd = parseFloat(supplyVoltage.value);
+                const ratio = parseFloat(transistorRatio.value);
+                const temp = parseFloat(temperature.value);
+                
+                // 更新显示值
+                supplyVoltageValue.textContent = `${Vdd} V`;
+                transistorRatioValue.textContent = ratio.toFixed(1);
+                temperatureValue.textContent = `${temp}°C`;
+                
+                // 计算稳定性参数（简化模型）
+                const snm = Vdd * 1000 * (0.2 + 0.05 * ratio - 0.001 * temp);
+                const writeMargin = Vdd * 1000 * (0.25 + 0.04 * ratio - 0.0008 * temp);
+                const holdCurrent = Math.exp(-Vdd / 0.5) * 1000 * (1 + 0.02 * (temp - 25));
+                
+                // 更新显示
+                snmValue.textContent = Math.max(50, snm).toFixed(0);
+                writeMarginValue.textContent = Math.max(80, writeMargin).toFixed(0);
+                holdCurrentValue.textContent = holdCurrent.toFixed(2);
+                
+                // 更新图表
+                const voltages = [0.6, 0.8, 1.0, 1.2];
+                const snmData = voltages.map(v => v * 1000 * (0.2 + 0.05 * ratio - 0.001 * temp));
+                const writeMarginData = voltages.map(v => v * 1000 * (0.25 + 0.04 * ratio - 0.0008 * temp));
+                
+                stabilityChart.data.datasets[0].data = snmData;
+                stabilityChart.data.datasets[1].data = writeMarginData;
+                stabilityChart.update();
+                
+                // 更新进度
+                if (sramTests < 2) {
+                    sramTests++;
+                    updateProgress();
+                }
+            }
+            
+            supplyVoltage.addEventListener('input', updateStability);
+            transistorRatio.addEventListener('input', updateStability);
+            temperature.addEventListener('input', updateStability);
+            
+            // 初始化
+            updateStability();
+        }
+        
+        // DRAM刷新周期模拟器
+        function initDRAMRefreshSimulator() {
+            const capacitance = document.getElementById('capacitance');
+            const leakageCurrent = document.getElementById('leakage-current');
+            const temperature = document.getElementById('temperature-dram');
+            
+            const capacitanceValue = document.getElementById('capacitance-value');
+            const leakageCurrentValue = document.getElementById('leakage-current-value');
+            const temperatureValue = document.getElementById('temperature-dram-value');
+            
+            const retentionTime = document.getElementById('retention-time');
+            const refreshPeriod = document.getElementById('refresh-period');
+            const refreshPower = document.getElementById('refresh-power');
+            
+            // 创建图表
+            const ctx = document.getElementById('refresh-cycle').getContext('2d');
+            const refreshChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => i),
+                    datasets: [{
+                        label: '电容电压 (V)',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const V0 = 1.0; // 初始电压
+                            const tau = 64; // 时间常数
+                            return V0 * Math.exp(-i / tau);
+                        }),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '刷新阈值',
+                        data: Array.from({length: 101}, () => 0.5),
+                        borderColor: '#e74c3c',
+                        borderDash: [5, 5],
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1.2,
+                            title: {
+                                display: true,
+                                text: '电压 (V)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '时间 (ms)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateRefreshCycle() {
+                const C = parseFloat(capacitance.value);
+                const I = parseFloat(leakageCurrent.value);
+                const temp = parseFloat(temperature.value);
+                
+                // 更新显示值
+                capacitanceValue.textContent = `${C} fF`;
+                leakageCurrentValue.textContent = `${I.toFixed(1)} pA`;
+                temperatureValue.textContent = `${temp}°C`;
+                
+                // 计算刷新参数
+                const V0 = 1.0; // 初始电压
+                const Vth = 0.5; // 阈值电压
+                const tempFactor = Math.pow(2, (temp - 25) / 10); // 温度每升高10度，漏电流翻倍
+                const effectiveLeakage = I * tempFactor;
+                
+                const tau = C * 1e-15 * V0 / (effectiveLeakage * 1e-12); // 时间常数
+                const retention = -tau * Math.log(Vth / V0) * 1000; // 转换为ms
+                const refresh = retention * 0.8; // 刷新周期为保持时间的80%
+                const power = C * 1e-15 * V0 * V0 / refresh * 1e-3 * 1e6; // 转换为μW
+                
+                // 更新显示
+                retentionTime.textContent = retention.toFixed(1);
+                refreshPeriod.textContent = refresh.toFixed(1);
+                refreshPower.textContent = power.toFixed(3);
+                
+                // 更新图表
+                const timePoints = Array.from({length: 101}, (_, i) => i);
+                const voltageData = timePoints.map(t => V0 * Math.exp(-t / (retention / 100)));
+                
+                refreshChart.data.datasets[0].data = voltageData;
+                refreshChart.update();
+                
+                // 更新进度
+                if (dramSimulations < 2) {
+                    dramSimulations++;
+                    updateProgress();
+                }
+            }
+            
+            capacitance.addEventListener('input', updateRefreshCycle);
+            leakageCurrent.addEventListener('input', updateRefreshCycle);
+            temperature.addEventListener('input', updateRefreshCycle);
+            
+            // 初始化
+            updateRefreshCycle();
+        }
+        
+        // 尺寸优化模拟器
+        function initSizeOptimization() {
+            const nmosWidth = document.getElementById('nmos-width');
+            const pmosWidth = document.getElementById('pmos-width');
+            const loadCapacitance = document.getElementById('load-capacitance-size');
+            
+            const nmosWidthValue = document.getElementById('nmos-width-value');
+            const pmosWidthValue = document.getElementById('pmos-width-value');
+            const loadCapacitanceValue = document.getElementById('load-capacitance-size-value');
+            
+            const propagationDelay = document.getElementById('propagation-delay');
+            const riseTime = document.getElementById('rise-time');
+            const fallTime = document.getElementById('fall-time');
+            const powerConsumption = document.getElementById('power-consumption');
+            
+            // 创建图表
+            const ctx = document.getElementById('size-optimization-chart').getContext('2d');
+            const sizeChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.5', '1.0', '2.0', '5.0', '10.0'],
+                    datasets: [{
+                        label: '传播延迟 (ns)',
+                        data: [2.5, 1.8, 1.2, 0.8, 0.6],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '功耗 (μW)',
+                        data: [0.8, 1.2, 2.0, 3.5, 5.0],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '延迟 (ns) / 功耗 (μW)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '晶体管宽度 (μm)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateSizeOptimization() {
+                const Wn = parseFloat(nmosWidth.value);
+                const Wp = parseFloat(pmosWidth.value);
+                const CL = parseFloat(loadCapacitance.value);
+                
+                // 更新显示值
+                nmosWidthValue.textContent = `${Wn.toFixed(1)} μm`;
+                pmosWidthValue.textContent = `${Wp.toFixed(1)} μm`;
+                loadCapacitanceValue.textContent = `${CL.toFixed(2)} pF`;
+                
+                // 计算性能参数（简化模型）
+                const k = 0.1; // 工艺常数
+                const Vdd = 1.0; // 电源电压
+                
+                const rise = k * CL / Wn;
+                const fall = k * CL / Wp;
+                const delay = (rise + fall) / 2;
+                const power = CL * Vdd * Vdd * 1e6; // 转换为μW
+                
+                // 更新显示
+                propagationDelay.textContent = delay.toFixed(2);
+                riseTime.textContent = rise.toFixed(2);
+                fallTime.textContent = fall.toFixed(2);
+                powerConsumption.textContent = power.toFixed(2);
+                
+                // 更新图表
+                const widths = [0.5, 1.0, 2.0, 5.0, 10.0];
+                const delayData = widths.map(w => k * CL / w);
+                const powerData = widths.map(w => CL * Vdd * Vdd * w / Wn * 1e6);
+                
+                sizeChart.data.datasets[0].data = delayData;
+                sizeChart.data.datasets[1].data = powerData;
+                sizeChart.update();
+                
+                // 更新进度
+                if (optimizationExercises < 2) {
+                    optimizationExercises++;
+                    updateProgress();
+                }
+            }
+            
+            nmosWidth.addEventListener('input', updateSizeOptimization);
+            pmosWidth.addEventListener('input', updateSizeOptimization);
+            loadCapacitance.addEventListener('input', updateSizeOptimization);
+            
+            // 初始化
+            updateSizeOptimization();
+        }
+        
+        // 阈值电压优化模拟器
+        function initThresholdOptimization() {
+            const nmosVth = document.getElementById('nmos-vth');
+            const pmosVth = document.getElementById('pmos-vth');
+            const supplyVoltage = document.getElementById('supply-voltage-vth');
+            
+            const nmosVthValue = document.getElementById('nmos-vth-value');
+            const pmosVthValue = document.getElementById('pmos-vth-value');
+            const supplyVoltageValue = document.getElementById('supply-voltage-vth-value');
+            
+            const switchingSpeed = document.getElementById('switching-speed');
+            const staticPowerVth = document.getElementById('static-power-vth');
+            const noiseMarginVth = document.getElementById('noise-margin-vth');
+            
+            // 创建图表
+            const ctx = document.getElementById('threshold-optimization-chart').getContext('2d');
+            const thresholdChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.2V', '0.3V', '0.4V', '0.5V', '0.6V'],
+                    datasets: [{
+                        label: '开关速度 (ns)',
+                        data: [0.8, 1.2, 1.8, 2.5, 3.5],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '静态功耗 (nW)',
+                        data: [120, 80, 40, 15, 5],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '速度 (ns) / 功耗 (nW)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '阈值电压 (V)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateThresholdOptimization() {
+                const Vthn = parseFloat(nmosVth.value);
+                const Vthp = parseFloat(pmosVth.value);
+                const Vdd = parseFloat(supplyVoltage.value);
+                
+                // 更新显示值
+                nmosVthValue.textContent = `${Vthn.toFixed(2)} V`;
+                pmosVthValue.textContent = `${Vthp.toFixed(2)} V`;
+                supplyVoltageValue.textContent = `${Vdd.toFixed(2)} V`;
+                
+                // 计算性能参数（简化模型）
+                const k = 0.5; // 工艺常数
+                const Vgs = Vdd; // 栅源电压
+                
+                const speed = k / (Vgs - Math.abs(Vthn));
+                const Ioff = Math.exp(-Vthn / 0.05) * 1000; // 转换为nW
+                const noiseMargin = (Vdd - Math.abs(Vthn) - Vthp) * 1000; // 转换为mV
+                
+                // 更新显示
+                switchingSpeed.textContent = speed.toFixed(2);
+                staticPowerVth.textContent = Ioff.toFixed(2);
+                noiseMarginVth.textContent = Math.max(0, noiseMargin).toFixed(0);
+                
+                // 更新图表
+                const vths = [0.2, 0.3, 0.4, 0.5, 0.6];
+                const speedData = vths.map(v => k / (Vgs - v));
+                const powerData = vths.map(v => Math.exp(-v / 0.05) * 1000);
+                
+                thresholdChart.data.datasets[0].data = speedData;
+                thresholdChart.data.datasets[1].data = powerData;
+                thresholdChart.update();
+            }
+            
+            nmosVth.addEventListener('input', updateThresholdOptimization);
+            pmosVth.addEventListener('input', updateThresholdOptimization);
+            supplyVoltage.addEventListener('input', updateThresholdOptimization);
+            
+            // 初始化
+            updateThresholdOptimization();
+        }
+        
+        // 进度跟踪
+        function updateProgress() {
+            // 更新反相器进度
+            document.getElementById('inverter-progress').textContent = `${inverterExperiments}/2 已完成`;
+            
+            // 更新SRAM进度
+            document.getElementById('sram-progress').textContent = `${sramTests}/2 已完成`;
+            
+            // 更新DRAM进度
+            document.getElementById('dram-progress').textContent = `${dramSimulations}/2 已完成`;
+            
+            // 更新优化进度
+            document.getElementById('optimization-progress').textContent = `${optimizationExercises}/2 已完成`;
+            
+            // 保存进度
+            saveProgress();
+        }
+        
+        // 保存进度
+        function saveProgress() {
+            const progress = {
+                inverterExperiments,
+                sramTests,
+                dramSimulations,
+                optimizationExercises
+            };
+            
+            localStorage.setItem('chapter5-progress', JSON.stringify(progress));
+        }
+        
+        // 加载进度
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('chapter5-progress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                inverterExperiments = progress.inverterExperiments || 0;
+                sramTests = progress.sramTests || 0;
+                dramSimulations = progress.dramSimulations || 0;
+                optimizationExercises = progress.optimizationExercises || 0;
+                
+                updateProgress();
+            }
+        }
+        
+        // 加载进度
+        loadProgress();
+    </script>
+</body>
+</html>

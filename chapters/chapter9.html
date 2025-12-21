@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9章：器件图形化工艺 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第9章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item active">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#photolithography" class="section-nav-item">
+                        光刻技术
+                    </a>
+                    <a href="#etching-process" class="section-nav-item">
+                        刻蚀工艺
+                    </a>
+                    <a href="#patterning-techniques" class="section-nav-item">
+                        图形化技术
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-book"></i> 第九章</a></li>
+                    <li><a href="../chapters/chapter10.html"><i class="fas fa-arrow-right"></i> 下一章</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第九章：器件图形化工艺</p>
+            </div>
+            <div class="chapter-header">
+                <h1>第九章：器件图形化工艺</h1>
+            </div>
+            <div class="chapter-progress">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 56.25%"></div>
+                </div>
+                <span>9/16</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <section class="intro">
+                <p>器件图形化工艺是半导体制造的核心环节，决定了集成电路的微细化和集成度。本章将深入探讨光刻技术原理、刻蚀工艺选择以及图形转移质量控制，通过交互式工具帮助理解图形化工艺的关键参数和优化策略。</p>
+            </section>
+
+            <section>
+                <h2>9.1 光刻技术原理</h2>
+                <p>光刻技术是半导体制造中最关键的工艺之一，通过光学方法将掩膜版上的图形转移到光刻胶上，再通过显影形成所需图形。光刻技术的分辨率直接决定了器件的最小特征尺寸。</p>
+                
+                <div class="interactive-container">
+                    <h3>光刻工艺模拟器</h3>
+                    <div class="lithography-simulator">
+                        <div class="control-panel">
+                            <div class="control-group">
+                                <label for="wavelength">曝光波长 (nm)</label>
+                                <select id="wavelength">
+                                    <option value="436">436 (G-line)</option>
+                                    <option value="365">365 (I-line)</option>
+                                    <option value="248">248 (KrF)</option>
+                                    <option value="193">193 (ArF)</option>
+                                    <option value="13.5">13.5 (EUV)</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="numerical-aperture">数值孔径 (NA)</label>
+                                <input type="range" id="numerical-aperture" min="0.5" max="1.35" step="0.05" value="0.85">
+                                <span id="na-value">0.85</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="process-factor">工艺因子 (k₁)</label>
+                                <input type="range" id="process-factor" min="0.25" max="0.8" step="0.05" value="0.4">
+                                <span id="k1-value">0.4</span>
+                            </div>
+                        </div>
+                        
+                        <div class="visualization-area">
+                            <div class="chart-container">
+                                <canvas id="resolution-chart"></canvas>
+                            </div>
+                            
+                            <div class="pattern-preview">
+                                <div class="substrate-layer"></div>
+                                <div class="film-layer"></div>
+                                <div class="resist-layer"></div>
+                                <div class="mask-overlay">
+                                    <div class="mask-opening" id="mask-opening"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="results-panel">
+                                <div class="results-title">光刻工艺参数</div>
+                                <div class="results-grid">
+                                    <div class="result-item">
+                                        <div class="result-value" id="resolution-value">45</div>
+                                        <div class="result-label">分辨率 (nm)</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="result-value" id="dof-value">0.8</div>
+                                        <div class="result-label">焦深 (μm)</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="result-value" id="contrast-value">0.9</div>
+                                        <div class="result-label">对比度</div>
+                                    </div>
+                                    <div class="result-item">
+                                        <div class="result-value" id="exposure-energy-value">30</div>
+                                        <div class="result-label">曝光能量 (mJ/cm²)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>9.1.1 光刻工艺流程</h3>
+                <p>光刻工艺包括基底准备、涂胶、软烘、曝光、显影、硬烘等步骤。每个步骤的参数控制对最终图形质量有重要影响。</p>
+                
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">基底准备</div>
+                            <div class="step-description">清洗、脱水、涂覆增粘剂，确保基底表面洁净且与光刻胶有良好粘附性</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">涂胶</div>
+                            <div class="step-description">通过旋涂工艺在基底上形成均匀的光刻胶薄膜，厚度取决于转速和胶液粘度</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">软烘</div>
+                            <div class="step-description">去除光刻胶中的溶剂，提高胶膜与基底的粘附力，通常在90-110°C下进行</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">曝光</div>
+                            <div class="step-description">通过掩膜版将光刻胶暴露在特定波长的光线下，引起光化学反应</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">显影</div>
+                            <div class="step-description">用显影液去除曝光区域（正胶）或未曝光区域（负胶）的光刻胶</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <div class="step-title">硬烘</div>
+                            <div class="step-description">进一步提高光刻胶的耐刻蚀能力，通常在120-140°C下进行</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>9.2 刻蚀工艺选择</h2>
+                <p>刻蚀是将光刻胶上的图形转移到下层材料的关键工艺。根据刻蚀机理可分为湿法刻蚀和干法刻蚀，根据刻蚀方向性可分为各向同性刻蚀和各向异性刻蚀。</p>
+                
+                <div class="interactive-container">
+                    <h3>刻蚀工艺比较与选择</h3>
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="wet-etch">湿法刻蚀</button>
+                            <button class="tab-button" data-tab="dry-etch">干法刻蚀</button>
+                            <button class="tab-button" data-tab="comparison">工艺比较</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="wet-etch">
+                            <h4>湿法刻蚀</h4>
+                            <p>湿法刻蚀使用液体化学试剂溶解材料，具有高选择比、低损伤、设备简单等优点，但存在各向同性、难以控制、污染环境等缺点。</p>
+                            
+                            <div class="control-panel">
+                                <div class="control-group">
+                                    <label for="etchant-type">刻蚀液类型</label>
+                                    <select id="etchant-type">
+                                        <option value="hno3-hf">HNO₃-HF (硅)</option>
+                                        <option value="h3po4">H₃PO₄ (氮化硅)</option>
+                                        <option value="tmah">TMAH (硅)</option>
+                                        <option value="koh">KOH (硅)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="etchant-concentration">浓度 (%)</label>
+                                    <input type="range" id="etchant-concentration" min="1" max="50" step="1" value="10">
+                                    <span id="concentration-value">10%</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="etch-temperature">温度 (°C)</label>
+                                    <input type="range" id="etch-temperature" min="20" max="80" step="1" value="25">
+                                    <span id="temperature-value">25°C</span>
+                                </div>
+                            </div>
+                            
+                            <div class="visualization-area">
+                                <div class="chart-container">
+                                    <canvas id="wet-etch-rate-chart"></canvas>
+                                </div>
+                                
+                                <div class="cross-section">
+                                    <div class="substrate-layer"></div>
+                                    <div class="film-layer"></div>
+                                    <div class="resist-layer"></div>
+                                    <div class="etched-region" id="wet-etched-region"></div>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">湿法刻蚀参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="wet-etch-rate-value">120</div>
+                                            <div class="result-label">刻蚀速率 (nm/min)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="wet-selectivity-value">10:1</div>
+                                            <div class="result-label">选择比</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="wet-uniformity-value">±5%</div>
+                                            <div class="result-label">均匀性</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="wet-undercut-value">0.8</div>
+                                            <div class="result-label">侧蚀 (μm)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="dry-etch">
+                            <h4>干法刻蚀</h4>
+                            <p>干法刻蚀使用等离子体中的活性粒子刻蚀材料，具有高方向性、可控性好、环境污染小等优点，但设备复杂、成本高、可能造成等离子体损伤。</p>
+                            
+                            <div class="control-panel">
+                                <div class="control-group">
+                                    <label for="plasma-type">等离子体类型</label>
+                                    <select id="plasma-type">
+                                        <option value="rie">反应离子刻蚀 (RIE)</option>
+                                        <option value="icp">电感耦合等离子体 (ICP)</option>
+                                        <option value="ccp">电容耦合等离子体 (CCP)</option>
+                                        <option value="mri">磁控反应离子刻蚀 (MRI)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="gas-chemistry">气体化学</label>
+                                    <select id="gas-chemistry">
+                                        <option value="sf6-o2">SF₆/O₂ (硅)</option>
+                                        <option value="cl2-hbr">Cl₂/HBr (硅)</option>
+                                        <option value="cf4-o2">CF₄/O₂ (二氧化硅)</option>
+                                        <option value="chf3-o2">CHF₃/O₂ (氮化硅)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="rf-power">RF功率 (W)</label>
+                                    <input type="range" id="rf-power" min="50" max="500" step="10" value="200">
+                                    <span id="rf-power-value">200W</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="chamber-pressure">腔室压力 (mTorr)</label>
+                                    <input type="range" id="chamber-pressure" min="5" max="100" step="5" value="20">
+                                    <span id="pressure-value">20mTorr</span>
+                                </div>
+                            </div>
+                            
+                            <div class="visualization-area">
+                                <div class="chart-container">
+                                    <canvas id="dry-etch-profile-chart"></canvas>
+                                </div>
+                                
+                                <div class="cross-section">
+                                    <div class="substrate-layer"></div>
+                                    <div class="film-layer"></div>
+                                    <div class="resist-layer"></div>
+                                    <div class="etched-region" id="dry-etched-region"></div>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">干法刻蚀参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="dry-etch-rate-value">85</div>
+                                            <div class="result-label">刻蚀速率 (nm/min)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="dry-selectivity-value">5:1</div>
+                                            <div class="result-label">选择比</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="dry-anisotropy-value">0.9</div>
+                                            <div class="result-label">各向异性度</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="dry-uniformity-value">±3%</div>
+                                            <div class="result-label">均匀性</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="comparison">
+                            <h4>刻蚀工艺比较</h4>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>湿法刻蚀</th>
+                                        <th>干法刻蚀</th>
+                                        <th>适用场景</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>方向性</td>
+                                        <td>各向同性</td>
+                                        <td>各向异性</td>
+                                        <td>精细图形选择干法刻蚀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>选择比</td>
+                                        <td>高 (10:1-100:1)</td>
+                                        <td>中等 (2:1-10:1)</td>
+                                        <td>高选择比需求选择湿法刻蚀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>刻蚀速率</td>
+                                        <td>高 (100-1000 nm/min)</td>
+                                        <td>中等 (10-200 nm/min)</td>
+                                        <td>大批量生产选择湿法刻蚀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>均匀性</td>
+                                        <td>较差 (±5-10%)</td>
+                                        <td>良好 (±1-5%)</td>
+                                        <td>高均匀性需求选择干法刻蚀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>设备成本</td>
+                                        <td>低</td>
+                                        <td>高</td>
+                                        <td>预算有限选择湿法刻蚀</td>
+                                    </tr>
+                                    <tr>
+                                        <td>环境污染</td>
+                                        <td>高</td>
+                                        <td>低</td>
+                                        <td>环保要求高选择干法刻蚀</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="chart-container">
+                                <canvas id="etch-comparison-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>9.3 图形转移质量控制</h2>
+                <p>图形转移质量控制是确保器件性能的关键环节，包括线宽控制、侧壁形貌控制、缺陷控制等方面。随着器件尺寸不断缩小，质量控制要求越来越高。</p>
+                
+                <div class="interactive-container">
+                    <h3>图形质量分析器</h3>
+                    <div class="control-panel">
+                        <div class="control-group">
+                            <label for="critical-dimension">目标线宽 (nm)</label>
+                            <input type="range" id="critical-dimension" min="10" max="500" step="10" value="100">
+                            <span id="cd-value">100nm</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="aspect-ratio">深宽比</label>
+                            <input type="range" id="aspect-ratio" min="0.5" max="10" step="0.5" value="2">
+                            <span id="ar-value">2:1</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="pattern-density">图形密度 (%)</label>
+                            <input type="range" id="pattern-density" min="10" max="90" step="5" value="50">
+                            <span id="density-value">50%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-area">
+                        <div class="chart-container">
+                            <canvas id="pattern-quality-chart"></canvas>
+                        </div>
+                        
+                        <div class="results-panel">
+                            <div class="results-title">图形质量预测</div>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <div class="result-value" id="cd-variation-value">±3.5</div>
+                                    <div class="result-label">线宽变化 (nm)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="sidewall-angle-value">88.5</div>
+                                    <div class="result-label">侧壁角度 (°)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="roughness-value">2.8</div>
+                                    <div class="result-label">线边缘粗糙度 (nm)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="defect-density-value">0.05</div>
+                                    <div class="result-label">缺陷密度 (/cm²)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>9.3.1 先进图形化技术</h3>
+                <p>随着器件尺寸进入纳米尺度，传统光刻技术面临挑战，多种先进图形化技术应运而生。</p>
+                
+                <div class="interactive-container">
+                    <h3>先进图形化技术比较</h3>
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="euv">极紫外光刻 (EUV)</button>
+                            <button class="tab-button" data-tab="immersion">浸没式光刻</button>
+                            <button class="tab-button" data-tab="multiple-patterning">多重图形化</button>
+                            <button class="tab-button" data-tab="directed-self-assembly">定向自组装</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="euv">
+                            <h4>极紫外光刻 (EUV)</h4>
+                            <p>EUV光刻使用13.5nm波长的极紫外光，可实现更高的分辨率和更简化的工艺流程，但面临光源功率、掩膜技术、光刻胶等挑战。</p>
+                            
+                            <div class="chart-container">
+                                <canvas id="euv-resolution-chart"></canvas>
+                            </div>
+                            
+                            <div class="results-panel">
+                                <div class="results-title">EUV光刻优势</div>
+                                <ul>
+                                    <li>单次曝光可实现7nm及以下节点</li>
+                                    <li>减少工艺步骤，降低成本</li>
+                                    <li>更好的图形保真度</li>
+                                    <li>减少套刻误差累积</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="immersion">
+                            <h4>浸没式光刻</h4>
+                            <p>浸没式光刻在镜头和晶圆之间填充高折射率液体（通常是纯水），有效增大数值孔径，提高分辨率。</p>
+                            
+                            <div class="chart-container">
+                                <canvas id="immersion-na-chart"></canvas>
+                            </div>
+                            
+                            <div class="results-panel">
+                                <div class="results-title">浸没式光刻特点</div>
+                                <ul>
+                                    <li>数值孔径可从0.85提高到1.35以上</li>
+                                    <li>分辨率可提高约30%</li>
+                                    <li>与现有193nm光刻设备兼容性好</li>
+                                    <li>需要解决液体污染和气泡问题</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="multiple-patterning">
+                            <h4>多重图形化</h4>
+                            <p>多重图形化通过多次曝光和刻蚀将复杂图形分解为简单图形的组合，突破单次曝光的分辨率限制。</p>
+                            
+                            <div class="process-flow">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <div class="step-title">LELE (Litho-Etch-Litho-Etch)</div>
+                                        <div class="step-description">两次光刻两次刻蚀，工艺复杂度低但成本高</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <div class="step-title">SADP (Self-Aligned Double Patterning)</div>
+                                        <div class="step-description">自对准双重图形化，套刻精度高，适用于周期性图形</div>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <div class="step-title">SAQP (Self-Aligned Quadruple Patterning)</div>
+                                        <div class="step-description">自对准四重图形化，可实现更高密度</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="directed-self-assembly">
+                            <h4>定向自组装 (DSA)</h4>
+                            <p>DSA利用嵌段共聚物在特定引导图形下自组装形成纳米级周期性结构，具有成本低、分辨率高的潜力。</p>
+                            
+                            <div class="chart-container">
+                                <canvas id="dsa-density-chart"></canvas>
+                            </div>
+                            
+                            <div class="results-panel">
+                                <div class="results-title">DSA技术特点</div>
+                                <ul>
+                                    <li>可实现5nm以下的自然周期</li>
+                                    <li>工艺成本低，适合大批量生产</li>
+                                    <li>缺陷密度控制是主要挑战</li>
+                                    <li>适用于周期性图形，如接触孔和线/空图形</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter-summary">
+                <h2>本章小结</h2>
+                <p>器件图形化工艺是半导体制造的核心环节，决定了集成电路的微细化和集成度。光刻技术的分辨率直接决定了器件的最小特征尺寸，而刻蚀工艺的选择影响图形的保真度和侧壁形貌。随着器件尺寸不断缩小，传统图形化技术面临挑战，EUV、浸没式光刻、多重图形化和定向自组装等先进技术应运而生。图形转移质量控制是确保器件性能的关键，需要综合考虑线宽控制、侧壁形貌控制和缺陷控制等方面。</p>
+            </section>
+
+            <section class="next-chapter">
+                <h2>下一章预告</h2>
+                <p>第10章将深入探讨器件掺杂与薄膜工艺，包括离子注入、扩散掺杂、化学气相沉积和物理气相沉积等关键工艺，以及这些工艺对器件电学性能的影响。</p>
+                <a href="../chapters/chapter10.html" class="btn btn-primary">前往第10章</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SEMI_PROJ. 半导体器件与制造技术交互式指南</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+        // 光刻工艺模拟器
+        const wavelength = document.getElementById('wavelength');
+        const numericalAperture = document.getElementById('numerical-aperture');
+        const processFactor = document.getElementById('process-factor');
+        const naValue = document.getElementById('na-value');
+        const k1Value = document.getElementById('k1-value');
+        const resolutionValue = document.getElementById('resolution-value');
+        const dofValue = document.getElementById('dof-value');
+        const contrastValue = document.getElementById('contrast-value');
+        const exposureEnergyValue = document.getElementById('exposure-energy-value');
+        const maskOpening = document.getElementById('mask-opening');
+        
+        let resolutionChart;
+        
+        function initLithographySimulator() {
+            // 初始化分辨率图表
+            const ctx = document.getElementById('resolution-chart').getContext('2d');
+            resolutionChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['436', '365', '248', '193', '13.5'],
+                    datasets: [{
+                        label: '理论分辨率 (nm)',
+                        data: [800, 670, 450, 350, 25],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '分辨率 (nm)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '波长 (nm)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '光刻分辨率与波长关系'
+                        }
+                    }
+                }
+            });
+            
+            updateLithography();
+        }
+        
+        function updateLithography() {
+            const lambda = parseFloat(wavelength.value);
+            const NA = parseFloat(numericalAperture.value);
+            const k1 = parseFloat(processFactor.value);
+            
+            // 更新显示值
+            naValue.textContent = NA.toFixed(2);
+            k1Value.textContent = k1.toFixed(2);
+            
+            // 计算分辨率 (R = k1 * λ / NA)
+            const resolution = Math.round(k1 * lambda / NA);
+            resolutionValue.textContent = resolution;
+            
+            // 计算焦深 (DOF = k2 * λ / NA²)
+            const k2 = 0.5; // 简化假设
+            const DOF = (k2 * lambda / (NA * NA)).toFixed(1);
+            dofValue.textContent = DOF;
+            
+            // 计算对比度（简化模型）
+            const contrast = Math.max(0.5, 1 - (lambda - 100) / 500).toFixed(1);
+            contrastValue.textContent = contrast;
+            
+            // 计算曝光能量（简化模型）
+            const energy = Math.round(20 * (1 + (436 - lambda) / 400) * (1 + (1 - NA) * 0.5));
+            exposureEnergyValue.textContent = energy;
+            
+            // 更新掩膜开口宽度（与分辨率成比例）
+            const openingWidth = Math.max(10, 100 - resolution / 5);
+            maskOpening.style.width = `${openingWidth}%`;
+            maskOpening.style.height = '40px';
+            maskOpening.style.left = `${(100 - openingWidth) / 2}%`;
+            maskOpening.style.top = '80px';
+            
+            // 更新图表
+            updateResolutionChart(resolution);
+        }
+        
+        function updateResolutionChart(currentResolution) {
+            const wavelengths = ['436', '365', '248', '193', '13.5'];
+            const currentNA = parseFloat(numericalAperture.value);
+            const currentK1 = parseFloat(processFactor.value);
+            
+            const resolutions = wavelengths.map(wl => Math.round(currentK1 * parseFloat(wl) / currentNA));
+            
+            resolutionChart.data.datasets[0].data = resolutions;
+            resolutionChart.update();
+        }
+        
+        // 湿法刻蚀模拟器
+        const etchantType = document.getElementById('etchant-type');
+        const etchantConcentration = document.getElementById('etchant-concentration');
+        const etchTemperature = document.getElementById('etch-temperature');
+        const concentrationValue = document.getElementById('concentration-value');
+        const temperatureValue = document.getElementById('temperature-value');
+        const wetEtchRateValue = document.getElementById('wet-etch-rate-value');
+        const wetSelectivityValue = document.getElementById('wet-selectivity-value');
+        const wetUniformityValue = document.getElementById('wet-uniformity-value');
+        const wetUndercutValue = document.getElementById('wet-undercut-value');
+        const wetEtchedRegion = document.getElementById('wet-etched-region');
+        
+        let wetEtchRateChart;
+        
+        function initWetEtchSimulator() {
+            // 初始化湿法刻蚀速率图表
+            const ctx = document.getElementById('wet-etch-rate-chart').getContext('2d');
+            wetEtchRateChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['HNO₃-HF', 'H₃PO₄', 'TMAH', 'KOH'],
+                    datasets: [{
+                        label: '刻蚀速率 (nm/min)',
+                        data: [120, 30, 60, 100],
+                        backgroundColor: [
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(241, 196, 15, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(241, 196, 15, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '刻蚀速率 (nm/min)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '不同刻蚀液的刻蚀速率'
+                        }
+                    }
+                }
+            });
+            
+            updateWetEtch();
+        }
+        
+        function updateWetEtch() {
+            const concentration = parseFloat(etchantConcentration.value);
+            const temperature = parseFloat(etchTemperature.value);
+            const etchant = etchantType.value;
+            
+            // 更新显示值
+            concentrationValue.textContent = `${concentration}%`;
+            temperatureValue.textContent = `${temperature}°C`;
+            
+            // 计算刻蚀速率（简化模型）
+            let baseRate, selectivity, uniformity, undercut;
+            
+            switch(etchant) {
+                case 'hno3-hf':
+                    baseRate = 120;
+                    selectivity = 10;
+                    uniformity = 5;
+                    undercut = 0.8;
+                    break;
+                case 'h3po4':
+                    baseRate = 30;
+                    selectivity = 30;
+                    uniformity = 3;
+                    undercut = 0.3;
+                    break;
+                case 'tma':
+                    baseRate = 60;
+                    selectivity = 100;
+                    uniformity = 4;
+                    undercut = 0.5;
+                    break;
+                case 'koh':
+                    baseRate = 100;
+                    selectivity = 50;
+                    uniformity = 6;
+                    undercut = 0.7;
+                    break;
+            }
+            
+            // 浓度和温度对刻蚀速率的影响
+            const rate = Math.round(baseRate * (1 + concentration / 20) * (1 + (temperature - 25) / 50));
+            const actualSelectivity = `${Math.round(selectivity * (1 - concentration / 100))}:1`;
+            const actualUniformity = `±${Math.round(uniformity * (1 + (temperature - 25) / 100))}%`;
+            const actualUndercut = (undercut * (1 + concentration / 20) * (1 + (temperature - 25) / 50)).toFixed(1);
+            
+            // 更新显示
+            wetEtchRateValue.textContent = rate;
+            wetSelectivityValue.textContent = actualSelectivity;
+            wetUniformityValue.textContent = actualUniformity;
+            wetUndercutValue.textContent = actualUndercut;
+            
+            // 更新刻蚀区域（各向同性）
+            const etchDepth = Math.min(40, rate / 3);
+            const etchWidth = etchDepth * 2; // 侧蚀效应
+            wetEtchedRegion.style.height = `${etchDepth}px`;
+            wetEtchedRegion.style.width = `${etchWidth}px`;
+            wetEtchedRegion.style.left = `calc(50% - ${etchWidth/2}px)`;
+            
+            // 更新图表
+            updateWetEtchRateChart(etchant, rate);
+        }
+        
+        function updateWetEtchRateChart(currentEtchant, currentRate) {
+            const etchants = ['hno3-hf', 'h3po4', 'tma', 'koh'];
+            const concentration = parseFloat(etchantConcentration.value);
+            const temperature = parseFloat(etchTemperature.value);
+            
+            const rates = etchants.map(etchant => {
+                let baseRate;
+                switch(etchant) {
+                    case 'hno3-hf': baseRate = 120; break;
+                    case 'h3po4': baseRate = 30; break;
+                    case 'tma': baseRate = 60; break;
+                    case 'koh': baseRate = 100; break;
+                }
+                return Math.round(baseRate * (1 + concentration / 20) * (1 + (temperature - 25) / 50));
+            });
+            
+            wetEtchRateChart.data.datasets[0].data = rates;
+            wetEtchRateChart.update();
+        }
+        
+        // 干法刻蚀模拟器
+        const plasmaType = document.getElementById('plasma-type');
+        const gasChemistry = document.getElementById('gas-chemistry');
+        const rfPower = document.getElementById('rf-power');
+        const chamberPressure = document.getElementById('chamber-pressure');
+        const rfPowerValue = document.getElementById('rf-power-value');
+        const pressureValue = document.getElementById('pressure-value');
+        const dryEtchRateValue = document.getElementById('dry-etch-rate-value');
+        const drySelectivityValue = document.getElementById('dry-selectivity-value');
+        const dryAnisotropyValue = document.getElementById('dry-anisotropy-value');
+        const dryUniformityValue = document.getElementById('dry-uniformity-value');
+        const dryEtchedRegion = document.getElementById('dry-etched-region');
+        
+        let dryEtchProfileChart;
+        
+        function initDryEtchSimulator() {
+            // 初始化干法刻蚀剖面图表
+            const ctx = document.getElementById('dry-etch-profile-chart').getContext('2d');
+            dryEtchProfileChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0', '20', '40', '60', '80', '100'],
+                    datasets: [{
+                        label: '理想剖面',
+                        data: [0, 0, 0, 0, 0, 0],
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        fill: false,
+                        tension: 0.1
+                    }, {
+                        label: '实际剖面',
+                        data: [0, 5, 8, 10, 11, 12],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '侧蚀宽度 (nm)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '深度 (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '刻蚀剖面形状'
+                        }
+                    }
+                }
+            });
+            
+            updateDryEtch();
+        }
+        
+        function updateDryEtch() {
+            const plasma = plasmaType.value;
+            const gas = gasChemistry.value;
+            const power = parseFloat(rfPower.value);
+            const pressure = parseFloat(chamberPressure.value);
+            
+            // 更新显示值
+            rfPowerValue.textContent = `${power}W`;
+            pressureValue.textContent = `${pressure}mTorr`;
+            
+            // 计算刻蚀参数（简化模型）
+            let baseRate, selectivity, anisotropy, uniformity;
+            
+            switch(plasma) {
+                case 'rie':
+                    baseRate = 60;
+                    selectivity = 5;
+                    anisotropy = 0.8;
+                    uniformity = 3;
+                    break;
+                case 'icp':
+                    baseRate = 120;
+                    selectivity = 8;
+                    anisotropy = 0.9;
+                    uniformity = 2;
+                    break;
+                case 'ccp':
+                    baseRate = 40;
+                    selectivity = 3;
+                    anisotropy = 0.7;
+                    uniformity = 5;
+                    break;
+                case 'mri':
+                    baseRate = 85;
+                    selectivity = 6;
+                    anisotropy = 0.85;
+                    uniformity = 2.5;
+                    break;
+            }
+            
+            // 气体化学对参数的影响
+            switch(gas) {
+                case 'sf6-o2':
+                    baseRate *= 1.5;
+                    selectivity *= 0.8;
+                    anisotropy *= 0.9;
+                    break;
+                case 'cl2-hbr':
+                    baseRate *= 1.2;
+                    selectivity *= 1.2;
+                    anisotropy *= 1.1;
+                    break;
+                case 'cf4-o2':
+                    baseRate *= 0.8;
+                    selectivity *= 1.5;
+                    anisotropy *= 1.0;
+                    break;
+                case 'chf3-o2':
+                    baseRate *= 0.6;
+                    selectivity *= 2.0;
+                    anisotropy *= 0.95;
+                    break;
+            }
+            
+            // 功率和压力对参数的影响
+            const rate = Math.round(baseRate * (power / 200) * (20 / pressure));
+            const actualSelectivity = `${Math.round(selectivity * (1 - power / 1000))}:1`;
+            const actualAnisotropy = Math.min(0.99, anisotropy * (1 + (100 - pressure) / 200)).toFixed(2);
+            const actualUniformity = `±${Math.round(uniformity * (1 + pressure / 100))}%`;
+            
+            // 更新显示
+            dryEtchRateValue.textContent = rate;
+            drySelectivityValue.textContent = actualSelectivity;
+            dryAnisotropyValue.textContent = actualAnisotropy;
+            dryUniformityValue.textContent = actualUniformity;
+            
+            // 更新刻蚀区域（各向异性）
+            const etchDepth = Math.min(40, rate / 2);
+            const etchWidth = Math.max(2, etchDepth * (1 - parseFloat(actualAnisotropy)));
+            dryEtchedRegion.style.height = `${etchDepth}px`;
+            dryEtchedRegion.style.width = `${etchWidth}px`;
+            dryEtchedRegion.style.left = `calc(50% - ${etchWidth/2}px)`;
+            
+            // 更新图表
+            updateDryEtchProfileChart(parseFloat(actualAnisotropy));
+        }
+        
+        function updateDryEtchProfileChart(anisotropy) {
+            const depths = ['0', '20', '40', '60', '80', '100'];
+            const idealProfile = depths.map(() => 0);
+            
+            // 实际剖面基于各向异性度
+            const maxUndercut = 20 * (1 - anisotropy);
+            const actualProfile = depths.map((depth, index) => {
+                return Math.round(maxUndercut * Math.pow(index / 5, 0.7));
+            });
+            
+            dryEtchProfileChart.data.datasets[0].data = idealProfile;
+            dryEtchProfileChart.data.datasets[1].data = actualProfile;
+            dryEtchProfileChart.update();
+        }
+        
+        // 刻蚀工艺比较图表
+        let etchComparisonChart;
+        
+        function initEtchComparisonChart() {
+            const ctx = document.getElementById('etch-comparison-chart').getContext('2d');
+            etchComparisonChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['方向性', '选择比', '刻蚀速率', '均匀性', '成本效益', '环境友好'],
+                    datasets: [{
+                        label: '湿法刻蚀',
+                        data: [1, 8, 9, 3, 9, 2],
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(52, 152, 219, 1)'
+                    }, {
+                        label: '干法刻蚀',
+                        data: [9, 6, 6, 8, 3, 8],
+                        backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        pointBackgroundColor: 'rgba(231, 76, 60, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(231, 76, 60, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '刻蚀工艺综合比较'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 图形质量分析器
+        const criticalDimension = document.getElementById('critical-dimension');
+        const aspectRatio = document.getElementById('aspect-ratio');
+        const patternDensity = document.getElementById('pattern-density');
+        const cdValue = document.getElementById('cd-value');
+        const arValue = document.getElementById('ar-value');
+        const densityValue = document.getElementById('density-value');
+        const cdVariationValue = document.getElementById('cd-variation-value');
+        const sidewallAngleValue = document.getElementById('sidewall-angle-value');
+        const roughnessValue = document.getElementById('roughness-value');
+        const defectDensityValue = document.getElementById('defect-density-value');
+        
+        let patternQualityChart;
+        
+        function initPatternQualityAnalyzer() {
+            // 初始化图形质量图表
+            const ctx = document.getElementById('pattern-quality-chart').getContext('2d');
+            patternQualityChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: '实际测量值',
+                        data: [
+                            {x: 100, y: 3.5},
+                            {x: 150, y: 4.2},
+                            {x: 200, y: 5.8},
+                            {x: 250, y: 7.5},
+                            {x: 300, y: 9.8}
+                        ],
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        pointRadius: 6
+                    }, {
+                        label: '目标值',
+                        data: [
+                            {x: 100, y: 3},
+                            {x: 150, y: 4},
+                            {x: 200, y: 5},
+                            {x: 250, y: 6},
+                            {x: 300, y: 7}
+                        ],
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '线宽 (nm)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '线宽变化 (nm)'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '线宽控制能力分析'
+                        }
+                    }
+                }
+            });
+            
+            updatePatternQuality();
+        }
+        
+        function updatePatternQuality() {
+            const CD = parseFloat(criticalDimension.value);
+            const AR = parseFloat(aspectRatio.value);
+            const density = parseFloat(patternDensity.value);
+            
+            // 更新显示值
+            cdValue.textContent = `${CD}nm`;
+            arValue.textContent = `${AR}:1`;
+            densityValue.textContent = `${density}%`;
+            
+            // 计算图形质量参数（简化模型）
+            const cdVariation = (3 + CD / 50 + AR / 2 + (100 - density) / 20).toFixed(1);
+            const sidewallAngle = Math.max(85, 90 - AR * 0.5 - CD / 100).toFixed(1);
+            const roughness = (2 + CD / 100 + AR * 0.2).toFixed(1);
+            const defectDensity = Math.max(0.01, 0.05 * (1 + AR / 5) * (1 + CD / 200) * (1 + density / 100)).toFixed(2);
+            
+            // 更新显示
+            cdVariationValue.textContent = `±${cdVariation}`;
+            sidewallAngleValue.textContent = sidewallAngle;
+            roughnessValue.textContent = roughness;
+            defectDensityValue.textContent = defectDensity;
+            
+            // 更新图表
+            updatePatternQualityChart(CD, parseFloat(cdVariation));
+        }
+        
+        function updatePatternQualityChart(CD, cdVariation) {
+            // 添加新数据点
+            patternQualityChart.data.datasets[0].data.push({x: CD, y: cdVariation});
+            
+            // 限制数据点数量
+            if (patternQualityChart.data.datasets[0].data.length > 10) {
+                patternQualityChart.data.datasets[0].data.shift();
+            }
+            
+            patternQualityChart.update();
+        }
+        
+        // EUV光刻图表
+        let euvResolutionChart;
+        
+        function initEUVChart() {
+            const ctx = document.getElementById('euv-resolution-chart').getContext('2d');
+            euvResolutionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['193nm浸没式', '193nm多重图形化', 'EUV单次曝光'],
+                    datasets: [{
+                        label: '最小特征尺寸 (nm)',
+                        data: [38, 20, 13],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(231, 76, 60, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(231, 76, 60, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '最小特征尺寸 (nm)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '不同光刻技术分辨率比较'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 浸没式光刻图表
+        let immersionNAChart;
+        
+        function initImmersionChart() {
+            const ctx = document.getElementById('immersion-na-chart').getContext('2d');
+            immersionNAChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.85', '0.93', '1.0', '1.2', '1.35'],
+                    datasets: [{
+                        label: '分辨率 (nm)',
+                        data: [80, 73, 68, 57, 50],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '分辨率 (nm)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '数值孔径 (NA)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '浸没式光刻分辨率与数值孔径关系'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // DSA密度图表
+        let dsaDensityChart;
+        
+        function initDSAChart() {
+            const ctx = document.getElementById('dsa-density-chart').getContext('2d');
+            dsaDensityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['PS-b-PMMA', 'PS-b-PEO', 'PS-b-P2VP', 'PS-b-PLA'],
+                    datasets: [{
+                        label: '自然周期 (nm)',
+                        data: [46, 35, 28, 22],
+                        borderColor: '#9b59b6',
+                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '自然周期 (nm)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '不同嵌段共聚物的自然周期'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 标签页切换功能
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // 移除所有活动状态
+                    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    
+                    // 添加当前活动状态
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initLithographySimulator();
+            initWetEtchSimulator();
+            initDryEtchSimulator();
+            initEtchComparisonChart();
+            initPatternQualityAnalyzer();
+            initEUVChart();
+            initImmersionChart();
+            initDSAChart();
+            initTabs();
+            
+            // 事件监听器
+            wavelength.addEventListener('change', updateLithography);
+            numericalAperture.addEventListener('input', updateLithography);
+            processFactor.addEventListener('input', updateLithography);
+            
+            etchantType.addEventListener('change', updateWetEtch);
+            etchantConcentration.addEventListener('input', updateWetEtch);
+            etchTemperature.addEventListener('input', updateWetEtch);
+            
+            plasmaType.addEventListener('change', updateDryEtch);
+            gasChemistry.addEventListener('change', updateDryEtch);
+            rfPower.addEventListener('input', updateDryEtch);
+            chamberPressure.addEventListener('input', updateDryEtch);
+            
+            criticalDimension.addEventListener('input', updatePatternQuality);
+            aspectRatio.addEventListener('input', updatePatternQuality);
+            patternDensity.addEventListener('input', updatePatternQuality);
+        });
+    </script>
+</body>
+</html>

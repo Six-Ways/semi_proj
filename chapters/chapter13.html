@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十三章：宽禁带半导体器件 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .interactive-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .control-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .control-group select,
+        .control-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .visualization-area {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .results-panel {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #e8f4fc;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .results-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .result-item {
+            text-align: center;
+        }
+        
+        .result-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .result-label {
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .highlight {
+            background-color: #fff9e6;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        
+        .tab-container {
+            margin: 1.5rem 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-button.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .device-structure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            position: relative;
+            margin: 1.5rem 0;
+        }
+        
+        .device-layer {
+            position: absolute;
+            height: 40px;
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        
+        .device-layer.substrate {
+            bottom: 0;
+            width: 100%;
+            background-color: #8e44ad;
+        }
+        
+        .device-layer.buffer {
+            bottom: 40px;
+            width: 90%;
+            background-color: #3498db;
+        }
+        
+        .device-layer.channel {
+            bottom: 80px;
+            width: 80%;
+            background-color: #2ecc71;
+        }
+        
+        .device-layer.gate {
+            bottom: 120px;
+            width: 60%;
+            background-color: #e74c3c;
+        }
+        
+        .device-layer.source-drain {
+            bottom: 80px;
+            width: 20%;
+            background-color: #f39c12;
+        }
+        
+        .device-layer.source-drain.source {
+            left: 10%;
+        }
+        
+        .device-layer.source-drain.drain {
+            right: 10%;
+        }
+        
+        .application-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .application-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .application-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .application-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .application-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .application-description {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .performance-chart {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .performance-item {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .performance-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .performance-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .performance-unit {
+            font-size: 0.8rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item active">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#wide-bandgap-intro" class="section-nav-item">
+                        宽禁带半导体概述
+                    </a>
+                    <a href="#gan-devices" class="section-nav-item">
+                        GaN器件
+                    </a>
+                    <a href="#sic-devices" class="section-nav-item">
+                        SiC器件
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li><a href="#" class="active"><i class="fas fa-book"></i> 第十三章</a></li>
+                    <li><a href="../chapters/chapter14.html"><i class="fas fa-arrow-right"></i> 下一章</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十三章：宽禁带半导体器件</p>
+            </div>
+            <div class="chapter-header">
+                <h1>第十三章：宽禁带半导体器件</h1>
+            </div>
+            <div class="chapter-progress">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 81.25%"></div>
+                </div>
+                <span>13/16</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <section class="intro">
+                <p>宽禁带半导体器件是第三代半导体的代表，具有禁带宽度大、击穿电场高、电子饱和速度高、热导率高等优异特性。本章将深入探讨SiC和GaN材料特性、器件设计优势、制造工艺以及应用场景，通过交互式工具帮助理解宽禁带半导体器件的性能优势。</p>
+            </section>
+
+            <section>
+                <h2>13.1 SiC/GaN材料特性与器件设计优势</h2>
+                <p>宽禁带半导体材料如碳化硅(SiC)和氮化镓(GaN)具有比硅更宽的禁带宽度，使其能够在高温、高压、高频等极端环境下工作，同时具有更低的导通电阻和更高的开关速度。</p>
+                
+                <div class="interactive-container">
+                    <h3>材料特性比较器</h3>
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="material-properties">材料物理特性</button>
+                            <button class="tab-button" data-tab="electrical-properties">电学特性</button>
+                            <button class="tab-button" data-tab="thermal-properties">热学特性</button>
+                            <button class="tab-button" data-tab="device-advantages">器件设计优势</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="material-properties">
+                            <h4>材料物理特性比较</h4>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>Si</th>
+                                        <th>SiC</th>
+                                        <th>GaN</th>
+                                        <th>优势说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>禁带宽度 (eV)</td>
+                                        <td>1.12</td>
+                                        <td>3.26</td>
+                                        <td>3.40</td>
+                                        <td>宽禁带使器件工作温度更高，漏电流更小</td>
+                                    </tr>
+                                    <tr>
+                                        <td>临界击穿电场 (MV/cm)</td>
+                                        <td>0.3</td>
+                                        <td>2.2</td>
+                                        <td>3.3</td>
+                                        <td>高击穿电场使器件耐压更高，漂移区更薄</td>
+                                    </tr>
+                                    <tr>
+                                        <td>电子饱和速度 (×10⁷ cm/s)</td>
+                                        <td>1.0</td>
+                                        <td>2.0</td>
+                                        <td>2.5</td>
+                                        <td>高饱和速度使器件工作频率更高</td>
+                                    </tr>
+                                    <tr>
+                                        <td>电子迁移率 (cm²/V·s)</td>
+                                        <td>1400</td>
+                                        <td>900</td>
+                                        <td>2000</td>
+                                        <td>高迁移率使器件导通电阻更低</td>
+                                    </tr>
+                                    <tr>
+                                        <td>介电常数</td>
+                                        <td>11.7</td>
+                                        <td>9.7</td>
+                                        <td>9.5</td>
+                                        <td>较低介电常数使器件电容更小</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="chart-container">
+                                <canvas id="material-properties-chart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="electrical-properties">
+                            <h4>电学特性比较</h4>
+                            <div class="performance-chart">
+                                <div class="performance-item">
+                                    <div class="performance-label">击穿电压</div>
+                                    <div class="performance-value">10×</div>
+                                    <div class="performance-unit">SiC/Si</div>
+                                </div>
+                                <div class="performance-item">
+                                    <div class="performance-label">导通电阻</div>
+                                    <div class="performance-value">1/300</div>
+                                    <div class="performance-unit">SiC/Si</div>
+                                </div>
+                                <div class="performance-item">
+                                    <div class="performance-label">开关速度</div>
+                                    <div class="performance-value">10×</div>
+                                    <div class="performance-unit">GaN/Si</div>
+                                </div>
+                                <div class="performance-item">
+                                    <div class="performance-label">工作温度</div>
+                                    <div class="performance-value">600°C</div>
+                                    <div class="performance-unit">SiC</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="electrical-properties-chart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="thermal-properties">
+                            <h4>热学特性比较</h4>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>Si</th>
+                                        <th>SiC</th>
+                                        <th>GaN</th>
+                                        <th>优势说明</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>热导率 (W/cm·K)</td>
+                                        <td>1.5</td>
+                                        <td>4.9</td>
+                                        <td>2.3</td>
+                                        <td>高热导率使器件散热更好，功率密度更高</td>
+                                    </tr>
+                                    <tr>
+                                        <td>热膨胀系数 (×10⁻⁶/K)</td>
+                                        <td>2.6</td>
+                                        <td>4.0</td>
+                                        <td>5.6</td>
+                                        <td>热膨胀系数影响器件可靠性和封装设计</td>
+                                    </tr>
+                                    <tr>
+                                        <td>最高工作温度 (°C)</td>
+                                        <td>150</td>
+                                        <td>600</td>
+                                        <td>300</td>
+                                        <td>高工作温度使器件适用于高温环境</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <div class="chart-container">
+                                <canvas id="thermal-properties-chart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="device-advantages">
+                            <h4>器件设计优势</h4>
+                            <div class="application-cards">
+                                <div class="application-card">
+                                    <div class="application-icon"><i class="fas fa-bolt"></i></div>
+                                    <div class="application-title">高耐压设计</div>
+                                    <div class="application-description">宽禁带材料的高临界击穿电场使器件在相同耐压下漂移区厚度可减小10倍以上，大幅降低导通电阻</div>
+                                </div>
+                                <div class="application-card">
+                                    <div class="application-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    <div class="application-title">高频应用</div>
+                                    <div class="application-description">高电子饱和速度和低寄生电容使器件开关速度提高10倍以上，适用于高频应用</div>
+                                </div>
+                                <div class="application-card">
+                                    <div class="application-icon"><i class="fas fa-temperature-high"></i></div>
+                                    <div class="application-title">高温工作</div>
+                                    <div class="application-description">宽禁带和低本征载流子浓度使器件可在600°C高温下稳定工作，无需复杂冷却系统</div>
+                                </div>
+                                <div class="application-card">
+                                    <div class="application-icon"><i class="fas fa-compress-alt"></i></div>
+                                    <div class="application-title">高功率密度</div>
+                                    <div class="application-description">高击穿电场和高热导率使器件功率密度提高5-10倍，大幅减小系统体积和重量</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>13.2 宽禁带器件制造工艺</h2>
+                <p>宽禁带半导体器件的制造工艺与传统硅器件有显著差异，主要体现在衬底制备、外延生长、掺杂技术、欧姆接触形成等方面。这些工艺挑战直接影响器件的性能和可靠性。</p>
+                
+                <div class="interactive-container">
+                    <h3>宽禁带器件工艺模拟器</h3>
+                    <div class="control-panel">
+                        <div class="control-group">
+                            <label for="device-type">器件类型</label>
+                            <select id="device-type">
+                                <option value="sic-mosfet">SiC MOSFET</option>
+                                <option value="sic-schottky">SiC 肖特基二极管</option>
+                                <option value="gan-hemt">GaN HEMT</option>
+                                <option value="gan-hemt-on-si">GaN HEMT on Si</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="voltage-rating">额定电压 (V)</label>
+                            <input type="range" id="voltage-rating" min="100" max="10000" step="100" value="1200">
+                            <span id="voltage-value">1200V</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="current-rating">额定电流 (A)</label>
+                            <input type="range" id="current-rating" min="1" max="100" step="1" value="20">
+                            <span id="current-value">20A</span>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-area">
+                        <div class="device-structure">
+                            <div class="device-layer substrate">衬底</div>
+                            <div class="device-layer buffer">缓冲层</div>
+                            <div class="device-layer channel">沟道层</div>
+                            <div class="device-layer source-drain source">源极</div>
+                            <div class="device-layer source-drain drain">漏极</div>
+                            <div class="device-layer gate">栅极</div>
+                        </div>
+                        
+                        <div class="tab-container">
+                            <div class="tab-buttons">
+                                <button class="tab-button active" data-tab="substrate">衬底工艺</button>
+                                <button class="tab-button" data-tab="epitaxy">外延工艺</button>
+                                <button class="tab-button" data-tab="doping">掺杂工艺</button>
+                                <button class="tab-button" data-tab="contact">欧姆接触</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="substrate">
+                                <h4>衬底工艺</h4>
+                                <p>宽禁带半导体衬底制备是器件制造的关键挑战。SiC衬底主要通过物理气相传输(PVT)法生长，GaN衬底主要通过氢化物气相外延(HVPE)或氨热法生长。</p>
+                                
+                                <div class="control-panel">
+                                    <div class="control-group">
+                                        <label for="substrate-quality">衬底质量</label>
+                                        <select id="substrate-quality">
+                                            <option value="research">研究级</option>
+                                            <option value="production">生产级</option>
+                                            <option value="high-volume">大批量生产级</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="defect-density">缺陷密度 (cm⁻²)</label>
+                                        <input type="range" id="defect-density" min="100" max="10000" step="100" value="1000">
+                                        <span id="defect-density-value">1000</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="substrate-quality-chart"></canvas>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">衬底工艺参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="substrate-cost-value">500</div>
+                                            <div class="result-label">衬底成本 ($/片)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="substrate-yield-value">85</div>
+                                            <div class="result-label">良品率 (%)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="substrate-diameter-value">150</div>
+                                            <div class="result-label">晶圆直径 (mm)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="substrate-thickness-value">350</div>
+                                            <div class="result-label">厚度 (μm)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="epitaxy">
+                                <h4>外延工艺</h4>
+                                <p>外延生长是宽禁带器件制造的核心工艺，决定了器件的电学特性。SiC外延主要通过化学气相沉积(CVD)进行，GaN外延主要通过金属有机化学气相沉积(MOCVD)或分子束外延(MBE)进行。</p>
+                                
+                                <div class="control-panel">
+                                    <div class="control-group">
+                                        <label for="epitaxy-method">外延方法</label>
+                                        <select id="epitaxy-method">
+                                            <option value="hot-wall-cvd">热壁CVD (SiC)</option>
+                                            <option value="horizontal-cvd">水平CVD (SiC)</option>
+                                            <option value="mocvd">MOCVD (GaN)</option>
+                                            <option value="mbe">MBE (GaN)</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="epitaxy-temperature">生长温度 (°C)</label>
+                                        <input type="range" id="epitaxy-temperature" min="800" max="1700" step="50" value="1550">
+                                        <span id="epitaxy-temp-value">1550°C</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="epitaxy-thickness">外延层厚度 (μm)</label>
+                                        <input type="range" id="epitaxy-thickness" min="1" max="100" step="1" value="10">
+                                        <span id="epitaxy-thick-value">10μm</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="epitaxy-quality-chart"></canvas>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">外延工艺参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="growth-rate-value">5</div>
+                                            <div class="result-label">生长速率 (μm/h)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="doping-uniformity-value">±3</div>
+                                            <div class="result-label">掺杂均匀性 (%)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="surface-roughness-value">0.3</div>
+                                            <div class="result-label">表面粗糙度 (nm)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="epitaxy-defect-value">100</div>
+                                            <div class="result-label">缺陷密度 (cm⁻²)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="doping">
+                                <h4>掺杂工艺</h4>
+                                <p>宽禁带半导体的掺杂比硅更具挑战性，主要因为掺杂原子在晶格中的溶解度低、扩散系数小、激活能高。SiC主要通过离子注入和高温退火进行掺杂，GaN主要通过原位掺杂进行。</p>
+                                
+                                <div class="control-panel">
+                                    <div class="control-group">
+                                        <label for="doping-method">掺杂方法</label>
+                                        <select id="doping-method">
+                                            <option value="ion-implantation">离子注入 (SiC)</option>
+                                            <option value="in-situ">原位掺杂 (GaN)</option>
+                                            <option value="diffusion">扩散掺杂 (SiC)</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="doping-type">掺杂类型</label>
+                                        <select id="doping-type">
+                                            <option value="n-type">N型</option>
+                                            <option value="p-type">P型</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="doping-concentration">掺杂浓度 (cm⁻³)</label>
+                                        <input type="range" id="doping-concentration" min="1e15" max="1e20" step="1e15" value="1e18">
+                                        <span id="doping-conc-value">1e18</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="doping-profile-chart"></canvas>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">掺杂工艺参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="activation-rate-value">70</div>
+                                            <div class="result-label">激活率 (%)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="junction-depth-value">0.5</div>
+                                            <div class="result-label">结深 (μm)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="sheet-resistance-value">50</div>
+                                            <div class="result-label">方块电阻 (Ω/□)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="doping-damage-value">5</div>
+                                            <div class="result-label">晶格损伤 (相对值)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="contact">
+                                <h4>欧姆接触</h4>
+                                <p>宽禁带半导体的欧姆接触形成比硅更具挑战性，主要因为宽禁带材料的高势垒高度。SiC主要通过高温金属化形成欧姆接触，GaN主要通过表面处理和低功函数金属形成欧姆接触。</p>
+                                
+                                <div class="control-panel">
+                                    <div class="control-group">
+                                        <label for="contact-metal">接触金属</label>
+                                        <select id="contact-metal">
+                                            <option value="ni-si">Ni/Si (SiC N型)</option>
+                                            <option value="al-ti">Al/Ti (SiC P型)</option>
+                                            <option value="ti-al-ni">Ti/Al/Ni (GaN N型)</option>
+                                            <option value="ni-au">Ni/Au (GaN P型)</option>
+                                        </select>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="annealing-temp">退火温度 (°C)</label>
+                                        <input type="range" id="annealing-temp" min="400" max="1100" step="50" value="950">
+                                        <span id="annealing-temp-value">950°C</span>
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="annealing-time">退火时间 (min)</label>
+                                        <input type="range" id="annealing-time" min="1" max="60" step="1" value="5">
+                                        <span id="annealing-time-value">5min</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-container">
+                                    <canvas id="contact-resistance-chart"></canvas>
+                                </div>
+                                
+                                <div class="results-panel">
+                                    <div class="results-title">欧姆接触参数</div>
+                                    <div class="results-grid">
+                                        <div class="result-item">
+                                            <div class="result-value" id="specific-contact-resistance-value">1e-4</div>
+                                            <div class="result-label">比接触电阻 (Ω·cm²)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="contact-resistance-value">0.1</div>
+                                            <div class="result-label">接触电阻 (mΩ·cm²)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="barrier-height-value">0.8</div>
+                                            <div class="result-label">势垒高度 (eV)</div>
+                                        </div>
+                                        <div class="result-item">
+                                            <div class="result-value" id="contact-stability-value">85</div>
+                                            <div class="result-label">接触稳定性 (%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>13.3 宽禁带半导体器件应用场景</h2>
+                <p>宽禁带半导体器件凭借其优异性能，在电力电子、射频通信、新能源汽车、轨道交通等领域具有广泛应用前景。</p>
+                
+                <div class="interactive-container">
+                    <h3>应用场景性能对比</h3>
+                    <div class="control-panel">
+                        <div class="control-group">
+                            <label for="application-scenario">应用场景</label>
+                            <select id="application-scenario">
+                                <option value="electric-vehicle">电动汽车</option>
+                                <option value="renewable-energy">可再生能源</option>
+                                <option value="railway-transit">轨道交通</option>
+                                <option value="5g-communication">5G通信</option>
+                                <option value="industrial-motor">工业电机</option>
+                                <option value="data-center">数据中心</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="device-comparison">器件比较</label>
+                            <select id="device-comparison">
+                                <option value="si-vs-sic">Si vs SiC</option>
+                                <option value="si-vs-gan">Si vs GaN</option>
+                                <option value="sic-vs-gan">SiC vs GaN</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="visualization-area">
+                        <div class="chart-container">
+                            <canvas id="application-performance-chart"></canvas>
+                        </div>
+                        
+                        <div class="application-cards">
+                            <div class="application-card">
+                                <div class="application-icon"><i class="fas fa-car"></i></div>
+                                <div class="application-title">电动汽车</div>
+                                <div class="application-description">SiC器件可提高逆变器效率3-5%，延长续航里程10%，减少散热系统体积和重量</div>
+                            </div>
+                            <div class="application-card">
+                                <div class="application-icon"><i class="fas fa-solar-panel"></i></div>
+                                <div class="application-title">可再生能源</div>
+                                <div class="application-description">SiC和GaN器件提高光伏逆变器效率至98%以上，减小系统体积和重量</div>
+                            </div>
+                            <div class="application-card">
+                                <div class="application-icon"><i class="fas fa-train"></i></div>
+                                <div class="application-title">轨道交通</div>
+                                <div class="application-description">SiC器件提高变流器效率，降低能耗，减少冷却系统需求</div>
+                            </div>
+                            <div class="application-card">
+                                <div class="application-icon"><i class="fas fa-broadcast-tower"></i></div>
+                                <div class="application-title">5G通信</div>
+                                <div class="application-description">GaN HEMT器件提高基站功率放大器效率，降低功耗，减小基站体积</div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-panel">
+                            <div class="results-title">应用性能优势</div>
+                            <div class="results-grid">
+                                <div class="result-item">
+                                    <div class="result-value" id="efficiency-improvement-value">30</div>
+                                    <div class="result-label">效率提升 (%)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="power-density-improvement-value">5</div>
+                                    <div class="result-label">功率密度提升 (倍)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="size-reduction-value">50</div>
+                                    <div class="result-label">系统体积减小 (%)</div>
+                                </div>
+                                <div class="result-item">
+                                    <div class="result-value" id="cost-reduction-value">20</div>
+                                    <div class="result-label">系统成本降低 (%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="chapter-summary">
+                <h2>本章小结</h2>
+                <p>宽禁带半导体器件是第三代半导体的代表，具有禁带宽度大、击穿电场高、电子饱和速度高、热导率高等优异特性。SiC和GaN材料相比硅具有更高的击穿电压、更低的导通电阻、更高的开关速度和更好的高温性能，使其在电力电子、射频通信等领域具有广泛应用前景。宽禁带半导体器件的制造工艺面临衬底制备、外延生长、掺杂技术和欧姆接触形成等挑战，但随着工艺技术的进步，这些挑战正在逐步克服。</p>
+            </section>
+
+            <section class="next-chapter">
+                <h2>下一章预告</h2>
+                <p>第14章将探讨后摩尔时代器件技术，包括3D器件、新兴器件和器件集成新范式，以及这些技术如何延续摩尔定律的发展趋势。</p>
+                <a href="../chapters/chapter14.html" class="btn btn-primary">前往第14章</a>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SEMI_PROJ. 半导体器件与制造技术交互式指南</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        // 材料特性比较图表
+        let materialPropertiesChart;
+        let electricalPropertiesChart;
+        let thermalPropertiesChart;
+        let substrateQualityChart;
+        let epitaxyQualityChart;
+        let dopingProfileChart;
+        let contactResistanceChart;
+        let applicationPerformanceChart;
+        
+        // 初始化材料特性图表
+        function initMaterialPropertiesChart() {
+            const ctx = document.getElementById('material-properties-chart').getContext('2d');
+            materialPropertiesChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['禁带宽度', '击穿电场', '电子饱和速度', '电子迁移率', '热导率'],
+                    datasets: [{
+                        label: 'Si',
+                        data: [1.12, 0.3, 1.0, 1400, 1.5],
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        pointBackgroundColor: 'rgba(52, 152, 219, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(52, 152, 219, 1)'
+                    }, {
+                        label: 'SiC',
+                        data: [3.26, 2.2, 2.0, 900, 4.9],
+                        backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        pointBackgroundColor: 'rgba(46, 204, 113, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(46, 204, 113, 1)'
+                    }, {
+                        label: 'GaN',
+                        data: [3.40, 3.3, 2.5, 2000, 2.3],
+                        backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        pointBackgroundColor: 'rgba(231, 76, 60, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(231, 76, 60, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '材料特性雷达图比较'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化电学特性图表
+        function initElectricalPropertiesChart() {
+            const ctx = document.getElementById('electrical-properties-chart').getContext('2d');
+            electricalPropertiesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['击穿电压', '导通电阻', '开关速度', '工作温度'],
+                    datasets: [{
+                        label: 'Si',
+                        data: [100, 100, 100, 100],
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'SiC',
+                        data: [1000, 33, 500, 400],
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'GaN',
+                        data: [1100, 30, 1000, 200],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '相对性能 (Si=100)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '电学性能比较'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化热学特性图表
+        function initThermalPropertiesChart() {
+            const ctx = document.getElementById('thermal-properties-chart').getContext('2d');
+            thermalPropertiesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['热导率', '热膨胀系数', '最高工作温度'],
+                    datasets: [{
+                        label: 'Si',
+                        data: [1.5, 2.6, 150],
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'SiC',
+                        data: [4.9, 4.0, 600],
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'GaN',
+                        data: [2.3, 5.6, 300],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '数值'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '热学性能比较'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 宽禁带器件工艺模拟器
+        const deviceType = document.getElementById('device-type');
+        const voltageRating = document.getElementById('voltage-rating');
+        const currentRating = document.getElementById('current-rating');
+        const voltageValue = document.getElementById('voltage-value');
+        const currentValue = document.getElementById('current-value');
+        
+        // 衬底工艺参数
+        const substrateQuality = document.getElementById('substrate-quality');
+        const defectDensity = document.getElementById('defect-density');
+        const defectDensityValue = document.getElementById('defect-density-value');
+        const substrateCostValue = document.getElementById('substrate-cost-value');
+        const substrateYieldValue = document.getElementById('substrate-yield-value');
+        const substrateDiameterValue = document.getElementById('substrate-diameter-value');
+        const substrateThicknessValue = document.getElementById('substrate-thickness-value');
+        
+        // 外延工艺参数
+        const epitaxyMethod = document.getElementById('epitaxy-method');
+        const epitaxyTemperature = document.getElementById('epitaxy-temperature');
+        const epitaxyThickness = document.getElementById('epitaxy-thickness');
+        const epitaxyTempValue = document.getElementById('epitaxy-temp-value');
+        const epitaxyThickValue = document.getElementById('epitaxy-thick-value');
+        const growthRateValue = document.getElementById('growth-rate-value');
+        const dopingUniformityValue = document.getElementById('doping-uniformity-value');
+        const surfaceRoughnessValue = document.getElementById('surface-roughness-value');
+        const epitaxyDefectValue = document.getElementById('epitaxy-defect-value');
+        
+        // 掺杂工艺参数
+        const dopingMethod = document.getElementById('doping-method');
+        const dopingType = document.getElementById('doping-type');
+        const dopingConcentration = document.getElementById('doping-concentration');
+        const dopingConcValue = document.getElementById('doping-conc-value');
+        const activationRateValue = document.getElementById('activation-rate-value');
+        const junctionDepthValue = document.getElementById('junction-depth-value');
+        const sheetResistanceValue = document.getElementById('sheet-resistance-value');
+        const dopingDamageValue = document.getElementById('doping-damage-value');
+        
+        // 欧姆接触参数
+        const contactMetal = document.getElementById('contact-metal');
+        const annealingTemp = document.getElementById('annealing-temp');
+        const annealingTime = document.getElementById('annealing-time');
+        const annealingTempValue = document.getElementById('annealing-temp-value');
+        const annealingTimeValue = document.getElementById('annealing-time-value');
+        const specificContactResistanceValue = document.getElementById('specific-contact-resistance-value');
+        const contactResistanceValue = document.getElementById('contact-resistance-value');
+        const barrierHeightValue = document.getElementById('barrier-height-value');
+        const contactStabilityValue = document.getElementById('contact-stability-value');
+        
+        // 应用场景参数
+        const applicationScenario = document.getElementById('application-scenario');
+        const deviceComparison = document.getElementById('device-comparison');
+        const efficiencyImprovementValue = document.getElementById('efficiency-improvement-value');
+        const powerDensityImprovementValue = document.getElementById('power-density-improvement-value');
+        const sizeReductionValue = document.getElementById('size-reduction-value');
+        const costReductionValue = document.getElementById('cost-reduction-value');
+        
+        // 初始化衬底质量图表
+        function initSubstrateQualityChart() {
+            const ctx = document.getElementById('substrate-quality-chart').getContext('2d');
+            substrateQualityChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+                    datasets: [{
+                        label: '缺陷密度 (cm⁻²)',
+                        data: [10000, 8000, 6000, 4000, 3000, 2000, 1500, 1000, 500],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }, {
+                        label: '晶圆直径 (mm)',
+                        data: [100, 100, 150, 150, 150, 150, 200, 200, 200],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '缺陷密度 (cm⁻²)'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '晶圆直径 (mm)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '宽禁带衬底技术发展趋势'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化外延质量图表
+        function initEpitaxyQualityChart() {
+            const ctx = document.getElementById('epitaxy-quality-chart').getContext('2d');
+            epitaxyQualityChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'SiC外延',
+                        data: [
+                            {x: 5, y: 0.5},
+                            {x: 10, y: 0.3},
+                            {x: 20, y: 0.5},
+                            {x: 50, y: 1.0}
+                        ],
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        pointRadius: 6
+                    }, {
+                        label: 'GaN外延',
+                        data: [
+                            {x: 2, y: 0.3},
+                            {x: 5, y: 0.5},
+                            {x: 10, y: 1.0},
+                            {x: 20, y: 2.0}
+                        ],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        pointRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '外延层厚度 (μm)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '表面粗糙度 (nm)'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '外延层厚度与表面粗糙度关系'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化掺杂剖面图表
+        function initDopingProfileChart() {
+            const ctx = document.getElementById('doping-profile-chart').getContext('2d');
+            dopingProfileChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0', '0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'],
+                    datasets: [{
+                        label: '理想掺杂剖面',
+                        data: [1e18, 1e18, 1e18, 1e18, 1e18, 1e17, 1e16, 1e15, 1e14, 1e13, 1e12],
+                        borderColor: '#2ecc71',
+                        backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                        fill: false,
+                        tension: 0.1
+                    }, {
+                        label: '实际掺杂剖面',
+                        data: [1e18, 9e17, 8e17, 7e17, 6e17, 5e17, 2e17, 1e17, 5e16, 1e16, 1e15],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '掺杂浓度 (cm⁻³)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '深度 (μm)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '掺杂浓度剖面分布'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化接触电阻图表
+        function initContactResistanceChart() {
+            const ctx = document.getElementById('contact-resistance-chart').getContext('2d');
+            contactResistanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Ni/Si', 'Al/Ti', 'Ti/Al/Ni', 'Ni/Au'],
+                    datasets: [{
+                        label: '比接触电阻 (Ω·cm²)',
+                        data: [1e-4, 5e-4, 1e-5, 1e-3],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '比接触电阻 (Ω·cm²)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '不同金属接触的比接触电阻'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化应用性能图表
+        function initApplicationPerformanceChart() {
+            const ctx = document.getElementById('application-performance-chart').getContext('2d');
+            applicationPerformanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['效率提升', '功率密度提升', '系统体积减小', '系统成本降低'],
+                    datasets: [{
+                        label: '电动汽车',
+                        data: [5, 3, 40, 15],
+                        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: '可再生能源',
+                        data: [3, 5, 50, 20],
+                        backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                        borderColor: 'rgba(46, 204, 113, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: '5G通信',
+                        data: [20, 10, 60, 25],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '性能提升 (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '宽禁带器件在不同应用中的性能优势'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新器件参数
+        function updateDeviceParameters() {
+            const voltage = parseInt(voltageRating.value);
+            const current = parseInt(currentRating.value);
+            const device = deviceType.value;
+            
+            // 更新显示值
+            voltageValue.textContent = `${voltage}V`;
+            currentValue.textContent = `${current}A`;
+            
+            // 更新器件结构
+            updateDeviceStructure(device);
+            
+            // 更新工艺参数
+            updateSubstrateParameters(device, voltage);
+            updateEpitaxyParameters(device, voltage);
+            updateDopingParameters(device, voltage);
+            updateContactParameters(device, voltage);
+        }
+        
+        // 更新器件结构
+        function updateDeviceStructure(device) {
+            // 根据器件类型更新器件结构显示
+            const substrate = document.querySelector('.device-layer.substrate');
+            const buffer = document.querySelector('.device-layer.buffer');
+            const channel = document.querySelector('.device-layer.channel');
+            const source = document.querySelector('.device-layer.source-drain.source');
+            const drain = document.querySelector('.device-layer.source-drain.drain');
+            const gate = document.querySelector('.device-layer.gate');
+            
+            switch(device) {
+                case 'sic-mosfet':
+                    substrate.textContent = 'SiC衬底';
+                    buffer.textContent = 'SiC缓冲层';
+                    channel.textContent = 'SiC漂移层';
+                    source.textContent = 'N+源极';
+                    drain.textContent = 'N+漏极';
+                    gate.textContent = '栅氧+多晶硅';
+                    break;
+                case 'sic-schottky':
+                    substrate.textContent = 'SiC衬底';
+                    buffer.textContent = 'SiC缓冲层';
+                    channel.textContent = 'SiC漂移层';
+                    source.style.display = 'none';
+                    drain.style.display = 'none';
+                    gate.textContent = '肖特基金属';
+                    break;
+                case 'gan-hemt':
+                    substrate.textContent = 'GaN衬底';
+                    buffer.textContent = 'AlN成核层';
+                    channel.textContent = 'GaN沟道层';
+                    source.textContent = '源极';
+                    drain.textContent = '漏极';
+                    gate.textContent = 'AlGaN势垒层';
+                    break;
+                case 'gan-hemt-on-si':
+                    substrate.textContent = 'Si衬底';
+                    buffer.textContent = 'AlN缓冲层';
+                    channel.textContent = 'GaN沟道层';
+                    source.textContent = '源极';
+                    drain.textContent = '漏极';
+                    gate.textContent = 'AlGaN势垒层';
+                    break;
+            }
+        }
+        
+        // 更新衬底参数
+        function updateSubstrateParameters(device, voltage) {
+            const quality = substrateQuality.value;
+            const defects = parseInt(defectDensity.value);
+            
+            // 更新显示值
+            defectDensityValue.textContent = defects;
+            
+            // 计算衬底参数
+            let cost, yield, diameter, thickness;
+            
+            switch(device) {
+                case 'sic-mosfet':
+                case 'sic-schottky':
+                    cost = 300 + defects / 10;
+                    yield = Math.max(60, 95 - defects / 200);
+                    diameter = quality === 'high-volume' ? 200 : 150;
+                    thickness = 350;
+                    break;
+                case 'gan-hemt':
+                    cost = 1000 + defects / 5;
+                    yield = Math.max(40, 85 - defects / 200);
+                    diameter = quality === 'high-volume' ? 100 : 50;
+                    thickness = 400;
+                    break;
+                case 'gan-hemt-on-si':
+                    cost = 50 + defects / 50;
+                    yield = Math.max(80, 95 - defects / 500);
+                    diameter = 200;
+                    thickness = 200;
+                    break;
+            }
+            
+            // 更新显示
+            substrateCostValue.textContent = Math.round(cost);
+            substrateYieldValue.textContent = Math.round(yield);
+            substrateDiameterValue.textContent = diameter;
+            substrateThicknessValue.textContent = thickness;
+            
+            // 更新图表
+            updateSubstrateQualityChart(quality, defects);
+        }
+        
+        // 更新外延参数
+        function updateEpitaxyParameters(device, voltage) {
+            const method = epitaxyMethod.value;
+            const temp = parseInt(epitaxyTemperature.value);
+            const thickness = parseInt(epitaxyThickness.value);
+            
+            // 更新显示值
+            epitaxyTempValue.textContent = `${temp}°C`;
+            epitaxyThickValue.textContent = `${thickness}μm`;
+            
+            // 计算外延参数
+            let growthRate, uniformity, roughness, defects;
+            
+            switch(method) {
+                case 'hot-wall-cvd':
+                    growthRate = 5 + (temp - 1500) / 100;
+                    uniformity = 3 + (1700 - temp) / 100;
+                    roughness = 0.3 + (thickness / 50);
+                    defects = 50 + thickness * 5;
+                    break;
+                case 'horizontal-cvd':
+                    growthRate = 10 + (temp - 1500) / 50;
+                    uniformity = 5 + (1700 - temp) / 50;
+                    roughness = 0.5 + (thickness / 30);
+                    defects = 100 + thickness * 10;
+                    break;
+                case 'mocvd':
+                    growthRate = 2 + (temp - 1000) / 200;
+                    uniformity = 2 + (1200 - temp) / 200;
+                    roughness = 0.2 + (thickness / 100);
+                    defects = 20 + thickness * 2;
+                    break;
+                case 'mbe':
+                    growthRate = 1 + (temp - 700) / 300;
+                    uniformity = 1 + (900 - temp) / 200;
+                    roughness = 0.1 + (thickness / 200);
+                    defects = 10 + thickness;
+                    break;
+            }
+            
+            // 更新显示
+            growthRateValue.textContent = growthRate.toFixed(1);
+            dopingUniformityValue.textContent = `±${uniformity.toFixed(1)}`;
+            surfaceRoughnessValue.textContent = roughness.toFixed(1);
+            epitaxyDefectValue.textContent = defects;
+            
+            // 更新图表
+            updateEpitaxyQualityChart(thickness, roughness);
+        }
+        
+        // 更新掺杂参数
+        function updateDopingParameters(device, voltage) {
+            const method = dopingMethod.value;
+            const type = dopingType.value;
+            const concentration = parseFloat(dopingConcentration.value);
+            
+            // 更新显示值
+            dopingConcValue.textContent = concentration.toExponential(0);
+            
+            // 计算掺杂参数
+            let activationRate, junctionDepth, sheetResistance, damage;
+            
+            switch(method) {
+                case 'ion-implantation':
+                    activationRate = type === 'n-type' ? 70 : 50;
+                    junctionDepth = 0.5;
+                    sheetResistance = 50 / (concentration / 1e18);
+                    damage = 5 + (concentration / 1e18);
+                    break;
+                case 'in-situ':
+                    activationRate = 90;
+                    junctionDepth = 0.1;
+                    sheetResistance = 10 / (concentration / 1e18);
+                    damage = 1;
+                    break;
+                case 'diffusion':
+                    activationRate = 80;
+                    junctionDepth = 2.0;
+                    sheetResistance = 30 / (concentration / 1e18);
+                    damage = 2;
+                    break;
+            }
+            
+            // 更新显示
+            activationRateValue.textContent = activationRate;
+            junctionDepthValue.textContent = junctionDepth;
+            sheetResistanceValue.textContent = sheetResistance.toFixed(1);
+            dopingDamageValue.textContent = damage.toFixed(1);
+            
+            // 更新图表
+            updateDopingProfileChart(type, concentration);
+        }
+        
+        // 更新接触参数
+        function updateContactParameters(device, voltage) {
+            const metal = contactMetal.value;
+            const temp = parseInt(annealingTemp.value);
+            const time = parseInt(annealingTime.value);
+            
+            // 更新显示值
+            annealingTempValue.textContent = `${temp}°C`;
+            annealingTimeValue.textContent = `${time}min`;
+            
+            // 计算接触参数
+            let specificResistance, contactResistance, barrierHeight, stability;
+            
+            switch(metal) {
+                case 'ni-si':
+                    specificResistance = 1e-4 * Math.exp(-temp / 500) * Math.exp(-time / 10);
+                    contactResistance = specificResistance * 1000;
+                    barrierHeight = 0.8 - (temp - 950) / 1000;
+                    stability = 85 + (temp - 950) / 20;
+                    break;
+                case 'al-ti':
+                    specificResistance = 5e-4 * Math.exp(-temp / 600) * Math.exp(-time / 15);
+                    contactResistance = specificResistance * 1000;
+                    barrierHeight = 0.7 - (temp - 950) / 1000;
+                    stability = 80 + (temp - 950) / 25;
+                    break;
+                case 'ti-al-ni':
+                    specificResistance = 1e-5 * Math.exp(-temp / 400) * Math.exp(-time / 5);
+                    contactResistance = specificResistance * 1000;
+                    barrierHeight = 0.6 - (temp - 850) / 1000;
+                    stability = 75 + (temp - 850) / 20;
+                    break;
+                case 'ni-au':
+                    specificResistance = 1e-3 * Math.exp(-temp / 700) * Math.exp(-time / 20);
+                    contactResistance = specificResistance * 1000;
+                    barrierHeight = 0.9 - (temp - 950) / 1000;
+                    stability = 90 + (temp - 950) / 15;
+                    break;
+            }
+            
+            // 更新显示
+            specificContactResistanceValue.textContent = specificResistance.toExponential(1);
+            contactResistanceValue.textContent = contactResistance.toFixed(2);
+            barrierHeightValue.textContent = barrierHeight.toFixed(2);
+            contactStabilityValue.textContent = Math.round(Math.min(100, stability));
+            
+            // 更新图表
+            updateContactResistanceChart(metal, specificResistance);
+        }
+        
+        // 更新应用性能
+        function updateApplicationPerformance() {
+            const scenario = applicationScenario.value;
+            const comparison = deviceComparison.value;
+            
+            // 计算性能优势
+            let efficiency, powerDensity, sizeReduction, costReduction;
+            
+            switch(scenario) {
+                case 'electric-vehicle':
+                    efficiency = 5;
+                    powerDensity = 3;
+                    sizeReduction = 40;
+                    costReduction = 15;
+                    break;
+                case 'renewable-energy':
+                    efficiency = 3;
+                    powerDensity = 5;
+                    sizeReduction = 50;
+                    costReduction = 20;
+                    break;
+                case 'railway-transit':
+                    efficiency = 4;
+                    powerDensity = 4;
+                    sizeReduction = 30;
+                    costReduction = 25;
+                    break;
+                case '5g-communication':
+                    efficiency = 20;
+                    powerDensity = 10;
+                    sizeReduction = 60;
+                    costReduction = 25;
+                    break;
+                case 'industrial-motor':
+                    efficiency = 6;
+                    powerDensity = 4;
+                    sizeReduction = 35;
+                    costReduction = 18;
+                    break;
+                case 'data-center':
+                    efficiency = 8;
+                    powerDensity = 6;
+                    sizeReduction = 45;
+                    costReduction = 22;
+                    break;
+            }
+            
+            // 根据比较类型调整性能优势
+            if (comparison === 'si-vs-sic') {
+                efficiency *= 1.0;
+                powerDensity *= 1.0;
+            } else if (comparison === 'si-vs-gan') {
+                efficiency *= 1.2;
+                powerDensity *= 1.5;
+            } else if (comparison === 'sic-vs-gan') {
+                efficiency *= 0.8;
+                powerDensity *= 1.2;
+            }
+            
+            // 更新显示
+            efficiencyImprovementValue.textContent = Math.round(efficiency);
+            powerDensityImprovementValue.textContent = powerDensity.toFixed(1);
+            sizeReductionValue.textContent = Math.round(sizeReduction);
+            costReductionValue.textContent = Math.round(costReduction);
+            
+            // 更新图表
+            updateApplicationPerformanceChart(scenario, comparison);
+        }
+        
+        // 更新图表函数
+        function updateSubstrateQualityChart(quality, defects) {
+            // 这里可以根据参数更新图表数据
+            substrateQualityChart.update();
+        }
+        
+        function updateEpitaxyQualityChart(thickness, roughness) {
+            // 添加新数据点
+            epitaxyQualityChart.data.datasets[0].data.push({x: thickness, y: roughness});
+            
+            // 限制数据点数量
+            if (epitaxyQualityChart.data.datasets[0].data.length > 10) {
+                epitaxyQualityChart.data.datasets[0].data.shift();
+            }
+            
+            epitaxyQualityChart.update();
+        }
+        
+        function updateDopingProfileChart(type, concentration) {
+            // 这里可以根据参数更新图表数据
+            dopingProfileChart.update();
+        }
+        
+        function updateContactResistanceChart(metal, resistance) {
+            // 这里可以根据参数更新图表数据
+            contactResistanceChart.update();
+        }
+        
+        function updateApplicationPerformanceChart(scenario, comparison) {
+            // 这里可以根据参数更新图表数据
+            applicationPerformanceChart.update();
+        }
+        
+        // 标签页切换功能
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // 获取当前标签页容器
+                    const tabContainer = button.closest('.tab-container');
+                    
+                    // 移除当前容器内所有活动状态
+                    tabContainer.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                    tabContainer.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    
+                    // 添加当前活动状态
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initMaterialPropertiesChart();
+            initElectricalPropertiesChart();
+            initThermalPropertiesChart();
+            initSubstrateQualityChart();
+            initEpitaxyQualityChart();
+            initDopingProfileChart();
+            initContactResistanceChart();
+            initApplicationPerformanceChart();
+            initTabs();
+            
+            // 事件监听器
+            deviceType.addEventListener('change', updateDeviceParameters);
+            voltageRating.addEventListener('input', updateDeviceParameters);
+            currentRating.addEventListener('input', updateDeviceParameters);
+            
+            substrateQuality.addEventListener('change', updateDeviceParameters);
+            defectDensity.addEventListener('input', updateDeviceParameters);
+            
+            epitaxyMethod.addEventListener('change', updateDeviceParameters);
+            epitaxyTemperature.addEventListener('input', updateDeviceParameters);
+            epitaxyThickness.addEventListener('input', updateDeviceParameters);
+            
+            dopingMethod.addEventListener('change', updateDeviceParameters);
+            dopingType.addEventListener('change', updateDeviceParameters);
+            dopingConcentration.addEventListener('input', updateDeviceParameters);
+            
+            contactMetal.addEventListener('change', updateDeviceParameters);
+            annealingTemp.addEventListener('input', updateDeviceParameters);
+            annealingTime.addEventListener('input', updateDeviceParameters);
+            
+            applicationScenario.addEventListener('change', updateApplicationPerformance);
+            deviceComparison.addEventListener('change', updateApplicationPerformance);
+            
+            // 初始化参数
+            updateDeviceParameters();
+            updateApplicationPerformance();
+        });
+    </script>
+</body>
+</html>

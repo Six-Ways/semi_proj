@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11章：器件互连与封装 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第11章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item active">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#interconnect-technology" class="section-nav-item">
+                        互连技术
+                    </a>
+                    <a href="#packaging-technology" class="section-nav-item">
+                        封装技术
+                    </a>
+                    <a href="#advanced-packaging" class="section-nav-item">
+                        先进封装与器件集成
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <div class="chapter-container">
+        <div class="breadcrumb">
+            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十一章：器件互连与封装</p>
+        </div>
+        <div class="chapter-header">
+            <h1>第十一章：器件互连与封装</h1>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">互连技术</h2>
+            <p>互连技术是连接半导体芯片内部器件以及芯片与外部系统的关键技术。本节介绍金属互连、接触与通孔、多层互连结构以及互连中的可靠性问题。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('interconnect-overview')">互连技术概述</button>
+                    <button class="tab-button" onclick="showTab('interconnect-interactive')">互连RC延迟计算器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="interconnect-overview" class="tab-pane active">
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">接触与通孔形成</h3>
+                                    <p class="step-description">接触孔连接器件有源区与第一层金属，通孔连接不同金属层。通过光刻和刻蚀工艺形成孔洞，然后填充导电材料。接触电阻是关键参数，通常要求小于10Ω·μm²。阻挡层如Ti/TiN用于防止金属扩散，提高可靠性。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">金属沉积与图形化</h3>
+                                    <p class="step-description">金属层通过PVD或CVD工艺沉积，常用材料包括铝、铜和钨。铜互连采用大马士革工艺，先刻蚀沟槽再填充铜。金属层通过光刻和刻蚀形成互连线形。线宽从微米级缩小到纳米级，对工艺控制要求极高。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">介质层沉积与平坦化</h3>
+                                    <p class="step-description">介电材料如SiO₂和低k材料用于隔离金属层。通过CVD工艺沉积，然后通过化学机械抛光(CMP)实现表面平坦化。低k介质(k<3.0)用于减少RC延迟，但机械强度较差，需要特殊工艺处理。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">多层互连堆叠</h3>
+                                    <p class="step-description">重复上述工艺形成多层互连结构，现代芯片可达10-15层金属。层间通过通孔连接，形成复杂的3D互连网络。信号线通常分布在中间层，电源和地线分布在顶层和底层，以优化电磁兼容性。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>互连材料技术对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>互连材料</th>
+                                    <th>电阻率 (μΩ·cm)</th>
+                                    <th>熔点 (°C)</th>
+                                    <th>抗电迁移能力</th>
+                                    <th>主要应用</th>
+                                    <th>优缺点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>铝(Al)</td>
+                                    <td>2.7</td>
+                                    <td>660</td>
+                                    <td>中等</td>
+                                    <td>传统互连、接触</td>
+                                    <td>工艺成熟，成本低，但抗电迁移能力差</td>
+                                </tr>
+                                <tr>
+                                    <td>铜(Cu)</td>
+                                    <td>1.7</td>
+                                    <td>1083</td>
+                                    <td>高</td>
+                                    <td>先进互连、通孔</td>
+                                    <td>电阻率低，抗电迁移强，但需要阻挡层</td>
+                                </tr>
+                                <tr>
+                                    <td>钨(W)</td>
+                                    <td>5.6</td>
+                                    <td>3422</td>
+                                    <td>很高</td>
+                                    <td>通孔填充、接触</td>
+                                    <td>熔点高，稳定性好，但电阻率较高</td>
+                                </tr>
+                                <tr>
+                                    <td>钛(Ti)</td>
+                                    <td>4.2</td>
+                                    <td>1668</td>
+                                    <td>中等</td>
+                                    <td>阻挡层、粘附层</td>
+                                    <td>粘附性好，但电阻率较高</td>
+                                </tr>
+                                <tr>
+                                    <td>氮化钛(TiN)</td>
+                                    <td>20-50</td>
+                                    <td>2950</td>
+                                    <td>高</td>
+                                    <td>阻挡层、硬掩膜</td>
+                                    <td>扩散阻挡效果好，但电阻率高</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h3>互连可靠性问题</h3>
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-exclamation-triangle"></i>电迁移</h3>
+                            <p class="tech-description">电迁移是高电流密度下金属原子发生迁移的现象，导致互连线断裂或短路。电流密度超过10⁶ A/cm²时显著发生。解决方案包括使用铜互连、优化线宽、添加合金元素和降低工作温度。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-bolt"></i>应力迁移</h3>
+                            <p class="tech-description">应力迁移是热应力导致的金属原子迁移，主要发生在温度循环过程中。与材料热膨胀系数不匹配和工艺应力有关。通过优化退火工艺、使用低应力介质和改进金属沉积条件可以减轻应力迁移。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-water"></i>腐蚀</h3>
+                            <p class="tech-description">金属互连在湿气或污染环境下可能发生腐蚀，导致电阻增加或断路。铝互连特别容易发生腐蚀。通过使用钝化层、密封封装和洁净工艺环境可以有效防止腐蚀。</p>
+                        </div>
+                    </div>
+                    
+                    <div id="interconnect-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">互连RC延迟计算器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="interconnect-material">互连材料</label>
+                                    <select id="interconnect-material">
+                                        <option value="aluminum">铝(Al)</option>
+                                        <option value="copper">铜(Cu)</option>
+                                        <option value="tungsten">钨(W)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="line-width">线宽 (nm)</label>
+                                    <input type="range" id="line-width" min="10" max="1000" value="100">
+                                    <span id="line-width-value">100 nm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="line-height">线高 (nm)</label>
+                                    <input type="range" id="line-height" min="20" max="500" value="200">
+                                    <span id="line-height-value">200 nm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="line-length">线长 (μm)</label>
+                                    <input type="range" id="line-length" min="1" max="1000" value="100">
+                                    <span id="line-length-value">100 μm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="dielectric-constant">介电常数</label>
+                                    <input type="range" id="dielectric-constant" min="2" max="4" step="0.1" value="3.9">
+                                    <span id="dielectric-constant-value">3.9</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="spacing">线间距 (nm)</label>
+                                    <input type="range" id="spacing" min="10" max="500" value="100">
+                                    <span id="spacing-value">100 nm</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="rc-delay-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">线电阻</span>
+                                    <span class="result-value" id="line-resistance">50 Ω</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">线电容</span>
+                                    <span class="result-value" id="line-capacitance">2.5 fF</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">RC延迟</span>
+                                    <span class="result-value" id="rc-delay">125 ps</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">传播速度</span>
+                                    <span class="result-value" id="propagation-speed">1.2×10⁸ m/s</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">封装技术</h2>
+            <p>封装技术是保护半导体芯片并提供电气连接和散热通道的关键工艺。本节介绍传统封装技术、封装材料、封装工艺流程以及封装对器件性能的影响。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('packaging-overview')">封装技术概述</button>
+                    <button class="tab-button" onclick="showTab('packaging-interactive')">封装散热模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="packaging-overview" class="tab-pane active">
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-microchip"></i>引线键合封装</h3>
+                            <p class="tech-description">引线键合是最传统的芯片互连技术，使用细金属线(金、铜或铝)连接芯片焊盘和封装引脚。键合方法包括球焊和楔焊，线径通常为15-50μm。引线键合成本低，工艺成熟，但互连长度长，寄生参数大，适用于引脚数较少的封装。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-project-diagram"></i>载带自动焊(TAB)</h3>
+                            <p class="tech-description">TAB技术使用载带上的铜箔引线连接芯片和封装基板，可实现更高密度的互连。先在载带上形成铜引线，然后通过热压焊将芯片焊盘与引线连接。TAB比引线键合电性能更好，但工艺复杂，成本较高，适用于中等引脚数的封装。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-expand-arrows-alt"></i>倒装芯片(Flip-Chip)</h3>
+                            <p class="tech-description">倒装芯片技术通过芯片上的焊料凸点直接与封装基板连接，实现最短的互连路径。焊料凸点直径通常为50-200μm，间距可达100μm以下。倒装芯片电性能优异，散热好，I/O密度高，但需要凸点制备和精密对准设备，成本较高。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-cube"></i>晶圆级封装(WLP)</h3>
+                            <p class="tech-description">晶圆级封装在晶圆上完成大部分封装工艺，然后进行切割。WLP封装尺寸接近芯片尺寸，可实现最小封装。包括重布线(RDL)、凸点制备和底部填充等工艺。WLP成本效益高，适合大批量生产，但散热和可靠性面临挑战。</p>
+                        </div>
+                        
+                        <h3>封装类型对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>封装类型</th>
+                                    <th>引脚数范围</th>
+                                    <th>尺寸(mm²)</th>
+                                    <th>电性能</th>
+                                    <th>热性能</th>
+                                    <th>成本</th>
+                                    <th>主要应用</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DIP</td>
+                                    <td>8-64</td>
+                                    <td>100-400</td>
+                                    <td>差</td>
+                                    <td>中等</td>
+                                    <td>低</td>
+                                    <td>传统逻辑电路、接口芯片</td>
+                                </tr>
+                                <tr>
+                                    <td>SOP</td>
+                                    <td>8-128</td>
+                                    <td>30-150</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>低</td>
+                                    <td>消费电子、通用IC</td>
+                                </tr>
+                                <tr>
+                                    <td>QFP</td>
+                                    <td>32-304</td>
+                                    <td>80-400</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>微控制器、ASIC</td>
+                                </tr>
+                                <tr>
+                                    <td>BGA</td>
+                                    <td>49-1920</td>
+                                    <td>100-900</td>
+                                    <td>好</td>
+                                    <td>好</td>
+                                    <td>高</td>
+                                    <td>处理器、FPGA、高速存储</td>
+                                </tr>
+                                <tr>
+                                    <td>CSP</td>
+                                    <td>4-200</td>
+                                    <td>4-100</td>
+                                    <td>好</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>移动设备、便携式产品</td>
+                                </tr>
+                                <tr>
+                                    <td>WLP</td>
+                                    <td>4-100</td>
+                                    <td>4-64</td>
+                                    <td>优秀</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>传感器、RF器件、移动设备</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h3>封装材料</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>材料类型</th>
+                                    <th>热导率(W/m·K)</th>
+                                    <th>热膨胀系数(ppm/°C)</th>
+                                    <th>介电常数</th>
+                                    <th>主要应用</th>
+                                    <th>特点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>环氧树脂</td>
+                                    <td>0.2-0.8</td>
+                                    <td>15-60</td>
+                                    <td>3.5-4.5</td>
+                                    <td>塑封料、底部填充</td>
+                                    <td>成本低，工艺性好，但散热差</td>
+                                </tr>
+                                <tr>
+                                    <td>陶瓷(氧化铝)</td>
+                                    <td>20-30</td>
+                                    <td>6-8</td>
+                                    <td>9-10</td>
+                                    <td>陶瓷封装基板</td>
+                                    <td>散热好，可靠性高，但成本高</td>
+                                </tr>
+                                <tr>
+                                    <td>金属(铜、铝)</td>
+                                    <td>200-400</td>
+                                    <td>16-24</td>
+                                    <td>N/A</td>
+                                    <td>金属封装、散热器</td>
+                                    <td>散热极佳，但重量大，成本高</td>
+                                </tr>
+                                <tr>
+                                    <td>BT树脂</td>
+                                    <td>0.3-0.6</td>
+                                    <td>14-17</td>
+                                    <td>4.0-4.5</td>
+                                    <td>有机基板</td>
+                                    <td>电性能好，适合高频应用</td>
+                                </tr>
+                                <tr>
+                                    <td>聚酰亚胺</td>
+                                    <td>0.1-0.3</td>
+                                    <td>20-60</td>
+                                    <td>3.2-3.5</td>
+                                    <td>柔性基板、芯片涂层</td>
+                                    <td>耐高温，柔性好，但成本高</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="packaging-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">封装散热模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="package-type">封装类型</label>
+                                    <select id="package-type">
+                                        <option value="dip">DIP</option>
+                                        <option value="sop">SOP</option>
+                                        <option value="qfp">QFP</option>
+                                        <option value="bga">BGA</option>
+                                        <option value="csp">CSP</option>
+                                        <option value="wlp">WLP</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="chip-power">芯片功耗 (W)</label>
+                                    <input type="range" id="chip-power" min="0.1" max="10" step="0.1" value="1">
+                                    <span id="chip-power-value">1.0 W</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="ambient-temp">环境温度 (°C)</label>
+                                    <input type="range" id="ambient-temp" min="20" max="85" value="25">
+                                    <span id="ambient-temp-value">25°C</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="thermal-interface">热界面材料</label>
+                                    <select id="thermal-interface">
+                                        <option value="none">无</option>
+                                        <option value="grease">导热硅脂</option>
+                                        <option value="pad">导热垫片</option>
+                                        <option value="epoxy">导热环氧</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="heatsink">散热器类型</label>
+                                    <select id="heatsink">
+                                        <option value="none">无</option>
+                                        <option value="passive">被动散热器</option>
+                                        <option value="active">主动散热器(风扇)</option>
+                                        <option value="liquid">液冷系统</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="thermal-simulation">
+                                <div class="thermal-map" id="thermal-map">
+                                    <!-- 热分布图将通过JavaScript动态生成 -->
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="thermal-chart"></canvas>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">结温</span>
+                                    <span class="result-value" id="junction-temp">85°C</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">热阻</span>
+                                    <span class="result-value" id="thermal-resistance">60°C/W</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">散热效率</span>
+                                    <span class="result-value" id="cooling-efficiency">75%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">可靠性评估</span>
+                                    <span class="result-value" id="reliability-score">良好</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">先进封装与器件集成</h2>
+            <p>随着器件密度和性能需求的不断提高，先进封装技术成为半导体发展的重要方向。本节介绍系统级封装、三维封装、硅通孔技术等先进封装技术。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('advanced-overview')">先进封装概述</button>
+                    <button class="tab-button" onclick="showTab('advanced-interactive')">3D封装可视化</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="advanced-overview" class="tab-pane active">
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-cubes"></i>系统级封装(SiP)</h3>
+                            <p class="tech-description">系统级封装将多个芯片(处理器、存储器、射频等)集成在一个封装内，实现系统级功能。可采用堆叠、并排或混合布局。SiP缩短了信号路径，提高了系统集成度，减少了PCB面积。关键技术包括芯片堆叠、嵌入式芯片和多功能基板。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-layer-group"></i>三维封装(3D Packaging)</h3>
+                            <p class="tech-description">三维封装通过垂直堆叠多个芯片实现更高集成度和更短互连路径。包括芯片堆叠、封装堆叠和晶圆堆叠三种形式。关键技术包括硅通孔(TSV)、微凸点和薄芯片处理。3D封装显著提高了性能密度，但热管理和应力控制是挑战。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-bullseye"></i>硅通孔技术(TSV)</h3>
+                            <p class="tech-description">硅通孔是穿过硅晶圆的垂直互连通道，是实现3D集成的核心技术。TSV直径通常为1-10μm，深宽比可达10:1。工艺包括深孔刻蚀、绝缘层沉积、导电填充和CMP。TSV提供了最短的芯片间互连，但成本高，工艺复杂。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-microchip"></i>扇出型封装(Fan-Out)</h3>
+                            <p class="tech-description">扇出型封装通过重布线(RDL)将I/O连接扩展到芯片面积之外，实现更高的I/O密度。包括晶圆级扇出(WLFO)和面板级扇出(PLFO)。扇出封装尺寸小，电性能好，适合移动设备和射频应用。关键技术包括环氧模压化合物(EMC)成型和精密RDL工艺。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-memory"></i>高带宽内存(HBM)</h3>
+                            <p class="tech-description">高带宽内存通过3D堆叠多个DRAM芯片和硅中介层实现超高带宽内存解决方案。HBM使用1024位宽接口和TSV技术，带宽可达传统DDR的数倍。主要用于高性能计算、图形处理和AI加速器，是先进3D封装的成功应用案例。</p>
+                        </div>
+                        
+                        <h3>先进封装技术对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>封装技术</th>
+                                    <th>集成度</th>
+                                    <th>互连长度</th>
+                                    <th>带宽</th>
+                                    <th>功耗</th>
+                                    <th>成本</th>
+                                    <th>主要应用</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SiP</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>中等</td>
+                                    <td>智能手机、可穿戴设备</td>
+                                </tr>
+                                <tr>
+                                    <td>2.5D封装</td>
+                                    <td>高</td>
+                                    <td>短</td>
+                                    <td>高</td>
+                                    <td>低</td>
+                                    <td>高</td>
+                                    <td>高性能计算、GPU</td>
+                                </tr>
+                                <tr>
+                                    <td>3D-TSV</td>
+                                    <td>很高</td>
+                                    <td>极短</td>
+                                    <td>很高</td>
+                                    <td>很低</td>
+                                    <td>很高</td>
+                                    <td>HBM、图像传感器</td>
+                                </tr>
+                                <tr>
+                                    <td>扇出型</td>
+                                    <td>中等</td>
+                                    <td>短</td>
+                                    <td>高</td>
+                                    <td>低</td>
+                                    <td>中等</td>
+                                    <td>射频器件、处理器</td>
+                                </tr>
+                                <tr>
+                                    <td>嵌入式芯片</td>
+                                    <td>高</td>
+                                    <td>极短</td>
+                                    <td>高</td>
+                                    <td>低</td>
+                                    <td>高</td>
+                                    <td>汽车电子、IoT</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <h3>先进封装挑战与解决方案</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>挑战</th>
+                                    <th>影响</th>
+                                    <th>解决方案</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>热管理</td>
+                                    <td>功率密度高，散热困难</td>
+                                    <td>热界面材料、微流道冷却、热TSV</td>
+                                </tr>
+                                <tr>
+                                    <td>应力控制</td>
+                                    <td>热失配导致翘曲和开裂</td>
+                                    <td>低CTE材料、中性轴设计、应力缓冲结构</td>
+                                </tr>
+                                <tr>
+                                    <td>测试与良率</td>
+                                    <td>已知良好芯片(KGD)获取困难</td>
+                                    <td>内建自测试、冗余设计、晶圆级测试</td>
+                                </tr>
+                                <tr>
+                                    <td>成本控制</td>
+                                    <td>工艺复杂，设备投资大</td>
+                                    <td>面板级封装、工艺优化、批量生产</td>
+                                </tr>
+                                <tr>
+                                    <td>设计复杂性</td>
+                                    <td>多物理场耦合，设计难度大</td>
+                                    <td>协同设计工具、多物理场仿真、标准化接口</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="advanced-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">3D封装可视化</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="package-3d-type">封装类型</label>
+                                    <select id="package-3d-type">
+                                        <option value="sip">系统级封装(SiP)</option>
+                                        <option value="2.5d">2.5D封装</option>
+                                        <option value="3d-tsv">3D-TSV封装</option>
+                                        <option value="fan-out">扇出型封装</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="chip-stack">芯片堆叠层数</label>
+                                    <input type="range" id="chip-stack" min="1" max="8" value="4">
+                                    <span id="chip-stack-value">4层</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="tsv-density">TSV密度</label>
+                                    <input type="range" id="tsv-density" min="1" max="10" value="5">
+                                    <span id="tsv-density-value">中</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="interposer">中介层类型</label>
+                                    <select id="interposer">
+                                        <option value="none">无</option>
+                                        <option value="silicon">硅中介层</option>
+                                        <option value="organic">有机中介层</option>
+                                        <option value="glass">玻璃中介层</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="package-3d">
+                                <div class="package-model" id="package-model">
+                                    <div class="package-face face-front">正面</div>
+                                    <div class="package-face face-back">背面</div>
+                                    <div class="package-face face-right">右侧</div>
+                                    <div class="package-face face-left">左侧</div>
+                                    <div class="package-face face-top">顶部</div>
+                                    <div class="package-face face-bottom">底部</div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container">
+                                <canvas id="package-performance-chart"></canvas>
+                            </div>
+                            
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">集成度提升</span>
+                                    <span class="result-value" id="integration-density">3.5x</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">带宽提升</span>
+                                    <span class="result-value" id="bandwidth-improvement">5.2x</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">功耗降低</span>
+                                    <span class="result-value" id="power-reduction">35%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">成本增加</span>
+                                    <span class="result-value" id="cost-increase">2.8x</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="chapter-summary">
+            <h2 class="section-title">本章小结</h2>
+            <p>本章详细介绍了半导体器件的互连与封装技术，包括传统互连技术、封装工艺以及先进封装与器件集成。这些技术是半导体器件实现系统级应用的关键，直接影响器件的性能、可靠性和成本。</p>
+            
+            <h3>核心要点</h3>
+            <ul>
+                <li>互连技术连接芯片内部器件和芯片与外部系统，金属互连从铝发展到铜，有效降低了RC延迟</li>
+                <li>封装技术保护芯片并提供电气连接和散热通道，从传统引线键合发展到倒装芯片和晶圆级封装</li>
+                <li>先进封装技术如SiP、3D封装和TSV实现了更高集成度和更短互连路径，满足了高性能应用需求</li>
+                <li>热管理、应力控制和测试是先进封装面临的主要挑战，需要材料、工艺和设计的协同创新</li>
+                <li>封装技术的发展趋势是更高集成度、更好电性能和更低成本，系统级优化成为关键</li>
+            </ul>
+            
+            <h3>学习成果</h3>
+            <p>通过本章的学习，您应该能够：</p>
+            <ul>
+                <li>理解互连技术的原理和发展趋势</li>
+                <li>掌握不同封装技术的特点和应用场景</li>
+                <li>分析封装对器件性能和可靠性的影响</li>
+                <li>评估先进封装技术的优缺点</li>
+                <li>选择合适的互连和封装方案满足特定应用需求</li>
+            </ul>
+        </div>
+        
+        <div class="progress-indicator">
+            学习进度: <span id="progress">0%</span>
+        </div>
+    </div>
+
+    <script>
+        // 实验计数器
+        let interconnectExperiments = 0;
+        let packagingExperiments = 0;
+        let advancedExperiments = 0;
+        
+        // 标签页切换功能
+        function showTab(tabId) {
+            // 隐藏所有标签内容
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            
+            // 移除所有标签按钮的活动状态
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // 显示选中的标签内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 激活对应的标签按钮
+            event.target.classList.add('active');
+        }
+        
+        // 互连RC延迟计算器
+        function initInterconnectCalculator() {
+            const material = document.getElementById('interconnect-material');
+            const lineWidth = document.getElementById('line-width');
+            const lineHeight = document.getElementById('line-height');
+            const lineLength = document.getElementById('line-length');
+            const dielectricConstant = document.getElementById('dielectric-constant');
+            const spacing = document.getElementById('spacing');
+            
+            // 更新显示值
+            lineWidth.addEventListener('input', function() {
+                document.getElementById('line-width-value').textContent = this.value + ' nm';
+                updateRCDelay();
+            });
+            
+            lineHeight.addEventListener('input', function() {
+                document.getElementById('line-height-value').textContent = this.value + ' nm';
+                updateRCDelay();
+            });
+            
+            lineLength.addEventListener('input', function() {
+                document.getElementById('line-length-value').textContent = this.value + ' μm';
+                updateRCDelay();
+            });
+            
+            dielectricConstant.addEventListener('input', function() {
+                document.getElementById('dielectric-constant-value').textContent = this.value;
+                updateRCDelay();
+            });
+            
+            spacing.addEventListener('input', function() {
+                document.getElementById('spacing-value').textContent = this.value + ' nm';
+                updateRCDelay();
+            });
+            
+            material.addEventListener('change', updateRCDelay);
+            
+            // 初始化图表
+            const ctx = document.getElementById('rc-delay-chart').getContext('2d');
+            const rcDelayChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'RC延迟',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '线长 (μm)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '延迟 (ps)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 更新RC延迟计算
+            function updateRCDelay() {
+                const mat = material.value;
+                const width = parseFloat(lineWidth.value) * 1e-9; // 转换为米
+                const height = parseFloat(lineHeight.value) * 1e-9; // 转换为米
+                const length = parseFloat(lineLength.value) * 1e-6; // 转换为米
+                const k = parseFloat(dielectricConstant.value);
+                const s = parseFloat(spacing.value) * 1e-9; // 转换为米
+                
+                // 材料电阻率 (Ω·m)
+                const resistivity = {
+                    'aluminum': 2.7e-8,
+                    'copper': 1.7e-8,
+                    'tungsten': 5.6e-8
+                };
+                
+                const rho = resistivity[mat];
+                
+                // 计算线电阻
+                const crossSection = width * height;
+                const resistance = rho * length / crossSection;
+                
+                // 计算线电容 (简化平行板模型)
+                const epsilon0 = 8.854e-12; // 真空介电常数
+                const effectiveK = (k + 1) / 2; // 有效介电常数
+                const capacitance = effectiveK * epsilon0 * length * height / s;
+                
+                // 计算RC延迟
+                const rcDelay = resistance * capacitance * 1e12; // 转换为皮秒
+                
+                // 计算传播速度
+                const propagationSpeed = length / (rcDelay * 1e-12); // m/s
+                
+                // 更新结果显示
+                document.getElementById('line-resistance').textContent = resistance.toExponential(1) + ' Ω';
+                document.getElementById('line-capacitance').textContent = (capacitance * 1e15).toFixed(2) + ' fF';
+                document.getElementById('rc-delay').textContent = rcDelay.toFixed(1) + ' ps';
+                document.getElementById('propagation-speed').textContent = propagationSpeed.toExponential(1) + ' m/s';
+                
+                // 更新图表 - 显示不同线长下的RC延迟
+                const lengths = [];
+                const delays = [];
+                
+                for (let i = 10; i <= 1000; i += 10) {
+                    const l = i * 1e-6; // 转换为米
+                    const r = rho * l / crossSection;
+                    const c = effectiveK * epsilon0 * l * height / s;
+                    const delay = r * c * 1e12; // 转换为皮秒
+                    
+                    lengths.push(i);
+                    delays.push(delay);
+                }
+                
+                rcDelayChart.data.labels = lengths;
+                rcDelayChart.data.datasets[0].data = delays;
+                rcDelayChart.update();
+                
+                // 记录实验
+                interconnectExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            updateRCDelay();
+        }
+        
+        // 封装散热模拟器
+        function initThermalSimulator() {
+            const packageType = document.getElementById('package-type');
+            const chipPower = document.getElementById('chip-power');
+            const ambientTemp = document.getElementById('ambient-temp');
+            const thermalInterface = document.getElementById('thermal-interface');
+            const heatsink = document.getElementById('heatsink');
+            
+            // 更新显示值
+            chipPower.addEventListener('input', function() {
+                document.getElementById('chip-power-value').textContent = this.value + ' W';
+                updateThermalSimulation();
+            });
+            
+            ambientTemp.addEventListener('input', function() {
+                document.getElementById('ambient-temp-value').textContent = this.value + '°C';
+                updateThermalSimulation();
+            });
+            
+            packageType.addEventListener('change', updateThermalSimulation);
+            thermalInterface.addEventListener('change', updateThermalSimulation);
+            heatsink.addEventListener('change', updateThermalSimulation);
+            
+            // 初始化图表
+            const ctx = document.getElementById('thermal-chart').getContext('2d');
+            const thermalChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['结-壳热阻', '壳-环境热阻', '总热阻'],
+                    datasets: [{
+                        label: '热阻分布 (°C/W)',
+                        data: [0, 0, 0],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '热阻 (°C/W)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 更新热模拟
+            function updateThermalSimulation() {
+                const pkg = packageType.value;
+                const power = parseFloat(chipPower.value);
+                const ambient = parseFloat(ambientTemp.value);
+                const interface = thermalInterface.value;
+                const sink = heatsink.value;
+                
+                // 封装热阻参数 (°C/W)
+                const packageThermalResistance = {
+                    'dip': { junctionToCase: 50, caseToAmbient: 70 },
+                    'sop': { junctionToCase: 30, caseToAmbient: 60 },
+                    'qfp': { junctionToCase: 20, caseToAmbient: 40 },
+                    'bga': { junctionToCase: 10, caseToAmbient: 25 },
+                    'csp': { junctionToCase: 5, caseToAmbient: 20 },
+                    'wlp': { junctionToCase: 3, caseToAmbient: 15 }
+                };
+                
+                // 热界面材料热阻 (°C/W)
+                const interfaceResistance = {
+                    'none': 0,
+                    'grease': 0.1,
+                    'pad': 0.5,
+                    'epoxy': 1.0
+                };
+                
+                // 散热器热阻 (°C/W)
+                const heatsinkResistance = {
+                    'none': 100,
+                    'passive': 5,
+                    'active': 1,
+                    'liquid': 0.2
+                };
+                
+                const pkgResistance = packageThermalResistance[pkg];
+                const intResistance = interfaceResistance[interface];
+                const sinkResistance = heatsinkResistance[sink];
+                
+                // 计算热阻
+                const junctionToCase = pkgResistance.junctionToCase;
+                const caseToAmbient = pkgResistance.caseToAmbient + intResistance + sinkResistance;
+                const totalResistance = junctionToCase + caseToAmbient;
+                
+                // 计算结温
+                const junctionTemp = ambient + power * totalResistance;
+                
+                // 计算散热效率
+                const maxTempRise = 100; // 最大允许温升
+                const actualTempRise = junctionTemp - ambient;
+                const coolingEfficiency = Math.max(0, Math.min(100, 100 * (1 - actualTempRise / maxTempRise)));
+                
+                // 可靠性评估
+                let reliabilityScore;
+                if (junctionTemp < 85) {
+                    reliabilityScore = '优秀';
+                } else if (junctionTemp < 105) {
+                    reliabilityScore = '良好';
+                } else if (junctionTemp < 125) {
+                    reliabilityScore = '一般';
+                } else {
+                    reliabilityScore = '差';
+                }
+                
+                // 更新结果显示
+                document.getElementById('junction-temp').textContent = junctionTemp.toFixed(1) + '°C';
+                document.getElementById('thermal-resistance').textContent = totalResistance.toFixed(1) + '°C/W';
+                document.getElementById('cooling-efficiency').textContent = coolingEfficiency.toFixed(0) + '%';
+                document.getElementById('reliability-score').textContent = reliabilityScore;
+                
+                // 更新图表
+                thermalChart.data.datasets[0].data = [
+                    junctionToCase, 
+                    caseToAmbient, 
+                    totalResistance
+                ];
+                thermalChart.update();
+                
+                // 更新热分布图
+                updateThermalMap(junctionTemp, ambient);
+                
+                // 记录实验
+                packagingExperiments++;
+                updateProgress();
+            }
+            
+            // 更新热分布图
+            function updateThermalMap(junctionTemp, ambientTemp) {
+                const thermalMap = document.getElementById('thermal-map');
+                thermalMap.innerHTML = '';
+                
+                // 创建热分布点
+                for (let i = 0; i < 50; i++) {
+                    const point = document.createElement('div');
+                    point.className = 'thermal-point';
+                    
+                    // 随机位置
+                    const x = Math.random() * 100;
+                    const y = Math.random() * 100;
+                    point.style.left = x + '%';
+                    point.style.top = y + '%';
+                    
+                    // 计算温度（中心温度高，边缘温度低）
+                    const centerX = 50;
+                    const centerY = 50;
+                    const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+                    const maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
+                    const tempRatio = 1 - (distance / maxDistance);
+                    const pointTemp = ambientTemp + (junctionTemp - ambientTemp) * tempRatio;
+                    
+                    // 根据温度设置颜色
+                    let color;
+                    if (pointTemp < 50) {
+                        color = 'rgb(0, 0, 255)'; // 蓝色
+                    } else if (pointTemp < 75) {
+                        color = 'rgb(0, 255, 0)'; // 绿色
+                    } else if (pointTemp < 100) {
+                        color = 'rgb(255, 255, 0)'; // 黄色
+                    } else {
+                        color = 'rgb(255, 0, 0)'; // 红色
+                    }
+                    
+                    point.style.backgroundColor = color;
+                    point.style.opacity = 0.7;
+                    point.title = `温度: ${pointTemp.toFixed(1)}°C`;
+                    
+                    thermalMap.appendChild(point);
+                }
+            }
+            
+            // 初始化
+            updateThermalSimulation();
+        }
+        
+        // 3D封装可视化
+        function init3DPackageVisualization() {
+            const packageType = document.getElementById('package-3d-type');
+            const chipStack = document.getElementById('chip-stack');
+            const tsvDensity = document.getElementById('tsv-density');
+            const interposer = document.getElementById('interposer');
+            
+            // 更新显示值
+            chipStack.addEventListener('input', function() {
+                document.getElementById('chip-stack-value').textContent = this.value + '层';
+                update3DVisualization();
+            });
+            
+            tsvDensity.addEventListener('input', function() {
+                const density = parseInt(this.value);
+                let densityText;
+                if (density <= 3) densityText = '低';
+                else if (density <= 7) densityText = '中';
+                else densityText = '高';
+                document.getElementById('tsv-density-value').textContent = densityText;
+                update3DVisualization();
+            });
+            
+            packageType.addEventListener('change', update3DVisualization);
+            interposer.addEventListener('change', update3DVisualization);
+            
+            // 初始化图表
+            const ctx = document.getElementById('package-performance-chart').getContext('2d');
+            const packagePerformanceChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['集成度', '带宽', '功耗', '成本效益', '制造复杂度'],
+                    datasets: [{
+                        label: '性能评估',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+            
+            // 更新3D可视化
+            function update3DVisualization() {
+                const pkg = packageType.value;
+                const layers = parseInt(chipStack.value);
+                const density = parseInt(tsvDensity.value);
+                const interp = interposer.value;
+                
+                // 更新3D模型
+                const model = document.getElementById('package-model');
+                
+                // 根据封装类型调整模型
+                switch(pkg) {
+                    case 'sip':
+                        model.style.transform = 'scale(1.0, 0.8, 1.2)';
+                        break;
+                    case '2.5d':
+                        model.style.transform = 'scale(1.2, 0.6, 1.2)';
+                        break;
+                    case '3d-tsv':
+                        model.style.transform = 'scale(1.0, 1.5, 1.0)';
+                        break;
+                    case 'fan-out':
+                        model.style.transform = 'scale(1.3, 0.5, 1.3)';
+                        break;
+                }
+                
+                // 计算性能指标
+                let integrationDensity, bandwidthImprovement, powerReduction, costIncrease, complexity;
+                
+                switch(pkg) {
+                    case 'sip':
+                        integrationDensity = 2.0 + layers * 0.3;
+                        bandwidthImprovement = 2.5 + density * 0.2;
+                        powerReduction = 20 + layers * 3;
+                        costIncrease = 1.5 + layers * 0.2;
+                        complexity = 40 + layers * 5;
+                        break;
+                    case '2.5d':
+                        integrationDensity = 3.0 + layers * 0.4;
+                        bandwidthImprovement = 4.0 + density * 0.3;
+                        powerReduction = 30 + layers * 4;
+                        costIncrease = 2.5 + layers * 0.3;
+                        complexity = 60 + layers * 5;
+                        break;
+                    case '3d-tsv':
+                        integrationDensity = 4.0 + layers * 0.5;
+                        bandwidthImprovement = 6.0 + density * 0.4;
+                        powerReduction = 40 + layers * 5;
+                        costIncrease = 3.5 + layers * 0.4;
+                        complexity = 80 + layers * 5;
+                        break;
+                    case 'fan-out':
+                        integrationDensity = 2.5 + layers * 0.2;
+                        bandwidthImprovement = 3.0 + density * 0.3;
+                        powerReduction = 25 + layers * 3;
+                        costIncrease = 1.8 + layers * 0.2;
+                        complexity = 50 + layers * 5;
+                        break;
+                }
+                
+                // 中介层影响
+                if (interp === 'silicon') {
+                    bandwidthImprovement *= 1.2;
+                    costIncrease *= 1.3;
+                } else if (interp === 'organic') {
+                    bandwidthImprovement *= 1.1;
+                    costIncrease *= 1.1;
+                } else if (interp === 'glass') {
+                    bandwidthImprovement *= 1.15;
+                    costIncrease *= 1.2;
+                }
+                
+                // 更新结果显示
+                document.getElementById('integration-density').textContent = integrationDensity.toFixed(1) + 'x';
+                document.getElementById('bandwidth-improvement').textContent = bandwidthImprovement.toFixed(1) + 'x';
+                document.getElementById('power-reduction').textContent = powerReduction.toFixed(0) + '%';
+                document.getElementById('cost-increase').textContent = costIncrease.toFixed(1) + 'x';
+                
+                // 更新雷达图
+                packagePerformanceChart.data.datasets[0].data = [
+                    Math.min(100, integrationDensity * 20),
+                    Math.min(100, bandwidthImprovement * 15),
+                    Math.min(100, powerReduction),
+                    Math.min(100, 100 - (costIncrease - 1) * 30),
+                    Math.min(100, complexity)
+                ];
+                packagePerformanceChart.update();
+                
+                // 记录实验
+                advancedExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            update3DVisualization();
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            const totalExperiments = 6; // 每个章节最多6次实验
+            const completedExperiments = interconnectExperiments + packagingExperiments + advancedExperiments;
+            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
+            
+            document.getElementById('progress').textContent = progress;
+        }
+        
+        // 章节页面侧边栏初始化
+        function initChapterSidebar() {
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (!sidebar || !sidebarToggle) return;
+            
+            // 从localStorage恢复侧边栏状态
+            const savedState = localStorage.getItem('sidebarState');
+            if (savedState === 'collapsed') {
+                sidebar.classList.add('collapsed');
+            } else if (savedState === 'auto-hidden') {
+                // 如果上次是自动隐藏状态，默认显示为正常状态
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+                localStorage.setItem('sidebarState', 'normal');
+            } else {
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+            }
+            
+            // 侧边栏折叠/展开按钮
+            sidebarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('collapsed');
+                
+                // 保存状态到localStorage
+                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
+                localStorage.setItem('sidebarState', newState);
+            });
+            
+            // 侧边栏隐藏按钮
+            if (sidebarHideBtn) {
+                sidebarHideBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.add('auto-hidden');
+                    localStorage.setItem('sidebarState', 'auto-hidden');
+                });
+            }
+            
+            // 鼠标悬停显示自动隐藏的侧边栏
+            sidebar.addEventListener('mouseenter', function() {
+                if (sidebar.classList.contains('auto-hidden')) {
+                    sidebar.classList.remove('auto-hidden');
+                    sidebar.classList.add('hover-show');
+                }
+            });
+            
+            sidebar.addEventListener('mouseleave', function() {
+                if (sidebar.classList.contains('hover-show')) {
+                    sidebar.classList.remove('hover-show');
+                    sidebar.classList.add('auto-hidden');
+                }
+            });
+            
+            console.log('Chapter 11 sidebar initialized');
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChapterSidebar();
+            initInterconnectCalculator();
+            initThermalSimulator();
+            init3DPackageVisualization();
+        });
+    </script>
+</body>
+</html>

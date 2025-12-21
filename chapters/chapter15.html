@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十五章：器件设计与仿真工具 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chapter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .interactive-tool {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tool-title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+        }
+        
+        .slider-value {
+            min-width: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .formula-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .formula-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .formula-content {
+            font-size: 16px;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        
+        .parameter-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .parameter-table th, .parameter-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .parameter-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .parameter-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #7f8c8d;
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            padding: 20px 0;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .design-template {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .design-template:hover {
+            transform: translateY(-5px);
+        }
+        
+        .template-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .template-icon {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .template-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .result-display {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-family: monospace;
+            white-space: pre-line;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .input-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+        }
+        
+        .input-group span {
+            min-width: 100px;
+        }
+        
+        .simulation-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+        
+        .spice-model-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .model-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .model-type {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .model-parameters {
+            font-family: monospace;
+            font-size: 14px;
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item active">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#design-flow" class="section-nav-item">
+                        设计流程
+                    </a>
+                    <a href="#simulation-tools" class="section-nav-item">
+                        仿真工具
+                    </a>
+                    <a href="#design-examples" class="section-nav-item">
+                        设计实例
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>第十五章：器件设计与仿真工具</h1>
+            <p class="chapter-intro">掌握半导体器件设计的核心理论与实用工具，包括设计公式、仿真基础、SPICE模型参数查询和实用设计模板，提升器件设计与分析能力。</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">器件设计核心公式</h2>
+            <p>半导体器件设计依赖于一系列核心物理公式和工程经验公式，这些公式是器件参数计算和性能预测的基础。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('formulas', 'diode')">二极管公式</button>
+                    <button class="tab-button" onclick="switchTab('formulas', 'bjt')">BJT公式</button>
+                    <button class="tab-button" onclick="switchTab('formulas', 'mosfet')">MOSFET公式</button>
+                    <button class="tab-button" onclick="switchTab('formulas', 'advanced')">高级公式</button>
+                </div>
+                
+                <div id="diode" class="tab-pane active">
+                    <h3>二极管核心公式</h3>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">肖克利二极管方程</div>
+                        <div class="formula-content">
+                            I<sub>D</sub> = I<sub>S</sub> × (e<sup>(V<sub>D</sub>/nV<sub>T</sub>)</sup> - 1)
+                        </div>
+                        <p>其中：I<sub>D</sub>为二极管电流，I<sub>S</sub>为反向饱和电流，V<sub>D</sub>为二极管电压，n为理想因子，V<sub>T</sub>为热电压(kT/q)</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">二极管电容</div>
+                        <div class="formula-content">
+                            C<sub>j</sub> = C<sub>j0</sub> / (1 - V<sub>R</sub>/V<sub>bi</sub>)<sup>m</sup>
+                        </div>
+                        <p>其中：C<sub>j</sub>为结电容，C<sub>j0</sub>为零偏结电容，V<sub>R</sub>为反向电压，V<sub>bi</sub>为内建电势，m为梯度系数</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">二极管反向击穿电压</div>
+                        <div class="formula-content">
+                            V<sub>BR</sub> ≈ E<sub>c</sub> × W / 2
+                        </div>
+                        <p>其中：V<sub>BR</sub>为击穿电压，E<sub>c</sub>为临界电场，W为耗尽区宽度</p>
+                    </div>
+                </div>
+                
+                <div id="bjt" class="tab-pane">
+                    <h3>BJT核心公式</h3>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">厄利效应</div>
+                        <div class="formula-content">
+                            I<sub>C</sub> = I<sub>S</sub> × e<sup>(V<sub>BE</sub>/V<sub>T</sub>)</sup> × (1 + V<sub>CE</sub>/V<sub>A</sub>)
+                        </div>
+                        <p>其中：I<sub>C</sub>为集电极电流，I<sub>S</sub>为饱和电流，V<sub>BE</sub>为基极-发射极电压，V<sub>A</sub>为厄利电压</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">电流增益</div>
+                        <div class="formula-content">
+                            β = I<sub>C</sub> / I<sub>B</sub> = β<sub>0</sub> / (1 + V<sub>CE</sub>/V<sub>A</sub>)
+                        </div>
+                        <p>其中：β为电流增益，I<sub>B</sub>为基极电流，β<sub>0</sub>为零偏电流增益</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">跨导</div>
+                        <div class="formula-content">
+                            g<sub>m</sub> = I<sub>C</sub> / V<sub>T</sub> = β / r<sub>π</sub>
+                        </div>
+                        <p>其中：g<sub>m</sub>为跨导，r<sub>π</sub>为基极输入电阻</p>
+                    </div>
+                </div>
+                
+                <div id="mosfet" class="tab-pane">
+                    <h3>MOSFET核心公式</h3>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">线性区电流</div>
+                        <div class="formula-content">
+                            I<sub>D</sub> = μ<sub>n</sub>C<sub>ox</sub>(W/L)[V<sub>GS</sub>-V<sub>TH</sub>-V<sub>DS</sub>/2]V<sub>DS</sub>
+                        </div>
+                        <p>其中：μ<sub>n</sub>为电子迁移率，C<sub>ox</sub>为单位面积栅氧电容，W/L为宽长比，V<sub>GS</sub>为栅源电压，V<sub>TH</sub>为阈值电压，V<sub>DS</sub>为漏源电压</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">饱和区电流</div>
+                        <div class="formula-content">
+                            I<sub>D</sub> = (1/2)μ<sub>n</sub>C<sub>ox</sub>(W/L)[V<sub>GS</sub>-V<sub>TH</sub>]<sup>2</sup>(1+λV<sub>DS</sub>)
+                        </div>
+                        <p>其中：λ为沟道长度调制系数</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">亚阈值区电流</div>
+                        <div class="formula-content">
+                            I<sub>D</sub> = I<sub>D0</sub> × (W/L) × e<sup>(V<sub>GS</sub>-V<sub>TH</sub>)/(nV<sub>T</sub>)</sup> × (1-e<sup>-V<sub>DS</sub>/V<sub>T</sub>)
+                        </div>
+                        <p>其中：I<sub>D0</sub>为特征电流，n为亚阈值摆动因子</p>
+                    </div>
+                </div>
+                
+                <div id="advanced" class="tab-pane">
+                    <h3>高级器件公式</h3>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">短沟道效应阈值电压漂移</div>
+                        <div class="formula-content">
+                            ΔV<sub>TH</sub> = (q×N<sub>A</sub>×x<sub>j</sub>²)/(2ε<sub>si</sub>C<sub>ox</sub>)×[(√(1+2d<sub>s</sub>/x<sub>j</sub>)-1)]
+                        </div>
+                        <p>其中：N<sub>A</sub>为衬底掺杂浓度，x<sub>j</sub>为结深，ε<sub>si</sub>为硅介电常数，d<sub>s</sub>为耗尽区深度</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">DIBL(漏致势垒降低)</div>
+                        <div class="formula-content">
+                            ΔV<sub>TH,DIBL</sub> = σ×V<sub>DS</sub> = (ε<sub>si</sub>×t<sub>ox</sub>×x<sub>j</sub>)/(ε<sub>ox</sub>×L²)×V<sub>DS</sub>
+                        </div>
+                        <p>其中：σ为DIBL系数，t<sub>ox</sub>为栅氧厚度，ε<sub>ox</sub>为氧化层介电常数，L为沟道长度</p>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <div class="formula-title">速度饱和效应</div>
+                        <div class="formula-content">
+                            v<sub>sat</sub> = v<sub>sat0</sub> / (1 + E/E<sub>c</sub>)
+                        </div>
+                        <p>其中：v<sub>sat</sub>为饱和速度，v<sub>sat0</sub>为低场饱和速度，E为电场强度，E<sub>c</sub>为临界电场</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">自定义器件参数计算器</h2>
+            <p>使用交互式计算器，根据输入参数计算器件关键性能指标，帮助快速评估设计方案的可行性。</p>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-calculator"></i>
+                    MOSFET参数计算器
+                </div>
+                
+                <div class="control-group">
+                    <label>选择计算类型：</label>
+                    <select id="calculation-type" onchange="updateCalculatorInputs()">
+                        <option value="current">电流计算</option>
+                        <option value="transconductance">跨导计算</option>
+                        <option value="capacitance">电容计算</option>
+                        <option value="threshold">阈值电压计算</option>
+                    </select>
+                </div>
+                
+                <div id="current-calculator" class="calculator-panel">
+                    <div class="input-group">
+                        <span>电子迁移率 (cm²/V·s):</span>
+                        <input type="number" id="mobility" value="500" step="10">
+                    </div>
+                    <div class="input-group">
+                        <span>栅氧电容 (F/cm²):</span>
+                        <input type="number" id="cox" value="3.45e-7" step="1e-8">
+                    </div>
+                    <div class="input-group">
+                        <span>宽长比 (W/L):</span>
+                        <input type="number" id="wl-ratio" value="10" step="1">
+                    </div>
+                    <div class="input-group">
+                        <span>栅源电压 (V):</span>
+                        <input type="number" id="vgs" value="1.0" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>阈值电压 (V):</span>
+                        <input type="number" id="vth" value="0.3" step="0.05">
+                    </div>
+                    <div class="input-group">
+                        <span>漏源电压 (V):</span>
+                        <input type="number" id="vds" value="0.5" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>沟道长度调制系数 (1/V):</span>
+                        <input type="number" id="lambda" value="0.1" step="0.01">
+                    </div>
+                    
+                    <div class="simulation-controls">
+                        <button class="btn btn-primary" onclick="calculateMOSFETCurrent()">计算电流</button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()">重置参数</button>
+                    </div>
+                    
+                    <div class="result-display" id="current-result">
+                        计算结果将显示在这里...
+                    </div>
+                </div>
+                
+                <div id="transconductance-calculator" class="calculator-panel" style="display: none;">
+                    <div class="input-group">
+                        <span>漏极电流 (A):</span>
+                        <input type="number" id="id-current" value="1e-3" step="1e-4">
+                    </div>
+                    <div class="input-group">
+                        <span>热电压 (V):</span>
+                        <input type="number" id="vt" value="0.026" step="0.001">
+                    </div>
+                    <div class="input-group">
+                        <span>工作温度 (K):</span>
+                        <input type="number" id="temperature" value="300" step="10">
+                    </div>
+                    
+                    <div class="simulation-controls">
+                        <button class="btn btn-primary" onclick="calculateTransconductance()">计算跨导</button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()">重置参数</button>
+                    </div>
+                    
+                    <div class="result-display" id="transconductance-result">
+                        计算结果将显示在这里...
+                    </div>
+                </div>
+                
+                <div id="capacitance-calculator" class="calculator-panel" style="display: none;">
+                    <div class="input-group">
+                        <span>栅氧厚度 (nm):</span>
+                        <input type="number" id="tox" value="2" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>栅极面积 (μm²):</span>
+                        <input type="number" id="gate-area" value="1" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>介电常数:</span>
+                        <input type="number" id="dielectric" value="3.9" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>重叠长度 (μm):</span>
+                        <input type="number" id="overlap-length" value="0.05" step="0.01">
+                    </div>
+                    <div class="input-group">
+                        <span>沟道宽度 (μm):</span>
+                        <input type="number" id="channel-width" value="1" step="0.1">
+                    </div>
+                    
+                    <div class="simulation-controls">
+                        <button class="btn btn-primary" onclick="calculateCapacitance()">计算电容</button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()">重置参数</button>
+                    </div>
+                    
+                    <div class="result-display" id="capacitance-result">
+                        计算结果将显示在这里...
+                    </div>
+                </div>
+                
+                <div id="threshold-calculator" class="calculator-panel" style="display: none;">
+                    <div class="input-group">
+                        <span>平带电压 (V):</span>
+                        <input type="number" id="vfb" value="-0.8" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>衬底掺杂浓度 (cm⁻³):</span>
+                        <input type="number" id="na" value="1e17" step="1e16">
+                    </div>
+                    <div class="input-group">
+                        <span>栅氧厚度 (nm):</span>
+                        <input type="number" id="tox-vth" value="2" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <span>固定电荷密度 (cm⁻²):</span>
+                        <input type="number" id="qf" value="1e11" step="1e10">
+                    </div>
+                    <div class="input-group">
+                        <span>界面态密度 (cm⁻²eV⁻¹):</span>
+                        <input type="number" id="dit" value="1e10" step="1e9">
+                    </div>
+                    
+                    <div class="simulation-controls">
+                        <button class="btn btn-primary" onclick="calculateThreshold()">计算阈值电压</button>
+                        <button class="btn btn-secondary" onclick="resetCalculator()">重置参数</button>
+                    </div>
+                    
+                    <div class="result-display" id="threshold-result">
+                        计算结果将显示在这里...
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="calculation-chart"></canvas>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">SPICE模型参数查询工具</h2>
+            <p>提供常用器件SPICE模型参数查询和解释，帮助理解模型参数的物理意义和取值范围。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('spice', 'diode-spice')">二极管SPICE模型</button>
+                    <button class="tab-button" onclick="switchTab('spice', 'bjt-spice')">BJT SPICE模型</button>
+                    <button class="tab-button" onclick="switchTab('spice', 'mosfet-spice')">MOSFET SPICE模型</button>
+                </div>
+                
+                <div id="diode-spice" class="tab-pane active">
+                    <h3>二极管SPICE模型参数</h3>
+                    
+                    <div class="spice-model-card">
+                        <div class="model-header">
+                            <div class="model-name">基本参数</div>
+                            <div class="model-type">Level 1</div>
+                        </div>
+                        <div class="model-parameters">
+                            .model DNAME D (IS=1e-14 N=1 RS=10 CJO=2p VJ=0.7 M=0.5 TT=10n BV=100 IBV=1e-3)
+                        </div>
+                    </div>
+                    
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>含义</th>
+                                <th>典型值</th>
+                                <th>单位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IS</td>
+                                <td>饱和电流</td>
+                                <td>1e-14 ~ 1e-12</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>N</td>
+                                <td>发射系数</td>
+                                <td>1 ~ 2</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>RS</td>
+                                <td>串联电阻</td>
+                                <td>0.1 ~ 100</td>
+                                <td>Ω</td>
+                            </tr>
+                            <tr>
+                                <td>CJO</td>
+                                <td>零偏结电容</td>
+                                <td>0.1p ~ 10p</td>
+                                <td>F</td>
+                            </tr>
+                            <tr>
+                                <td>VJ</td>
+                                <td>结电势</td>
+                                <td>0.5 ~ 0.9</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>梯度系数</td>
+                                <td>0.3 ~ 0.5</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>TT</td>
+                                <td>渡越时间</td>
+                                <td>0 ~ 100n</td>
+                                <td>s</td>
+                            </tr>
+                            <tr>
+                                <td>BV</td>
+                                <td>反向击穿电压</td>
+                                <td>10 ~ 1000</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td>IBV</td>
+                                <td>击穿电流</td>
+                                <td>1e-3 ~ 1e-6</td>
+                                <td>A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="bjt-spice" class="tab-pane">
+                    <h3>BJT SPICE模型参数</h3>
+                    
+                    <div class="spice-model-card">
+                        <div class="model-header">
+                            <div class="model-name">Gummel-Poon模型</div>
+                            <div class="model-type">Level 2</div>
+                        </div>
+                        <div class="model-parameters">
+                            .model QNAME NPN (IS=1e-16 BF=100 NF=1 VAF=100 IKF=0.1 ISE=1e-13 NE=2 BR=1 VAR=50 IKR=0.01 ISC=1e-12 NC=1.5 RB=50 RE=0.5 RC=0.5 CJE=1p VJE=0.7 MJE=0.33 TF=0.3n CJC=0.5p VJC=0.5 MJC=0.33 TR=5n XT B=1.5)
+                        </div>
+                    </div>
+                    
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>含义</th>
+                                <th>典型值</th>
+                                <th>单位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IS</td>
+                                <td>传输饱和电流</td>
+                                <td>1e-18 ~ 1e-12</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>BF</td>
+                                <td>正向电流增益</td>
+                                <td>50 ~ 500</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>NF</td>
+                                <td>正向发射系数</td>
+                                <td>1.0 ~ 1.2</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>VAF</td>
+                                <td>正向厄利电压</td>
+                                <td>50 ~ 500</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td>IKF</td>
+                                <td>正向膝点电流</td>
+                                <td>0.01 ~ 10</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>ISE</td>
+                                <td>基极-发射极漏饱和电流</td>
+                                <td>1e-16 ~ 1e-10</td>
+                                <td>A</td>
+                            </tr>
+                            <tr>
+                                <td>NE</td>
+                                <td>基极-发射极漏发射系数</td>
+                                <td>1.5 ~ 3.0</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>BR</td>
+                                <td>反向电流增益</td>
+                                <td>0.1 ~ 10</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>RB</td>
+                                <td>零偏基极电阻</td>
+                                <td>10 ~ 1000</td>
+                                <td>Ω</td>
+                            </tr>
+                            <tr>
+                                <td>TF</td>
+                                <td>正向渡越时间</td>
+                                <td>0.1n ~ 10n</td>
+                                <td>s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="mosfet-spice" class="tab-pane">
+                    <h3>MOSFET SPICE模型参数</h3>
+                    
+                    <div class="spice-model-card">
+                        <div class="model-header">
+                            <div class="model-name">BSIM3v3模型</div>
+                            <div class="model-type">Level 49</div>
+                        </div>
+                        <div class="model-parameters">
+                            .model MNAME NMOS (LEVEL=49 VTH0=0.3 K1=0.5 K2=0.01 DVT0=2 DVT1=0.5 DVT2=-0.01 U0=500 UA=0.1 UB=0.01 UC=0.1 VMAX=1e5 DELTA=0.01 RDSW=100 PRWG=0.5 PRWB=0.5 PCLM=0.5 PDIBL1=0.2 PDIBL2=0.01 PDIBLB=0.5 TOX=2n XJ=0.1u NGATE=5e20)
+                        </div>
+                    </div>
+                    
+                    <table class="parameter-table">
+                        <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>含义</th>
+                                <th>典型值</th>
+                                <th>单位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>VTH0</td>
+                                <td>长沟道阈值电压</td>
+                                <td>0.2 ~ 0.8</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td>K1</td>
+                                <td>体效应系数</td>
+                                <td>0.1 ~ 1.0</td>
+                                <td>V<sup>1/2</sup></td>
+                            </tr>
+                            <tr>
+                                <td>K2</td>
+                                <td>体效应系数</td>
+                                <td>0.0 ~ 0.1</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>DVT0</td>
+                                <td>短沟道效应系数1</td>
+                                <td>0 ~ 10</td>
+                                <td>V</td>
+                            </tr>
+                            <tr>
+                                <td>DVT1</td>
+                                <td>短沟道效应系数2</td>
+                                <td>0 ~ 5</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>U0</td>
+                                <td>低场迁移率</td>
+                                <td>200 ~ 600</td>
+                                <td>cm²/V·s</td>
+                            </tr>
+                            <tr>
+                                <td>UA</td>
+                                <td>迁移率退化系数A</td>
+                                <td>0.01 ~ 1.0</td>
+                                <td>m/V</td>
+                            </tr>
+                            <tr>
+                                <td>UB</td>
+                                <td>迁移率退化系数B</td>
+                                <td>0.001 ~ 0.1</td>
+                                <td>m/V²</td>
+                            </tr>
+                            <tr>
+                                <td>VMAX</td>
+                                <td>饱和速度</td>
+                                <td>1e5 ~ 2e5</td>
+                                <td>m/s</td>
+                            </tr>
+                            <tr>
+                                <td>TOX</td>
+                                <td>栅氧厚度</td>
+                                <td>0.5n ~ 10n</td>
+                                <td>m</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">实用设计模板</h2>
+            <p>提供常见应用场景的器件设计模板，包括参数选择指南和性能优化策略，加速设计流程。</p>
+            
+            <div class="design-template">
+                <div class="template-header">
+                    <div class="template-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="template-title">低功耗放大器设计模板</div>
+                </div>
+                <p>适用于物联网、可穿戴设备等低功耗应用场景的放大器设计指南。</p>
+                
+                <h4>设计目标</h4>
+                <ul>
+                    <li>功耗：< 100μW</li>
+                    <li>增益：> 60dB</li>
+                    <li>带宽：> 1kHz</li>
+                    <li>噪声：< 100nV/√Hz</li>
+                </ul>
+                
+                <h4>器件选择指南</h4>
+                <table class="parameter-table">
+                    <thead>
+                        <tr>
+                            <th>器件类型</th>
+                            <th>关键参数</th>
+                            <th>推荐值</th>
+                            <th>选择理由</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>输入对管</td>
+                            <td>跨导/电流比</td>
+                            <td>> 20V⁻¹</td>
+                            <td>高增益，低噪声</td>
+                        </tr>
+                        <tr>
+                            <td>电流镜</td>
+                            <td>输出电阻</td>
+                            <td>> 1MΩ</td>
+                            <td>提高增益</td>
+                        </tr>
+                        <tr>
+                            <td>负载器件</td>
+                            <td> Early电压</td>
+                            <td>> 50V</td>
+                            <td>减小沟道调制效应</td>
+                        </tr>
+                        <tr>
+                            <td>偏置电流</td>
+                            <td>静态电流</td>
+                            <td>< 1μA</td>
+                            <td>低功耗</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>性能优化策略</h4>
+                <ul>
+                    <li>采用亚阈值区工作降低功耗</li>
+                    <li>使用共源共栅结构提高增益</li>
+                    <li>采用斩波技术降低噪声</li>
+                    <li>使用体偏置技术调节阈值电压</li>
+                </ul>
+            </div>
+            
+            <div class="design-template">
+                <div class="template-header">
+                    <div class="template-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="template-title">高效率DC-DC转换器设计模板</div>
+                </div>
+                <p>适用于电源管理、电池供电设备的高效率DC-DC转换器设计指南。</p>
+                
+                <h4>设计目标</h4>
+                <ul>
+                    <li>效率：> 90%</li>
+                    <li>开关频率：1MHz ~ 5MHz</li>
+                    <li>输出纹波：< 1%</li>
+                    <li>负载调整率：< 0.1%</li>
+                </ul>
+                
+                <h4>器件选择指南</h4>
+                <table class="parameter-table">
+                    <thead>
+                        <tr>
+                            <th>器件类型</th>
+                            <th>关键参数</th>
+                            <th>推荐值</th>
+                            <th>选择理由</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>功率MOSFET</td>
+                            <td>导通电阻</td>
+                            <td>< 10mΩ</td>
+                            <td>降低导通损耗</td>
+                        </tr>
+                        <tr>
+                            <td>功率MOSFET</td>
+                            <td>栅极电荷</td>
+                            <td>< 1nC</td>
+                            <td>降低开关损耗</td>
+                        </tr>
+                        <tr>
+                            <td>肖特基二极管</td>
+                            <td>正向压降</td>
+                            <td>< 0.3V</td>
+                            <td>降低整流损耗</td>
+                        </tr>
+                        <tr>
+                            <td>电感</td>
+                            <td>直流电阻</td>
+                            <td>< 10mΩ</td>
+                            <td>降低铜损</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>性能优化策略</h4>
+                <ul>
+                    <li>采用同步整流技术提高效率</li>
+                    <li>使用多相交错技术降低纹波</li>
+                    <li>采用自适应死区时间控制</li>
+                    <li>使用软开关技术降低开关损耗</li>
+                </ul>
+            </div>
+            
+            <div class="design-template">
+                <div class="template-header">
+                    <div class="template-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <div class="template-title">高速ADC驱动器设计模板</div>
+                </div>
+                <p>适用于数据采集、通信系统的高速ADC驱动器设计指南。</p>
+                
+                <h4>设计目标</h4>
+                <ul>
+                    <li>带宽：> 100MHz</li>
+                    <li>建立时间：< 10ns</li>
+                    <li>THD：< -80dB</li>
+                    <li>噪声：< 1nV/√Hz</td>
+                </ul>
+                
+                <h4>器件选择指南</h4>
+                <table class="parameter-table">
+                    <thead>
+                        <tr>
+                            <th>器件类型</th>
+                            <th>关键参数</th>
+                            <th>推荐值</th>
+                            <th>选择理由</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>输入晶体管</td>
+                            <td>过渡频率</td>
+                            <td>> 10GHz</td>
+                            <td>保证带宽</td>
+                        </tr>
+                        <tr>
+                            <td>输入晶体管</td>
+                            <td>栅极电阻</td>
+                            <td>< 10Ω</td>
+                            <td>降低热噪声</td>
+                        </tr>
+                        <tr>
+                            <td>电流源</td>
+                            <td>输出电阻</td>
+                            <td>> 10MΩ</td>
+                            <td>提高增益</td>
+                        </tr>
+                        <tr>
+                            <td>负载电容</td>
+                            <td>寄生电容</td>
+                            <td>< 0.1pF</td>
+                            <td>保证带宽</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>性能优化策略</h4>
+                <ul>
+                    <li>采用电流反馈拓扑提高带宽</li>
+                    <li>使用推挽输出级提高驱动能力</li>
+                    <li>采用失调校准技术提高精度</li>
+                    <li>使用噪声整形技术降低噪声</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">本章小结</h2>
+            <p>器件设计与仿真是半导体工程的核心环节，掌握设计公式、理解模型参数、善用计算工具和设计模板，能够显著提高设计效率和质量。通过本章学习，读者应具备基本的器件设计能力和仿真分析能力，为实际工程应用打下坚实基础。</p>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    章节测验
+                </div>
+                
+                <div id="quiz-container">
+                    <div class="quiz-question">
+                        <p>1. MOSFET线性区电流公式中，哪个参数表示栅氧电容？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> a. μ<sub>n</sub></label>
+                            <label><input type="radio" name="q1" value="b"> b. C<sub>ox</sub></label>
+                            <label><input type="radio" name="q1" value="c"> c. W/L</label>
+                            <label><input type="radio" name="q1" value="d"> d. V<sub>TH</sub></label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. BJT的厄利效应主要影响哪个参数？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> a. 电流增益β</label>
+                            <label><input type="radio" name="q2" value="b"> b. 基极电阻r<sub>b</sub></label>
+                            <label><input type="radio" name="q2" value="c"> c. 发射结电容</label>
+                            <label><input type="radio" name="q2" value="d"> d. 渡越时间</label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. 在SPICE模型中，哪个参数表示二极管的饱和电流？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> a. N</label>
+                            <label><input type="radio" name="q3" value="b"> b. RS</label>
+                            <label><input type="radio" name="q3" value="c"> c. IS</label>
+                            <label><input type="radio" name="q3" value="d"> d. BV</label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="checkQuizAnswers()">提交答案</button>
+                    <div id="quiz-result" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="btn btn-secondary" onclick="window.location.href='chapter14.html'">
+                <i class="fas fa-arrow-left"></i> 上一章：后摩尔时代器件技术
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='chapter16.html'">
+                下一章：故障排查与测试技术 <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+    
+    <script>
+        // 初始化图表
+        let calculationChart;
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initCalculationChart();
+        });
+        
+        // 初始化计算结果图表
+        function initCalculationChart() {
+            const ctx = document.getElementById('calculation-chart').getContext('2d');
+            calculationChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '计算结果',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '参数扫描结果'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '扫描参数'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '计算结果'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 切换标签页
+        function switchTab(tabGroup, tabId) {
+            // 隐藏所有标签页内容
+            const tabPanes = document.querySelectorAll(`#${tabGroup} .tab-pane`);
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // 移除所有按钮的活动状态
+            const tabButtons = document.querySelectorAll(`#${tabGroup}-buttons .tab-button`);
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 显示选中的标签页内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 设置对应按钮的活动状态
+            event.target.classList.add('active');
+        }
+        
+        // 更新计算器输入界面
+        function updateCalculatorInputs() {
+            const calculationType = document.getElementById('calculation-type').value;
+            
+            // 隐藏所有计算器面板
+            const panels = document.querySelectorAll('.calculator-panel');
+            panels.forEach(panel => {
+                panel.style.display = 'none';
+            });
+            
+            // 显示选中的计算器面板
+            document.getElementById(`${calculationType}-calculator`).style.display = 'block';
+        }
+        
+        // 计算MOSFET电流
+        function calculateMOSFETCurrent() {
+            const mobility = parseFloat(document.getElementById('mobility').value);
+            const cox = parseFloat(document.getElementById('cox').value);
+            const wlRatio = parseFloat(document.getElementById('wl-ratio').value);
+            const vgs = parseFloat(document.getElementById('vgs').value);
+            const vth = parseFloat(document.getElementById('vth').value);
+            const vds = parseFloat(document.getElementById('vds').value);
+            const lambda = parseFloat(document.getElementById('lambda').value);
+            
+            let current, region;
+            
+            // 判断工作区域
+            if (vgs <= vth) {
+                current = 0;
+                region = "截止区";
+            } else if (vds < vgs - vth) {
+                // 线性区
+                current = mobility * cox * wlRatio * ((vgs - vth) * vds - 0.5 * vds * vds);
+                region = "线性区";
+            } else {
+                // 饱和区
+                current = 0.5 * mobility * cox * wlRatio * Math.pow(vgs - vth, 2) * (1 + lambda * vds);
+                region = "饱和区";
+            }
+            
+            // 计算跨导
+            const gm = mobility * cox * wlRatio * (vgs - vth);
+            
+            // 计算输出电导
+            const go = lambda * current;
+            
+            // 计算电压增益
+            const av = gm / go;
+            
+            // 更新结果显示
+            const resultText = `
+MOSFET电流计算结果：
+工作区域：${region}
+漏极电流：${current.toExponential(3)} A
+跨导：${gm.toExponential(3)} S
+输出电导：${go.toExponential(3)} S
+电压增益：${av.toFixed(2)}
+            `;
+            
+            document.getElementById('current-result').textContent = resultText;
+            
+            // 更新图表 - Vds扫描
+            const vdsValues = [];
+            const currentValues = [];
+            
+            for (let v = 0; v <= vgs; v += vgs/20) {
+                vdsValues.push(v.toFixed(2));
+                
+                let i;
+                if (v < vgs - vth) {
+                    // 线性区
+                    i = mobility * cox * wlRatio * ((vgs - vth) * v - 0.5 * v * v);
+                } else {
+                    // 饱和区
+                    i = 0.5 * mobility * cox * wlRatio * Math.pow(vgs - vth, 2) * (1 + lambda * v);
+                }
+                
+                currentValues.push(i);
+            }
+            
+            calculationChart.data.labels = vdsValues;
+            calculationChart.data.datasets[0].data = currentValues;
+            calculationChart.data.datasets[0].label = '漏极电流 (A)';
+            calculationChart.options.scales.y.title.text = '漏极电流 (A)';
+            calculationChart.options.scales.x.title.text = '漏源电压 (V)';
+            calculationChart.update();
+        }
+        
+        // 计算跨导
+        function calculateTransconductance() {
+            const id = parseFloat(document.getElementById('id-current').value);
+            const vt = parseFloat(document.getElementById('vt').value);
+            const temperature = parseFloat(document.getElementById('temperature').value);
+            
+            // 计算跨导
+            const gm = id / vt;
+            
+            // 计算热电压
+            const vtCalculated = 1.38e-23 * temperature / 1.6e-19;
+            
+            // 计算输入电阻
+            const rpi = 100 / gm; // 假设β=100
+            
+            // 计算增益带宽积
+            const gbw = gm / (2 * Math.PI * 1e-12); // 假设负载电容为1pF
+            
+            // 更新结果显示
+            const resultText = `
+跨导计算结果：
+漏极电流：${id.toExponential(3)} A
+热电压：${vtCalculated.toFixed(3)} V
+跨导：${gm.toExponential(3)} S
+输入电阻：${rpi.toExponential(3)} Ω
+增益带宽积：${gbw.toExponential(3)} Hz
+            `;
+            
+            document.getElementById('transconductance-result').textContent = resultText;
+            
+            // 更新图表 - 跨导随电流变化
+            const currentValues = [];
+            const gmValues = [];
+            
+            for (let i = 1e-6; i <= 1e-2; i *= 10) {
+                currentValues.push(i.toExponential(1));
+                gmValues.push(i / vt);
+            }
+            
+            calculationChart.data.labels = currentValues;
+            calculationChart.data.datasets[0].data = gmValues;
+            calculationChart.data.datasets[0].label = '跨导 (S)';
+            calculationChart.options.scales.y.title.text = '跨导 (S)';
+            calculationChart.options.scales.x.title.text = '漏极电流 (A)';
+            calculationChart.options.scales.x.type = 'logarithmic';
+            calculationChart.options.scales.y.type = 'logarithmic';
+            calculationChart.update();
+        }
+        
+        // 计算电容
+        function calculateCapacitance() {
+            const tox = parseFloat(document.getElementById('tox').value) * 1e-9; // 转换为米
+            const gateArea = parseFloat(document.getElementById('gate-area').value) * 1e-12; // 转换为平方米
+            const dielectric = parseFloat(document.getElementById('dielectric').value);
+            const overlapLength = parseFloat(document.getElementById('overlap-length').value) * 1e-6; // 转换为米
+            const channelWidth = parseFloat(document.getElementById('channel-width').value) * 1e-6; // 转换为米
+            
+            // 物理常数
+            const epsilon0 = 8.854e-12; // 真空介电常数 (F/m)
+            
+            // 计算栅氧电容
+            const cox = epsilon0 * dielectric * gateArea / tox;
+            
+            // 计算重叠电容
+            const cov = epsilon0 * dielectric * overlapLength * channelWidth / tox;
+            
+            // 计算总输入电容
+            const cin = cox + 2 * cov; // 栅源和栅漏重叠电容
+            
+            // 计算截止频率
+            const gm = 1e-3; // 假设跨导为1mS
+            const ft = gm / (2 * Math.PI * cin);
+            
+            // 更新结果显示
+            const resultText = `
+电容计算结果：
+栅氧厚度：${(tox*1e9).toFixed(2)} nm
+栅极面积：${(gateArea*1e12).toFixed(2)} μm²
+栅氧电容：${cox.toExponential(3)} F
+重叠电容：${cov.toExponential(3)} F
+总输入电容：${cin.toExponential(3)} F
+截止频率：${ft.toExponential(3)} Hz
+            `;
+            
+            document.getElementById('capacitance-result').textContent = resultText;
+            
+            // 更新图表 - 电容随栅氧厚度变化
+            const toxValues = [];
+            const coxValues = [];
+            
+            for (let t = 0.5; t <= 10; t += 0.5) {
+                toxValues.push(t.toFixed(1));
+                const c = epsilon0 * dielectric * gateArea / (t * 1e-9);
+                coxValues.push(c);
+            }
+            
+            calculationChart.data.labels = toxValues;
+            calculationChart.data.datasets[0].data = coxValues;
+            calculationChart.data.datasets[0].label = '栅氧电容 (F)';
+            calculationChart.options.scales.y.title.text = '栅氧电容 (F)';
+            calculationChart.options.scales.x.title.text = '栅氧厚度 (nm)';
+            calculationChart.options.scales.x.type = 'linear';
+            calculationChart.options.scales.y.type = 'linear';
+            calculationChart.update();
+        }
+        
+        // 计算阈值电压
+        function calculateThreshold() {
+            const vfb = parseFloat(document.getElementById('vfb').value);
+            const na = parseFloat(document.getElementById('na').value);
+            const tox = parseFloat(document.getElementById('tox-vth').value) * 1e-9; // 转换为米
+            const qf = parseFloat(document.getElementById('qf').value);
+            const dit = parseFloat(document.getElementById('dit').value);
+            
+            // 物理常数
+            const q = 1.6e-19; // 电子电荷 (C)
+            const epsilon0 = 8.854e-12; // 真空介电常数 (F/m)
+            const epsilonSi = 11.7 * epsilon0; // 硅介电常数
+            const epsilonOx = 3.9 * epsilon0; // 氧化硅介电常数
+            const ni = 1.5e10; // 本征载流子浓度 (cm^-3)
+            const k = 1.38e-23; // 玻尔兹曼常数 (J/K)
+            const T = 300; // 温度 (K)
+            
+            // 计算费米势
+            const phiF = (k * T / q) * Math.log(na / ni);
+            
+            // 计算耗尽区电荷
+            const qd = Math.sqrt(2 * q * epsilonSi * na * 2 * phiF);
+            
+            // 计算阈值电压
+            const vth = vfb + 2 * phiF + qd / (epsilonOx / tox) + q * qf / (epsilonOx / tox);
+            
+            // 计算体效应系数
+            const gamma = Math.sqrt(2 * q * epsilonSi * na) / (epsilonOx / tox);
+            
+            // 计算亚阈值摆动
+            const s = (k * T / q) * Math.LN10 * (1 + epsilonSi * tox / (epsilonOx * 0.1e-6)) * 1000; // mV/dec
+            
+            // 更新结果显示
+            const resultText = `
+阈值电压计算结果：
+平带电压：${vfb.toFixed(3)} V
+费米势：${phiF.toFixed(3)} V
+耗尽区电荷：${qd.toExponential(3)} C/cm²
+阈值电压：${vth.toFixed(3)} V
+体效应系数：${gamma.toFixed(3)} V<sup>1/2</sup>
+亚阈值摆动：${s.toFixed(1)} mV/dec
+            `;
+            
+            document.getElementById('threshold-result').textContent = resultText;
+            
+            // 更新图表 - 阈值电压随衬底掺杂浓度变化
+            const naValues = [];
+            const vthValues = [];
+            
+            for (let n = 1e15; n <= 1e18; n *= 2) {
+                naValues.push(n.toExponential(1));
+                
+                const phiF_local = (k * T / q) * Math.log(n / ni);
+                const qd_local = Math.sqrt(2 * q * epsilonSi * n * 2 * phiF_local);
+                const vth_local = vfb + 2 * phiF_local + qd_local / (epsilonOx / tox) + q * qf / (epsilonOx / tox);
+                
+                vthValues.push(vth_local);
+            }
+            
+            calculationChart.data.labels = naValues;
+            calculationChart.data.datasets[0].data = vthValues;
+            calculationChart.data.datasets[0].label = '阈值电压 (V)';
+            calculationChart.options.scales.y.title.text = '阈值电压 (V)';
+            calculationChart.options.scales.x.title.text = '衬底掺杂浓度 (cm⁻³)';
+            calculationChart.options.scales.x.type = 'logarithmic';
+            calculationChart.options.scales.y.type = 'linear';
+            calculationChart.update();
+        }
+        
+        // 重置计算器
+        function resetCalculator() {
+            const calculationType = document.getElementById('calculation-type').value;
+            
+            // 根据计算类型重置相应的输入框
+            if (calculationType === 'current') {
+                document.getElementById('mobility').value = 500;
+                document.getElementById('cox').value = 3.45e-7;
+                document.getElementById('wl-ratio').value = 10;
+                document.getElementById('vgs').value = 1.0;
+                document.getElementById('vth').value = 0.3;
+                document.getElementById('vds').value = 0.5;
+                document.getElementById('lambda').value = 0.1;
+                document.getElementById('current-result').textContent = '计算结果将显示在这里...';
+            } else if (calculationType === 'transconductance') {
+                document.getElementById('id-current').value = 1e-3;
+                document.getElementById('vt').value = 0.026;
+                document.getElementById('temperature').value = 300;
+                document.getElementById('transconductance-result').textContent = '计算结果将显示在这里...';
+            } else if (calculationType === 'capacitance') {
+                document.getElementById('tox').value = 2;
+                document.getElementById('gate-area').value = 1;
+                document.getElementById('dielectric').value = 3.9;
+                document.getElementById('overlap-length').value = 0.05;
+                document.getElementById('channel-width').value = 1;
+                document.getElementById('capacitance-result').textContent = '计算结果将显示在这里...';
+            } else if (calculationType === 'threshold') {
+                document.getElementById('vfb').value = -0.8;
+                document.getElementById('na').value = 1e17;
+                document.getElementById('tox-vth').value = 2;
+                document.getElementById('qf').value = 1e11;
+                document.getElementById('dit').value = 1e10;
+                document.getElementById('threshold-result').textContent = '计算结果将显示在这里...';
+            }
+        }
+        
+        // 检查测验答案
+        function checkQuizAnswers() {
+            const q1Answer = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked')?.value;
+            const q3Answer = document.querySelector('input[name="q3"]:checked')?.value;
+            
+            let score = 0;
+            let feedback = '';
+            
+            // 检查答案
+            if (q1Answer === 'b') {
+                score++;
+                feedback += '问题1正确！Cox表示栅氧电容。\n';
+            } else {
+                feedback += '问题1错误。正确答案是b. Cox，它表示栅氧电容。\n';
+            }
+            
+            if (q2Answer === 'a') {
+                score++;
+                feedback += '问题2正确！厄利效应主要影响电流增益β。\n';
+            } else {
+                feedback += '问题2错误。正确答案是a. 电流增益β，厄利效应会导致电流增益随集电极电压变化。\n';
+            }
+            
+            if (q3Answer === 'c') {
+                score++;
+                feedback += '问题3正确！IS表示二极管的饱和电流。\n';
+            } else {
+                feedback += '问题3错误。正确答案是c. IS，它表示二极管的饱和电流。\n';
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `测验得分：${score}/3\n\n${feedback}`;
+        }
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

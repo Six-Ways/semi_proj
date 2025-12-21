@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章：MOSFET核心技术 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item active">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#mosfet-structure" class="section-nav-item">
+                        MOSFET结构
+                    </a>
+                    <a href="#operation-principle" class="section-nav-item">
+                        工作原理
+                    </a>
+                    <a href="#characteristics" class="section-nav-item">
+                        特性曲线
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../index.html#basics">基础原理</a></li>
+                    <li><a href="../index.html#integration">集成器件</a></li>
+                    <li><a href="../index.html#process">制造工艺</a></li>
+                    <li><a href="../index.html#advanced">先进技术</a></li>
+                    <li><a href="../index.html#tools">工具资源</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第4章：MOSFET核心技术</p>
+            </div>
+            
+            <div class="chapter-header">
+                <h1>第4章：MOSFET核心技术</h1>
+            </div>
+            
+            <div class="section-nav">
+                <ul>
+                    <li><a href="#section-1" class="section-link active">4.1 MOSFET基础结构</a></li>
+                    <li><a href="#section-2" class="section-link">4.2 工作机制</a></li>
+                    <li><a href="#section-3" class="section-link">4.3 关键性能优化</a></li>
+                    <li><a href="#section-4" class="section-link">4.4 交互式演示</a></li>
+                </ul>
+            </div>
+            
+            <div id="section-1" class="content-section">
+                <h3>4.1 MOSFET基础结构</h3>
+                <p>金属-氧化物-半导体场效应晶体管（MOSFET）是现代集成电路中最基本的器件结构。它由四个主要部分组成：栅极（Gate）、源极（Source）、漏极（Drain）和衬底（Substrate）。栅极与沟道之间通过一层薄薄的氧化层（通常是SiO₂）隔离，形成金属-氧化物-半导体结构。</p>
+                
+                <div class="image-container">
+                    <img src="../assets/images/mosfet-structure.png" alt="MOSFET基本结构示意图">
+                    <p class="image-caption">图4.1 MOSFET基本结构示意图</p>
+                </div>
+                
+                <p>MOSFET的基本工作原理是通过栅极电压控制沟道导电性。当栅极施加足够高的正电压（对N型MOSFET而言）时，会在半导体表面形成反型层，即导电沟道，连接源极和漏极，使电流能够流过。</p>
+                
+                <div class="highlight-box">
+                    <p><strong>关键参数：</strong> MOSFET的性能主要由几个关键参数决定，包括阈值电压（Vth）、跨导（gm）、输出电阻（ro）和栅极电容（Cgs, Cgd）等。这些参数直接影响器件的开关速度、功耗和放大能力。</p>
+                </div>
+                
+                <p>随着工艺节点的不断缩小，MOSFET结构也在不断演进。从早期的平面MOSFET到现在的FinFET和GAA（Gate-All-Around）FET，器件结构变得越来越复杂，以应对短沟道效应和漏电流增加的挑战。</p>
+            </div>
+            
+            <div id="section-2" class="content-section">
+                <h3>4.2 工作机制</h3>
+                <p>MOSFET的工作机制可以分为三个主要区域：截止区、线性区和饱和区。这些区域由栅极电压（Vgs）和漏极电压（Vds）共同决定。</p>
+                
+                <h4>反型层形成</h4>
+                <p>当栅极电压低于阈值电压（Vgs < Vth）时，MOSFET处于截止状态，没有导电沟道形成，漏极电流几乎为零。当栅极电压超过阈值电压（Vgs > Vth）时，半导体表面发生反型，形成导电沟道。</p>
+                
+                <div class="formula">
+                    Id = (1/2) * μn * Cox * (W/L) * (Vgs - Vth)²  (饱和区)
+                </div>
+                
+                <p>其中，μn是电子迁移率，Cox是单位面积栅氧化层电容，W/L是沟道宽长比。</p>
+                
+                <h4>I-V特性与亚阈值特性</h4>
+                <p>MOSFET的电流-电压特性反映了器件在不同偏置条件下的电气行为。在亚阈值区域（Vgs略低于Vth），虽然器件名义上处于"关闭"状态，但仍存在微小的漏电流，这被称为亚阈值漏电流。</p>
+                
+                <div class="image-container">
+                    <img src="../assets/images/mosfet-iv-curve.png" alt="MOSFET I-V特性曲线">
+                    <p class="image-caption">图4.2 MOSFET I-V特性曲线</p>
+                </div>
+                
+                <p>亚阈值斜率（Subthreshold Swing, SS）是描述MOSFET从关闭到开启转换速度的重要参数，定义为栅极电压变化一个数量级所需的漏电流变化量。理想情况下，SS的最小值为60mV/dec（室温下），但实际器件中由于各种非理想效应，SS通常大于这个值。</p>
+            </div>
+            
+            <div id="section-3" class="content-section">
+                <h3>4.3 关键性能优化</h3>
+                <p>随着集成电路尺寸不断缩小，MOSFET面临多种性能挑战，需要采用各种优化技术来维持器件性能和可靠性。</p>
+                
+                <h4>载流子迁移率提升</h4>
+                <p>载流子迁移率直接影响MOSFET的驱动能力和开关速度。提升迁移率的主要方法包括：</p>
+                <ul>
+                    <li><strong>应变硅技术：</strong> 通过引入晶格失配产生应力，改变能带结构，提高载流子迁移率。</li>
+                    <li><strong>高迁移率材料：</strong> 采用Ge、III-V族半导体等高迁移率材料替代硅作为沟道材料。</li>
+                    <li><strong>晶体取向优化：</strong> 选择合适的晶体取向，利用各向异性效应提高迁移率。</li>
+                </ul>
+                
+                <h4>漏电流抑制</h4>
+                <p>随着器件尺寸缩小，漏电流问题变得越来越严重。主要的漏电流类型和抑制方法包括：</p>
+                <ul>
+                    <li><strong>亚阈值漏电流：</strong> 通过提高阈值电压、优化掺杂分布和采用高k栅介质来抑制。</li>
+                    <li><strong>栅极漏电流：</strong> 采用高k栅介质替代传统SiO₂，在保持相同电容的情况下增加物理厚度。</li>
+                    <li><strong>源漏漏电流：</strong> 通过优化源漏结深和掺杂浓度来减少带间隧穿。</li>
+                </ul>
+                
+                <h4>短沟道效应缓解</h4>
+                <p>当沟道长度缩短到与耗尽区宽度相当时，会出现短沟道效应，主要包括阈值电压滚降、漏致势垒降低（DIBL）等。缓解方法包括：</p>
+                <ul>
+                    <li><strong>轻掺杂漏（LDD）结构：</strong> 在源漏区附近引入轻掺杂区域，减小电场峰值。</li>
+                    <li><strong> halo/pocket注入：</strong> 在沟道两端引入高浓度掺杂区，抑制耗尽区扩展。</li>
+                    <li><strong>多栅结构：</strong> 采用FinFET、GAA FET等多栅结构，增强栅极对沟道的控制能力。</li>
+                </ul>
+            </div>
+            
+            <div id="section-4" class="interactive-demo-section">
+                <h3>4.4 交互式演示</h3>
+                <p>通过以下交互式工具，您可以更直观地理解MOSFET的工作原理和性能特性。</p>
+                
+                <div class="tabs-container">
+                    <div class="tabs">
+                        <div class="tab active" data-tab="switch-demo">开关动态演示</div>
+                        <div class="tab" data-tab="sce-demo">短沟道效应模拟器</div>
+                        <div class="tab" data-tab="comparison-demo">不同结构对比</div>
+                    </div>
+                    
+                    <div id="switch-demo" class="tab-content active">
+                        <div class="demo-description">
+                            <p>调整栅极电压和漏极电压，观察MOSFET的开关状态和电流变化。</p>
+                        </div>
+                        <div class="simulator-container">
+                            <div class="simulator-controls">
+                                <div class="control-group">
+                                    <label for="gate-voltage">栅极电压 (V)</label>
+                                    <input type="range" id="gate-voltage" min="0" max="5" step="0.1" value="0">
+                                    <span id="gate-voltage-value">0</span> V
+                                </div>
+                                <div class="control-group">
+                                    <label for="drain-voltage">漏极电压 (V)</label>
+                                    <input type="range" id="drain-voltage" min="0" max="5" step="0.1" value="3">
+                                    <span id="drain-voltage-value">3</span> V
+                                </div>
+                            </div>
+                            <div class="simulator-output">
+                                <div class="mosfet-visualization">
+                                    <canvas id="mosfet-canvas" width="600" height="300"></canvas>
+                                </div>
+                                <div class="status-indicator">
+                                    <p>状态: <span id="mosfet-status">关闭</span></p>
+                                    <p>漏极电流: <span id="drain-current">0</span> mA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sce-demo" class="tab-content">
+                        <div class="demo-description">
+                            <p>调整沟道长度，观察短沟道效应对阈值电压和漏电流的影响。</p>
+                        </div>
+                        <div class="simulator-container">
+                            <div class="simulator-controls">
+                                <div class="control-group">
+                                    <label for="channel-length">沟道长度 (nm)</label>
+                                    <input type="range" id="channel-length" min="10" max="1000" step="10" value="100">
+                                    <span id="channel-length-value">100</span> nm
+                                </div>
+                                <div class="control-group">
+                                    <label for="oxide-thickness">氧化层厚度 (nm)</label>
+                                    <input type="range" id="oxide-thickness" min="0.5" max="5" step="0.1" value="1">
+                                    <span id="oxide-thickness-value">1.0</span> nm
+                                </div>
+                            </div>
+                            <div class="simulator-output">
+                                <div class="chart-container">
+                                    <canvas id="sce-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="comparison-demo" class="tab-content">
+                        <div class="demo-description">
+                            <p>比较不同MOSFET结构（平面、FinFET、GAA FET）的性能特性。</p>
+                        </div>
+                        <div class="simulator-container">
+                            <div class="simulator-controls">
+                                <div class="control-group">
+                                    <label for="tech-node">技术节点</label>
+                                    <select id="tech-node">
+                                        <option value="45">45nm</option>
+                                        <option value="28">28nm</option>
+                                        <option value="14">14nm</option>
+                                        <option value="7">7nm</option>
+                                        <option value="5">5nm</option>
+                                        <option value="3">3nm</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="simulator-output">
+                                <div class="chart-container">
+                                    <canvas id="comparison-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chapter-footer">
+                <a href="chapter3.html" class="nav-button prev">
+                    <i class="fas fa-arrow-left"></i>
+                    上一章：基础离散器件
+                </a>
+                <a href="chapter5.html" class="nav-button next">
+                    下一章：数字集成器件
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于SEMI_PROJ</h3>
+                    <p>致力于打造半导体器件与制造技术的交互式学习平台，提供全面、深入、实用的知识体系。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../index.html#basics">基础原理</a></li>
+                        <li><a href="../index.html#integration">集成器件</a></li>
+                        <li><a href="../index.html#process">制造工艺</a></li>
+                        <li><a href="../index.html#advanced">先进技术</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：info@semiproj.edu</p>
+                    <p>电话：+86 123-4567-8900</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEMI_PROJ. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // 章节特定功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化移动菜单
+            initMobileMenu();
+            
+            // 章节内导航
+            const sectionLinks = document.querySelectorAll('.section-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            sectionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    sectionLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加active类到当前链接
+                    this.classList.add('active');
+                    
+                    // 滚动到对应部分
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 初始化标签页
+            initTabs();
+            
+            // 初始化MOSFET开关演示
+            initMOSFETSimulation();
+            
+            // 初始化短沟道效应模拟器
+            initSCESimulation();
+            
+            // 初始化结构对比图表
+            initComparisonChart();
+        });
+        
+        // 短沟道效应模拟器
+        function initSCESimulation() {
+            const channelLength = document.getElementById('channel-length');
+            const oxideThickness = document.getElementById('oxide-thickness');
+            const channelLengthValue = document.getElementById('channel-length-value');
+            const oxideThicknessValue = document.getElementById('oxide-thickness-value');
+            const canvas = document.getElementById('sce-chart');
+            
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            // 创建图表
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: '阈值电压 (V)',
+                            data: [],
+                            borderColor: 'rgba(26, 115, 232, 1)',
+                            backgroundColor: 'rgba(26, 115, 232, 0.1)',
+                            yAxisID: 'y',
+                            tension: 0.4
+                        },
+                        {
+                            label: '漏电流 (μA)',
+                            data: [],
+                            borderColor: 'rgba(234, 67, 53, 1)',
+                            backgroundColor: 'rgba(234, 67, 53, 0.1)',
+                            yAxisID: 'y1',
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '沟道长度 (nm)'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '阈值电压 (V)'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '漏电流 (μA)'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    }
+                }
+            });
+            
+            // 更新显示值
+            channelLength.addEventListener('input', function() {
+                channelLengthValue.textContent = this.value;
+                updateSCEData();
+            });
+            
+            oxideThickness.addEventListener('input', function() {
+                oxideThicknessValue.textContent = parseFloat(this.value).toFixed(1);
+                updateSCEData();
+            });
+            
+            function updateSCEData() {
+                const L = parseFloat(channelLength.value);
+                const tox = parseFloat(oxideThickness.value);
+                
+                // 生成数据
+                const lengths = [];
+                const vths = [];
+                const leakages = [];
+                
+                for (let l = 10; l <= 1000; l *= 1.2) {
+                    lengths.push(l.toFixed(0));
+                    
+                    // 简化的阈值电压模型
+                    const vth0 = 0.7; // 长沟道阈值电压
+                    const deltaVth = 0.3 * Math.exp(-l / 100) * (tox / 1.0);
+                    vths.push((vth0 - deltaVth).toFixed(3));
+                    
+                    // 简化的漏电流模型
+                    const Ioff0 = 1e-9; // 长沟道漏电流
+                    const Ioff = Ioff0 * Math.exp(50 / l) * Math.exp(5 / tox) * 1e6; // 转换为μA
+                    leakages.push(Ioff.toFixed(3));
+                }
+                
+                // 更新图表
+                chart.data.labels = lengths;
+                chart.data.datasets[0].data = vths;
+                chart.data.datasets[1].data = leakages;
+                chart.update();
+            }
+            
+            // 初始数据
+            updateSCEData();
+        }
+        
+        // 结构对比图表
+        function initComparisonChart() {
+            const techNode = document.getElementById('tech-node');
+            const canvas = document.getElementById('comparison-chart');
+            
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            // 创建图表
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['驱动电流', '漏电流', '栅极电容', '面积效率'],
+                    datasets: [
+                        {
+                            label: '平面MOSFET',
+                            data: [1, 1, 1, 1],
+                            backgroundColor: 'rgba(26, 115, 232, 0.7)',
+                            borderColor: 'rgba(26, 115, 232, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'FinFET',
+                            data: [1.5, 0.5, 1.2, 0.8],
+                            backgroundColor: 'rgba(52, 168, 83, 0.7)',
+                            borderColor: 'rgba(52, 168, 83, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'GAA FET',
+                            data: [2, 0.3, 1.3, 0.7],
+                            backgroundColor: 'rgba(251, 188, 4, 0.7)',
+                            borderColor: 'rgba(251, 188, 4, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '相对性能 (归一化)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 监听技术节点变化
+            techNode.addEventListener('change', function() {
+                const node = parseInt(this.value);
+                
+                // 根据技术节点调整性能数据
+                let planar, finfet, gaafet;
+                
+                if (node >= 45) {
+                    // 较老节点，平面MOSFET表现良好
+                    planar = [1, 1, 1, 1];
+                    finfet = [1.3, 0.8, 1.1, 0.9];
+                    gaafet = [1.4, 0.7, 1.2, 0.8];
+                } else if (node >= 14) {
+                    // 中间节点，FinFET占优
+                    planar = [0.8, 2, 1, 1];
+                    finfet = [1.5, 0.5, 1.2, 0.8];
+                    gaafet = [1.7, 0.4, 1.3, 0.7];
+                } else {
+                    // 先进节点，GAA FET占优
+                    planar = [0.5, 5, 1, 1];
+                    finfet = [1.2, 1, 1.2, 0.8];
+                    gaafet = [2, 0.3, 1.3, 0.7];
+                }
+                
+                // 更新图表
+                chart.data.datasets[0].data = planar;
+                chart.data.datasets[1].data = finfet;
+                chart.data.datasets[2].data = gaafet;
+                chart.update();
+            });
+            
+            // 初始数据
+            techNode.dispatchEvent(new Event('change'));
+        }
+    </script>
+</body>
+</html>

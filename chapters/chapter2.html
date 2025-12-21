@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2章：半导体材料基础 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chapter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .chapter-core {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection {
+            margin-bottom: 2rem;
+        }
+        
+        .subsection h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .interactive-link {
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        .interactive-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* 材料探索游戏样式 */
+        .material-explorer {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .material-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .material-card {
+            flex: 1;
+            min-width: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .material-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .material-card.selected {
+            border-color: var(--primary-color);
+            background: rgba(0,123,255,0.1);
+        }
+        
+        .material-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .material-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .material-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+        
+        .material-properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .property-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .property-title i {
+            margin-right: 0.5rem;
+        }
+        
+        .property-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-unit {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .property-description {
+            margin-top: 0.5rem;
+            color: #555;
+        }
+        
+        /* 掺杂模拟器样式 */
+        .doping-simulator {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .simulator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-group {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .slider-container {
+            margin-top: 0.5rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .visualization-area {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .crystal-structure {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+        
+        .atom {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .silicon-atom {
+            background: #3498db;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .dopant-atom {
+            background: #e74c3c;
+            width: 36px;
+            height: 36px;
+        }
+        
+        .electron {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #f1c40f;
+            border-radius: 50%;
+            animation: electronMove 3s infinite linear;
+        }
+        
+        @keyframes electronMove {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -10px); }
+            50% { transform: translate(40px, 0); }
+            75% { transform: translate(20px, 10px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        .results-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 能带图样式 */
+        .band-diagram {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .diagram-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .energy-level {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #333;
+        }
+        
+        .conduction-band {
+            top: 30%;
+            background: #3498db;
+        }
+        
+        .valence-band {
+            top: 70%;
+            background: #e74c3c;
+        }
+        
+        .fermi-level {
+            top: 50%;
+            background: #2ecc71;
+            height: 3px;
+        }
+        
+        .band-label {
+            position: absolute;
+            right: 10px;
+            transform: translateY(-50%);
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .electron-transition {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f1c40f;
+            border-radius: 50%;
+            animation: electronTransition 4s infinite;
+        }
+        
+        @keyframes electronTransition {
+            0% { top: 70%; opacity: 1; }
+            50% { top: 30%; opacity: 1; }
+            100% { top: 70%; opacity: 1; }
+        }
+        
+        /* 进度指示器样式 */
+        .progress-indicator {
+            font-size: 12px;
+            background: var(--primary-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .chapter-container {
+                padding: 1rem;
+            }
+            
+            .material-selector {
+                flex-direction: column;
+            }
+            
+            .simulator-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第2章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+            <button class="sidebar-toggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-header">
+                    <h3>章节导航</h3>
+                    <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item active">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#material-explorer" class="section-nav-item">
+                        材料探索
+                    </a>
+                    <a href="#doping-simulator" class="section-nav-item">
+                        掺杂模拟器
+                    </a>
+                    <a href="#band-diagram" class="section-nav-item">
+                        能带图
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第2章：半导体材料基础</p>
+            </div>
+        <div class="chapter-header">
+            <h1>第2章：半导体材料基础</h1>
+        </div>
+        
+        <div class="chapter-core">
+            <h3>本章核心</h3>
+            <p>半导体材料是现代电子技术的基石，理解其物理特性是掌握半导体器件的基础。本章将深入探讨半导体材料的晶体结构、能带理论、载流子行为以及掺杂机制，通过交互式工具帮助您直观理解半导体材料的核心特性。</p>
+        </div>
+        
+        <!-- 材料探索游戏 -->
+        <div class="material-explorer">
+            <h2>🔬 材料探索：半导体材料特性对比 <span class="progress-indicator" id="material-progress">0/0</span></h2>
+            <p>选择不同的半导体材料，探索它们的物理特性、晶体结构和应用领域。</p>
+            
+            <div class="material-selector">
+                <div class="material-card" onclick="selectMaterial('silicon')">
+                    <div class="material-icon">🪨</div>
+                    <div class="material-name">硅</div>
+                    <div class="material-formula">Si</div>
+                </div>
+                
+                <div class="material-card" onclick="selectMaterial('germanium')">
+                    <div class="material-icon">💎</div>
+                    <div class="material-name">锗</div>
+                    <div class="material-formula">Ge</div>
+                </div>
+                
+                <div class="material-card" onclick="selectMaterial('gallium')">
+                    <div class="material-icon">⚡</div>
+                    <div class="material-name">砷化镓</div>
+                    <div class="material-formula">GaAs</div>
+                </div>
+                
+                <div class="material-card" onclick="selectMaterial('carbide')">
+                    <div class="material-icon">🔥</div>
+                    <div class="material-name">碳化硅</div>
+                    <div class="material-formula">SiC</div>
+                </div>
+            </div>
+            
+            <div id="material-properties" class="material-properties">
+                <div class="property-card">
+                    <div class="property-title">
+                        <i class="fas fa-atom"></i> 禁带宽度
+                    </div>
+                    <div class="property-value" id="bandgap-value">-</div>
+                    <div class="property-unit">eV</div>
+                    <div class="property-description">禁带宽度决定了半导体材料的导电性和工作温度范围</div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-title">
+                        <i class="fas fa-bolt"></i> 电子迁移率
+                    </div>
+                    <div class="property-value" id="mobility-value">-</div>
+                    <div class="property-unit">cm²/V·s</div>
+                    <div class="property-description">电子迁移率影响器件的开关速度和频率特性</div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-title">
+                        <i class="fas fa-thermometer-half"></i> 热导率
+                    </div>
+                    <div class="property-value" id="thermal-value">-</div>
+                    <div class="property-unit">W/m·K</div>
+                    <div class="property-description">热导率决定了材料的散热能力</div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-title">
+                        <i class="fas fa-industry"></i> 主要应用
+                    </div>
+                    <div class="property-value" id="application-value">-</div>
+                    <div class="property-description">该材料在半导体工业中的主要应用领域</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 掺杂模拟器 -->
+        <div class="doping-simulator">
+            <h2>⚗️ 掺杂模拟器：改变材料导电性 <span class="progress-indicator" id="doping-progress">0/0</span></h2>
+            <p>通过调整掺杂类型和浓度，观察半导体材料导电性的变化。</p>
+            
+            <div class="simulator-controls">
+                <div class="control-group">
+                    <label class="control-label">掺杂类型</label>
+                    <select class="control-input" id="doping-type" onchange="updateDopingSimulation()">
+                        <option value="none">本征半导体</option>
+                        <option value="n-type">N型掺杂（施主）</option>
+                        <option value="p-type">P型掺杂（受主）</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">掺杂浓度</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="doping-concentration" min="13" max="20" value="15" step="0.1" oninput="updateDopingSimulation()">
+                        <span class="slider-value" id="concentration-value">10¹⁵ cm⁻³</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">温度</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="temperature" min="200" max="500" value="300" step="10" oninput="updateDopingSimulation()">
+                        <span class="slider-value" id="temperature-value">300 K</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visualization-area">
+                <div class="crystal-structure" id="crystal-structure">
+                    <!-- 动态生成的晶体结构 -->
+                </div>
+            </div>
+            
+            <div class="results-panel">
+                <h3>电学特性</h3>
+                <div class="result-item">
+                    <span class="result-label">载流子浓度</span>
+                    <span class="result-value" id="carrier-concentration">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">电导率</span>
+                    <span class="result-value" id="conductivity">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">电阻率</span>
+                    <span class="result-value" id="resistivity">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">主要载流子类型</span>
+                    <span class="result-value" id="dominant-carrier">-</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 能带图 -->
+        <div class="band-diagram">
+            <h2>📊 能带图：理解半导体导电机制 <span class="progress-indicator" id="band-progress">0/0</span></h2>
+            <p>通过能带图直观理解半导体中电子的能级分布和导电机制。</p>
+            
+            <div class="diagram-container">
+                <div class="energy-level conduction-band">
+                    <span class="band-label">导带 (Ec)</span>
+                </div>
+                <div class="energy-level valence-band">
+                    <span class="band-label">价带 (Ev)</span>
+                </div>
+                <div class="energy-level fermi-level">
+                    <span class="band-label">费米能级 (Ef)</span>
+                </div>
+                <div class="electron-transition"></div>
+            </div>
+            
+            <div class="simulator-controls">
+                <div class="control-group">
+                    <label class="control-label">材料类型</label>
+                    <select class="control-input" id="band-material" onchange="updateBandDiagram()">
+                        <option value="intrinsic">本征半导体</option>
+                        <option value="n-type">N型半导体</option>
+                        <option value="p-type">P型半导体</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">温度</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="band-temperature" min="0" max="500" value="300" step="10" oninput="updateBandDiagram()">
+                        <span class="slider-value" id="band-temp-value">300 K</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 章节总结 -->
+        <div class="section">
+            <h3>本章小结</h3>
+            <div class="subsection">
+                <p>半导体材料是现代电子技术的基石，其独特的电学特性源于其晶体结构和能带结构。硅因其丰富的资源、稳定的氧化物和成熟的工艺成为半导体工业的主流材料，但其他材料如砷化镓、碳化硅等在特定应用中具有不可替代的优势。</p>
+                
+                <p>掺杂是改变半导体导电性的关键手段，通过引入施主或受主杂质，可以精确控制半导体的电学特性，这是制造各种半导体器件的基础。能带理论帮助我们理解半导体中载流子的行为，是分析半导体器件工作原理的重要工具。</p>
+                
+                <p>下一章将深入介绍半导体器件的基本结构和工作原理，包括PN结的形成机理、二极管的整流特性以及晶体管的放大作用，帮助您理解如何利用半导体材料的特性构建实用的电子器件。</p>
+            </div>
+            
+            <div class="subsection">
+                <h4>下一章预告</h4>
+                <p>第3章将深入半导体器件的基本结构和工作原理，带你理解"PN结是如何形成的？"、"二极管为什么能整流？"、"晶体管如何实现信号放大？"，并通过交互式模拟器直观感受器件内部载流子的运动规律。</p>
+                <button class="btn btn-primary" onclick="window.location.href='chapter3.html'">前往第3章</button>
+            </div>
+        </div>
+    </div>
+    </main>
+    
+    <script>
+        // 材料数据
+        const materialData = {
+            silicon: {
+                name: "硅",
+                formula: "Si",
+                bandgap: 1.12,
+                mobility: 1350,
+                thermal: 150,
+                application: "集成电路、太阳能电池、功率器件",
+                color: "#3498db"
+            },
+            germanium: {
+                name: "锗",
+                formula: "Ge",
+                bandgap: 0.66,
+                mobility: 3900,
+                thermal: 60,
+                application: "早期晶体管、高速器件、光电探测器",
+                color: "#9b59b6"
+            },
+            gallium: {
+                name: "砷化镓",
+                formula: "GaAs",
+                bandgap: 1.42,
+                mobility: 8500,
+                thermal: 46,
+                application: "高频器件、光电子器件、微波集成电路",
+                color: "#e74c3c"
+            },
+            carbide: {
+                name: "碳化硅",
+                formula: "SiC",
+                bandgap: 3.26,
+                mobility: 900,
+                thermal: 490,
+                application: "功率器件、高温电子、电动汽车",
+                color: "#f39c12"
+            }
+        };
+        
+        // 选中的材料
+        let selectedMaterial = null;
+        
+        // 进度跟踪
+        let exploredMaterials = [];
+        let dopingExperiments = 0;
+        let bandDiagramsViewed = 0;
+        
+        // 选择材料
+        function selectMaterial(materialId) {
+            // 更新选中状态
+            document.querySelectorAll('.material-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`.material-card[onclick="selectMaterial('${materialId}')"]`).classList.add('selected');
+            
+            // 更新选中的材料
+            selectedMaterial = materialData[materialId];
+            
+            // 更新材料属性显示
+            updateMaterialProperties(materialId);
+            
+            // 记录进度
+            if (!exploredMaterials.includes(materialId)) {
+                exploredMaterials.push(materialId);
+                updateProgress();
+            }
+        }
+        
+        // 更新材料属性显示
+        function updateMaterialProperties(materialId) {
+            const material = materialData[materialId];
+            
+            document.getElementById('bandgap-value').textContent = material.bandgap;
+            document.getElementById('mobility-value').textContent = material.mobility;
+            document.getElementById('thermal-value').textContent = material.thermal;
+            document.getElementById('application-value').textContent = material.application;
+            
+            // 添加动画效果
+            document.querySelectorAll('.property-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+        
+        // 更新掺杂模拟
+        function updateDopingSimulation() {
+            const dopingType = document.getElementById('doping-type').value;
+            const concentration = parseFloat(document.getElementById('doping-concentration').value);
+            const temperature = parseInt(document.getElementById('temperature').value);
+            
+            // 更新显示值
+            document.getElementById('concentration-value').textContent = `10^${concentration} cm⁻³`;
+            document.getElementById('temperature-value').textContent = `${temperature} K`;
+            
+            // 生成晶体结构
+            generateCrystalStructure(dopingType, concentration);
+            
+            // 计算电学特性
+            calculateElectricalProperties(dopingType, concentration, temperature);
+            
+            // 记录进度
+            if (dopingExperiments === 0) {
+                dopingExperiments = 1;
+                updateProgress();
+            }
+        }
+        
+        // 生成晶体结构
+        function generateCrystalStructure(dopingType, concentration) {
+            const container = document.getElementById('crystal-structure');
+            container.innerHTML = '';
+            
+            // 创建硅原子晶格
+            const rows = 5;
+            const cols = 8;
+            const spacing = 50;
+            
+            for (let i = 0; i < rows; i++) {
+                for (let j = 0; j < cols; j++) {
+                    const atom = document.createElement('div');
+                    atom.className = 'atom silicon-atom';
+                    atom.style.left = `${j * spacing + 20}px`;
+                    atom.style.top = `${i * spacing + 20}px`;
+                    atom.textContent = 'Si';
+                    container.appendChild(atom);
+                }
+            }
+            
+            // 添加掺杂原子
+            if (dopingType !== 'none') {
+                const dopantCount = Math.max(1, Math.floor((concentration - 13) / 2));
+                
+                for (let i = 0; i < dopantCount; i++) {
+                    const row = Math.floor(Math.random() * rows);
+                    const col = Math.floor(Math.random() * cols);
+                    
+                    const dopant = document.createElement('div');
+                    dopant.className = 'atom dopant-atom';
+                    dopant.style.left = `${col * spacing + 22}px`;
+                    dopant.style.top = `${row * spacing + 22}px`;
+                    dopant.textContent = dopingType === 'n-type' ? 'P' : 'B';
+                    container.appendChild(dopant);
+                }
+            }
+            
+            // 添加电子
+            if (dopingType !== 'none') {
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(() => {
+                        const electron = document.createElement('div');
+                        electron.className = 'electron';
+                        electron.style.left = `${Math.random() * (cols * spacing)}px`;
+                        electron.style.top = `${Math.random() * (rows * spacing)}px`;
+                        container.appendChild(electron);
+                    }, i * 200);
+                }
+            }
+        }
+        
+        // 计算电学特性
+        function calculateElectricalProperties(dopingType, concentration, temperature) {
+            // 简化的计算模型
+            const k = 8.617e-5; // 玻尔兹曼常数 eV/K
+            const Eg = 1.12; // 硅的禁带宽度 eV
+            const ni = 1.5e10; // 本征载流子浓度 cm⁻³
+            
+            let carrierConcentration, conductivity, resistivity, dominantCarrier;
+            
+            if (dopingType === 'none') {
+                // 本征半导体
+                carrierConcentration = ni * Math.exp(-Eg / (2 * k * temperature));
+                dominantCarrier = "电子和空穴";
+            } else {
+                // 掺杂半导体
+                carrierConcentration = Math.pow(10, concentration);
+                dominantCarrier = dopingType === 'n-type' ? "电子" : "空穴";
+            }
+            
+            // 计算电导率和电阻率
+            const mobility = dopingType === 'p-type' ? 480 : 1350; // 空穴或电子迁移率
+            const q = 1.6e-19; // 电子电荷
+            
+            conductivity = carrierConcentration * q * mobility;
+            resistivity = 1 / conductivity;
+            
+            // 更新显示
+            document.getElementById('carrier-concentration').textContent = carrierConcentration.toExponential(2) + ' cm⁻³';
+            document.getElementById('conductivity').textContent = conductivity.toExponential(2) + ' S/cm';
+            document.getElementById('resistivity').textContent = resistivity.toExponential(2) + ' Ω·cm';
+            document.getElementById('dominant-carrier').textContent = dominantCarrier;
+        }
+        
+        // 更新能带图
+        function updateBandDiagram() {
+            const materialType = document.getElementById('band-material').value;
+            const temperature = parseInt(document.getElementById('band-temperature').value);
+            
+            document.getElementById('band-temp-value').textContent = `${temperature} K`;
+            
+            // 调整费米能级位置
+            const fermiLevel = document.querySelector('.fermi-level');
+            let fermiPosition;
+            
+            switch (materialType) {
+                case 'intrinsic':
+                    fermiPosition = 50; // 中间位置
+                    break;
+                case 'n-type':
+                    fermiPosition = 35; // 靠近导带
+                    break;
+                case 'p-type':
+                    fermiPosition = 65; // 靠近价带
+                    break;
+            }
+            
+            fermiLevel.style.top = `${fermiPosition}%`;
+            
+            // 调整电子跃迁动画速度
+            const electronTransition = document.querySelector('.electron-transition');
+            const animationDuration = Math.max(1, 5 - temperature / 125); // 温度越高，跃迁越快
+            electronTransition.style.animationDuration = `${animationDuration}s`;
+            
+            // 记录进度
+            if (bandDiagramsViewed === 0) {
+                bandDiagramsViewed = 1;
+                updateProgress();
+            }
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            // 更新材料探索进度
+            document.getElementById('material-progress').textContent = `${exploredMaterials.length}/${Object.keys(materialData).length}`;
+            
+            // 更新掺杂模拟进度
+            document.getElementById('doping-progress').textContent = `${dopingExperiments}/1`;
+            
+            // 更新能带图进度
+            document.getElementById('band-progress').textContent = `${bandDiagramsViewed}/1`;
+            
+            // 保存进度
+            saveProgress();
+        }
+        
+        // 保存进度
+        function saveProgress() {
+            const progress = {
+                exploredMaterials,
+                dopingExperiments,
+                bandDiagramsViewed,
+                timestamp: Date.now()
+            };
+            localStorage.setItem('semiProj_chapter2_progress', JSON.stringify(progress));
+        }
+        
+        // 加载进度
+        function loadProgress() {
+            const saved = localStorage.getItem('semiProj_chapter2_progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                exploredMaterials = progress.exploredMaterials || [];
+                dopingExperiments = progress.dopingExperiments || 0;
+                bandDiagramsViewed = progress.bandDiagramsViewed || 0;
+                
+                updateProgress();
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            updateDopingSimulation();
+            updateBandDiagram();
+        });
+    </script>
+</body>
+</html>

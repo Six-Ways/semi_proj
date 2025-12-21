@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3章：半导体器件基础 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第3章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item active">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#pn-junction" class="section-nav-item">
+                        PN结原理
+                    </a>
+                    <a href="#diode-characteristics" class="section-nav-item">
+                        二极管特性
+                    </a>
+                    <a href="#bjt-basics" class="section-nav-item">
+                        BJT基础
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第3章：半导体器件基础</p>
+            </div>
+        <div class="chapter-header">
+            <h1>第3章：半导体器件基础</h1>
+        </div>
+        
+        <div class="chapter-core">
+            <h3>本章核心</h3>
+            <p>半导体器件是现代电子技术的核心组件，理解其工作原理对于掌握电子系统至关重要。本章将深入探讨PN结的形成机理、二极管的整流特性以及晶体管的放大作用，通过交互式模拟器帮助您直观理解器件内部载流子的运动规律和电学特性。</p>
+        </div>
+        
+        <!-- PN结模拟器 -->
+        <div class="pn-junction-simulator">
+            <h2>⚛️ PN结模拟器：探索结的形成与特性 <span class="progress-indicator" id="junction-progress">0/0</span></h2>
+            <p>通过调整掺杂浓度和偏置电压，观察PN结内部载流子分布和电场变化。</p>
+            
+            <div class="simulator-container">
+                <div class="junction-visualization" id="junction-viz">
+                    <div class="junction-region p-region">P区</div>
+                    <div class="junction-region n-region">N区</div>
+                    <div class="depletion-region" id="depletion-region"></div>
+                    <!-- 动态生成的载流子 -->
+                </div>
+                
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label class="control-label">P区掺杂浓度</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="p-doping" min="15" max="18" value="16" step="0.1" oninput="updateJunction()">
+                            <span class="slider-value" id="p-doping-value">10¹⁶ cm⁻³</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">N区掺杂浓度</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="n-doping" min="15" max="18" value="16" step="0.1" oninput="updateJunction()">
+                            <span class="slider-value" id="n-doping-value">10¹⁶ cm⁻³</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label">偏置电压</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="bias-voltage" min="-2" max="2" value="0" step="0.1" oninput="updateJunction()">
+                            <span class="slider-value" id="bias-voltage-value">0.0 V</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-panel">
+                <h3>PN结特性</h3>
+                <div class="result-item">
+                    <span class="result-label">耗尽区宽度</span>
+                    <span class="result-value" id="depletion-width">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">内建电势</span>
+                    <span class="result-value" id="built-in-potential">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">结电容</span>
+                    <span class="result-value" id="junction-capacitance">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">结电流</span>
+                    <span class="result-value" id="junction-current">-</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 器件实验室 -->
+        <div class="device-lab">
+            <h2>🔬 器件实验室：测试半导体器件特性 <span class="progress-indicator" id="device-progress">0/0</span></h2>
+            <p>选择不同的半导体器件，搭建测试电路，观察器件的电学特性曲线。</p>
+            
+            <div class="device-selector">
+                <div class="device-card" onclick="selectDevice('diode')">
+                    <div class="device-icon">⚡</div>
+                    <div class="device-name">二极管</div>
+                    <div class="device-description">单向导电器件，用于整流和检波</div>
+                </div>
+                
+                <div class="device-card" onclick="selectDevice('bjt')">
+                    <div class="device-icon">🔧</div>
+                    <div class="device-name">双极晶体管</div>
+                    <div class="device-description">电流控制器件，用于信号放大</div>
+                </div>
+                
+                <div class="device-card" onclick="selectDevice('mosfet')">
+                    <div class="device-icon">💻</div>
+                    <div class="device-name">MOSFET</div>
+                    <div class="device-description">电压控制器件，用于开关和放大</div>
+                </div>
+            </div>
+            
+            <div class="device-test-area" id="device-test-area">
+                <div class="test-circuit" id="test-circuit">
+                    <div class="circuit-element voltage-source">V</div>
+                    <div class="wire"></div>
+                    <div class="circuit-element resistor" id="test-device"></div>
+                    <div class="wire"></div>
+                    <div class="circuit-element voltage-source">GND</div>
+                </div>
+                
+                <div class="measurement-display">
+                    <div class="measurement-item">
+                        <span class="measurement-label">电压</span>
+                        <span class="measurement-value" id="voltage-value">0.0 V</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="measurement-label">电流</span>
+                        <span class="measurement-value" id="current-value">0.0 mA</span>
+                    </div>
+                    <div class="measurement-item">
+                        <span class="measurement-label">功率</span>
+                        <span class="measurement-value" id="power-value">0.0 mW</span>
+                    </div>
+                </div>
+                
+                <div class="iv-curve">
+                    <canvas id="iv-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 章节总结 -->
+        <div class="section">
+            <h3>本章小结</h3>
+            <div class="subsection">
+                <p>PN结是半导体器件的基础结构，通过P型和N型半导体的结合形成内建电场，实现对载流子运动的控制。二极管利用PN结的单向导通特性实现整流功能，是电子电路中最基本的器件之一。</p>
+                
+                <p>晶体管是现代电子技术的核心，双极晶体管(BJT)通过电流控制实现信号放大，而MOSFET通过电压控制实现开关和放大功能。不同类型的晶体管各有优势，在数字电路、模拟电路和功率电子中都有广泛应用。</p>
+                
+                <p>理解半导体器件的工作原理需要掌握载流子运动、能带结构和电场分布等物理概念，这些知识是设计和分析电子电路的基础。下一章将深入介绍集成电路的设计与制造，帮助您了解如何将单个器件集成为功能复杂的电子系统。</p>
+            </div>
+            
+            <div class="subsection">
+                <h4>下一章预告</h4>
+                <p>第4章将深入集成电路的设计与制造，带你理解"如何将数百万个晶体管集成在一块芯片上？"、"集成电路设计流程是怎样的？"、"制造工艺如何影响器件性能？"，并通过交互式工具直观感受集成电路的设计与制造过程。</p>
+                <button class="btn btn-primary" onclick="window.location.href='chapter4.html'">前往第4章</button>
+            </div>
+        </div>
+    </main>
+    
+    <script src="../js/main.js"></script>
+    <script>
+        // 进度跟踪
+        let junctionExperiments = 0;
+        let testedDevices = [];
+        let ivChart = null;
+        
+        // 器件特性数据
+        const deviceCharacteristics = {
+            diode: {
+                name: "二极管",
+                element: "diode",
+                ivFunction: function(v) {
+                    // 二极管的指数特性
+                    const Is = 1e-12; // 反向饱和电流
+                    const Vt = 0.026; // 热电压
+                    const n = 1.5; // 理想因子
+                    
+                    if (v < -0.5) {
+                        return -Is * 1e6; // 反向饱和电流，单位μA
+                    } else {
+                        return Is * (Math.exp(v / (n * Vt)) - 1) * 1e6; // 正向电流，单位μA
+                    }
+                }
+            },
+            bjt: {
+                name: "双极晶体管",
+                element: "transistor",
+                ivFunction: function(v) {
+                    // 简化的BJT特性
+                    const Vbe = 0.7; // 基极-发射极电压
+                    const beta = 100; // 电流放大系数
+                    
+                    if (v < Vbe) {
+                        return 0;
+                    } else {
+                        return beta * (v - Vbe) * 10; // 集电极电流，单位μA
+                    }
+                }
+            },
+            mosfet: {
+                name: "MOSFET",
+                element: "transistor",
+                ivFunction: function(v) {
+                    // 简化的MOSFET特性
+                    const Vth = 1.0; // 阈值电压
+                    const k = 0.5; // 跨导参数
+                    
+                    if (v < Vth) {
+                        return 0;
+                    } else {
+                        return k * (v - Vth) * (v - Vth) * 100; // 漏极电流，单位μA
+                    }
+                }
+            }
+        };
+        
+        // 当前选中的器件
+        let selectedDeviceType = null;
+        
+        // 更新PN结模拟
+        function updateJunction() {
+            const pDoping = parseFloat(document.getElementById('p-doping').value);
+            const nDoping = parseFloat(document.getElementById('n-doping').value);
+            const biasVoltage = parseFloat(document.getElementById('bias-voltage').value);
+            
+            // 更新显示值
+            document.getElementById('p-doping-value').textContent = `10^${pDoping} cm⁻³`;
+            document.getElementById('n-doping-value').textContent = `10^${nDoping} cm⁻³`;
+            document.getElementById('bias-voltage-value').textContent = `${biasVoltage.toFixed(1)} V`;
+            
+            // 计算PN结特性
+            const k = 1.38e-23; // 玻尔兹曼常数
+            const T = 300; // 温度 K
+            const q = 1.6e-19; // 电子电荷
+            const ni = 1.5e10; // 本征载流子浓度
+            const epsilon = 11.7 * 8.85e-14; // 硅的介电常数
+            
+            // 计算内建电势
+            const Vbi = (k * T / q) * Math.log((Math.pow(10, pDoping) * Math.pow(10, nDoping)) / (ni * ni));
+            
+            // 计算耗尽区宽度
+            const W = Math.sqrt(2 * epsilon / q * (1 / Math.pow(10, pDoping) + 1 / Math.pow(10, nDoping)) * (Vbi - biasVoltage));
+            
+            // 计算结电容
+            const Cj = epsilon / W * 1e8; // 单位 pF/μm²
+            
+            // 计算结电流
+            let Ij;
+            if (biasVoltage < 0) {
+                // 反向偏置
+                Ij = -1e-9; // 反向饱和电流，单位 A
+            } else {
+                // 正向偏置
+                const Is = 1e-12; // 反向饱和电流
+                const Vt = k * T / q; // 热电压
+                Ij = Is * (Math.exp(biasVoltage / Vt) - 1); // 单位 A
+            }
+            
+            // 更新显示
+            document.getElementById('depletion-width').textContent = `${(W * 1e4).toFixed(2)} μm`;
+            document.getElementById('built-in-potential').textContent = `${Vbi.toFixed(2)} V`;
+            document.getElementById('junction-capacitance').textContent = `${Cj.toFixed(2)} pF/μm²`;
+            document.getElementById('junction-current').textContent = `${(Ij * 1e6).toFixed(2)} μA`;
+            
+            // 更新耗尽区可视化
+            const depletionRegion = document.getElementById('depletion-region');
+            const depletionWidth = Math.max(10, Math.min(100, 40 + biasVoltage * 20));
+            depletionRegion.style.width = `${depletionWidth}px`;
+            
+            // 添加载流子动画
+            addCarriers(biasVoltage);
+            
+            // 记录进度
+            if (junctionExperiments === 0) {
+                junctionExperiments = 1;
+                updateProgress();
+            }
+        }
+        
+        // 添加载流子动画
+        function addCarriers(biasVoltage) {
+            const junctionViz = document.getElementById('junction-viz');
+            
+            // 清除现有载流子
+            junctionViz.querySelectorAll('.charge-carrier').forEach(carrier => {
+                carrier.remove();
+            });
+            
+            // 根据偏置电压添加载流子
+            const carrierCount = Math.max(0, Math.min(10, Math.floor(biasVoltage * 3 + 5)));
+            
+            for (let i = 0; i < carrierCount; i++) {
+                setTimeout(() => {
+                    const isElectron = Math.random() > 0.5;
+                    const carrier = document.createElement('div');
+                    carrier.className = `charge-carrier ${isElectron ? 'electron' : 'hole'}`;
+                    carrier.textContent = isElectron ? 'e-' : 'h+';
+                    
+                    // 随机位置
+                    const left = Math.random() * 80 + 10; // 10% to 90%
+                    const top = Math.random() * 80 + 10; // 10% to 90%
+                    
+                    carrier.style.left = `${left}%`;
+                    carrier.style.top = `${top}%`;
+                    
+                    // 随机动画延迟和持续时间
+                    carrier.style.animationDelay = `${Math.random() * 2}s`;
+                    carrier.style.animationDuration = `${3 + Math.random() * 2}s`;
+                    
+                    junctionViz.appendChild(carrier);
+                }, i * 200);
+            }
+        }
+        
+        // 选择器件
+        function selectDevice(deviceType) {
+            // 更新选中状态
+            document.querySelectorAll('.device-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`.device-card[onclick="selectDevice('${deviceType}')"]`).classList.add('selected');
+            
+            // 更新选中的器件
+            selectedDeviceType = deviceType;
+            const device = deviceCharacteristics[deviceType];
+            
+            // 更新测试电路
+            updateTestCircuit(device);
+            
+            // 初始化IV曲线
+            initIVCurve(device);
+            
+            // 记录进度
+            if (!testedDevices.includes(deviceType)) {
+                testedDevices.push(deviceType);
+                updateProgress();
+            }
+        }
+        
+        // 更新测试电路
+        function updateTestCircuit(device) {
+            const testDevice = document.getElementById('test-device');
+            
+            // 清除现有类
+            testDevice.className = 'circuit-element';
+            
+            // 添加器件特定的类
+            testDevice.classList.add(device.element);
+            
+            // 更新测量显示
+            updateMeasurements(0);
+        }
+        
+        // 初始化IV曲线
+        function initIVCurve(device) {
+            const ctx = document.getElementById('iv-chart').getContext('2d');
+            
+            // 销毁现有图表
+            if (ivChart) {
+                ivChart.destroy();
+            }
+            
+            // 生成数据点
+            const voltages = [];
+            const currents = [];
+            
+            for (let v = -2; v <= 2; v += 0.1) {
+                voltages.push(v);
+                currents.push(device.ivFunction(v));
+            }
+            
+            // 创建新图表
+            ivChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: voltages,
+                    datasets: [{
+                        label: `${device.name} IV特性`,
+                        data: currents,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '电压 (V)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '电流 (μA)'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `电流: ${context.parsed.y.toFixed(2)} μA`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 添加交互式电压控制
+            addVoltageControl(device);
+        }
+        
+        // 添加电压控制
+        function addVoltageControl(device) {
+            const testArea = document.getElementById('device-test-area');
+            
+            // 检查是否已存在电压控制
+            let voltageControl = document.getElementById('voltage-control');
+            if (!voltageControl) {
+                voltageControl = document.createElement('div');
+                voltageControl.id = 'voltage-control';
+                voltageControl.className = 'control-group';
+                voltageControl.innerHTML = `
+                    <label class="control-label">电压控制</label>
+                    <div class="slider-container">
+                        <input type="range" class="slider" id="device-voltage" min="-2" max="2" value="0" step="0.1" oninput="updateDeviceVoltage()">
+                        <span class="slider-value" id="device-voltage-value">0.0 V</span>
+                    </div>
+                `;
+                testArea.insertBefore(voltageControl, testArea.querySelector('.measurement-display'));
+            }
+            
+            // 更新电压控制事件
+            document.getElementById('device-voltage').oninput = function() {
+                updateDeviceVoltage(device);
+            };
+        }
+        
+        // 更新器件电压
+        function updateDeviceVoltage(device) {
+            const voltage = parseFloat(document.getElementById('device-voltage').value);
+            document.getElementById('device-voltage-value').textContent = `${voltage.toFixed(1)} V`;
+            
+            // 计算电流
+            const current = device ? device.ivFunction(voltage) : 0;
+            
+            // 更新测量显示
+            updateMeasurements(voltage, current);
+            
+            // 在IV图表上标记当前工作点
+            if (ivChart) {
+                ivChart.data.datasets.push({
+                    label: '工作点',
+                    data: [{x: voltage, y: current}],
+                    backgroundColor: '#e74c3c',
+                    borderColor: '#e74c3c',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    showLine: false
+                });
+                ivChart.update();
+            }
+        }
+        
+        // 更新测量显示
+        function updateMeasurements(voltage, current) {
+            const power = voltage * current / 1000; // 转换为mW
+            
+            document.getElementById('voltage-value').textContent = `${voltage.toFixed(2)} V`;
+            document.getElementById('current-value').textContent = `${current.toFixed(2)} μA`;
+            document.getElementById('power-value').textContent = `${power.toFixed(2)} mW`;
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            // 更新PN结模拟进度
+            document.getElementById('junction-progress').textContent = `${junctionExperiments}/1`;
+            
+            // 更新器件测试进度
+            document.getElementById('device-progress').textContent = `${testedDevices.length}/${Object.keys(deviceCharacteristics).length}`;
+            
+            // 保存进度
+            saveProgress();
+        }
+        
+        // 保存进度
+        function saveProgress() {
+            const progress = {
+                junctionExperiments,
+                testedDevices,
+                timestamp: Date.now()
+            };
+            localStorage.setItem('semiProj_chapter3_progress', JSON.stringify(progress));
+        }
+        
+        // 加载进度
+        function loadProgress() {
+            const saved = localStorage.getItem('semiProj_chapter3_progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                junctionExperiments = progress.junctionExperiments || 0;
+                testedDevices = progress.testedDevices || [];
+                
+                updateProgress();
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            updateJunction();
+        });
+    </script>
+</body>
+</html>

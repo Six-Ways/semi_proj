@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6章：模拟集成器件 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item active">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#amplifier-basics" class="section-nav-item">
+                        放大器基础
+                    </a>
+                    <a href="#operational-amplifier" class="section-nav-item">
+                        运算放大器
+                    </a>
+                    <a href="#analog-circuits" class="section-nav-item">
+                        模拟电路
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="../index.html#basics" class="nav-link">基础原理</a></li>
+                    <li><a href="../index.html#integration" class="nav-link">集成器件</a></li>
+                    <li><a href="../index.html#process" class="nav-link">制造工艺</a></li>
+                    <li><a href="../index.html#advanced" class="nav-link">先进技术</a></li>
+                    <li><a href="../index.html#tools" class="nav-link">工具资源</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第6章：模拟集成器件</p>
+            </div>
+            <div class="chapter-header">
+                <h1>第6章：模拟集成器件</h1>
+            </div>
+
+            <div class="section-nav">
+                <ul>
+                    <li><a href="#analog-basics" class="section-link">模拟电路基础</a></li>
+                    <li><a href="#op-amp" class="section-link">运算放大器</a></li>
+                    <li><a href="#rf-devices" class="section-link">射频器件</a></li>
+                    <li><a href="#mixed-signal" class="section-link">混合信号器件</a></li>
+                </ul>
+            </div>
+
+            <div class="chapter-content">
+                <section id="analog-basics" class="content-section">
+                    <h2>模拟电路基础</h2>
+                    <p>模拟集成电路处理连续变化的信号，与数字电路处理离散信号不同。模拟电路在信号放大、滤波、转换等方面具有不可替代的作用，是现代电子系统的重要组成部分。</p>
+                    
+                    <div class="highlight-box">
+                        <h3>模拟电路的特点</h3>
+                        <ul>
+                            <li><strong>连续信号处理：</strong>处理连续变化的电压和电流信号</li>
+                            <li><strong>高精度要求：</strong>对器件参数匹配和精度要求极高</li>
+                            <li><strong>噪声敏感：</strong>容易受到噪声干扰，需要精心设计</li>
+                            <li><strong>功耗优化：</strong>在性能和功耗之间需要平衡</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="current-mirror">电流镜</button>
+                            <button class="tab-button" data-tab="differential-pair">差分对</button>
+                            <button class="tab-button" data-tab="active-load">有源负载</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="current-mirror">
+                                <h4>电流镜</h4>
+                                <p>电流镜是模拟电路中的基本构建模块，用于复制和放大电流。它通过匹配晶体管的尺寸和偏置条件，实现精确的电流复制功能。</p>
+                                
+                                <div class="circuit-diagram">
+                                    <div class="circuit-element">M1</div>
+                                    <div class="circuit-element">M2</div>
+                                </div>
+                                
+                                <div class="formula-box">
+                                    I<sub>out</sub> = (W/L)<sub>2</sub> / (W/L)<sub>1</sub> × I<sub>ref</sub>
+                                </div>
+                                
+                                <p>电流镜的性能取决于晶体管的匹配程度、输出阻抗和温度稳定性。在精密模拟电路设计中，电流镜的精度直接影响整体电路性能。</p>
+                            </div>
+                            <div class="tab-pane" id="differential-pair">
+                                <h4>差分对</h4>
+                                <p>差分对是模拟电路的核心结构，用于放大差分信号并抑制共模信号。它是运算放大器、比较器等模拟电路的基础。</p>
+                                
+                                <div class="circuit-diagram">
+                                    <div class="circuit-element">M1</div>
+                                    <div class="circuit-element">M2</div>
+                                    <div class="circuit-element">M3</div>
+                                </div>
+                                
+                                <div class="formula-box">
+                                    A<sub>d</sub> = g<sub>m</sub> × r<sub>o</sub><br>
+                                    CMRR = A<sub>d</sub> / A<sub>c</sub>
+                                </div>
+                                
+                                <p>差分对的性能由跨导(gm)、输出阻抗(ro)和共模抑制比(CMRR)决定。提高差分对的线性度和带宽是模拟电路设计的关键挑战。</p>
+                            </div>
+                            <div class="tab-pane" id="active-load">
+                                <h4>有源负载</h4>
+                                <p>有源负载使用晶体管代替电阻作为负载，可以提供高阻抗负载，提高放大器的增益。有源负载在面积和性能上优于无源电阻。</p>
+                                
+                                <div class="circuit-diagram">
+                                    <div class="circuit-element">M1</div>
+                                    <div class="circuit-element">M2</div>
+                                    <div class="circuit-element">M3</div>
+                                    <div class="circuit-element">M4</div>
+                                </div>
+                                
+                                <div class="formula-box">
+                                    A<sub>v</sub> = -g<sub>m1</sub> × (r<sub>o2</sub> || r<sub>o4</sub>)
+                                </div>
+                                
+                                <p>有源负载的设计需要考虑输出阻抗、频率响应和稳定性。在低电压设计中，有源负载是实现高增益放大器的关键技术。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="op-amp" class="content-section">
+                    <h2>运算放大器 <span class="progress-indicator" id="opamp-progress">0/2 已完成</span></h2>
+                    <p>运算放大器是模拟电路设计的核心器件，具有高增益、高输入阻抗和低输出阻抗的特点。它是各种模拟系统和信号处理电路的基础构建模块。</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>运算放大器增益计算器</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="opamp-type">运算放大器类型</label>
+                                <select id="opamp-type">
+                                    <option value="two-stage">两级运算放大器</option>
+                                    <option value="folded-cascode">折叠共源共栅</option>
+                                    <option value="telescopic">套筒式</option>
+                                    <option value="rail-to-rail">轨到轨</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="supply-voltage">电源电压 (V)</label>
+                                <input type="range" id="supply-voltage" min="1.8" max="5" step="0.1" value="3.3">
+                                <span id="supply-voltage-value">3.3 V</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="load-capacitance">负载电容 (pF)</label>
+                                <input type="range" id="load-capacitance" min="0.1" max="10" step="0.1" value="1">
+                                <span id="load-capacitance-value">1 pF</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="opamp-gain-chart"></canvas>
+                            </div>
+                            <div id="opamp-results" style="margin-top: 1rem;">
+                                <p><strong>直流增益：</strong> <span id="dc-gain">0</span> dB</p>
+                                <p><strong>单位增益带宽：</strong> <span id="unity-gain-bandwidth">0</span> MHz</p>
+                                <p><strong>相位裕度：</strong> <span id="phase-margin">0</span> °</p>
+                                <p><strong>功耗：</strong> <span id="opamp-power">0</span> μW</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="frequency-response">频率响应</button>
+                            <button class="tab-button" data-tab="stability">稳定性分析</button>
+                            <button class="tab-button" data-tab="noise">噪声性能</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="frequency-response">
+                                <h4>频率响应</h4>
+                                <p>运算放大器的频率响应描述了增益随频率变化的关系。运算放大器的增益在高频区域会下降，这是由内部晶体管的寄生电容和负载电容引起的。</p>
+                                
+                                <div class="frequency-response">
+                                    <div class="frequency-line"></div>
+                                    <div class="frequency-curve">
+                                        <canvas id="frequency-response-curve"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <p>频率响应的关键参数包括直流增益、单位增益带宽和相位裕度。这些参数决定了运算放大器在不同应用中的适用性。</p>
+                            </div>
+                            <div class="tab-pane" id="stability">
+                                <h4>稳定性分析</h4>
+                                <p>运算放大器的稳定性是指其在反馈应用中不产生振荡的能力。稳定性主要由相位裕度和增益裕度决定，通常要求相位裕度大于45度。</p>
+                                
+                                <div class="chart-container">
+                                    <canvas id="stability-chart"></canvas>
+                                </div>
+                                
+                                <p>补偿技术是提高运算放大器稳定性的关键方法，包括米勒补偿、前馈补偿和零极点抵消等。不同的补偿技术适用于不同的应用场景。</p>
+                            </div>
+                            <div class="tab-pane" id="noise">
+                                <h4>噪声性能</h4>
+                                <p>运算放大器的噪声性能直接影响其信号处理能力，特别是在低噪声应用中。噪声主要包括热噪声、闪烁噪声和散粒噪声。</p>
+                                
+                                <div class="noise-spectrum">
+                                    <div class="noise-line"></div>
+                                    <div class="noise-curve">
+                                        <canvas id="noise-spectrum-chart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <p>噪声性能由输入参考噪声和噪声谱密度描述。在低噪声设计中，需要优化晶体管尺寸、偏置电流和电路结构来降低噪声。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="rf-devices" class="content-section">
+                    <h2>射频器件基础 <span class="progress-indicator" id="rf-progress">0/2 已完成</span></h2>
+                    <p>射频器件工作在高频范围，用于无线通信、雷达和射频识别等应用。射频器件设计需要考虑高频效应，如寄生参数、噪声和线性度等。</p>
+                    
+                    <div class="highlight-box">
+                        <h3>射频器件的特殊挑战</h3>
+                        <ul>
+                            <li><strong>寄生参数影响：</strong>在高频下，寄生电容和电感对电路性能影响显著</li>
+                            <li><strong>噪声系数：</strong>射频器件的噪声直接影响接收灵敏度</li>
+                            <li><strong>线性度：</strong>非线性失真会影响信号质量和频谱效率</li>
+                            <li><strong>阻抗匹配：</strong>需要精确的阻抗匹配以实现最大功率传输</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="interactive-demo">
+                        <h3>射频器件噪声模拟器</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="rf-device-type">器件类型</label>
+                                <select id="rf-device-type">
+                                    <option value="lna">低噪声放大器(LNA)</option>
+                                    <option value="mixer">混频器</option>
+                                    <option value="vco">压控振荡器(VCO)</option>
+                                    <option value="pa">功率放大器(PA)</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="frequency">工作频率 (GHz)</label>
+                                <input type="range" id="frequency" min="0.1" max="10" step="0.1" value="2.4">
+                                <span id="frequency-value">2.4 GHz</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="temperature">温度 (°C)</label>
+                                <input type="range" id="temperature" min="-40" max="125" step="5" value="25">
+                                <span id="temperature-value">25°C</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="rf-noise-chart"></canvas>
+                            </div>
+                            <div id="rf-results" style="margin-top: 1rem;">
+                                <p><strong>噪声系数：</strong> <span id="noise-figure">0</span> dB</p>
+                                <p><strong>增益：</strong> <span id="rf-gain">0</span> dB</p>
+                                <p><strong>1dB压缩点：</strong> <span id="p1db">0</span> dBm</p>
+                                <p><strong>三阶交调点：</strong> <span id="ip3">0</span> dBm</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="matching">阻抗匹配</button>
+                            <button class="tab-button" data-tab="linearity">线性度分析</button>
+                            <button class="tab-button" data-tab="layout">版图考虑</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="matching">
+                                <h4>阻抗匹配</h4>
+                                <p>阻抗匹配是射频设计中的关键技术，用于实现最大功率传输和最小反射。匹配网络通常由电感和电容组成，需要根据工作频率和阻抗要求进行设计。</p>
+                                
+                                <div class="chart-container">
+                                    <canvas id="smith-chart"></canvas>
+                                </div>
+                                
+                                <p>史密斯圆图是阻抗匹配设计的常用工具，可以直观地显示阻抗和反射系数的关系。现代射频设计软件通常集成了史密斯圆图功能。</p>
+                            </div>
+                            <div class="tab-pane" id="linearity">
+                                <h4>线性度分析</h4>
+                                <p>射频器件的线性度决定了其处理大信号的能力。线性度主要由1dB压缩点和三阶交调点(IP3)描述，这些参数直接影响系统的动态范围和信号质量。</p>
+                                
+                                <div class="chart-container">
+                                    <canvas id="linearity-chart"></canvas>
+                                </div>
+                                
+                                <p>提高线性度的技术包括负反馈、前馈线性化和预失真等。不同的技术适用于不同的应用场景和性能要求。</p>
+                            </div>
+                            <div class="tab-pane" id="layout">
+                                <h4>版图考虑</h4>
+                                <p>射频器件的版图设计对性能影响极大，需要考虑寄生参数、电磁耦合和热效应等因素。射频版图通常采用对称结构、屏蔽技术和特殊布线规则。</p>
+                                
+                                <div class="highlight-box">
+                                    <h4>射频版图设计要点</h4>
+                                    <ul>
+                                        <li><strong>对称布局：</strong>差分对采用完全对称的版图结构</li>
+                                        <li><strong>屏蔽技术：</strong>使用屏蔽环和隔离环减少干扰</li>
+                                        <li><strong>地平面设计：</strong>完整的地平面提供良好的参考和屏蔽</li>
+                                        <li><strong>传输线设计：</strong>精确控制传输线阻抗和延迟</li>
+                                    </ul>
+                                </div>
+                                
+                                <p>射频版图设计需要与电路设计紧密结合，通过电磁仿真验证版图性能，确保满足设计指标。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="mixed-signal" class="content-section">
+                    <h2>模拟-数字混合器件兼容性设计 <span class="progress-indicator" id="mixed-progress">0/2 已完成</span></h2>
+                    <p>模拟-数字混合集成电路结合了模拟和数字电路的功能，在单个芯片上实现信号采集、处理和转换。混合信号设计需要解决模拟和数字电路之间的干扰和兼容性问题。</p>
+                    
+                    <div class="device-3d">
+                        <div class="device-layer layer-substrate">硅衬底</div>
+                        <div class="device-layer" style="bottom: 150px; left: 10%; width: 35%; background-color: #4169E1; z-index: 2;">模拟电路</div>
+                        <div class="device-layer" style="bottom: 150px; right: 10%; width: 35%; background-color: #FF6347; z-index: 2;">数字电路</div>
+                        <div class="device-layer" style="bottom: 220px; left: 25%; width: 50%; background-color: #2ECC71; z-index: 3;">接口电路</div>
+                        <div style="position: absolute; top: 50px; left: 10%; width: 80%; height: 2px; background-color: #333; z-index: 4;">隔离带</div>
+                    </div>
+                    
+                    <p>混合信号设计的关键挑战包括噪声隔离、电源管理、时钟分配和版图规划。通过合理的架构设计和版图规划，可以实现模拟和数字电路的高效集成。</p>
+                    
+                    <div class="interactive-demo">
+                        <h3>混合信号干扰分析器</h3>
+                        <div class="demo-controls">
+                            <div class="control-group">
+                                <label for="digital-activity">数字开关活动</label>
+                                <input type="range" id="digital-activity" min="0" max="100" step="1" value="50">
+                                <span id="digital-activity-value">50%</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="supply-separation">电源隔离度 (dB)</label>
+                                <input type="range" id="supply-separation" min="20" max="80" step="1" value="40">
+                                <span id="supply-separation-value">40 dB</span>
+                            </div>
+                            <div class="control-group">
+                                <label for="ground-isolation">地隔离度 (dB)</label>
+                                <input type="range" id="ground-isolation" min="20" max="80" step="1" value="40">
+                                <span id="ground-isolation-value">40 dB</span>
+                            </div>
+                        </div>
+                        <div class="demo-output">
+                            <div class="chart-container">
+                                <canvas id="mixed-signal-chart"></canvas>
+                            </div>
+                            <div id="mixed-results" style="margin-top: 1rem;">
+                                <p><strong>模拟噪声：</strong> <span id="analog-noise">0</span> μV</p>
+                                <p><strong>数字毛刺：</strong> <span id="digital-glitch">0</span> mV</p>
+                                <p><strong>信噪比：</strong> <span id="snr">0</span> dB</p>
+                                <p><strong>有效位数：</strong> <span id="enob">0</span> bits</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" data-tab="adc-dac">数据转换器</button>
+                            <button class="tab-button" data-tab="pll">锁相环</button>
+                            <button class="tab-button" data-tab="isolation">隔离技术</button>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="adc-dac">
+                                <h4>数据转换器</h4>
+                                <p>模数转换器(ADC)和数模转换器(DAC)是混合信号系统的核心接口，负责模拟和数字信号之间的转换。数据转换器的性能直接影响整个系统的精度和速度。</p>
+                                
+                                <table class="comparison-table">
+                                    <tr>
+                                        <th>ADC类型</th>
+                                        <th>分辨率</th>
+                                        <th>采样率</th>
+                                        <th>功耗</th>
+                                        <th>应用场景</th>
+                                    </tr>
+                                    <tr>
+                                        <td>逐次逼近型(SAR)</td>
+                                        <td>12-18位</td>
+                                        <td>1-100 MSPS</td>
+                                        <td>低</td>
+                                        <td>数据采集、传感器接口</td>
+                                    </tr>
+                                    <tr>
+                                        <td>流水线型</td>
+                                        <td>12-16位</td>
+                                        <td>10-1000 MSPS</td>
+                                        <td>中</td>
+                                        <td>通信、视频处理</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Σ-Δ型</td>
+                                        <td>16-24位</td>
+                                        <td>1-1M SPS</td>
+                                        <td>低</td>
+                                        <td>音频、高精度测量</td>
+                                    </tr>
+                                    <tr>
+                                        <td>闪烁型</td>
+                                        <td>6-8位</td>
+                                        <td>1-100 GSPS</td>
+                                        <td>高</td>
+                                        <td>示波器、雷达</td>
+                                    </tr>
+                                </table>
+                                
+                                <p>数据转换器的设计需要在分辨率、速度和功耗之间进行权衡。现代混合信号系统通常采用多种类型的转换器以满足不同的应用需求。</p>
+                            </div>
+                            <div class="tab-pane" id="pll">
+                                <h4>锁相环</h4>
+                                <p>锁相环(PLL)是混合信号系统中的关键时钟生成和管理电路，用于频率合成、时钟恢复和时钟分配。PLL的性能直接影响数字电路的时序和模拟电路的采样精度。</p>
+                                
+                                <div class="circuit-diagram">
+                                    <div class="circuit-element">PFD</div>
+                                    <div class="circuit-element">CP</div>
+                                    <div class="circuit-element">LF</div>
+                                    <div class="circuit-element">VCO</div>
+                                    <div class="circuit-element">DIV</div>
+                                </div>
+                                
+                                <div class="formula-box">
+                                    f<sub>out</sub> = N × f<sub>ref</sub><br>
+                                    ω<sub>n</sub> = √(K<sub>VCO</sub> × K<sub>PD</sub> / N)<br>
+                                    ζ = (R × C × ω<sub>n</sub>) / 2
+                                </div>
+                                
+                                <p>PLL设计需要考虑锁定时间、相位噪声、杂散和功耗等参数。在混合信号系统中，PLL的相位噪声和抖动直接影响数据转换器的性能。</p>
+                            </div>
+                            <div class="tab-pane" id="isolation">
+                                <h4>隔离技术</h4>
+                                <p>隔离技术是混合信号设计中的关键技术，用于减少数字电路对模拟电路的干扰。隔离技术包括物理隔离、电源隔离和时序隔离等。</p>
+                                
+                                <div class="highlight-box">
+                                    <h4>常用隔离技术</h4>
+                                    <ul>
+                                        <li><strong>物理隔离：</strong>通过增加距离和使用隔离带减少电磁耦合</li>
+                                        <li><strong>电源隔离：</strong>使用独立的电源域和滤波器减少电源噪声</li>
+                                        <li><strong>地隔离：</strong>采用星形接地和分离地平面减少地噪声</li>
+                                        <li><strong>时序隔离：</strong>通过时钟门控和时序控制减少开关噪声</li>
+                                    </ul>
+                                </div>
+                                
+                                <p>高级隔离技术包括深N阱隔离、硅通孔(TSV)隔离和屏蔽结构等。在纳米级工艺中，隔离技术变得更加重要，因为器件间距减小导致耦合增强。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="content-section">
+                    <h2>本章小结</h2>
+                    <p>模拟集成器件是现代电子系统的重要组成部分，负责处理连续变化的信号。通过理解模拟电路基础、运算放大器、射频器件和混合信号器件的设计原理，可以更好地设计和分析模拟集成电路。</p>
+                    
+                    <div class="highlight-box">
+                        <h3>关键要点</h3>
+                        <ul>
+                            <li>模拟电路处理连续信号，对精度和噪声敏感，需要精心设计</li>
+                            <li>电流镜、差分对和有源负载是模拟电路的基本构建模块</li>
+                            <li>运算放大器是模拟电路设计的核心器件，其性能由增益、带宽和稳定性决定</li>
+                            <li>射频器件工作在高频范围，需要考虑寄生参数、噪声和线性度等特殊挑战</li>
+                            <li>混合信号设计需要解决模拟和数字电路之间的干扰和兼容性问题</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="chapter-navigation">
+                        <a href="chapter5.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 上一章</a>
+                        <a href="chapter7.html" class="btn btn-primary">下一章 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于SEMI_PROJ</h3>
+                    <p>致力于打造半导体器件与制造技术的交互式学习平台，提供全面、深入、实用的知识体系。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="../index.html#basics">基础原理</a></li>
+                        <li><a href="../index.html#integration">集成器件</a></li>
+                        <li><a href="../index.html#process">制造工艺</a></li>
+                        <li><a href="../index.html#advanced">先进技术</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：info@semiproj.com</p>
+                    <p>电话：+86 123-4567-8900</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 SEMI_PROJ. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // 进度跟踪变量
+        let opampExperiments = 0;
+        let rfTests = 0;
+        let mixedSignalSimulations = 0;
+        
+        // 初始化所有功能
+        document.addEventListener('DOMContentLoaded', function() {
+            initSectionNavigation();
+            initTabs();
+            initOpAmpCalculator();
+            initRFNoiseSimulator();
+            initMixedSignalAnalyzer();
+            initProgressTracking();
+        });
+        
+        // 章节导航
+        function initSectionNavigation() {
+            const sectionLinks = document.querySelectorAll('.section-link');
+            const sections = document.querySelectorAll('.content-section');
+            
+            sectionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    sectionLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // 添加active类到当前链接和对应部分
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        
+                        // 滚动到目标部分
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // 标签页功能
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // 移除所有active类
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // 添加active类到当前按钮和对应面板
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // 运算放大器增益计算器
+        function initOpAmpCalculator() {
+            const opampType = document.getElementById('opamp-type');
+            const supplyVoltage = document.getElementById('supply-voltage');
+            const loadCapacitance = document.getElementById('load-capacitance');
+            
+            const supplyVoltageValue = document.getElementById('supply-voltage-value');
+            const loadCapacitanceValue = document.getElementById('load-capacitance-value');
+            
+            const dcGain = document.getElementById('dc-gain');
+            const unityGainBandwidth = document.getElementById('unity-gain-bandwidth');
+            const phaseMargin = document.getElementById('phase-margin');
+            const opampPower = document.getElementById('opamp-power');
+            
+            // 创建图表
+            const ctx = document.getElementById('opamp-gain-chart').getContext('2d');
+            const opampChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'],
+                    datasets: [{
+                        label: '增益 (dB)',
+                        data: [80, 80, 80, 70, 60, 40, 20, 0],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '相位 (°)',
+                        data: [0, -5, -10, -30, -60, -90, -120, -150],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '增益 (dB)'
+                            }
+                        },
+                        y1: {
+                            position: 'right',
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '相位 (°)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '频率'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 创建频率响应曲线
+            const freqCtx = document.getElementById('frequency-response-curve').getContext('2d');
+            const freqChart = new Chart(freqCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => Math.pow(10, i/20 - 1).toFixed(2)),
+                    datasets: [{
+                        label: '增益 (dB)',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const freq = Math.pow(10, i/20 - 1);
+                            const dcGain = 80;
+                            const unityGainFreq = 1e6; // 1MHz
+                            
+                            if (freq < unityGainFreq / 1000) {
+                                return dcGain;
+                            } else {
+                                return dcGain - 20 * Math.log10(freq / (unityGainFreq / 1000));
+                            }
+                        }),
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: '增益 (dB)'
+                            }
+                        },
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '频率 (Hz)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 创建稳定性图表
+            const stabilityCtx = document.getElementById('stability-chart').getContext('2d');
+            const stabilityChart = new Chart(stabilityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'],
+                    datasets: [{
+                        label: '增益 (dB)',
+                        data: [80, 80, 80, 70, 60, 40, 20, 0],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '相位 (°)',
+                        data: [0, -5, -10, -30, -60, -90, -120, -150],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '增益 (dB)'
+                            }
+                        },
+                        y1: {
+                            position: 'right',
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: '相位 (°)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '频率'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 创建噪声谱图
+            const noiseCtx = document.getElementById('noise-spectrum-chart').getContext('2d');
+            const noiseChart = new Chart(noiseCtx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 101}, (_, i) => Math.pow(10, i/20 - 1).toFixed(2)),
+                    datasets: [{
+                        label: '噪声密度 (nV/√Hz)',
+                        data: Array.from({length: 101}, (_, i) => {
+                            const freq = Math.pow(10, i/20 - 1);
+                            const flickerNoise = 100 / Math.sqrt(freq); // 1/f噪声
+                            const thermalNoise = 10; // 热噪声
+                            
+                            return Math.sqrt(flickerNoise * flickerNoise + thermalNoise * thermalNoise);
+                        }),
+                        borderColor: '#9b59b6',
+                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: '噪声密度 (nV/√Hz)'
+                            }
+                        },
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '频率 (Hz)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateOpAmp() {
+                const type = opampType.value;
+                const Vdd = parseFloat(supplyVoltage.value);
+                const CL = parseFloat(loadCapacitance.value);
+                
+                // 更新显示值
+                supplyVoltageValue.textContent = `${Vdd} V`;
+                loadCapacitanceValue.textContent = `${CL} pF`;
+                
+                // 计算性能参数（简化模型）
+                let dcGainValue, unityGainFreq, phaseMarginValue, power;
+                
+                switch(type) {
+                    case 'two-stage':
+                        dcGainValue = 60 + 10 * Vdd;
+                        unityGainFreq = 10 / CL;
+                        phaseMarginValue = 60 - 5 * CL;
+                        power = 100 * Vdd;
+                        break;
+                    case 'folded-cascode':
+                        dcGainValue = 70 + 8 * Vdd;
+                        unityGainFreq = 15 / CL;
+                        phaseMarginValue = 65 - 3 * CL;
+                        power = 150 * Vdd;
+                        break;
+                    case 'telescopic':
+                        dcGainValue = 80 + 5 * Vdd;
+                        unityGainFreq = 8 / CL;
+                        phaseMarginValue = 55 - 4 * CL;
+                        power = 80 * Vdd;
+                        break;
+                    case 'rail-to-rail':
+                        dcGainValue = 50 + 12 * Vdd;
+                        unityGainFreq = 12 / CL;
+                        phaseMarginValue = 70 - 2 * CL;
+                        power = 120 * Vdd;
+                        break;
+                }
+                
+                // 更新显示
+                dcGain.textContent = dcGainValue.toFixed(1);
+                unityGainBandwidth.textContent = unityGainFreq.toFixed(1);
+                phaseMargin.textContent = phaseMarginValue.toFixed(1);
+                opampPower.textContent = power.toFixed(1);
+                
+                // 更新图表
+                const frequencies = ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'];
+                const gainData = frequencies.map((freq, i) => {
+                    const freqHz = parseFloat(freq) * (i < 3 ? 1 : i < 6 ? 1000 : 1000000);
+                    if (freqHz < unityGainFreq * 1000) {
+                        return dcGainValue;
+                    } else {
+                        return dcGainValue - 20 * Math.log10(freqHz / (unityGainFreq * 1000));
+                    }
+                });
+                
+                const phaseData = frequencies.map((freq, i) => {
+                    const freqHz = parseFloat(freq) * (i < 3 ? 1 : i < 6 ? 1000 : 1000000);
+                    if (freqHz < unityGainFreq / 10) {
+                        return 0;
+                    } else {
+                        return -45 * Math.log10(freqHz / (unityGainFreq / 10));
+                    }
+                });
+                
+                opampChart.data.datasets[0].data = gainData;
+                opampChart.data.datasets[1].data = phaseData;
+                opampChart.update();
+                
+                // 更新进度
+                if (opampExperiments < 2) {
+                    opampExperiments++;
+                    updateProgress();
+                }
+            }
+            
+            opampType.addEventListener('change', updateOpAmp);
+            supplyVoltage.addEventListener('input', updateOpAmp);
+            loadCapacitance.addEventListener('input', updateOpAmp);
+            
+            // 初始化
+            updateOpAmp();
+        }
+        
+        // 射频器件噪声模拟器
+        function initRFNoiseSimulator() {
+            const deviceType = document.getElementById('rf-device-type');
+            const frequency = document.getElementById('frequency');
+            const temperature = document.getElementById('temperature');
+            
+            const frequencyValue = document.getElementById('frequency-value');
+            const temperatureValue = document.getElementById('temperature-value');
+            
+            const noiseFigure = document.getElementById('noise-figure');
+            const rfGain = document.getElementById('rf-gain');
+            const p1db = document.getElementById('p1db');
+            const ip3 = document.getElementById('ip3');
+            
+            // 创建图表
+            const ctx = document.getElementById('rf-noise-chart').getContext('2d');
+            const rfChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0.1GHz', '0.5GHz', '1GHz', '2GHz', '5GHz', '10GHz'],
+                    datasets: [{
+                        label: '噪声系数 (dB)',
+                        data: [0.5, 0.8, 1.2, 1.8, 2.5, 3.5],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '增益 (dB)',
+                        data: [20, 19, 18, 16, 14, 12],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '值 (dB)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '频率'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 创建史密斯圆图
+            const smithCtx = document.getElementById('smith-chart').getContext('2d');
+            const smithChart = new Chart(smithCtx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: '阻抗点',
+                        data: [
+                            {x: 0.3, y: 0.4},
+                            {x: 0.5, y: 0.2},
+                            {x: 0.7, y: -0.1},
+                            {x: 0.9, y: -0.3}
+                        ],
+                        backgroundColor: '#3498db',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            min: -1.5,
+                            max: 1.5,
+                            title: {
+                                display: true,
+                                text: '实部'
+                            }
+                        },
+                        y: {
+                            min: -1.5,
+                            max: 1.5,
+                            title: {
+                                display: true,
+                                text: '虚部'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 创建线性度图表
+            const linearityCtx = document.getElementById('linearity-chart').getContext('2d');
+            const linearityChart = new Chart(linearityCtx, {
+                type: 'line',
+                data: {
+                    labels: ['-60', '-50', '-40', '-30', '-20', '-10', '0', '10'],
+                    datasets: [{
+                        label: '基波输出 (dBm)',
+                        data: [-60, -50, -40, -30, -20, -10, 0, 9],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: false
+                    }, {
+                        label: '三阶互调 (dBm)',
+                        data: [-180, -150, -120, -90, -60, -30, 0, 15],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            title: {
+                                display: true,
+                                text: '输出功率 (dBm)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '输入功率 (dBm)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateRFNoise() {
+                const type = deviceType.value;
+                const freq = parseFloat(frequency.value);
+                const temp = parseFloat(temperature.value);
+                
+                // 更新显示值
+                frequencyValue.textContent = `${freq} GHz`;
+                temperatureValue.textContent = `${temp}°C`;
+                
+                // 计算性能参数（简化模型）
+                let noiseFigureValue, gainValue, p1dbValue, ip3Value;
+                
+                switch(type) {
+                    case 'lna':
+                        noiseFigureValue = 0.5 + 0.2 * freq + 0.001 * temp;
+                        gainValue = 20 - 0.5 * freq;
+                        p1dbValue = -10 - 2 * freq;
+                        ip3Value = 5 - 2 * freq;
+                        break;
+                    case 'mixer':
+                        noiseFigureValue = 5 + 0.3 * freq + 0.002 * temp;
+                        gainValue = 0 - 0.2 * freq;
+                        p1dbValue = 0 - 2 * freq;
+                        ip3Value = 10 - 2 * freq;
+                        break;
+                    case 'vco':
+                        noiseFigureValue = 10 + 0.5 * freq + 0.003 * temp;
+                        gainValue = -5 - 0.1 * freq;
+                        p1dbValue = -5 - freq;
+                        ip3Value = 5 - freq;
+                        break;
+                    case 'pa':
+                        noiseFigureValue = 8 + 0.4 * freq + 0.002 * temp;
+                        gainValue = 25 - 0.8 * freq;
+                        p1dbValue = 20 - 1.5 * freq;
+                        ip3Value = 30 - 1.5 * freq;
+                        break;
+                }
+                
+                // 更新显示
+                noiseFigure.textContent = noiseFigureValue.toFixed(2);
+                rfGain.textContent = gainValue.toFixed(1);
+                p1db.textContent = p1dbValue.toFixed(1);
+                ip3.textContent = ip3Value.toFixed(1);
+                
+                // 更新图表
+                const frequencies = [0.1, 0.5, 1, 2, 5, 10];
+                const noiseData = frequencies.map(f => {
+                    let nf;
+                    switch(type) {
+                        case 'lna':
+                            nf = 0.5 + 0.2 * f + 0.001 * temp;
+                            break;
+                        case 'mixer':
+                            nf = 5 + 0.3 * f + 0.002 * temp;
+                            break;
+                        case 'vco':
+                            nf = 10 + 0.5 * f + 0.003 * temp;
+                            break;
+                        case 'pa':
+                            nf = 8 + 0.4 * f + 0.002 * temp;
+                            break;
+                    }
+                    return nf;
+                });
+                
+                const gainData = frequencies.map(f => {
+                    let g;
+                    switch(type) {
+                        case 'lna':
+                            g = 20 - 0.5 * f;
+                            break;
+                        case 'mixer':
+                            g = 0 - 0.2 * f;
+                            break;
+                        case 'vco':
+                            g = -5 - 0.1 * f;
+                            break;
+                        case 'pa':
+                            g = 25 - 0.8 * f;
+                            break;
+                    }
+                    return g;
+                });
+                
+                rfChart.data.datasets[0].data = noiseData;
+                rfChart.data.datasets[1].data = gainData;
+                rfChart.update();
+                
+                // 更新进度
+                if (rfTests < 2) {
+                    rfTests++;
+                    updateProgress();
+                }
+            }
+            
+            deviceType.addEventListener('change', updateRFNoise);
+            frequency.addEventListener('input', updateRFNoise);
+            temperature.addEventListener('input', updateRFNoise);
+            
+            // 初始化
+            updateRFNoise();
+        }
+        
+        // 混合信号干扰分析器
+        function initMixedSignalAnalyzer() {
+            const digitalActivity = document.getElementById('digital-activity');
+            const supplySeparation = document.getElementById('supply-separation');
+            const groundIsolation = document.getElementById('ground-isolation');
+            
+            const digitalActivityValue = document.getElementById('digital-activity-value');
+            const supplySeparationValue = document.getElementById('supply-separation-value');
+            const groundIsolationValue = document.getElementById('ground-isolation-value');
+            
+            const analogNoise = document.getElementById('analog-noise');
+            const digitalGlitch = document.getElementById('digital-glitch');
+            const snr = document.getElementById('snr');
+            const enob = document.getElementById('enob');
+            
+            // 创建图表
+            const ctx = document.getElementById('mixed-signal-chart').getContext('2d');
+            const mixedChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
+                    datasets: [{
+                        label: '模拟噪声 (μV)',
+                        data: [10, 15, 25, 40, 60, 85, 115, 150, 190, 235, 285],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }, {
+                        label: '数字毛刺 (mV)',
+                        data: [5, 8, 12, 18, 25, 33, 42, 52, 63, 75, 88],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '噪声/毛刺'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '数字活动 (%)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateMixedSignal() {
+                const activity = parseFloat(digitalActivity.value);
+                const supplySep = parseFloat(supplySeparation.value);
+                const groundIso = parseFloat(groundIsolation.value);
+                
+                // 更新显示值
+                digitalActivityValue.textContent = `${activity}%`;
+                supplySeparationValue.textContent = `${supplySep} dB`;
+                groundIsolationValue.textContent = `${groundIso} dB`;
+                
+                // 计算性能参数（简化模型）
+                const baseAnalogNoise = 10;
+                const baseDigitalGlitch = 5;
+                
+                const analogNoiseValue = baseAnalogNoise * (1 + activity / 20) * (40 / supplySep);
+                const digitalGlitchValue = baseDigitalGlitch * (1 + activity / 15) * (40 / groundIso);
+                const snrValue = 20 * Math.log10(1000 / analogNoiseValue); // 假设信号幅度为1mV
+                const enobValue = (snrValue - 1.76) / 6.02; // SNR到ENOB的转换公式
+                
+                // 更新显示
+                analogNoise.textContent = analogNoiseValue.toFixed(1);
+                digitalGlitch.textContent = digitalGlitchValue.toFixed(2);
+                snr.textContent = snrValue.toFixed(1);
+                enob.textContent = enobValue.toFixed(1);
+                
+                // 更新图表
+                const activities = Array.from({length: 11}, (_, i) => i * 10);
+                const analogNoiseData = activities.map(a => baseAnalogNoise * (1 + a / 20) * (40 / supplySep));
+                const digitalGlitchData = activities.map(a => baseDigitalGlitch * (1 + a / 15) * (40 / groundIso));
+                
+                mixedChart.data.datasets[0].data = analogNoiseData;
+                mixedChart.data.datasets[1].data = digitalGlitchData;
+                mixedChart.update();
+                
+                // 更新进度
+                if (mixedSignalSimulations < 2) {
+                    mixedSignalSimulations++;
+                    updateProgress();
+                }
+            }
+            
+            digitalActivity.addEventListener('input', updateMixedSignal);
+            supplySeparation.addEventListener('input', updateMixedSignal);
+            groundIsolation.addEventListener('input', updateMixedSignal);
+            
+            // 初始化
+            updateMixedSignal();
+        }
+        
+        // 进度跟踪
+        function updateProgress() {
+            // 更新运算放大器进度
+            document.getElementById('opamp-progress').textContent = `${opampExperiments}/2 已完成`;
+            
+            // 更新射频器件进度
+            document.getElementById('rf-progress').textContent = `${rfTests}/2 已完成`;
+            
+            // 更新混合信号进度
+            document.getElementById('mixed-progress').textContent = `${mixedSignalSimulations}/2 已完成`;
+            
+            // 保存进度
+            saveProgress();
+        }
+        
+        // 保存进度
+        function saveProgress() {
+            const progress = {
+                opampExperiments,
+                rfTests,
+                mixedSignalSimulations
+            };
+            
+            localStorage.setItem('chapter6-progress', JSON.stringify(progress));
+        }
+        
+        // 加载进度
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('chapter6-progress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                opampExperiments = progress.opampExperiments || 0;
+                rfTests = progress.rfTests || 0;
+                mixedSignalSimulations = progress.mixedSignalSimulations || 0;
+                
+                updateProgress();
+            }
+        }
+        
+        // 加载进度
+        loadProgress();
+    </script>
+</body>
+</html>

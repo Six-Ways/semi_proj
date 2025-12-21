@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十四章：后摩尔时代器件技术 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chapter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .interactive-tool {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+        
+        .tool-title {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-title i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+        }
+        
+        .slider-value {
+            min-width: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin: 20px 0;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .comparison-table th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .technology-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .technology-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tech-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .tech-icon {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .tech-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .advantage-bar {
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 12px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .advantage-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s;
+        }
+        
+        .tab-container {
+            margin: 20px 0;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #7f8c8d;
+            transition: all 0.3s;
+        }
+        
+        .tab-button.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            padding: 20px 0;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .roadmap {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .roadmap-line {
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #3498db;
+        }
+        
+        .roadmap-item {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 30px;
+        }
+        
+        .roadmap-dot {
+            position: absolute;
+            left: 18px;
+            top: 5px;
+            width: 28px;
+            height: 28px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .roadmap-content {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .roadmap-year {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .result-display {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item active">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#beyond-moore" class="section-nav-item">
+                        超越摩尔定律
+                    </a>
+                    <a href="#new-materials" class="section-nav-item">
+                        新材料技术
+                    </a>
+                    <a href="#novel-structures" class="section-nav-item">
+                        新型结构
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+        <div class="chapter-header">
+            <h1>第十四章：后摩尔时代器件技术</h1>
+            <p class="chapter-intro">探索超越传统摩尔定律的创新器件技术，包括三维集成、新型存储器、量子器件等前沿技术，了解半导体行业在后摩尔时代的发展方向和挑战。</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">后摩尔时代技术概览</h2>
+            <p>随着传统CMOS技术接近物理极限，半导体行业正在探索多种超越摩尔定律的创新技术路径。这些技术不仅在尺寸上继续缩小，更在功能、架构和材料等方面实现突破。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('overview', 'scaling')">延续摩尔定律</button>
+                    <button class="tab-button" onclick="switchTab('overview', 'beyond')">超越摩尔定律</button>
+                    <button class="tab-button" onclick="switchTab('overview', 'more')">扩展摩尔定律</button>
+                </div>
+                
+                <div id="scaling" class="tab-pane active">
+                    <h3>延续摩尔定律 (More Moore)</h3>
+                    <p>继续沿传统路径缩小晶体管尺寸，提高集成度和性能：</p>
+                    <ul>
+                        <li>FinFET与GAA晶体管技术</li>
+                        <li>极紫外光刻技术(EUV)</li>
+                        <li>多图案化技术</li>
+                        <li>原子层沉积与刻蚀技术</li>
+                    </ul>
+                    <div class="chart-container">
+                        <canvas id="scaling-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div id="beyond" class="tab-pane">
+                    <h3>超越摩尔定律 (Beyond Moore)</h3>
+                    <p>探索非传统CMOS器件和计算范式：</p>
+                    <ul>
+                        <li>量子计算与量子器件</li>
+                        <li>神经形态计算器件</li>
+                        <li>自旋电子学器件</li>
+                        <li>单电子晶体管</li>
+                    </ul>
+                    <div class="chart-container">
+                        <canvas id="beyond-chart"></canvas>
+                    </div>
+                </div>
+                
+                <div id="more" class="tab-pane">
+                    <h3>扩展摩尔定律 (More than Moore)</h3>
+                    <p>通过功能集成和系统级创新提升价值：</p>
+                    <ul>
+                        <li>三维集成与先进封装</li>
+                        <li>异构集成技术</li>
+                        <li>传感器与执行器集成</li>
+                        <li>射频与功率器件集成</li>
+                    </ul>
+                    <div class="chart-container">
+                        <canvas id="more-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">三维集成技术</h2>
+            <p>三维集成通过垂直堆叠多层芯片，突破传统平面集成的限制，实现更高的集成密度和更短的互连距离。</p>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-cube"></i>
+                    三维集成技术比较器
+                </div>
+                
+                <div class="control-group">
+                    <label>选择比较的技术类型：</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="compare3D('tsv')">硅通孔(TSV)</button>
+                        <button class="btn btn-primary" onclick="compare3D('monolithic')">单片3D</button>
+                        <button class="btn btn-primary" onclick="compare3D('fanout')">扇出型封装</button>
+                        <button class="btn btn-primary" onclick="compare3D('hybrid')">混合键合</button>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="3d-comparison-chart"></canvas>
+                </div>
+                
+                <table class="comparison-table" id="3d-comparison-table">
+                    <thead>
+                        <tr>
+                            <th>技术参数</th>
+                            <th>硅通孔(TSV)</th>
+                            <th>单片3D</th>
+                            <th>扇出型封装</th>
+                            <th>混合键合</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>互连密度</td>
+                            <td>高</td>
+                            <td>极高</td>
+                            <td>中等</td>
+                            <td>极高</td>
+                        </tr>
+                        <tr>
+                            <td>热管理</td>
+                            <td>中等</td>
+                            <td>挑战</td>
+                            <td>良好</td>
+                            <td>良好</td>
+                        </tr>
+                        <tr>
+                            <td>成本</td>
+                            <td>高</td>
+                            <td>极高</td>
+                            <td>中等</td>
+                            <td>高</td>
+                        </tr>
+                        <tr>
+                            <td>成熟度</td>
+                            <td>成熟</td>
+                            <td>发展中</td>
+                            <td>成熟</td>
+                            <td>发展中</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-layer-group"></i>
+                    3D堆叠层数优化模拟器
+                </div>
+                
+                <div class="control-group">
+                    <label>堆叠层数：</label>
+                    <div class="slider-container">
+                        <input type="range" id="stack-layers" class="slider" min="2" max="16" value="4" oninput="updateStackSimulation()">
+                        <span class="slider-value" id="stack-layers-value">4</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>每层晶体管密度(亿/平方厘米)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="layer-density" class="slider" min="1" max="100" value="10" oninput="updateStackSimulation()">
+                        <span class="slider-value" id="layer-density-value">10</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>层间互连间距(纳米)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="interconnect-pitch" class="slider" min="10" max="100" value="50" oninput="updateStackSimulation()">
+                        <span class="slider-value" id="interconnect-pitch-value">50</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="stack-performance-chart"></canvas>
+                </div>
+                
+                <div class="result-display" id="stack-result">
+                    计算结果将显示在这里...
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">新型存储器技术</h2>
+            <p>随着传统存储器技术接近物理极限，新型存储器技术正在崛起，提供更高的密度、更低的功耗和更好的性能。</p>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <div class="tech-title">相变存储器(PCRAM)</div>
+                </div>
+                <p>利用材料在晶态和非晶态之间的可逆相变来存储数据，具有非易失性、高速度和良好耐久性的特点。</p>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 75%;">存储密度: 75%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 85%;">读写速度: 85%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 70%;">功耗效率: 70%</div>
+                </div>
+            </div>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-magnet"></i>
+                    </div>
+                    <div class="tech-title">磁性存储器(MRAM)</div>
+                </div>
+                <p>利用磁性材料的磁化方向存储数据，具有非易失性、高速度和几乎无限的耐久性。</p>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 65%;">存储密度: 65%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 90%;">读写速度: 90%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 80%;">功耗效率: 80%</div>
+                </div>
+            </div>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="tech-title">阻变存储器(ReRAM)</div>
+                </div>
+                <p>通过材料的电阻变化来存储数据，具有结构简单、高密度和低功耗的特点。</p>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 90%;">存储密度: 90%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 75%;">读写速度: 75%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 85%;">功耗效率: 85%</div>
+                </div>
+            </div>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <div class="tech-title">铁电存储器(FeRAM)</div>
+                </div>
+                <p>利用铁电材料的极化状态存储数据，具有低功耗、高速度和良好耐久性的特点。</p>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 60%;">存储密度: 60%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 95%;">读写速度: 95%</div>
+                </div>
+                <div class="advantage-bar">
+                    <div class="advantage-fill" style="width: 90%;">功耗效率: 90%</div>
+                </div>
+            </div>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-chart-bar"></i>
+                    新型存储器性能对比
+                </div>
+                <div class="chart-container">
+                    <canvas id="memory-comparison-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">新兴计算范式</h2>
+            <p>后摩尔时代不仅需要器件技术的创新，还需要计算范式的变革，包括量子计算、神经形态计算等新兴领域。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="switchTab('computing', 'quantum')">量子计算</button>
+                    <button class="tab-button" onclick="switchTab('computing', 'neuromorphic')">神经形态计算</button>
+                    <button class="tab-button" onclick="switchTab('computing', 'spintronics')">自旋电子学</button>
+                </div>
+                
+                <div id="quantum" class="tab-pane active">
+                    <h3>量子计算</h3>
+                    <p>利用量子力学原理进行信息处理，有望解决传统计算机难以处理的复杂问题。</p>
+                    
+                    <div class="interactive-tool">
+                        <div class="tool-title">
+                            <i class="fas fa-atom"></i>
+                            量子比特稳定性模拟器
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>量子比特类型：</label>
+                            <select id="qubit-type" onchange="updateQuantumSimulation()">
+                                <option value="superconducting">超导量子比特</option>
+                                <option value="trapped">离子阱量子比特</option>
+                                <option value="photonic">光量子比特</option>
+                                <option value="silicon">硅量子点量子比特</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>工作温度(毫开尔文)：</label>
+                            <div class="slider-container">
+                                <input type="range" id="quantum-temp" class="slider" min="10" max="1000" value="20" oninput="updateQuantumSimulation()">
+                                <span class="slider-value" id="quantum-temp-value">20</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>退相干时间(微秒)：</label>
+                            <div class="slider-container">
+                                <input type="range" id="decoherence-time" class="slider" min="10" max="1000" value="100" oninput="updateQuantumSimulation()">
+                                <span class="slider-value" id="decoherence-time-value">100</span>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <canvas id="quantum-performance-chart"></canvas>
+                        </div>
+                        
+                        <div class="result-display" id="quantum-result">
+                            量子计算性能分析结果将显示在这里...
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="neuromorphic" class="tab-pane">
+                    <h3>神经形态计算</h3>
+                    <p>模仿生物神经网络的结构和功能，实现高效的人工智能计算。</p>
+                    
+                    <div class="interactive-tool">
+                        <div class="tool-title">
+                            <i class="fas fa-brain"></i>
+                            神经形态芯片架构模拟器
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>神经元数量：</label>
+                            <div class="slider-container">
+                                <input type="range" id="neuron-count" class="slider" min="1000" max="1000000" value="100000" step="1000" oninput="updateNeuromorphicSimulation()">
+                                <span class="slider-value" id="neuron-count-value">100000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>突触密度(每神经元)：</label>
+                            <div class="slider-container">
+                                <input type="range" id="synapse-density" class="slider" min="100" max="10000" value="1000" step="100" oninput="updateNeuromorphicSimulation()">
+                                <span class="slider-value" id="synapse-density-value">1000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>精度等级：</label>
+                            <select id="precision-level" onchange="updateNeuromorphicSimulation()">
+                                <option value="1">1位(二值)</option>
+                                <option value="2">2位</option>
+                                <option value="4">4位</option>
+                                <option value="8">8位</option>
+                                <option value="16">16位</option>
+                                <option value="32">32位</option>
+                            </select>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <canvas id="neuromorphic-performance-chart"></canvas>
+                        </div>
+                        
+                        <div class="result-display" id="neuromorphic-result">
+                            神经形态芯片性能分析结果将显示在这里...
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="spintronics" class="tab-pane">
+                    <h3>自旋电子学</h3>
+                    <p>利用电子的自旋自由度进行信息处理和存储，实现低功耗、高速度的器件。</p>
+                    
+                    <div class="interactive-tool">
+                        <div class="tool-title">
+                            <i class="fas fa-sync-alt"></i>
+                            自旋电子器件性能模拟器
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>器件类型：</label>
+                            <select id="spin-device-type" onchange="updateSpintronicsSimulation()">
+                                <option value="gmr">巨磁阻(GMR)器件</option>
+                                <option value="tmr">隧穿磁阻(TMR)器件</option>
+                                <option value="spinfet">自旋场效应晶体管</option>
+                                <option value="racetrack">赛道存储器</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>磁阻变化率(%)：</label>
+                            <div class="slider-container">
+                                <input type="range" id="magnetoresistance" class="slider" min="10" max="1000" value="200" oninput="updateSpintronicsSimulation()">
+                                <span class="slider-value" id="magnetoresistance-value">200</span>
+                            </div>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>临界电流密度(安培/平方厘米)：</label>
+                            <div class="slider-container">
+                                <input type="range" id="critical-current" class="slider" min="1e5" max="1e8" value="1e6" step="1e5" oninput="updateSpintronicsSimulation()">
+                                <span class="slider-value" id="critical-current-value">1e6</span>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <canvas id="spintronics-performance-chart"></canvas>
+                        </div>
+                        
+                        <div class="result-display" id="spintronics-result">
+                            自旋电子器件性能分析结果将显示在这里...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">后摩尔时代技术发展路线图</h2>
+            <p>半导体行业正在通过多种技术路径应对摩尔定律放缓的挑战，形成多元化的发展格局。</p>
+            
+            <div class="roadmap">
+                <div class="roadmap-line"></div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">1</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2020-2022：3nm/2nm工艺节点</div>
+                        <p>FinFET向GAA晶体管过渡，EUV光刻技术成熟，高数值孔径EUV研发加速。</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">2</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2023-2025：先进封装与3D集成普及</div>
+                        <p>Chiplet架构成为主流，异构集成技术成熟，硅光子学开始商业化应用。</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">3</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2026-2028：新型存储器商业化</div>
+                        <p>MRAM、ReRAM等新型存储器在特定应用领域取代传统存储器，存储级内存技术成熟。</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">4</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2029-2032：量子计算实用化</div>
+                        <p>容错量子计算机实现，量子优势在特定问题中显现，量子-经典混合计算系统普及。</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">5</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2033-2035：神经形态计算广泛应用</div>
+                        <p>大规模神经形态芯片实现，边缘AI计算效率大幅提升，类脑计算系统商业化。</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-dot">6</div>
+                    <div class="roadmap-content">
+                        <div class="roadmap-year">2036-2040：后摩尔时代全面到来</div>
+                        <p>多种技术路径并行发展，专用计算架构普及，半导体行业进入多元化创新时代。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">本章小结</h2>
+            <p>后摩尔时代的半导体技术发展呈现多元化趋势，不再单纯依赖尺寸缩小，而是通过材料创新、结构革新和计算范式变革来实现性能提升。三维集成、新型存储器和新兴计算范式等技术路径共同推动半导体行业持续发展，为信息技术的进步提供基础支撑。</p>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    章节测验
+                </div>
+                
+                <div id="quiz-container">
+                    <div class="quiz-question">
+                        <p>1. 下列哪项不属于"超越摩尔定律"的技术路径？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q1" value="a"> a. 量子计算</label>
+                            <label><input type="radio" name="q1" value="b"> b. 三维集成</label>
+                            <label><input type="radio" name="q1" value="c"> c. 神经形态计算</label>
+                            <label><input type="radio" name="q1" value="d"> d. FinFET晶体管</label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>2. 下列哪种新型存储器技术具有最高的读写速度？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q2" value="a"> a. 相变存储器(PCRAM)</label>
+                            <label><input type="radio" name="q2" value="b"> b. 磁性存储器(MRAM)</label>
+                            <label><input type="radio" name="q2" value="c"> c. 阻变存储器(ReRAM)</label>
+                            <label><input type="radio" name="q2" value="d"> d. 铁电存储器(FeRAM)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <p>3. 三维集成技术中，哪种技术具有最高的互连密度？</p>
+                        <div class="quiz-options">
+                            <label><input type="radio" name="q3" value="a"> a. 硅通孔(TSV)</label>
+                            <label><input type="radio" name="q3" value="b"> b. 单片3D</label>
+                            <label><input type="radio" name="q3" value="c"> c. 扇出型封装</label>
+                            <label><input type="radio" name="q3" value="d"> d. 混合键合</label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="checkQuizAnswers()">提交答案</button>
+                    <div id="quiz-result" class="result-display" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="btn btn-secondary" onclick="window.location.href='chapter13.html'">
+                <i class="fas fa-arrow-left"></i> 上一章：宽禁带半导体器件
+            </button>
+            <button class="btn btn-primary" onclick="window.location.href='chapter15.html'">
+                下一章：器件设计与仿真工具 <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+    
+    <script>
+        // 初始化图表
+        let scalingChart, beyondChart, moreChart;
+        let comparison3DChart, stackPerformanceChart;
+        let memoryComparisonChart;
+        let quantumPerformanceChart, neuromorphicPerformanceChart, spintronicsPerformanceChart;
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initOverviewCharts();
+            init3DComparisonChart();
+            initStackPerformanceChart();
+            initMemoryComparisonChart();
+            initQuantumPerformanceChart();
+            initNeuromorphicPerformanceChart();
+            initSpintronicsPerformanceChart();
+        });
+        
+        // 初始化概览图表
+        function initOverviewCharts() {
+            // 延续摩尔定律图表
+            const scalingCtx = document.getElementById('scaling-chart').getContext('2d');
+            scalingChart = new Chart(scalingCtx, {
+                type: 'line',
+                data: {
+                    labels: ['90nm', '65nm', '45nm', '32nm', '22nm', '14nm', '10nm', '7nm', '5nm', '3nm'],
+                    datasets: [{
+                        label: '晶体管密度(亿/平方毫米)',
+                        data: [0.1, 0.2, 0.4, 0.8, 1.5, 2.5, 4.0, 6.5, 10.0, 15.0],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'CMOS技术节点与晶体管密度发展趋势'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '晶体管密度(亿/平方毫米)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 超越摩尔定律图表
+            const beyondCtx = document.getElementById('beyond-chart').getContext('2d');
+            beyondChart = new Chart(beyondCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['计算速度', '能效比', '集成度', '成本效益', '技术成熟度'],
+                    datasets: [
+                        {
+                            label: '量子计算',
+                            data: [90, 70, 30, 20, 40],
+                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                            borderColor: '#3498db',
+                            pointBackgroundColor: '#3498db'
+                        },
+                        {
+                            label: '神经形态计算',
+                            data: [70, 90, 60, 50, 60],
+                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                            borderColor: '#2ecc71',
+                            pointBackgroundColor: '#2ecc71'
+                        },
+                        {
+                            label: '自旋电子学',
+                            data: [60, 80, 70, 60, 70],
+                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                            borderColor: '#e74c3c',
+                            pointBackgroundColor: '#e74c3c'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '新兴计算技术性能对比'
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // 扩展摩尔定律图表
+            const moreCtx = document.getElementById('more-chart').getContext('2d');
+            moreChart = new Chart(moreCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['三维集成', '异构集成', '传感器集成', '射频集成', '功率集成'],
+                    datasets: [{
+                        label: '市场增长率(%)',
+                        data: [25, 30, 15, 20, 18],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(46, 204, 113, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)',
+                            'rgba(155, 89, 182, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(46, 204, 113, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)',
+                            'rgba(155, 89, 182, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '扩展摩尔定律技术市场增长率'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '年增长率(%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化3D技术比较图表
+        function init3DComparisonChart() {
+            const ctx = document.getElementById('3d-comparison-chart').getContext('2d');
+            comparison3DChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['互连密度', '热管理', '成本效益', '技术成熟度', '设计复杂度'],
+                    datasets: [
+                        {
+                            label: '硅通孔(TSV)',
+                            data: [75, 60, 50, 85, 70],
+                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                            borderColor: '#3498db',
+                            pointBackgroundColor: '#3498db'
+                        },
+                        {
+                            label: '单片3D',
+                            data: [95, 30, 20, 40, 90],
+                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                            borderColor: '#2ecc71',
+                            pointBackgroundColor: '#2ecc71'
+                        },
+                        {
+                            label: '扇出型封装',
+                            data: [60, 80, 70, 80, 50],
+                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                            borderColor: '#e74c3c',
+                            pointBackgroundColor: '#e74c3c'
+                        },
+                        {
+                            label: '混合键合',
+                            data: [90, 75, 40, 50, 85],
+                            backgroundColor: 'rgba(241, 196, 15, 0.2)',
+                            borderColor: '#f1c40f',
+                            pointBackgroundColor: '#f1c40f'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '三维集成技术性能对比'
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 比较3D技术
+        function compare3D(techType) {
+            // 高亮显示选中的技术
+            const datasets = comparison3DChart.data.datasets;
+            
+            datasets.forEach(dataset => {
+                dataset.borderWidth = 1;
+                dataset.pointRadius = 3;
+            });
+            
+            // 根据技术类型设置高亮
+            let highlightIndex;
+            switch(techType) {
+                case 'tsv': highlightIndex = 0; break;
+                case 'monolithic': highlightIndex = 1; break;
+                case 'fanout': highlightIndex = 2; break;
+                case 'hybrid': highlightIndex = 3; break;
+            }
+            
+            datasets[highlightIndex].borderWidth = 3;
+            datasets[highlightIndex].pointRadius = 6;
+            
+            comparison3DChart.update();
+            
+            // 在表格中高亮对应行
+            const table = document.getElementById('3d-comparison-table');
+            const rows = table.getElementsByTagName('tr');
+            
+            // 重置所有行的背景色
+            for (let i = 1; i < rows.length; i++) {
+                rows[i].style.backgroundColor = '';
+            }
+            
+            // 高亮对应列
+            const columnIndex = highlightIndex + 1;
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                if (cells[columnIndex]) {
+                    cells[columnIndex].style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
+                }
+            }
+        }
+        
+        // 初始化堆叠性能图表
+        function initStackPerformanceChart() {
+            const ctx = document.getElementById('stack-performance-chart').getContext('2d');
+            stackPerformanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2层', '4层', '6层', '8层', '10层', '12层', '14层', '16层'],
+                    datasets: [
+                        {
+                            label: '总晶体管数量(十亿)',
+                            data: [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            fill: true,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '互连延迟(皮秒)',
+                            data: [100, 80, 70, 65, 62, 60, 58, 57],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            fill: true,
+                            yAxisID: 'y1'
+                        },
+                        {
+                            label: '功耗(瓦特)',
+                            data: [10, 15, 22, 30, 40, 52, 65, 80],
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            fill: true,
+                            yAxisID: 'y2'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '3D堆叠性能参数随层数变化'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: '晶体管数量(十亿)'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: '互连延迟(皮秒)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        },
+                        y2: {
+                            type: 'linear',
+                            display: false,
+                            title: {
+                                display: true,
+                                text: '功耗(瓦特)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新堆叠模拟
+        function updateStackSimulation() {
+            const layers = document.getElementById('stack-layers').value;
+            const density = document.getElementById('layer-density').value;
+            const pitch = document.getElementById('interconnect-pitch').value;
+            
+            // 更新显示值
+            document.getElementById('stack-layers-value').textContent = layers;
+            document.getElementById('layer-density-value').textContent = density;
+            document.getElementById('interconnect-pitch-value').textContent = pitch;
+            
+            // 计算性能参数
+            const totalTransistors = layers * density / 10; // 转换为十亿
+            const interconnectDelay = 100 * Math.pow(0.9, layers-2) * (pitch/50);
+            const power = 10 * Math.pow(layers/2, 1.5) * (density/10);
+            const thermalChallenge = Math.pow(layers, 1.8) * Math.pow(density/10, 0.8);
+            
+            // 更新图表
+            const layerLabels = [];
+            const transistorData = [];
+            const delayData = [];
+            const powerData = [];
+            
+            for (let i = 2; i <= 16; i += 2) {
+                layerLabels.push(i + '层');
+                transistorData.push(i * density / 10);
+                delayData.push(100 * Math.pow(0.9, i-2) * (pitch/50));
+                powerData.push(10 * Math.pow(i/2, 1.5) * (density/10));
+            }
+            
+            stackPerformanceChart.data.labels = layerLabels;
+            stackPerformanceChart.data.datasets[0].data = transistorData;
+            stackPerformanceChart.data.datasets[1].data = delayData;
+            stackPerformanceChart.data.datasets[2].data = powerData;
+            stackPerformanceChart.update();
+            
+            // 更新结果文本
+            const resultText = `
+                3D堆叠性能分析结果：
+                总晶体管数量: ${totalTransistors.toFixed(2)} 十亿
+                互连延迟: ${interconnectDelay.toFixed(2)} 皮秒
+                预估功耗: ${power.toFixed(2)} 瓦特
+                热管理挑战指数: ${thermalChallenge.toFixed(2)}
+                推荐应用场景: ${getRecommendedScenario(layers, density, pitch)}
+            `;
+            
+            document.getElementById('stack-result').textContent = resultText;
+        }
+        
+        // 获取推荐应用场景
+        function getRecommendedScenario(layers, density, pitch) {
+            if (layers <= 4 && density <= 20) {
+                return "移动设备与消费电子产品";
+            } else if (layers <= 8 && density <= 50) {
+                return "高性能计算与人工智能加速器";
+            } else if (layers <= 12 && density <= 80) {
+                return "数据中心与企业级服务器";
+            } else {
+                return "尖端计算与科研应用(需先进散热方案)";
+            }
+        }
+        
+        // 初始化存储器比较图表
+        function initMemoryComparisonChart() {
+            const ctx = document.getElementById('memory-comparison-chart').getContext('2d');
+            memoryComparisonChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['存储密度', '读写速度', '功耗效率', '耐久性', '成本效益', '技术成熟度'],
+                    datasets: [
+                        {
+                            label: '相变存储器(PCRAM)',
+                            data: [75, 85, 70, 80, 60, 70],
+                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                            borderColor: '#3498db',
+                            pointBackgroundColor: '#3498db'
+                        },
+                        {
+                            label: '磁性存储器(MRAM)',
+                            data: [65, 90, 80, 95, 50, 75],
+                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
+                            borderColor: '#2ecc71',
+                            pointBackgroundColor: '#2ecc71'
+                        },
+                        {
+                            label: '阻变存储器(ReRAM)',
+                            data: [90, 75, 85, 70, 65, 60],
+                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                            borderColor: '#e74c3c',
+                            pointBackgroundColor: '#e74c3c'
+                        },
+                        {
+                            label: '铁电存储器(FeRAM)',
+                            data: [60, 95, 90, 85, 70, 80],
+                            backgroundColor: 'rgba(241, 196, 15, 0.2)',
+                            borderColor: '#f1c40f',
+                            pointBackgroundColor: '#f1c40f'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '新型存储器技术综合性能对比'
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 初始化量子性能图表
+        function initQuantumPerformanceChart() {
+            const ctx = document.getElementById('quantum-performance-chart').getContext('2d');
+            quantumPerformanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['10', '20', '50', '100', '200', '500', '1000'],
+                    datasets: [
+                        {
+                            label: '量子保真度',
+                            data: [99.5, 99.0, 98.0, 96.0, 92.0, 85.0, 75.0],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: '门操作成功率',
+                            data: [99.0, 98.5, 97.0, 94.0, 88.0, 78.0, 65.0],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '量子比特性能与退相干时间关系'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '退相干时间(微秒)'
+                            }
+                        },
+                        y: {
+                            beginAtZero: false,
+                            min: 50,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '性能指标(%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新量子模拟
+        function updateQuantumSimulation() {
+            const qubitType = document.getElementById('qubit-type').value;
+            const temperature = document.getElementById('quantum-temp').value;
+            const decoherenceTime = document.getElementById('decoherence-time').value;
+            
+            // 更新显示值
+            document.getElementById('quantum-temp-value').textContent = temperature;
+            document.getElementById('decoherence-time-value').textContent = decoherenceTime;
+            
+            // 根据量子比特类型设置基础参数
+            let baseFidelity, baseGateSuccess, tempSensitivity;
+            
+            switch(qubitType) {
+                case 'superconducting':
+                    baseFidelity = 99.5;
+                    baseGateSuccess = 99.0;
+                    tempSensitivity = 0.02;
+                    break;
+                case 'trapped':
+                    baseFidelity = 99.9;
+                    baseGateSuccess = 99.5;
+                    tempSensitivity = 0.001;
+                    break;
+                case 'photonic':
+                    baseFidelity = 98.5;
+                    baseGateSuccess = 98.0;
+                    tempSensitivity = 0.005;
+                    break;
+                case 'silicon':
+                    baseFidelity = 99.0;
+                    baseGateSuccess = 98.5;
+                    tempSensitivity = 0.01;
+                    break;
+            }
+            
+            // 计算温度影响
+            const tempFactor = Math.exp(-tempSensitivity * (temperature - 20));
+            
+            // 计算退相干时间影响
+            const coherenceFactor = Math.log(decoherenceTime / 10) / Math.log(100);
+            
+            // 计算最终性能
+            const fidelity = baseFidelity * tempFactor * coherenceFactor;
+            const gateSuccess = baseGateSuccess * tempFactor * coherenceFactor;
+            
+            // 更新图表
+            const timePoints = [10, 20, 50, 100, 200, 500, 1000];
+            const fidelityData = timePoints.map(t => {
+                const factor = Math.log(t / 10) / Math.log(100);
+                return Math.min(99.9, fidelity * factor);
+            });
+            
+            const gateSuccessData = timePoints.map(t => {
+                const factor = Math.log(t / 10) / Math.log(100);
+                return Math.min(99.9, gateSuccess * factor);
+            });
+            
+            quantumPerformanceChart.data.datasets[0].data = fidelityData;
+            quantumPerformanceChart.data.datasets[1].data = gateSuccessData;
+            quantumPerformanceChart.update();
+            
+            // 更新结果文本
+            const resultText = `
+                量子计算性能分析结果：
+                量子比特类型: ${getQubitTypeName(qubitType)}
+                工作温度: ${temperature} 毫开尔文
+                退相干时间: ${decoherenceTime} 微秒
+                量子保真度: ${fidelity.toFixed(2)}%
+                门操作成功率: ${gateSuccess.toFixed(2)}%
+                可实现量子体积: ${calculateQuantumVolume(fidelity, gateSuccess, decoherenceTime)}
+                适用应用场景: ${getQuantumApplication(fidelity, gateSuccess, decoherenceTime)}
+            `;
+            
+            document.getElementById('quantum-result').textContent = resultText;
+        }
+        
+        // 获取量子比特类型名称
+        function getQubitTypeName(type) {
+            switch(type) {
+                case 'superconducting': return "超导量子比特";
+                case 'trapped': return "离子阱量子比特";
+                case 'photonic': return "光量子比特";
+                case 'silicon": return "硅量子点量子比特";
+                default: return "未知类型";
+            }
+        }
+        
+        // 计算量子体积
+        function calculateQuantumVolume(fidelity, gateSuccess, decoherenceTime) {
+            const quality = fidelity * gateSuccess / 10000;
+            const time = decoherenceTime / 100;
+            return (quality * time * 100).toFixed(0);
+        }
+        
+        // 获取量子应用场景
+        function getQuantumApplication(fidelity, gateSuccess, decoherenceTime) {
+            if (fidelity > 99 && gateSuccess > 99 && decoherenceTime > 500) {
+                return "容错量子计算与复杂问题求解";
+            } else if (fidelity > 95 && gateSuccess > 95 && decoherenceTime > 100) {
+                return "量子化学模拟与优化问题";
+            } else if (fidelity > 90 && gateSuccess > 90 && decoherenceTime > 50) {
+                return "量子机器学习与基本算法演示";
+            } else {
+                return "量子教育与研究实验";
+            }
+        }
+        
+        // 初始化神经形态性能图表
+        function initNeuromorphicPerformanceChart() {
+            const ctx = document.getElementById('neuromorphic-performance-chart').getContext('2d');
+            neuromorphicPerformanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['能效比(TOPS/W)', '计算密度(TOPS/mm²)', '延迟(微秒)', '成本(TOPS/$)'],
+                    datasets: [
+                        {
+                            label: '神经形态芯片',
+                            data: [10, 5, 10, 2],
+                            backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                            borderColor: '#3498db',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '传统GPU',
+                            data: [1, 2, 50, 0.5],
+                            backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                            borderColor: '#e74c3c',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '专用ASIC',
+                            data: [5, 8, 5, 1],
+                            backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                            borderColor: '#2ecc71',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '神经形态芯片与传统计算平台性能对比'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            type: 'logarithmic'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新神经形态模拟
+        function updateNeuromorphicSimulation() {
+            const neuronCount = document.getElementById('neuron-count').value;
+            const synapseDensity = document.getElementById('synapse-density').value;
+            const precisionLevel = document.getElementById('precision-level').value;
+            
+            // 更新显示值
+            document.getElementById('neuron-count-value').textContent = neuronCount;
+            document.getElementById('synapse-density-value').textContent = synapseDensity;
+            
+            // 计算性能参数
+            const totalSynapses = neuronCount * synapseDensity;
+            const operationsPerSecond = totalSynapses * 1000 / precisionLevel; // 每秒操作次数
+            const powerConsumption = Math.pow(neuronCount/100000, 0.7) * Math.pow(precisionLevel/8, 0.5); // 瓦特
+            const energyEfficiency = operationsPerSecond / powerConsumption / 1e12; // TOPS/W
+            const chipArea = Math.pow(neuronCount/100000, 0.8) * Math.pow(precisionLevel/8, 0.3); // 平方毫米
+            const computeDensity = operationsPerSecond / chipArea / 1e12; // TOPS/mm²
+            const latency = 10 + precisionLevel * 2; // 微秒
+            const costPerTOPS = 1000 / (operationsPerSecond / 1e12); // $/TOPS
+            
+            // 更新图表
+            neuromorphicPerformanceChart.data.datasets[0].data = [
+                energyEfficiency.toFixed(1),
+                computeDensity.toFixed(1),
+                latency,
+                costPerTOPS.toFixed(2)
+            ];
+            neuromorphicPerformanceChart.update();
+            
+            // 更新结果文本
+            const resultText = `
+                神经形态芯片性能分析结果：
+                神经元数量: ${parseInt(neuronCount).toLocaleString()}
+                突触总数: ${parseInt(totalSynapses).toLocaleString()}
+                计算精度: ${precisionLevel} 位
+                计算性能: ${(operationsPerSecond/1e12).toFixed(2)} TOPS
+                功耗估计: ${powerConsumption.toFixed(2)} 瓦特
+                能效比: ${energyEfficiency.toFixed(2)} TOPS/W
+                计算密度: ${computeDensity.toFixed(2)} TOPS/mm²
+                推荐应用: ${getNeuromorphicApplication(neuronCount, synapseDensity, precisionLevel)}
+            `;
+            
+            document.getElementById('neuromorphic-result').textContent = resultText;
+        }
+        
+        // 获取神经形态应用推荐
+        function getNeuromorphicApplication(neurons, synapses, precision) {
+            if (neurons >= 500000 && synapses >= 5000 && precision <= 4) {
+                return "大规模脉冲神经网络与实时边缘AI";
+            } else if (neurons >= 100000 && synapses >= 1000 && precision <= 8) {
+                return "模式识别与感知计算";
+            } else if (neurons >= 50000 && synapses >= 500 && precision <= 16) {
+                return "物联网设备与智能传感器";
+            } else {
+                return "教育与科研实验平台";
+            }
+        }
+        
+        // 初始化自旋电子学性能图表
+        function initSpintronicsPerformanceChart() {
+            const ctx = document.getElementById('spintronics-performance-chart').getContext('2d');
+            spintronicsPerformanceChart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: '巨磁阻(GMR)',
+                            data: [{x: 50, y: 1e7}],
+                            backgroundColor: '#3498db',
+                            pointRadius: 10
+                        },
+                        {
+                            label: '隧穿磁阻(TMR)',
+                            data: [{x: 200, y: 1e6}],
+                            backgroundColor: '#2ecc71',
+                            pointRadius: 10
+                        },
+                        {
+                            label: '自旋场效应晶体管',
+                            data: [{x: 500, y: 1e5}],
+                            backgroundColor: '#e74c3c',
+                            pointRadius: 10
+                        },
+                        {
+                            label: '赛道存储器',
+                            data: [{x: 1000, y: 1e6}],
+                            backgroundColor: '#f1c40f',
+                            pointRadius: 10
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '自旋电子器件磁阻变化率与临界电流密度关系'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '磁阻变化率(%)'
+                            },
+                            type: 'logarithmic'
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '临界电流密度(安培/平方厘米)'
+                            },
+                            type: 'logarithmic'
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新自旋电子学模拟
+        function updateSpintronicsSimulation() {
+            const deviceType = document.getElementById('spin-device-type').value;
+            const magnetoresistance = document.getElementById('magnetoresistance').value;
+            const criticalCurrent = document.getElementById('critical-current').value;
+            
+            // 更新显示值
+            document.getElementById('magnetoresistance-value').textContent = magnetoresistance;
+            document.getElementById('critical-current-value').textContent = parseFloat(criticalCurrent).toExponential(1);
+            
+            // 计算性能参数
+            const readSpeed = Math.log10(magnetoresistance) * 10 + 50; // 纳秒
+            const writeEnergy = criticalCurrent * 1e-12 * Math.pow(magnetoresistance/100, 0.5); // 皮焦
+            const endurance = 1e15 / Math.pow(criticalCurrent/1e6, 0.5); // 写入周期
+            const thermalStability = Math.log10(magnetoresistance) * 20 + 40; // kT
+            const density = Math.pow(magnetoresistance/100, 0.8) * 1e10; // 位/平方厘米
+            
+            // 更新图表中的当前点
+            let datasetIndex;
+            switch(deviceType) {
+                case 'gmr': datasetIndex = 0; break;
+                case 'tmr': datasetIndex = 1; break;
+                case 'spinfet': datasetIndex = 2; break;
+                case 'racetrack': datasetIndex = 3; break;
+            }
+            
+            spintronicsPerformanceChart.data.datasets[datasetIndex].data = [{x: magnetoresistance, y: parseFloat(criticalCurrent)}];
+            spintronicsPerformanceChart.update();
+            
+            // 更新结果文本
+            const resultText = `
+                自旋电子器件性能分析结果：
+                器件类型: ${getSpinDeviceTypeName(deviceType)}
+                磁阻变化率: ${magnetoresistance}%
+                临界电流密度: ${parseFloat(criticalCurrent).toExponential(1)} 安培/平方厘米
+                读取速度: ${readSpeed.toFixed(1)} 纳秒
+                写入能量: ${writeEnergy.toFixed(2)} 皮焦
+                耐久性: ${endurance.toExponential(1)} 写入周期
+                热稳定性: ${thermalStability.toFixed(1)} kT
+                存储密度: ${density.toExponential(1)} 位/平方厘米
+                推荐应用: ${getSpintronicsApplication(deviceType, magnetoresistance, criticalCurrent)}
+            `;
+            
+            document.getElementById('spintronics-result').textContent = resultText;
+        }
+        
+        // 获取自旋电子器件类型名称
+        function getSpinDeviceTypeName(type) {
+            switch(type) {
+                case 'gmr': return "巨磁阻(GMR)器件";
+                case 'tmr': return "隧穿磁阻(TMR)器件";
+                case 'spinfet': return "自旋场效应晶体管";
+                case 'racetrack': return "赛道存储器";
+                default: return "未知类型";
+            }
+        }
+        
+        // 获取自旋电子应用推荐
+        function getSpintronicsApplication(type, mr, current) {
+            if (type === 'gmr' && mr >= 50 && current <= 1e7) {
+                return "磁传感器与读取头";
+            } else if (type === 'tmr' && mr >= 200 && current <= 1e6) {
+                return "MRAM存储器与磁性逻辑";
+            } else if (type === 'spinfet' && mr >= 500 && current <= 1e5) {
+                return "低功耗逻辑电路与处理器";
+            } else if (type === 'racetrack' && mr >= 1000 && current <= 1e7) {
+                return "高密度存储器与存储级内存";
+            } else {
+                return "科研实验与新兴应用探索";
+            }
+        }
+        
+        // 切换标签页
+        function switchTab(tabGroup, tabId) {
+            // 隐藏所有标签页内容
+            const tabPanes = document.querySelectorAll(`#${tabGroup} .tab-pane`);
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // 移除所有按钮的活动状态
+            const tabButtons = document.querySelectorAll(`#${tabGroup}-buttons .tab-button`);
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 显示选中的标签页内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 设置对应按钮的活动状态
+            event.target.classList.add('active');
+        }
+        
+        // 检查测验答案
+        function checkQuizAnswers() {
+            const q1Answer = document.querySelector('input[name="q1"]:checked')?.value;
+            const q2Answer = document.querySelector('input[name="q2"]:checked')?.value;
+            const q3Answer = document.querySelector('input[name="q3"]:checked')?.value;
+            
+            let score = 0;
+            let feedback = '';
+            
+            // 检查答案
+            if (q1Answer === 'd') {
+                score++;
+                feedback += '问题1正确！FinFET晶体管属于"延续摩尔定律"技术路径，而非"超越摩尔定律"。\n';
+            } else {
+                feedback += '问题1错误。正确答案是d. FinFET晶体管，它属于"延续摩尔定律"技术路径。\n';
+            }
+            
+            if (q2Answer === 'd') {
+                score++;
+                feedback += '问题2正确！铁电存储器(FeRAM)具有最高的读写速度。\n';
+            } else {
+                feedback += '问题2错误。正确答案是d. 铁电存储器(FeRAM)，它具有最高的读写速度。\n';
+            }
+            
+            if (q3Answer === 'b' || q3Answer === 'd') {
+                score++;
+                feedback += '问题3正确！单片3D和混合键合技术具有最高的互连密度。\n';
+            } else {
+                feedback += '问题3错误。正确答案是b. 单片3D或d. 混合键合，这两项技术具有最高的互连密度。\n';
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.style.display = 'block';
+            resultDiv.textContent = `测验得分：${score}/3\n\n${feedback}`;
+        }
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

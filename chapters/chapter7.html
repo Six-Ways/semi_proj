@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7章：专用功能器件 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第7章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item active">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#power-devices" class="section-nav-item">
+                        功率器件
+                    </a>
+                    <a href="#rf-devices" class="section-nav-item">
+                        射频器件
+                    </a>
+                    <a href="#sensor-devices" class="section-nav-item">
+                        传感器件
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第七章：专用功能器件</p>
+            </div>
+        <div class="chapter-header">
+            <h1>第七章：专用功能器件</h1>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">传感器件</h2>
+            <p>传感器件是将物理量、化学量或生物量转换为电信号的器件，是物联网和智能系统的核心组件。本节介绍各类传感器件的工作原理、特性和应用场景。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('sensors-overview')">传感器概述</button>
+                    <button class="tab-button" onclick="showTab('sensors-interactive')">传感器交互实验室</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="sensors-overview" class="tab-pane active">
+                        <div class="sensor-grid">
+                            <div class="sensor-card" onclick="selectSensor('temperature')">
+                                <div class="sensor-icon"><i class="fas fa-thermometer-half"></i></div>
+                                <div class="sensor-name">温度传感器</div>
+                                <div class="sensor-description">基于热敏电阻、热电偶或PN结温度特性，测量环境温度变化</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectSensor('pressure')">
+                                <div class="sensor-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sensor-name">压力传感器</div>
+                                <div class="sensor-description">利用压阻效应或电容变化，测量气体或液体压力</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectSensor('light')">
+                                <div class="sensor-icon"><i class="fas fa-sun"></i></div>
+                                <div class="sensor-name">光传感器</div>
+                                <div class="sensor-description">基于光电效应，测量光强度、颜色或光谱分布</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectSensor('motion')">
+                                <div class="sensor-icon"><i class="fas fa-running"></i></div>
+                                <div class="sensor-name">运动传感器</div>
+                                <div class="sensor-description">利用加速度计、陀螺仪或磁力计，检测物体运动状态</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectSensor('gas')">
+                                <div class="sensor-icon"><i class="fas fa-wind"></i></div>
+                                <div class="sensor-name">气体传感器</div>
+                                <div class="sensor-description">基于化学反应或电导率变化，检测特定气体成分和浓度</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectSensor('humidity')">
+                                <div class="sensor-icon"><i class="fas fa-tint"></i></div>
+                                <div class="sensor-name">湿度传感器</div>
+                                <div class="sensor-description">测量空气或材料中的水分含量，基于电容或电阻变化</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sensors-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">传感器响应特性模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="sensor-type">传感器类型</label>
+                                    <select id="sensor-type">
+                                        <option value="temperature">温度传感器</option>
+                                        <option value="pressure">压力传感器</option>
+                                        <option value="light">光传感器</option>
+                                        <option value="gas">气体传感器</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="stimulus-range">刺激范围</label>
+                                    <input type="range" id="stimulus-range" min="0" max="100" value="50">
+                                    <span id="stimulus-value">50</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="noise-level">噪声水平</label>
+                                    <input type="range" id="noise-level" min="0" max="20" value="5">
+                                    <span id="noise-value">5%</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="sensor-response-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">传感器输出</span>
+                                    <span class="result-value" id="sensor-output">2.5 V</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">灵敏度</span>
+                                    <span class="result-value" id="sensor-sensitivity">10 mV/单位</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">响应时间</span>
+                                    <span class="result-value" id="response-time">100 ms</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">信噪比</span>
+                                    <span class="result-value" id="signal-noise-ratio">20 dB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">功率器件</h2>
+            <p>功率器件是处理高电压、大电流的半导体器件，是电力电子系统的核心。本节介绍各类功率器件的结构、工作原理和性能特点。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('power-overview')">功率器件概述</button>
+                    <button class="tab-button" onclick="showTab('power-interactive')">功率器件模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="power-overview" class="tab-pane active">
+                        <div class="sensor-grid">
+                            <div class="sensor-card" onclick="selectPowerDevice('mosfet')">
+                                <div class="sensor-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="sensor-name">功率MOSFET</div>
+                                <div class="sensor-description">高速开关，低导通电阻，适用于高频开关电源</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectPowerDevice('igbt')">
+                                <div class="sensor-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="sensor-name">IGBT</div>
+                                <div class="sensor-description">结合MOSFET和BJT优点，适用于高压大功率应用</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectPowerDevice('thyristor')">
+                                <div class="sensor-icon"><i class="fas fa-toggle-on"></i></div>
+                                <div class="sensor-name">晶闸管</div>
+                                <div class="sensor-description">可控整流器件，适用于高压大电流控制</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectPowerDevice('gan')">
+                                <div class="sensor-icon"><i class="fas fa-gem"></i></div>
+                                <div class="sensor-name">GaN器件</div>
+                                <div class="sensor-description">宽禁带半导体，高电子迁移率，适用于高频高效应用</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectPowerDevice('sic')">
+                                <div class="sensor-icon"><i class="fas fa-diamond"></i></div>
+                                <div class="sensor-name">SiC器件</div>
+                                <div class="sensor-description">宽禁带半导体，高击穿电压，适用于高温高压应用</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectPowerDevice('diode')">
+                                <div class="sensor-icon"><i class="fas fa-arrow-right"></i></div>
+                                <div class="sensor-name">功率二极管</div>
+                                <div class="sensor-description">高耐压、低导通压降，用于整流和续流</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="power-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">功率器件特性分析器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="power-device">器件类型</label>
+                                    <select id="power-device">
+                                        <option value="mosfet">功率MOSFET</option>
+                                        <option value="igbt">IGBT</option>
+                                        <option value="gan">GaN器件</option>
+                                        <option value="sic">SiC器件</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="drain-voltage">漏极电压 (V)</label>
+                                    <input type="range" id="drain-voltage" min="0" max="600" value="100">
+                                    <span id="drain-voltage-value">100 V</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="gate-voltage">栅极电压 (V)</label>
+                                    <input type="range" id="gate-voltage" min="0" max="15" value="5">
+                                    <span id="gate-voltage-value">5 V</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="temperature">结温 (°C)</label>
+                                    <input type="range" id="temperature" min="25" max="175" value="25">
+                                    <span id="temperature-value">25°C</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="power-characteristic-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">漏极电流</span>
+                                    <span class="result-value" id="drain-current">10 A</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">导通电阻</span>
+                                    <span class="result-value" id="on-resistance">10 mΩ</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">功率损耗</span>
+                                    <span class="result-value" id="power-loss">1.0 W</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">效率</span>
+                                    <span class="result-value" id="efficiency">98.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">光电器件</h2>
+            <p>光电器件是光能与电能相互转换的半导体器件，是现代通信、显示和照明技术的核心。本节介绍各类光电器件的工作原理和特性。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('optical-overview')">光电器件概述</button>
+                    <button class="tab-button" onclick="showTab('optical-interactive')">光电器件模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="optical-overview" class="tab-pane active">
+                        <div class="sensor-grid">
+                            <div class="sensor-card" onclick="selectOpticalDevice('led')">
+                                <div class="sensor-icon"><i class="fas fa-lightbulb"></i></div>
+                                <div class="sensor-name">LED</div>
+                                <div class="sensor-description">发光二极管，电光转换器件，用于显示和照明</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectOpticalDevice('laser')">
+                                <div class="sensor-icon"><i class="fas fa-broadcast-tower"></i></div>
+                                <div class="sensor-name">激光二极管</div>
+                                <div class="sensor-description">相干光源，用于通信、存储和精密测量</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectOpticalDevice('photodiode')">
+                                <div class="sensor-icon"><i class="fas fa-solar-panel"></i></div>
+                                <div class="sensor-name">光电二极管</div>
+                                <div class="sensor-description">光电转换器件，用于光检测和光伏发电</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectOpticalDevice('phototransistor')">
+                                <div class="sensor-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="sensor-name">光电晶体管</div>
+                                <div class="sensor-description">具有放大功能的光电检测器件</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectOpticalDevice('ccd')">
+                                <div class="sensor-icon"><i class="fas fa-camera"></i></div>
+                                <div class="sensor-name">CCD/CMOS</div>
+                                <div class="sensor-description">图像传感器，用于数字成像和视频采集</div>
+                            </div>
+                            <div class="sensor-card" onclick="selectOpticalDevice('oled')">
+                                <div class="sensor-icon"><i class="fas fa-tv"></i></div>
+                                <div class="sensor-name">OLED</div>
+                                <div class="sensor-description">有机发光二极管，用于柔性显示和照明</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="optical-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">光电器件特性模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="optical-device">器件类型</label>
+                                    <select id="optical-device">
+                                        <option value="led">LED</option>
+                                        <option value="laser">激光二极管</option>
+                                        <option value="photodiode">光电二极管</option>
+                                        <option value="solar">太阳能电池</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="forward-current">正向电流 (mA)</label>
+                                    <input type="range" id="forward-current" min="0" max="100" value="20">
+                                    <span id="forward-current-value">20 mA</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="wavelength">波长 (nm)</label>
+                                    <input type="range" id="wavelength" min="380" max="780" value="550">
+                                    <span id="wavelength-value">550 nm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="temperature">温度 (°C)</label>
+                                    <input type="range" id="optical-temperature" min="-40" max="125" value="25">
+                                    <span id="optical-temperature-value">25°C</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="optical-characteristic-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">光功率</span>
+                                    <span class="result-value" id="optical-power">10 mW</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">发光效率</span>
+                                    <span class="result-value" id="luminous-efficacy">100 lm/W</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">色温</span>
+                                    <span class="result-value" id="color-temperature">6500 K</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">正向压降</span>
+                                    <span class="result-value" id="forward-voltage">2.1 V</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter-summary">
+            <h3>本章小结</h3>
+            <p>专用功能器件是半导体技术的重要分支，针对特定应用场景优化设计。传感器件将物理量转换为电信号，是物联网的感知层；功率器件处理高电压大电流，是电力电子系统的核心；光电器件实现光能与电能的转换，是现代通信和显示技术的基础。掌握这些器件的特性和设计方法，对于开发高性能电子系统至关重要。</p>
+        </div>
+        
+        <div class="next-chapter">
+            <h3>下一章预告</h3>
+            <p>第8章将深入半导体制造的基础工艺，带你了解"衬底如何制备？""晶圆如何加工？"，并通过交互式模拟器直观感受半导体制造的核心流程。前往第8章</p>
+        </div>
+        
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="window.location.href='chapter6.html'">
+                <i class="fas fa-arrow-left"></i> 上一章：模拟集成器件
+            </button>
+            <button class="btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-home"></i> 返回主页
+            </button>
+            <button class="btn" onclick="window.location.href='chapter8.html'">
+                下一章：衬底与晶圆制备 <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+    
+    <div class="progress-indicator">
+        <i class="fas fa-tasks"></i> 学习进度: <span id="progress">0</span>%
+    </div>
+    
+    <script>
+        // 全局变量
+        let sensorExperiments = 0;
+        let powerExperiments = 0;
+        let opticalExperiments = 0;
+        let sensorChart, powerChart, opticalChart;
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initSensorSimulator();
+            initPowerSimulator();
+            initOpticalSimulator();
+            updateProgress();
+        });
+        
+        // 标签切换功能
+        function showTab(tabId) {
+            // 获取当前标签容器
+            const tabContainer = event.target.closest('.tab-container');
+            
+            // 移除所有活动状态
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // 添加活动状态到选中的标签
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+        
+        // 传感器选择
+        function selectSensor(sensorType) {
+            // 更新传感器类型选择器
+            document.getElementById('sensor-type').value = sensorType;
+            
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#sensors-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('sensors-interactive').classList.add('active');
+            
+            // 更新传感器模拟器
+            updateSensorSimulator();
+        }
+        
+        // 功率器件选择
+        function selectPowerDevice(deviceType) {
+            // 更新器件类型选择器
+            document.getElementById('power-device').value = deviceType;
+            
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#power-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('power-interactive').classList.add('active');
+            
+            // 更新功率器件模拟器
+            updatePowerSimulator();
+        }
+        
+        // 光电器件选择
+        function selectOpticalDevice(deviceType) {
+            // 更新器件类型选择器
+            document.getElementById('optical-device').value = deviceType;
+            
+            // 切换到交互标签
+            const tabContainer = document.querySelector('#optical-overview').closest('.tab-container');
+            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
+            document.getElementById('optical-interactive').classList.add('active');
+            
+            // 更新光电器件模拟器
+            updateOpticalSimulator();
+        }
+        
+        // 初始化传感器模拟器
+        function initSensorSimulator() {
+            const sensorType = document.getElementById('sensor-type');
+            const stimulusRange = document.getElementById('stimulus-range');
+            const noiseLevel = document.getElementById('noise-level');
+            
+            const stimulusValue = document.getElementById('stimulus-value');
+            const noiseValue = document.getElementById('noise-value');
+            
+            const sensorOutput = document.getElementById('sensor-output');
+            const sensorSensitivity = document.getElementById('sensor-sensitivity');
+            const responseTime = document.getElementById('response-time');
+            const signalNoiseRatio = document.getElementById('signal-noise-ratio');
+            
+            // 创建图表
+            const ctx = document.getElementById('sensor-response-chart').getContext('2d');
+            sensorChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0s', '1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'],
+                    datasets: [{
+                        label: '传感器输出',
+                        data: [0, 0.5, 1.0, 1.5, 2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '输出信号 (V)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '时间 (s)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateSensor() {
+                const type = sensorType.value;
+                const stimulus = parseFloat(stimulusRange.value);
+                const noise = parseFloat(noiseLevel.value);
+                
+                // 更新显示值
+                stimulusValue.textContent = stimulus;
+                noiseValue.textContent = `${noise}%`;
+                
+                // 计算传感器参数（简化模型）
+                let output, sensitivity, response, snr;
+                
+                switch(type) {
+                    case 'temperature':
+                        output = 0.5 + stimulus * 0.02;
+                        sensitivity = '10 mV/°C';
+                        response = 100 + stimulus * 2;
+                        snr = 40 - noise * 0.5;
+                        break;
+                    case 'pressure':
+                        output = 0.5 + stimulus * 0.015;
+                        sensitivity = '15 mV/kPa';
+                        response = 50 + stimulus;
+                        snr = 35 - noise * 0.5;
+                        break;
+                    case 'light':
+                        output = 0.1 + stimulus * 0.025;
+                        sensitivity = '25 mV/lux';
+                        response = 20 + stimulus * 0.5;
+                        snr = 45 - noise * 0.5;
+                        break;
+                    case 'gas':
+                        output = 0.2 + stimulus * 0.01;
+                        sensitivity = '5 mV/ppm';
+                        response = 1000 + stimulus * 10;
+                        snr = 30 - noise * 0.5;
+                        break;
+                }
+                
+                // 添加噪声影响
+                output = output * (1 + (Math.random() - 0.5) * noise / 100);
+                
+                // 更新显示
+                sensorOutput.textContent = `${output.toFixed(2)} V`;
+                sensorSensitivity.textContent = sensitivity;
+                responseTime.textContent = `${response.toFixed(0)} ms`;
+                signalNoiseRatio.textContent = `${snr.toFixed(1)} dB`;
+                
+                // 更新图表
+                const timePoints = 11;
+                const responseData = [];
+                
+                for (let i = 0; i < timePoints; i++) {
+                    let value;
+                    if (i < 5) {
+                        // 上升阶段
+                        value = output * (i / 5);
+                    } else {
+                        // 稳定阶段（添加噪声）
+                        value = output * (1 + (Math.random() - 0.5) * noise / 100);
+                    }
+                    responseData.push(value);
+                }
+                
+                sensorChart.data.datasets[0].data = responseData;
+                sensorChart.update();
+                
+                // 更新进度
+                if (sensorExperiments < 2) {
+                    sensorExperiments++;
+                    updateProgress();
+                }
+            }
+            
+            sensorType.addEventListener('change', updateSensor);
+            stimulusRange.addEventListener('input', updateSensor);
+            noiseLevel.addEventListener('input', updateSensor);
+            
+            // 初始化
+            updateSensor();
+        }
+        
+        // 初始化功率器件模拟器
+        function initPowerSimulator() {
+            const powerDevice = document.getElementById('power-device');
+            const drainVoltage = document.getElementById('drain-voltage');
+            const gateVoltage = document.getElementById('gate-voltage');
+            const temperature = document.getElementById('temperature');
+            
+            const drainVoltageValue = document.getElementById('drain-voltage-value');
+            const gateVoltageValue = document.getElementById('gate-voltage-value');
+            const temperatureValue = document.getElementById('temperature-value');
+            
+            const drainCurrent = document.getElementById('drain-current');
+            const onResistance = document.getElementById('on-resistance');
+            const powerLoss = document.getElementById('power-loss');
+            const efficiency = document.getElementById('efficiency');
+            
+            // 创建图表
+            const ctx = document.getElementById('power-characteristic-chart').getContext('2d');
+            powerChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0V', '1V', '2V', '3V', '4V', '5V', '6V', '7V', '8V', '9V', '10V'],
+                    datasets: [{
+                        label: '漏极电流 (A)',
+                        data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '漏极电流 (A)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '漏极电压 (V)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updatePower() {
+                const device = powerDevice.value;
+                const Vd = parseFloat(drainVoltage.value);
+                const Vg = parseFloat(gateVoltage.value);
+                const T = parseFloat(temperature.value);
+                
+                // 更新显示值
+                drainVoltageValue.textContent = `${Vd} V`;
+                gateVoltageValue.textContent = `${Vg} V`;
+                temperatureValue.textContent = `${T}°C`;
+                
+                // 计算功率器件参数（简化模型）
+                let Id, Ron, Ploss, eff;
+                
+                switch(device) {
+                    case 'mosfet':
+                        Id = Vg > 3 ? (Vg - 3) * 2 * (1 - (T - 25) / 200) : 0;
+                        Ron = 10 * (1 + (T - 25) / 100) / (Vg / 5);
+                        Ploss = Id * Id * Ron / 1000;
+                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
+                        break;
+                    case 'igbt':
+                        Id = Vg > 4 ? (Vg - 4) * 1.5 * (1 - (T - 25) / 250) : 0;
+                        Ron = 20 * (1 + (T - 25) / 150) / (Vg / 8);
+                        Ploss = Id * Id * Ron / 1000 + Vd * 0.1 / 1000;
+                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
+                        break;
+                    case 'gan':
+                        Id = Vg > 2 ? (Vg - 2) * 3 * (1 - (T - 25) / 300) : 0;
+                        Ron = 5 * (1 + (T - 25) / 200) / (Vg / 4);
+                        Ploss = Id * Id * Ron / 1000;
+                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
+                        break;
+                    case 'sic':
+                        Id = Vg > 5 ? (Vg - 5) * 1.8 * (1 - (T - 25) / 400) : 0;
+                        Ron = 15 * (1 + (T - 25) / 300) / (Vg / 10);
+                        Ploss = Id * Id * Ron / 1000;
+                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
+                        break;
+                }
+                
+                // 更新显示
+                drainCurrent.textContent = `${Id.toFixed(1)} A`;
+                onResistance.textContent = `${Ron.toFixed(1)} mΩ`;
+                powerLoss.textContent = `${Ploss.toFixed(2)} W`;
+                efficiency.textContent = `${eff.toFixed(1)}%`;
+                
+                // 更新图表
+                const voltagePoints = 11;
+                const currentData = [];
+                
+                for (let i = 0; i < voltagePoints; i++) {
+                    const V = i;
+                    let I;
+                    
+                    switch(device) {
+                        case 'mosfet':
+                            I = Vg > 3 ? (Vg - 3) * 2 * (1 - (T - 25) / 200) * Math.min(1, V / 10) : 0;
+                            break;
+                        case 'igbt':
+                            I = Vg > 4 ? (Vg - 4) * 1.5 * (1 - (T - 25) / 250) * Math.min(1, V / 15) : 0;
+                            break;
+                        case 'gan':
+                            I = Vg > 2 ? (Vg - 2) * 3 * (1 - (T - 25) / 300) * Math.min(1, V / 8) : 0;
+                            break;
+                        case 'sic':
+                            I = Vg > 5 ? (Vg - 5) * 1.8 * (1 - (T - 25) / 400) * Math.min(1, V / 20) : 0;
+                            break;
+                    }
+                    
+                    currentData.push(I);
+                }
+                
+                powerChart.data.datasets[0].data = currentData;
+                powerChart.update();
+                
+                // 更新进度
+                if (powerExperiments < 2) {
+                    powerExperiments++;
+                    updateProgress();
+                }
+            }
+            
+            powerDevice.addEventListener('change', updatePower);
+            drainVoltage.addEventListener('input', updatePower);
+            gateVoltage.addEventListener('input', updatePower);
+            temperature.addEventListener('input', updatePower);
+            
+            // 初始化
+            updatePower();
+        }
+        
+        // 初始化光电器件模拟器
+        function initOpticalSimulator() {
+            const opticalDevice = document.getElementById('optical-device');
+            const forwardCurrent = document.getElementById('forward-current');
+            const wavelength = document.getElementById('wavelength');
+            const opticalTemperature = document.getElementById('optical-temperature');
+            
+            const forwardCurrentValue = document.getElementById('forward-current-value');
+            const wavelengthValue = document.getElementById('wavelength-value');
+            const opticalTemperatureValue = document.getElementById('optical-temperature-value');
+            
+            const opticalPower = document.getElementById('optical-power');
+            const luminousEfficacy = document.getElementById('luminous-efficacy');
+            const colorTemperature = document.getElementById('color-temperature');
+            const forwardVoltage = document.getElementById('forward-voltage');
+            
+            // 创建图表
+            const ctx = document.getElementById('optical-characteristic-chart').getContext('2d');
+            opticalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['380nm', '450nm', '500nm', '550nm', '600nm', '650nm', '700nm', '750nm', '780nm'],
+                    datasets: [{
+                        label: '相对光谱响应',
+                        data: [0.2, 0.8, 0.9, 1.0, 0.7, 0.5, 0.3, 0.1, 0.05],
+                        borderColor: '#f39c12',
+                        backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '相对响应'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '波长'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            function updateOptical() {
+                const device = opticalDevice.value;
+                const If = parseFloat(forwardCurrent.value);
+                const wl = parseFloat(wavelength.value);
+                const T = parseFloat(opticalTemperature.value);
+                
+                // 更新显示值
+                forwardCurrentValue.textContent = `${If} mA`;
+                wavelengthValue.textContent = `${wl} nm`;
+                opticalTemperatureValue.textContent = `${T}°C`;
+                
+                // 计算光电器件参数（简化模型）
+                let Popt, efficacy, cct, Vf;
+                
+                switch(device) {
+                    case 'led':
+                        Popt = If * 0.2 * (1 - (T - 25) / 150);
+                        efficacy = 100 - Math.abs(wl - 550) * 0.2 - (T - 25) * 0.1;
+                        cct = 4700 - (wl - 550) * 20;
+                        Vf = 1.8 + If * 0.01 + (T - 25) * 0.002;
+                        break;
+                    case 'laser':
+                        Popt = If * 0.5 * (1 - (T - 25) / 100);
+                        efficacy = 200 - Math.abs(wl - 650) * 0.3 - (T - 25) * 0.2;
+                        cct = 6500 - (wl - 650) * 30;
+                        Vf = 2.0 + If * 0.02 + (T - 25) * 0.003;
+                        break;
+                    case 'photodiode':
+                        Popt = If * 0.1 * (1 - (T - 25) / 200);
+                        efficacy = 80 - Math.abs(wl - 500) * 0.1 - (T - 25) * 0.05;
+                        cct = 5500 - (wl - 500) * 10;
+                        Vf = 0.5 + If * 0.005 + (T - 25) * 0.001;
+                        break;
+                    case 'solar':
+                        Popt = If * 0.15 * (1 - (T - 25) / 180);
+                        efficacy = 120 - Math.abs(wl - 600) * 0.15 - (T - 25) * 0.08;
+                        cct = 5800 - (wl - 600) * 15;
+                        Vf = 0.6 + If * 0.008 + (T - 25) * 0.0015;
+                        break;
+                }
+                
+                // 更新显示
+                opticalPower.textContent = `${Popt.toFixed(1)} mW`;
+                luminousEfficacy.textContent = `${efficacy.toFixed(0)} lm/W`;
+                colorTemperature.textContent = `${cct.toFixed(0)} K`;
+                forwardVoltage.textContent = `${Vf.toFixed(2)} V`;
+                
+                // 更新图表
+                const wavelengthPoints = [380, 450, 500, 550, 600, 650, 700, 750, 780];
+                const responseData = [];
+                
+                for (let i = 0; i < wavelengthPoints.length; i++) {
+                    const w = wavelengthPoints[i];
+                    let response;
+                    
+                    switch(device) {
+                        case 'led':
+                            response = Math.exp(-Math.pow((w - wl) / 100, 2));
+                            break;
+                        case 'laser':
+                            response = Math.exp(-Math.pow((w - wl) / 20, 2));
+                            break;
+                        case 'photodiode':
+                            response = Math.exp(-Math.pow((w - wl) / 150, 2));
+                            break;
+                        case 'solar':
+                            response = Math.exp(-Math.pow((w - wl) / 120, 2));
+                            break;
+                    }
+                    
+                    responseData.push(response);
+                }
+                
+                opticalChart.data.datasets[0].data = responseData;
+                opticalChart.update();
+                
+                // 更新进度
+                if (opticalExperiments < 2) {
+                    opticalExperiments++;
+                    updateProgress();
+                }
+            }
+            
+            opticalDevice.addEventListener('change', updateOptical);
+            forwardCurrent.addEventListener('input', updateOptical);
+            wavelength.addEventListener('input', updateOptical);
+            opticalTemperature.addEventListener('input', updateOptical);
+            
+            // 初始化
+            updateOptical();
+        }
+        
+        // 更新传感器模拟器
+        function updateSensorSimulator() {
+            const event = new Event('change');
+            document.getElementById('sensor-type').dispatchEvent(event);
+        }
+        
+        // 更新功率器件模拟器
+        function updatePowerSimulator() {
+            const event = new Event('change');
+            document.getElementById('power-device').dispatchEvent(event);
+        }
+        
+        // 更新光电器件模拟器
+        function updateOpticalSimulator() {
+            const event = new Event('change');
+            document.getElementById('optical-device').dispatchEvent(event);
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            const totalExperiments = 6; // 每个章节最多6次实验
+            const completedExperiments = sensorExperiments + powerExperiments + opticalExperiments;
+            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
+            
+            document.getElementById('progress').textContent = progress;
+        }
+        
+        // 章节页面侧边栏初始化
+        function initChapterSidebar() {
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (!sidebar || !sidebarToggle) return;
+            
+            // 从localStorage恢复侧边栏状态
+            const savedState = localStorage.getItem('sidebarState');
+            if (savedState === 'collapsed') {
+                sidebar.classList.add('collapsed');
+            } else if (savedState === 'auto-hidden') {
+                // 如果上次是自动隐藏状态，默认显示为正常状态
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+                localStorage.setItem('sidebarState', 'normal');
+            } else {
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+            }
+            
+            // 侧边栏折叠/展开按钮
+            sidebarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('collapsed');
+                
+                // 保存状态到localStorage
+                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
+                localStorage.setItem('sidebarState', newState);
+            });
+            
+            // 侧边栏隐藏按钮
+            if (sidebarHideBtn) {
+                sidebarHideBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.add('auto-hidden');
+                    localStorage.setItem('sidebarState', 'auto-hidden');
+                });
+            }
+            
+            // 鼠标悬停显示自动隐藏的侧边栏
+            sidebar.addEventListener('mouseenter', function() {
+                if (sidebar.classList.contains('auto-hidden')) {
+                    sidebar.classList.remove('auto-hidden');
+                    sidebar.classList.add('hover-show');
+                }
+            });
+            
+            sidebar.addEventListener('mouseleave', function() {
+                if (sidebar.classList.contains('hover-show')) {
+                    sidebar.classList.remove('hover-show');
+                    sidebar.classList.add('auto-hidden');
+                }
+            });
+            
+            console.log('Chapter 7 sidebar initialized');
+        }
+        
+        // 页面加载完成后初始化侧边栏
+        document.addEventListener('DOMContentLoaded', function() {
+            initChapterSidebar();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12章：纳米尺度器件挑战与解决方案 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第12章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                <a href="chapter1.html" class="chapter-nav-item">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item active">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+        <!-- 主内容区 -->
+    <main class="main-content">
+        <div class="chapter-container">
+            <div class="breadcrumb">
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十二章：纳米尺度器件挑战与解决方案</p>
+            </div>
+            <!-- 章节标题 -->
+            <div class="chapter-header">
+                <h1>第十二章：纳米尺度器件挑战与解决方案</h1>
+            </div>
+
+            <!-- 章节导航 -->
+            <div class="chapter-nav">
+                <a href="chapter11.html" class="nav-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i> 上一章
+                </a>
+                <div class="nav-center">
+                    <span class="progress-indicator">12 / 12</span>
+                </div>
+                <a href="#" class="nav-btn next-btn disabled">
+                    下一章 <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <!-- 章节内容 -->
+            <div class="content-wrapper">
+                <!-- 短沟道效应 -->
+                <section class="section">
+                    <h2 class="section-title">短沟道效应</h2>
+                    <p>当MOSFET的沟道长度缩小到与源漏耗尽区宽度相当时，会出现一系列短沟道效应，严重影响器件性能和可靠性。本节深入分析阈值电压漂移、亚阈值斜率退化、DIBL效应等关键问题，并介绍多栅结构、应变硅技术等解决方案。</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="showTab('sce-overview')">短沟道效应概述</button>
+                            <button class="tab-button" onclick="showTab('sce-simulator')">短沟道效应模拟器</button>
+                            <button class="tab-button" onclick="showTab('sce-solutions')">解决方案</button>
+                        </div>
+                        
+                        <div id="sce-overview" class="tab-content active">
+                            <div class="content-card">
+                                <h3>短沟道效应的物理机制</h3>
+                                <p>当MOSFET沟道长度缩小到纳米尺度时，源极和漏极的电场会穿透到沟道区域，导致栅极对沟道的控制能力减弱。这种电场耦合效应引发了一系列短沟道效应：</p>
+                                
+                                <ul>
+                                    <li><strong>阈值电压漂移</strong>：随沟道长度减小，阈值电压降低，导致器件关断特性变差</li>
+                                    <li><strong>亚阈值斜率退化</strong>：亚阈值电流随栅压变化减慢，开关特性变差</li>
+                                    <li><strong>漏致势垒降低(DIBL)</strong>：漏极电压影响源极势垒，导致阈值电压随漏压变化</li>
+                                    <li><strong>速度饱和</strong>：载流子在强电场下漂移速度不再随电场线性增加</li>
+                                    <li><strong>热载流子效应</strong>：高电场下载流子获得足够能量注入氧化层，导致器件退化</li>
+                                </ul>
+                                
+                                <div class="formula-box">
+                                    <h4>阈值电压漂移经验公式</h4>
+                                    <p>ΔV<sub>th</sub> ≈ - (π·ε<sub>si</sub>·t<sub>ox</sub>·V<sub>ds</sub>) / (2·ε<sub>ox</sub>·L<sup>2</sup>)</p>
+                                    <p>其中 ε<sub>si</sub> 和 ε<sub>ox</sub> 分别是硅和二氧化硅的介电常数，t<sub>ox</sub> 是氧化层厚度，V<sub>ds</sub> 是漏源电压，L 是沟道长度</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="sce-simulator" class="tab-content">
+                            <div class="content-card">
+                                <h3>短沟道效应模拟器</h3>
+                                <p>调整下方参数，观察不同沟道长度下MOSFET的短沟道效应表现：</p>
+                                
+                                <div class="simulator-container">
+                                    <div class="simulator-controls">
+                                        <div class="control-group">
+                                            <label for="channel-length">沟道长度 (nm):</label>
+                                            <input type="range" id="channel-length" min="5" max="100" value="45" step="5">
+                                            <span id="channel-length-value">45 nm</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="oxide-thickness">氧化层厚度 (nm):</label>
+                                            <input type="range" id="oxide-thickness" min="0.5" max="5" value="1.2" step="0.1">
+                                            <span id="oxide-thickness-value">1.2 nm</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="drain-voltage">漏极电压 (V):</label>
+                                            <input type="range" id="drain-voltage" min="0.1" max="1.2" value="0.7" step="0.1">
+                                            <span id="drain-voltage-value">0.7 V</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="doping-concentration">衬底掺杂浓度 (cm<sup>-3</sup>):</label>
+                                            <input type="range" id="doping-concentration" min="15" max="18" value="17" step="0.5">
+                                            <span id="doping-concentration-value">10<sup>17</sup></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="simulator-results">
+                                        <div class="chart-container">
+                                            <canvas id="sce-chart"></canvas>
+                                        </div>
+                                        
+                                        <div class="result-summary">
+                                            <h4>短沟道效应分析结果</h4>
+                                            <div class="result-grid">
+                                                <div class="result-item">
+                                                    <span class="result-label">阈值电压漂移:</span>
+                                                    <span id="vth-shift" class="result-value">-85 mV</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">DIBL系数:</span>
+                                                    <span id="dibl-coefficient" class="result-value">120 mV/V</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">亚阈值斜率:</span>
+                                                    <span id="subthreshold-slope" class="result-value">85 mV/dec</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">开关比:</span>
+                                                    <span id="on-off-ratio" class="result-value">10<sup>5</sup></span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="effect-indicator">
+                                                <span>短沟道效应严重程度:</span>
+                                                <div class="progress-bar">
+                                                    <div id="severity-bar" class="progress-fill" style="width: 65%"></div>
+                                                </div>
+                                                <span id="severity-text">中等</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="sce-solutions" class="tab-content">
+                            <div class="content-card">
+                                <h3>短沟道效应解决方案</h3>
+                                <p>为克服短沟道效应带来的挑战，半导体工业开发了多种创新技术：</p>
+                                
+                                <div class="solution-grid">
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-layer-group"></i> 多栅结构</h4>
+                                        <p>通过增加栅极与沟道的接触面积，提高栅极对沟道的控制能力：</p>
+                                        <ul>
+                                            <li><strong>FinFET</strong>：三面环绕栅结构，显著改善静电控制</li>
+                                            <li><strong>GAA-FET</strong>：全环绕栅结构，提供最佳的静电控制</li>
+                                            <li><strong>纳米线FET</strong>：圆柱形沟道，栅极完全环绕</li>
+                                        </ul>
+                                        <div class="benefit-tag">静电控制提升 60-80%</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-atom"></i> 高介电常数栅介质</h4>
+                                        <p>使用高k材料替代传统SiO<sub>2</sub>，在保持物理厚度的同时提供等效电容：</p>
+                                        <ul>
+                                            <li>HfO<sub>2</sub>、ZrO<sub>2</sub>等高k材料</li>
+                                            <li>减少栅极漏电流</li>
+                                            <li>提高栅极电容密度</li>
+                                        </ul>
+                                        <div class="benefit-tag">漏电流降低 100-1000倍</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-compress"></i> 应变硅技术</h4>
+                                        <p>通过引入机械应变改变硅晶格结构，提高载流子迁移率：</p>
+                                        <ul>
+                                            <li><strong>拉伸应变</strong>：提高电子迁移率，适用于NMOS</li>
+                                            <li><strong>压缩应变</strong>：提高空穴迁移率，适用于PMOS</li>
+                                            <li>通过SiGe源漏或应力记忆技术实现</li>
+                                        </ul>
+                                        <div class="benefit-tag">驱动电流提升 20-40%</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-bolt"></i> 源/漏工程</h4>
+                                        <p>优化源漏结构以减少短沟道效应：</p>
+                                        <ul>
+                                            <li><strong>浅结注入</strong>：减少源漏结深，降低电场穿透</li>
+                                            <li><strong>晕环掺杂</strong>：在沟道边缘引入高浓度掺杂区</li>
+                                            <li><strong>提升源漏</strong>：使源漏区域高于沟道平面</li>
+                                        </ul>
+                                        <div class="benefit-tag">DIBL效应降低 30-50%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 量子效应 -->
+                <section class="section">
+                    <h2 class="section-title">量子效应</h2>
+                    <p>当器件尺寸缩小到纳米尺度时，量子力学效应变得显著，对器件性能产生深远影响。本节探讨量子隧穿、量子限制、库仑阻塞等现象，以及这些效应对器件设计和制造带来的挑战与机遇。</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="showTab('quantum-overview')">量子效应概述</button>
+                            <button class="tab-button" onclick="showTab('quantum-simulator')">量子效应模拟器</button>
+                            <button class="tab-button" onclick="showTab('quantum-applications')">量子效应应用</button>
+                        </div>
+                        
+                        <div id="quantum-overview" class="tab-content active">
+                            <div class="content-card">
+                                <h3>纳米尺度下的量子现象</h3>
+                                <p>在纳米尺度半导体器件中，量子力学效应不再是可以忽略的微扰，而是主导器件行为的关键因素：</p>
+                                
+                                <ul>
+                                    <li><strong>量子隧穿</strong>：载流子能够穿越经典禁带区域，导致栅极漏电流增加</li>
+                                    <li><strong>量子限制</strong>：载流子在受限空间内的能级量子化，影响载流子传输</li>
+                                    <li><strong>库仑阻塞</strong>：单电子传输时，电荷量子化导致的电流振荡</li>
+                                    <li><strong>量子干涉</strong>：载流子波动性导致的相位相干效应</li>
+                                    <li><strong>能带结构变化</strong>：尺寸减小导致的能带分裂和有效质量变化</li>
+                                </ul>
+                                
+                                <div class="formula-box">
+                                    <h4>隧穿电流近似公式</h4>
+                                    <p>J<sub>tunnel</sub> ≈ A·E<sup>2</sup>·exp(-B/E)</p>
+                                    <p>其中 E 是电场强度，A 和 B 是与材料属性和势垒高度相关的常数</p>
+                                </div>
+                                
+                                <div class="info-box">
+                                    <h4>关键尺寸阈值</h4>
+                                    <p>当器件尺寸小于以下阈值时，相应的量子效应变得显著：</p>
+                                    <ul>
+                                        <li>栅氧化层厚度 < 1.2 nm：直接隧穿效应显著</li>
+                                        <li>沟道宽度 < 10 nm：量子限制效应明显</li>
+                                        <li>量子点尺寸 < 5 nm：库仑阻塞效应可观测</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="quantum-simulator" class="tab-content">
+                            <div class="content-card">
+                                <h3>量子隧穿效应模拟器</h3>
+                                <p>调整下方参数，观察不同条件下量子隧穿电流的变化：</p>
+                                
+                                <div class="simulator-container">
+                                    <div class="simulator-controls">
+                                        <div class="control-group">
+                                            <label for="barrier-height">势垒高度 (eV):</label>
+                                            <input type="range" id="barrier-height" min="0.5" max="3.5" value="1.2" step="0.1">
+                                            <span id="barrier-height-value">1.2 eV</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="barrier-width">势垒宽度 (nm):</label>
+                                            <input type="range" id="barrier-width" min="0.5" max="3" value="1.0" step="0.1">
+                                            <span id="barrier-width-value">1.0 nm</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="electric-field">电场强度 (MV/cm):</label>
+                                            <input type="range" id="electric-field" min="0.1" max="10" value="2.0" step="0.1">
+                                            <span id="electric-field-value">2.0 MV/cm</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="temperature">温度 (K):</label>
+                                            <input type="range" id="temperature" min="77" max="400" value="300" step="10">
+                                            <span id="temperature-value">300 K</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="simulator-results">
+                                        <div class="chart-container">
+                                            <canvas id="quantum-chart"></canvas>
+                                        </div>
+                                        
+                                        <div class="result-summary">
+                                            <h4>量子隧穿分析结果</h4>
+                                            <div class="result-grid">
+                                                <div class="result-item">
+                                                    <span class="result-label">隧穿概率:</span>
+                                                    <span id="tunneling-probability" class="result-value">2.3×10<sup>-3</sup></span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">隧穿电流密度:</span>
+                                                    <span id="tunneling-current" class="result-value">1.7×10<sup>-7</sup> A/cm²</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">德布罗意波长:</span>
+                                                    <span id="de-broglie-wavelength" class="result-value">0.85 nm</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">量子限制能级:</span>
+                                                    <span id="quantum-level" class="result-value">0.15 eV</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="effect-indicator">
+                                                <span>量子效应显著程度:</span>
+                                                <div class="progress-bar">
+                                                    <div id="quantum-severity-bar" class="progress-fill" style="width: 45%"></div>
+                                                </div>
+                                                <span id="quantum-severity-text">中等</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="quantum-applications" class="tab-content">
+                            <div class="content-card">
+                                <h3>量子效应的应用与挑战</h3>
+                                <p>量子效应虽然给传统CMOS器件带来挑战，但也为新器件技术提供了机遇：</p>
+                                
+                                <div class="application-grid">
+                                    <div class="application-card">
+                                        <h4><i class="fas fa-atom"></i> 单电子晶体管</h4>
+                                        <p>利用库仑阻塞效应实现单电子控制，有望实现超低功耗逻辑器件：</p>
+                                        <ul>
+                                            <li>单个电子控制开关状态</li>
+                                            <li>功耗可降至atto焦耳级别</li>
+                                            <li>工作温度需低于10K（当前限制）</li>
+                                        </ul>
+                                        <div class="challenge-tag">挑战：室温工作</div>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <h4><i class="fas fa-microchip"></i> 谐振隧穿器件</h4>
+                                        <p>利用量子隧穿效应实现负微分电阻，可设计新型高频器件：</p>
+                                        <ul>
+                                            <li>超高速开关特性</li>
+                                            <li>多功能逻辑设计</li>
+                                            <li>低功耗振荡器应用</li>
+                                        </ul>
+                                        <div class="benefit-tag">优势：THz频率操作</div>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <h4><i class="fas fa-memory"></i> 量子点存储器</h4>
+                                        <p>利用量子限制效应实现多级存储，提高存储密度：</p>
+                                        <ul>
+                                            <li>单量子点多能级存储</li>
+                                            <li>非挥发性存储特性</li>
+                                            <li>抗辐射能力强</li>
+                                        </ul>
+                                        <div class="benefit-tag">优势：存储密度提升10倍</div>
+                                    </div>
+                                    
+                                    <div class="application-card">
+                                        <h4><i class="fas fa-wave-square"></i> 自旋电子器件</h4>
+                                        <p>利用电子自旋自由度，超越传统电荷器件的限制：</p>
+                                        <ul>
+                                            <li>非易失性逻辑</li>
+                                            <li>超低功耗操作</li>
+                                            <li>与CMOS工艺兼容</li>
+                                        </ul>
+                                        <div class="challenge-tag">挑战：自旋注入效率</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 功耗挑战 -->
+                <section class="section">
+                    <h2 class="section-title">功耗挑战</h2>
+                    <p>随着集成度不断提高，芯片功耗已成为制约半导体技术发展的关键因素。本节分析静态功耗、动态功耗的物理机制，探讨低功耗设计策略，以及新兴的近阈值和亚阈值计算技术。</p>
+                    
+                    <div class="tab-container">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="showTab('power-overview')">功耗分析</button>
+                            <button class="tab-button" onclick="showTab('power-simulator')">功耗模拟器</button>
+                            <button class="tab-button" onclick="showTab('power-solutions')">低功耗技术</button>
+                        </div>
+                        
+                        <div id="power-overview" class="tab-content active">
+                            <div class="content-card">
+                                <h3>半导体器件功耗组成</h3>
+                                <p>纳米尺度CMOS器件的总功耗由动态功耗和静态功耗两部分组成：</p>
+                                
+                                <ul>
+                                    <li><strong>动态功耗</strong>：由开关过程中的充放电引起，与工作频率和电容负载相关</li>
+                                    <li><strong>静态功耗</strong>：主要由亚阈值漏电流和栅极漏电流组成，随尺寸缩小而急剧增加</li>
+                                    <li><strong>短路功耗</strong>：输入信号转换过程中的瞬时短路电流</li>
+                                    <li><strong>功耗密度</strong>：单位面积功耗，影响散热和可靠性</li>
+                                </ul>
+                                
+                                <div class="formula-box">
+                                    <h4>功耗计算公式</h4>
+                                    <p><strong>动态功耗</strong>: P<sub>dynamic</sub> = α·C<sub>L</sub>·V<sub>DD</sub><sup>2</sup>·f</p>
+                                    <p><strong>静态功耗</strong>: P<sub>static</sub> = I<sub>leak</sub>·V<sub>DD</sub></p>
+                                    <p><strong>总功耗</strong>: P<sub>total</sub> = P<sub>dynamic</sub> + P<sub>static</sub></p>
+                                    <p>其中 α 是开关活动因子，C<sub>L</sub> 是负载电容，V<sub>DD</sub> 是电源电压，f 是工作频率，I<sub>leak</sub> 是漏电流</p>
+                                </div>
+                                
+                                <div class="info-box">
+                                    <h4>功耗 scaling 趋势</h4>
+                                    <p>随着技术节点演进，功耗组成发生显著变化：</p>
+                                    <ul>
+                                        <li>130nm及以上：动态功耗占主导（>90%）</li>
+                                        <li>65nm-45nm：静态功耗占比显著增加（20-40%）</li>
+                                        <li>28nm及以下：静态功耗成为主要挑战（>50%）</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="power-simulator" class="tab-content">
+                            <div class="content-card">
+                                <h3>功耗分析模拟器</h3>
+                                <p>调整下方参数，分析不同设计条件下的功耗分布：</p>
+                                
+                                <div class="simulator-container">
+                                    <div class="simulator-controls">
+                                        <div class="control-group">
+                                            <label for="supply-voltage">电源电压 (V):</label>
+                                            <input type="range" id="supply-voltage" min="0.3" max="1.2" value="0.8" step="0.05">
+                                            <span id="supply-voltage-value">0.8 V</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="operating-frequency">工作频率 (MHz):</label>
+                                            <input type="range" id="operating-frequency" min="10" max="5000" value="1000" step="50">
+                                            <span id="operating-frequency-value">1000 MHz</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="gate-count">逻辑门数量 (K):</label>
+                                            <input type="range" id="gate-count" min="100" max="100000" value="10000" step="500">
+                                            <span id="gate-count-value">10000 K</span>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                            <label for="activity-factor">开关活动因子:</label>
+                                            <input type="range" id="activity-factor" min="0.01" max="0.5" value="0.1" step="0.01">
+                                            <span id="activity-factor-value">0.1</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="simulator-results">
+                                        <div class="chart-container">
+                                            <canvas id="power-chart"></canvas>
+                                        </div>
+                                        
+                                        <div class="result-summary">
+                                            <h4>功耗分析结果</h4>
+                                            <div class="result-grid">
+                                                <div class="result-item">
+                                                    <span class="result-label">动态功耗:</span>
+                                                    <span id="dynamic-power" class="result-value">12.8 W</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">静态功耗:</span>
+                                                    <span id="static-power" class="result-value">3.2 W</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">总功耗:</span>
+                                                    <span id="total-power" class="result-value">16.0 W</span>
+                                                </div>
+                                                <div class="result-item">
+                                                    <span class="result-label">功耗密度:</span>
+                                                    <span id="power-density" class="result-value">85 W/cm²</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="power-distribution">
+                                                <h4>功耗分布</h4>
+                                                <div class="distribution-bar">
+                                                    <div id="dynamic-bar" class="power-segment dynamic" style="width: 80%"></div>
+                                                    <div id="static-bar" class="power-segment static" style="width: 20%"></div>
+                                                </div>
+                                                <div class="distribution-legend">
+                                                    <span class="legend-item dynamic">动态功耗 80%</span>
+                                                    <span class="legend-item static">静态功耗 20%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="power-solutions" class="tab-content">
+                            <div class="content-card">
+                                <h3>低功耗技术解决方案</h3>
+                                <p>为应对功耗挑战，半导体工业开发了多层次低功耗技术：</p>
+                                
+                                <div class="solution-grid">
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-bolt"></i> 动态电压频率调节</h4>
+                                        <p>根据工作负载动态调整电压和频率，实现功耗-性能平衡：</p>
+                                        <ul>
+                                            <li>实时负载监测与预测</li>
+                                            <li>多级电压/频率状态</li>
+                                            <li>快速电压调节器设计</li>
+                                        </ul>
+                                        <div class="benefit-tag">功耗降低 30-60%</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-power-off"></i> 电源门控技术</h4>
+                                        <p>在空闲时段关闭不工作模块的电源，消除静态功耗：</p>
+                                        <ul>
+                                            <li>细粒度电源门控单元</li>
+                                            <li>状态保持与恢复机制</li>
+                                            <li>多电源域管理</li>
+                                        </ul>
+                                        <div class="benefit-tag">静态功耗降低 90%+</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-tachometer-alt"></i> 近阈值计算</h4>
+                                        <p>在接近阈值电压的区域工作，大幅降低能耗：</p>
+                                        <ul>
+                                            <li>电压降至0.3-0.5V范围</li>
+                                            <li>专用架构设计</li>
+                                            <li>误差容忍与近似计算</li>
+                                        </ul>
+                                        <div class="benefit-tag">能耗降低 5-10倍</div>
+                                    </div>
+                                    
+                                    <div class="solution-card">
+                                        <h4><i class="fas fa-microchip"></i> 异构集成</h4>
+                                        <p>将不同工艺的器件优化集成，实现能效最大化：</p>
+                                        <ul>
+                                            <li>逻辑-存储异构集成</li>
+                                            <li>模拟-数字混合工艺</li>
+                                            <li>3D堆叠与TSV技术</li>
+                                        </ul>
+                                        <div class="benefit-tag">系统能效提升 2-4倍</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 未来展望 -->
+                <section class="section">
+                    <h2 class="section-title">未来展望</h2>
+                    <p>面对纳米尺度器件的物理极限，半导体技术正探索多元化发展路径。本节展望新兴器件技术、新材料应用、异构集成等未来发展方向，以及这些技术如何推动半导体产业持续创新。</p>
+                    
+                    <div class="content-card">
+                        <h3>后摩尔时代的半导体技术</h3>
+                        <p>当传统CMOS scaling接近物理极限时，半导体技术正通过多种创新路径延续发展：</p>
+                        
+                        <div class="future-grid">
+                            <div class="future-card">
+                                <h4><i class="fas fa-project-diagram"></i> 新兴计算范式</h4>
+                                <p>超越传统冯·诺依曼架构的新型计算模式：</p>
+                                <ul>
+                                    <li><strong>神经形态计算</strong>：模拟大脑神经网络结构，实现高效智能计算</li>
+                                    <li><strong>量子计算</strong>：利用量子叠加和纠缠特性，解决特定复杂问题</li>
+                                    <li><strong>近似计算</strong>：容忍一定误差，换取大幅能效提升</li>
+                                    <li><strong>存内计算</strong>：消除数据搬运瓶颈，提高计算效率</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="future-card">
+                                <h4><i class="fas fa-atom"></i> 新材料革命</h4>
+                                <p>超越硅的新材料体系带来性能突破：</p>
+                                <ul>
+                                    <li><strong>二维材料</strong>：MoS<sub>2</sub>、WSe<sub>2</sub>等过渡金属二硫化物</li>
+                                    <li><strong>宽禁带半导体</strong>：GaN、SiC等高频高功率应用</li>
+                                    <li><strong>有机半导体</strong>：柔性电子和低成本应用</li>
+                                    <li><strong>拓扑材料</strong>：新型量子器件应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="future-card">
+                                <h4><i class="fas fa-cubes"></i> 先进集成技术</h4>
+                                <p>通过三维集成和异质集成突破平面限制：</p>
+                                <ul>
+                                    <li><strong>3D集成</strong>：多层芯片堆叠，提高集成密度</li>
+                                    <li><strong>异质集成</strong>：不同材料、工艺的优化组合</li>
+                                    <li><strong>微系统级封装</strong>：芯片、传感器、执行器的系统级集成</li>
+                                    <li><strong>光电子集成</strong>：光子与电子器件的协同设计</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="future-card">
+                                <h4><i class="fas fa-industry"></i> 智能制造</h4>
+                                <p>AI驱动的半导体制造新模式：</p>
+                                <ul>
+                                    <li><strong>智能工艺控制</strong>：实时监测与自适应调整</li>
+                                    <li><strong>预测性维护</strong>：设备故障提前预警</li>
+                                    <li><strong>良率优化</strong>：大数据分析与机器学习</li>
+                                    <li><strong>柔性制造</strong>：快速响应市场需求变化</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-container">
+                            <h4>半导体技术发展路线图</h4>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2025</div>
+                                    <div class="timeline-content">
+                                        <h5>3nm节点量产</h5>
+                                        <p>GAA结构全面应用，高k/金属栅技术成熟</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2027</div>
+                                    <div class="timeline-content">
+                                        <h5>2nm节点量产</h5>
+                                        <p>纳米片晶体管，背面供电网络</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2030</div>
+                                    <div class="timeline-content">
+                                        <h5>1.4nm节点</h5>
+                                        <p>CFET结构，二维材料初步应用</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2035</div>
+                                    <div class="timeline-content">
+                                        <h5>1nm及以下</h5>
+                                        <p>量子器件，新计算范式实用化</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 章节导航 -->
+            <div class="chapter-nav">
+                <a href="chapter11.html" class="nav-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i> 上一章
+                </a>
+                <div class="nav-center">
+                    <span class="progress-indicator">12 / 12</span>
+                </div>
+                <a href="#" class="nav-btn next-btn disabled">
+                    下一章 <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="back-to-top" aria-label="返回顶部">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // 章节特定的JavaScript代码
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化短沟道效应模拟器
+            initSCESimulator();
+            
+            // 初始化量子效应模拟器
+            initQuantumSimulator();
+            
+            // 初始化功耗模拟器
+            initPowerSimulator();
+        });
+
+        // 短沟道效应模拟器
+        function initSCESimulator() {
+            const channelLength = document.getElementById('channel-length');
+            const oxideThickness = document.getElementById('oxide-thickness');
+            const drainVoltage = document.getElementById('drain-voltage');
+            const dopingConcentration = document.getElementById('doping-concentration');
+            
+            // 更新显示值
+            channelLength.addEventListener('input', function() {
+                document.getElementById('channel-length-value').textContent = this.value + ' nm';
+                updateSCEAnalysis();
+            });
+            
+            oxideThickness.addEventListener('input', function() {
+                document.getElementById('oxide-thickness-value').textContent = this.value + ' nm';
+                updateSCEAnalysis();
+            });
+            
+            drainVoltage.addEventListener('input', function() {
+                document.getElementById('drain-voltage-value').textContent = this.value + ' V';
+                updateSCEAnalysis();
+            });
+            
+            dopingConcentration.addEventListener('input', function() {
+                document.getElementById('doping-concentration-value').textContent = '10<sup>' + this.value + '</sup>';
+                updateSCEAnalysis();
+            });
+            
+            // 初始化图表
+            const ctx = document.getElementById('sce-chart').getContext('2d');
+            const sceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '长沟道器件',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: false,
+                        tension: 0.4
+                    }, {
+                        label: '短沟道器件',
+                        data: [],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        fill: false,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '栅极电压 (V)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '漏极电流 (μA)'
+                            },
+                            type: 'logarithmic'
+                        }
+                    }
+                }
+            });
+            
+            // 更新分析函数
+            function updateSCEAnalysis() {
+                const L = parseFloat(channelLength.value);
+                const tox = parseFloat(oxideThickness.value);
+                const Vds = parseFloat(drainVoltage.value);
+                const Na = Math.pow(10, parseFloat(dopingConcentration.value));
+                
+                // 计算短沟道效应参数
+                const VthShift = -85 * (100 / L) * (1.2 / tox) * (Vds / 0.7);
+                const DIBL = 120 * (100 / L) * (1.2 / tox);
+                const SS = 65 + 20 * (100 / L);
+                const onOffRatio = Math.pow(10, 6 - (100 - L) / 20);
+                
+                // 更新结果显示
+                document.getElementById('vth-shift').textContent = VthShift.toFixed(0) + ' mV';
+                document.getElementById('dibl-coefficient').textContent = DIBL.toFixed(0) + ' mV/V';
+                document.getElementById('subthreshold-slope').textContent = SS.toFixed(0) + ' mV/dec';
+                document.getElementById('on-off-ratio').innerHTML = '10<sup>' + Math.log10(onOffRatio).toFixed(0) + '</sup>';
+                
+                // 更新严重程度指示器
+                const severity = Math.min(100, Math.max(0, (100 - L) / 95 * 100));
+                document.getElementById('severity-bar').style.width = severity + '%';
+                document.getElementById('severity-text').textContent = 
+                    severity < 30 ? '轻微' : severity < 70 ? '中等' : '严重';
+                
+                // 更新图表数据
+                const VgsValues = [];
+                const longChannelCurrent = [];
+                const shortChannelCurrent = [];
+                
+                for (let Vgs = 0; Vgs <= 1.2; Vgs += 0.05) {
+                    VgsValues.push(Vgs.toFixed(2));
+                    
+                    // 长沟道器件电流模型
+                    const Vth_long = 0.4;
+                    if (Vgs > Vth_long) {
+                        const Id_long = 100 * Math.pow(Vgs - Vth_long, 2) * (1 + 0.01 * Vds);
+                        longChannelCurrent.push(Id_long);
+                    } else {
+                        longChannelCurrent.push(1e-6);
+                    }
+                    
+                    // 短沟道器件电流模型（考虑短沟道效应）
+                    const Vth_short = 0.4 + VthShift / 1000;
+                    const DIBL_effect = DIBL / 1000 * Vds;
+                    if (Vgs > Vth_short - DIBL_effect) {
+                        const Id_short = 100 * Math.pow(Vgs - Vth_short + DIBL_effect, 1.5) * (1 + 0.05 * Vds);
+                        shortChannelCurrent.push(Id_short);
+                    } else {
+                        const subthreshold_slope = SS / 1000;
+                        const Id_sub = 1e-6 * Math.pow(10, (Vgs - Vth_short + DIBL_effect) / subthreshold_slope);
+                        shortChannelCurrent.push(Id_sub);
+                    }
+                }
+                
+                sceChart.data.labels = VgsValues;
+                sceChart.data.datasets[0].data = longChannelCurrent;
+                sceChart.data.datasets[1].data = shortChannelCurrent;
+                sceChart.update();
+            }
+            
+            // 初始化分析
+            updateSCEAnalysis();
+        }
+
+        // 量子效应模拟器
+        function initQuantumSimulator() {
+            const barrierHeight = document.getElementById('barrier-height');
+            const barrierWidth = document.getElementById('barrier-width');
+            const electricField = document.getElementById('electric-field');
+            const temperature = document.getElementById('temperature');
+            
+            // 更新显示值
+            barrierHeight.addEventListener('input', function() {
+                document.getElementById('barrier-height-value').textContent = this.value + ' eV';
+                updateQuantumAnalysis();
+            });
+            
+            barrierWidth.addEventListener('input', function() {
+                document.getElementById('barrier-width-value').textContent = this.value + ' nm';
+                updateQuantumAnalysis();
+            });
+            
+            electricField.addEventListener('input', function() {
+                document.getElementById('electric-field-value').textContent = this.value + ' MV/cm';
+                updateQuantumAnalysis();
+            });
+            
+            temperature.addEventListener('input', function() {
+                document.getElementById('temperature-value').textContent = this.value + ' K';
+                updateQuantumAnalysis();
+            });
+            
+            // 初始化图表
+            const ctx = document.getElementById('quantum-chart').getContext('2d');
+            const quantumChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '隧穿概率',
+                        data: [],
+                        borderColor: '#9b59b6',
+                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '能量 (eV)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '隧穿概率'
+                            },
+                            type: 'logarithmic'
+                        }
+                    }
+                }
+            });
+            
+            // 更新分析函数
+            function updateQuantumAnalysis() {
+                const phi = parseFloat(barrierHeight.value);
+                const a = parseFloat(barrierWidth.value);
+                const E = parseFloat(electricField.value);
+                const T = parseFloat(temperature.value);
+                
+                // 计算量子隧穿参数（简化模型）
+                const hbar = 6.582e-16; // 约化普朗克常数 (eV·s)
+                const m0 = 9.11e-31; // 电子质量 (kg)
+                const q = 1.602e-19; // 电子电荷 (C)
+                const m_eff = 0.3 * m0; // 有效质量
+                
+                // WKB近似计算隧穿概率
+                const tunneling_prob = Math.exp(-2 * a * 1e-9 * Math.sqrt(2 * m_eff * q * phi) / hbar);
+                
+                // 隧穿电流密度（简化模型）
+                const A = 1.5e-6; // 前置因子 (A/cm²)
+                const B = 6.83e9; // 指数因子 (V/m)
+                const tunneling_current = A * Math.pow(E * 1e8, 2) * Math.exp(-B / (E * 1e8));
+                
+                // 德布罗意波长
+                const kT = 8.617e-5 * T; // kT (eV)
+                const de_broglie = hbar / Math.sqrt(2 * m_eff * q * kT) * 1e9; // nm
+                
+                // 量子限制能级
+                const quantum_level = Math.pow(Math.PI * hbar / (a * 1e-9), 2) / (2 * m_eff * q); // eV
+                
+                // 更新结果显示
+                document.getElementById('tunneling-probability').innerHTML = tunneling_prob.toExponential(1);
+                document.getElementById('tunneling-current').innerHTML = tunneling_current.toExponential(1) + ' A/cm²';
+                document.getElementById('de-broglie-wavelength').textContent = de_broglie.toFixed(2) + ' nm';
+                document.getElementById('quantum-level').textContent = quantum_level.toFixed(2) + ' eV';
+                
+                // 更新量子效应显著程度
+                const quantumSeverity = Math.min(100, Math.max(0, 
+                    (3.5 - phi) / 3 * 40 + 
+                    (3 - a) / 2.5 * 30 + 
+                    E / 10 * 30));
+                document.getElementById('quantum-severity-bar').style.width = quantumSeverity + '%';
+                document.getElementById('quantum-severity-text').textContent = 
+                    quantumSeverity < 30 ? '轻微' : quantumSeverity < 70 ? '中等' : '显著';
+                
+                // 更新图表数据
+                const energyValues = [];
+                const tunnelingProbValues = [];
+                
+                for (let E = 0; E <= phi * 1.2; E += 0.05) {
+                    energyValues.push(E.toFixed(2));
+                    
+                    // 计算每个能量下的隧穿概率
+                    let prob;
+                    if (E < phi) {
+                        // WKB近似
+                        const kappa = Math.sqrt(2 * m_eff * q * (phi - E)) / hbar;
+                        prob = Math.exp(-2 * kappa * a * 1e-9);
+                    } else {
+                        // 能量高于势垒，透射概率接近1
+                        prob = 0.9;
+                    }
+                    tunnelingProbValues.push(prob);
+                }
+                
+                quantumChart.data.labels = energyValues;
+                quantumChart.data.datasets[0].data = tunnelingProbValues;
+                quantumChart.update();
+            }
+            
+            // 初始化分析
+            updateQuantumAnalysis();
+        }
+
+        // 功耗模拟器
+        function initPowerSimulator() {
+            const supplyVoltage = document.getElementById('supply-voltage');
+            const operatingFrequency = document.getElementById('operating-frequency');
+            const gateCount = document.getElementById('gate-count');
+            const activityFactor = document.getElementById('activity-factor');
+            
+            // 更新显示值
+            supplyVoltage.addEventListener('input', function() {
+                document.getElementById('supply-voltage-value').textContent = this.value + ' V';
+                updatePowerAnalysis();
+            });
+            
+            operatingFrequency.addEventListener('input', function() {
+                document.getElementById('operating-frequency-value').textContent = this.value + ' MHz';
+                updatePowerAnalysis();
+            });
+            
+            gateCount.addEventListener('input', function() {
+                document.getElementById('gate-count-value').textContent = this.value + ' K';
+                updatePowerAnalysis();
+            });
+            
+            activityFactor.addEventListener('input', function() {
+                document.getElementById('activity-factor-value').textContent = this.value;
+                updatePowerAnalysis();
+            });
+            
+            // 初始化图表
+            const ctx = document.getElementById('power-chart').getContext('2d');
+            const powerChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['动态功耗', '静态功耗', '短路功耗'],
+                    datasets: [{
+                        label: '功耗分布',
+                        data: [],
+                        backgroundColor: [
+                            'rgba(52, 152, 219, 0.7)',
+                            'rgba(231, 76, 60, 0.7)',
+                            'rgba(241, 196, 15, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(52, 152, 219, 1)',
+                            'rgba(231, 76, 60, 1)',
+                            'rgba(241, 196, 15, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '功耗 (W)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 更新分析函数
+            function updatePowerAnalysis() {
+                const Vdd = parseFloat(supplyVoltage.value);
+                const f = parseFloat(operatingFrequency) * 1e6; // Hz
+                const N = parseFloat(gateCount) * 1e3; // 门数
+                const alpha = parseFloat(activityFactor);
+                
+                // 假设参数
+                const C_gate = 1e-15; // 每个门的电容 (F)
+                const I_leak_base = 1e-9 * Math.pow(10, (1.2 - Vdd) / 0.1); // 基础漏电流
+                const I_short_factor = 0.1; // 短路功耗因子
+                
+                // 计算功耗
+                const C_total = N * C_gate;
+                const P_dynamic = alpha * C_total * Vdd * Vdd * f;
+                const P_static = I_leak_base * N * Vdd;
+                const P_short = I_short_factor * P_dynamic;
+                const P_total = P_dynamic + P_static + P_short;
+                
+                // 计算功耗密度（假设芯片面积）
+                const chipArea = 2.0; // cm²
+                const powerDensity = P_total / chipArea;
+                
+                // 更新结果显示
+                document.getElementById('dynamic-power').textContent = P_dynamic.toFixed(1) + ' W';
+                document.getElementById('static-power').textContent = P_static.toFixed(1) + ' W';
+                document.getElementById('total-power').textContent = P_total.toFixed(1) + ' W';
+                document.getElementById('power-density').textContent = powerDensity.toFixed(0) + ' W/cm²';
+                
+                // 更新功耗分布图表
+                powerChart.data.datasets[0].data = [P_dynamic, P_static, P_short];
+                powerChart.update();
+                
+                // 更新功耗分布条
+                const dynamicPercent = (P_dynamic / P_total * 100).toFixed(0);
+                const staticPercent = (P_static / P_total * 100).toFixed(0);
+                
+                document.getElementById('dynamic-bar').style.width = dynamicPercent + '%';
+                document.getElementById('static-bar').style.width = staticPercent + '%';
+                document.querySelector('.legend-item.dynamic').textContent = `动态功耗 ${dynamicPercent}%`;
+                document.querySelector('.legend-item.static').textContent = `静态功耗 ${staticPercent}%`;
+            }
+            
+            // 初始化分析
+            updatePowerAnalysis();
+        }
+    </script>
+</body>
+</html>

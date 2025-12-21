@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10章：器件掺杂与薄膜工艺 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/chapter-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="#" class="nav-link active">第10章</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：半导体行业与技术演进
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料基础
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：基础半导体器件
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：MOSFET核心技术
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：数字集成器件
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：模拟集成器件
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：特殊功能器件
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：衬底与晶圆制备
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：器件图形化工艺
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item active">
+                    第10章：器件掺杂与薄膜工艺
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：器件互连与封装
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：纳米尺度器件挑战与解决方案
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：宽禁带半导体器件
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：后摩尔时代器件技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：器件设计与仿真工具
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：故障排查与测试技术
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：行业资源汇总
+                </a>
+            </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#ion-implantation" class="section-nav-item">
+                        离子注入技术
+                    </a>
+                    <a href="#thermal-processes" class="section-nav-item">
+                        热工艺
+                    </a>
+                    <a href="#thin-film-deposition" class="section-nav-item">
+                        薄膜沉积
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
+        </div>
+    </aside>
+    
+
+    <div class="chapter-container">
+        <div class="breadcrumb">
+            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十章：器件掺杂与薄膜工艺</p>
+        </div>
+        <div class="chapter-header">
+            <h1>第十章：器件掺杂与薄膜工艺</h1>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">离子注入技术</h2>
+            <p>离子注入是半导体制造中精确控制掺杂浓度和分布的关键技术。本节介绍离子注入的物理原理、工艺参数控制、设备结构以及对器件性能的影响。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('ion-overview')">离子注入概述</button>
+                    <button class="tab-button" onclick="showTab('ion-interactive')">离子注入模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="ion-overview" class="tab-pane active">
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">离子源与加速</h3>
+                                    <p class="step-description">离子源产生所需掺杂元素的离子，通过电场加速获得高能量。常用掺杂元素包括硼(B)、磷(P)、砷(As)等。离子能量范围通常从几keV到几MeV，决定了注入深度。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">质量分析与聚焦</h3>
+                                    <p class="step-description">通过磁场进行质量分析，选择特定质量的离子。然后通过静电透镜系统将离子束聚焦成细束，确保注入精度。束流强度通常从几μA到几mA，影响注入速率。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">扫描与注入</h3>
+                                    <p class="step-description">离子束通过静电或机械扫描系统均匀覆盖整个晶圆表面。注入剂量范围从10¹¹到10¹⁶ atoms/cm²，决定了掺杂浓度。注入过程中需要控制晶圆温度，避免非晶化。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">退火激活</h3>
+                                    <p class="step-description">注入后的晶圆需要进行退火处理，修复晶格损伤并激活掺杂剂。快速热退火(RTA)是常用技术，温度范围600-1100°C，时间几秒到几分钟。退火条件影响掺杂剂的激活率和扩散。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>离子注入技术对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>注入类型</th>
+                                    <th>能量范围</th>
+                                    <th>剂量范围</th>
+                                    <th>主要应用</th>
+                                    <th>优缺点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>低能量注入</td>
+                                    <td>1-30 keV</td>
+                                    <td>10¹²-10¹⁴ atoms/cm²</td>
+                                    <td>浅结形成、超浅源漏</td>
+                                    <td>结深控制精确，但易受沟道效应影响</td>
+                                </tr>
+                                <tr>
+                                    <td>中能量注入</td>
+                                    <td>30-200 keV</td>
+                                    <td>10¹³-10¹⁵ atoms/cm²</td>
+                                    <td>阱区形成、阈值调整</td>
+                                    <td>工艺成熟，结深适中，应用广泛</td>
+                                </tr>
+                                <tr>
+                                    <td>高能量注入</td>
+                                    <td>200 keV-3 MeV</td>
+                                    <td>10¹¹-10¹³ atoms/cm²</td>
+                                    <td>埋层形成、隔离</td>
+                                    <td>结深大，但设备成本高，损伤大</td>
+                                </tr>
+                                <tr>
+                                    <td>大剂量注入</td>
+                                    <td>30-200 keV</td>
+                                    <td>10¹⁵-10¹⁶ atoms/cm²</td>
+                                    <td>源漏形成、硅化物接触</td>
+                                    <td>掺杂浓度高，但非晶化严重</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="ion-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">离子注入结深与浓度分布模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="ion-type">掺杂离子类型</label>
+                                    <select id="ion-type">
+                                        <option value="boron">硼(B)</option>
+                                        <option value="phosphorus">磷(P)</option>
+                                        <option value="arsenic">砷(As)</option>
+                                        <option value="antimony">锑(Sb)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="ion-energy">离子能量 (keV)</label>
+                                    <input type="range" id="ion-energy" min="1" max="300" value="50">
+                                    <span id="ion-energy-value">50 keV</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="ion-dose">注入剂量 (atoms/cm²)</label>
+                                    <input type="range" id="ion-dose" min="11" max="16" value="14" step="0.1">
+                                    <span id="ion-dose-value">10¹⁴ atoms/cm²</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="tilt-angle">倾斜角度 (°)</label>
+                                    <input type="range" id="tilt-angle" min="0" max="45" value="7">
+                                    <span id="tilt-angle-value">7°</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="ion-profile-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">投影射程</span>
+                                    <span class="result-value" id="projected-range">0.15 μm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">纵向标准差</span>
+                                    <span class="result-value" id="vertical-straggle">0.05 μm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">峰值浓度</span>
+                                    <span class="result-value" id="peak-concentration">1.2×10¹⁹ cm⁻³</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">结深</span>
+                                    <span class="result-value" id="junction-depth">0.28 μm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">热工艺</h2>
+            <p>热工艺是半导体制造中通过控制温度和时间来实现材料改性和结构形成的关键技术。本节介绍氧化、扩散、退火等热工艺的原理和应用。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('thermal-overview')">热工艺概述</button>
+                    <button class="tab-button" onclick="showTab('thermal-interactive')">热工艺模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="thermal-overview" class="tab-pane active">
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-fire"></i>热氧化工艺</h3>
+                            <p class="tech-description">热氧化是在硅表面生长二氧化硅(SiO₂)层的重要工艺，分为干氧氧化和湿氧氧化两种。干氧氧化生长的氧化层质量高但速率慢，湿氧氧化速率快但质量稍差。氧化温度通常在800-1200°C范围，氧化层厚度从几纳米到几微米。氧化层在MOS器件中作为栅介质和场氧，在扩散中作为掩膜，在钝化中作为保护层。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-arrows-alt-h"></i>热扩散工艺</h3>
+                            <p class="tech-description">热扩散是利用高温下掺杂原子的扩散运动实现掺杂分布的技术，包括恒定源扩散和限定源扩散两种。恒定源扩散表面浓度恒定，限定源扩散总剂量恒定。扩散温度通常在900-1200°C，时间从几分钟到几小时。扩散工艺用于形成阱区、源漏区和电阻等结构，是早期主要的掺杂技术。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-temperature-high"></i>快速热退火(RTA)</h3>
+                            <p class="tech-description">快速热退火是在极短时间内(几秒到几分钟)将晶圆加热到高温并快速冷却的工艺，主要用于离子注入后的损伤修复和掺杂剂激活。RTA减少了杂质的再分布，有利于形成浅结。温度范围600-1100°C，升温速率可达100°C/s。RTA是先进器件制造中的关键工艺，特别适用于浅结形成和硅化物退火。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-sync-alt"></i>热循环工艺</h3>
+                            <p class="tech-description">热循环是通过多次升降温循环来优化材料特性的工艺，常用于应力释放、晶粒生长和界面反应控制。循环次数、温度范围和升降温速率是关键参数。热循环可用于改善薄膜质量、降低应力和优化界面特性，在先进器件制造中应用日益增多。</p>
+                        </div>
+                        
+                        <h3>热工艺参数对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>工艺类型</th>
+                                    <th>温度范围</th>
+                                    <th>时间范围</th>
+                                    <th>主要应用</th>
+                                    <th>关键参数</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>干氧氧化</td>
+                                    <td>900-1200°C</td>
+                                    <td>10-300 min</td>
+                                    <td>栅氧、高质量氧化层</td>
+                                    <td>温度、时间、氧气流量</td>
+                                </tr>
+                                <tr>
+                                    <td>湿氧氧化</td>
+                                    <td>800-1100°C</td>
+                                    <td>5-120 min</td>
+                                    <td>厚氧化层、场氧</td>
+                                    <td>温度、时间、水汽浓度</td>
+                                </tr>
+                                <tr>
+                                    <td>恒定源扩散</td>
+                                    <td>900-1200°C</td>
+                                    <td>10-180 min</td>
+                                    <td>深结、高浓度掺杂</td>
+                                    <td>温度、时间、源浓度</td>
+                                </tr>
+                                <tr>
+                                    <td>限定源扩散</td>
+                                    <td>900-1200°C</td>
+                                    <td>10-180 min</td>
+                                    <td>结深调整、浓度控制</td>
+                                    <td>温度、时间、初始剂量</td>
+                                </tr>
+                                <tr>
+                                    <td>快速热退火</td>
+                                    <td>600-1100°C</td>
+                                    <td>1-300 s</td>
+                                    <td>损伤修复、浅结形成</td>
+                                    <td>峰值温度、时间、升温速率</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="thermal-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">热工艺参数优化模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="thermal-process">工艺类型</label>
+                                    <select id="thermal-process">
+                                        <option value="dry-oxidation">干氧氧化</option>
+                                        <option value="wet-oxidation">湿氧氧化</option>
+                                        <option value="constant-source">恒定源扩散</option>
+                                        <option value="limited-source">限定源扩散</option>
+                                        <option value="rapid-anneal">快速热退火</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="thermal-temp">工艺温度 (°C)</label>
+                                    <input type="range" id="thermal-temp" min="600" max="1200" value="1000">
+                                    <span id="thermal-temp-value">1000°C</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="thermal-time">工艺时间</label>
+                                    <input type="range" id="thermal-time" min="1" max="180" value="30">
+                                    <span id="thermal-time-value">30 min</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="ambient-gas">环境气体</label>
+                                    <select id="ambient-gas">
+                                        <option value="o2">纯氧气</option>
+                                        <option value="h2o">水汽</option>
+                                        <option value="n2">氮气</option>
+                                        <option value="ar">氩气</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="thermal-result-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">氧化层厚度/结深</span>
+                                    <span class="result-value" id="thermal-thickness">0.5 μm</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">表面浓度</span>
+                                    <span class="result-value" id="surface-conc">1.0×10²⁰ cm⁻³</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">工艺速率</span>
+                                    <span class="result-value" id="process-rate">15 nm/min</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">质量评估</span>
+                                    <span class="result-value" id="quality-score">85/100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">薄膜沉积</h2>
+            <p>薄膜沉积是在晶圆表面形成功能性薄膜的关键工艺，包括化学气相沉积(CVD)、物理气相沉积(PVD)和原子层沉积(ALD)等技术。本节介绍各种沉积技术的原理和应用。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('deposition-overview')">薄膜沉积概述</button>
+                    <button class="tab-button" onclick="showTab('deposition-interactive')">薄膜沉积模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="deposition-overview" class="tab-pane active">
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-flask"></i>化学气相沉积(CVD)</h3>
+                            <p class="tech-description">CVD是通过化学反应在晶圆表面沉积薄膜的技术，包括常压CVD(APCVD)、低压CVD(LPCVD)和等离子体增强CVD(PECVD)。温度范围300-900°C，压力从大气压到几托。CVD沉积速率高，覆盖性好，适合复杂形貌。主要用于沉积多晶硅、氮化硅、氧化硅等介质层，是半导体制造中的核心工艺。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-magnet"></i>物理气相沉积(PVD)</h3>
+                            <p class="tech-description">PVD是通过物理过程将材料转移到晶圆表面的技术，包括蒸发沉积和溅射沉积。温度范围室温到500°C，真空度10⁻³-10⁻⁶托。PVD薄膜纯度高，致密性好，但台阶覆盖能力有限。主要用于沉积金属层(铝、铜、钛等)和阻挡层，是互连工艺的关键技术。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-layer-group"></i>原子层沉积(ALD)</h3>
+                            <p class="tech-description">ALD是通过表面自限制化学反应逐层沉积原子的技术，具有原子级厚度控制能力。温度范围100-400°C，压力0.1-10托。ALD薄膜均匀性好，致密度高，台阶覆盖优异，但沉积速率慢。主要用于高k栅介质、扩散阻挡层和共形涂层，是先进器件制造中的新兴技术。</p>
+                        </div>
+                        
+                        <div class="tech-card">
+                            <h3 class="tech-title"><i class="fas fa-sun"></i>外延生长</h3>
+                            <p class="tech-description">外延是在衬底上生长单晶薄膜的技术，包括气相外延(VPE)、分子束外延(MBE)和金属有机化学气相沉积(MOCVD)。温度范围400-1200°C，压力从大气压到超高真空。外延层晶格质量高，电学性能优异。主要用于生长硅外延层、化合物半导体和异质结构，是高性能器件的基础。</p>
+                        </div>
+                        
+                        <h3>薄膜沉积技术对比</h3>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>沉积技术</th>
+                                    <th>温度范围</th>
+                                    <th>压力范围</th>
+                                    <th>沉积速率</th>
+                                    <th>主要应用</th>
+                                    <th>优缺点</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>APCVD</td>
+                                    <td>300-900°C</td>
+                                    <td>760托</td>
+                                    <td>高(100-1000 nm/min)</td>
+                                    <td>厚氧化层、多晶硅</td>
+                                    <td>速率快，但均匀性差</td>
+                                </tr>
+                                <tr>
+                                    <td>LPCVD</td>
+                                    <td>300-800°C</td>
+                                    <td>0.1-1托</td>
+                                    <td>中(10-100 nm/min)</td>
+                                    <td>多晶硅、氮化硅</td>
+                                    <td>均匀性好，但速率中等</td>
+                                </tr>
+                                <tr>
+                                    <td>PECVD</td>
+                                    <td>100-400°C</td>
+                                    <td>0.1-5托</td>
+                                    <td>中(10-200 nm/min)</td>
+                                    <td>低温氧化层、钝化层</td>
+                                    <td>温度低，但质量稍差</td>
+                                </tr>
+                                <tr>
+                                    <td>溅射</td>
+                                    <td>室温-500°C</td>
+                                    <td>10⁻³-10⁻²托</td>
+                                    <td>中(10-100 nm/min)</td>
+                                    <td>金属层、阻挡层</td>
+                                    <td>纯度高，但覆盖性差</td>
+                                </tr>
+                                <tr>
+                                    <td>蒸发</td>
+                                    <td>室温-300°C</td>
+                                    <td>10⁻⁴-10⁻⁶托</td>
+                                    <td>高(10-1000 nm/min)</td>
+                                    <td>金属层、焊料</td>
+                                    <td>速率快，但方向性强</td>
+                                </tr>
+                                <tr>
+                                    <td>ALD</td>
+                                    <td>100-400°C</td>
+                                    <td>0.1-10托</td>
+                                    <td>低(0.1-1 nm/min)</td>
+                                    <td>高k介质、阻挡层</td>
+                                    <td>控制精确，但速率慢</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="deposition-interactive" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">薄膜沉积参数优化模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="deposition-type">沉积技术</label>
+                                    <select id="deposition-type">
+                                        <option value="apcvd">APCVD</option>
+                                        <option value="lpcvd">LPCVD</option>
+                                        <option value="pecvd">PECVD</option>
+                                        <option value="sputtering">溅射</option>
+                                        <option value="evaporation">蒸发</option>
+                                        <option value="ald">ALD</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="film-material">薄膜材料</label>
+                                    <select id="film-material">
+                                        <option value="sio2">二氧化硅(SiO₂)</option>
+                                        <option value="sinx">氮化硅(SiNx)</option>
+                                        <option value="poly-si">多晶硅</option>
+                                        <option value="al">铝(Al)</option>
+                                        <option value="cu">铜(Cu)</option>
+                                        <option value="ti">钛(Ti)</option>
+                                        <option value="hfo2">氧化铪(HfO₂)</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="deposition-temp">沉积温度 (°C)</label>
+                                    <input type="range" id="deposition-temp" min="20" max="900" value="300">
+                                    <span id="deposition-temp-value">300°C</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="deposition-pressure">工作压力</label>
+                                    <input type="range" id="deposition-pressure" min="0.001" max="760" value="1" step="0.001">
+                                    <span id="deposition-pressure-value">1.0 托</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="deposition-quality-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">沉积速率</span>
+                                    <span class="result-value" id="deposition-rate">50 nm/min</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">薄膜密度</span>
+                                    <span class="result-value" id="film-density">2.2 g/cm³</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">台阶覆盖</span>
+                                    <span class="result-value" id="step-coverage">75%</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">折射率</span>
+                                    <span class="result-value" id="refractive-index">1.46</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="chapter-summary">
+            <h2 class="section-title">本章小结</h2>
+            <p>本章详细介绍了半导体器件制造中的掺杂与薄膜工艺，包括离子注入技术、热工艺和薄膜沉积三大关键技术。这些工艺是形成半导体器件结构和功能的基础，决定了器件的性能和可靠性。</p>
+            
+            <h3>核心要点</h3>
+            <ul>
+                <li>离子注入技术提供了精确的掺杂控制，通过调节能量、剂量和倾斜角度可以实现所需的掺杂分布</li>
+                <li>热工艺包括氧化、扩散和退火，是形成绝缘层、实现掺杂和修复损伤的关键工艺</li>
+                <li>薄膜沉积技术包括CVD、PVD和ALD，用于形成各种功能层，如介质层、金属层和阻挡层</li>
+                <li>工艺参数的优化对器件性能至关重要，需要综合考虑温度、时间、压力等因素</li>
+                <li>随着器件尺寸不断缩小，新工艺技术如快速热退火和原子层沉积变得越来越重要</li>
+            </ul>
+            
+            <h3>学习成果</h3>
+            <p>通过本章的学习，您应该能够：</p>
+            <ul>
+                <li>理解离子注入的物理原理和工艺流程</li>
+                <li>掌握不同热工艺的特点和应用场景</li>
+                <li>区分各种薄膜沉积技术的优缺点</li>
+                <li>分析工艺参数对器件性能的影响</li>
+                <li>选择合适的工艺技术满足特定器件需求</li>
+            </ul>
+        </div>
+        
+        <div class="progress-indicator">
+            学习进度: <span id="progress">0%</span>
+        </div>
+    </div>
+
+    <script>
+        // 实验计数器
+        let ionExperiments = 0;
+        let thermalExperiments = 0;
+        let depositionExperiments = 0;
+        
+        // 标签页切换功能
+        function showTab(tabId) {
+            // 隐藏所有标签内容
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+            
+            // 移除所有标签按钮的活动状态
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+            
+            // 显示选中的标签内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 激活对应的标签按钮
+            event.target.classList.add('active');
+        }
+        
+        // 离子注入模拟器
+        function initIonImplantationSimulator() {
+            const ionType = document.getElementById('ion-type');
+            const ionEnergy = document.getElementById('ion-energy');
+            const ionDose = document.getElementById('ion-dose');
+            const tiltAngle = document.getElementById('tilt-angle');
+            
+            // 更新显示值
+            ionEnergy.addEventListener('input', function() {
+                document.getElementById('ion-energy-value').textContent = this.value + ' keV';
+                updateIonProfile();
+            });
+            
+            ionDose.addEventListener('input', function() {
+                const dose = Math.pow(10, this.value);
+                const exponent = this.value.split('.')[0];
+                const decimal = this.value.split('.')[1] ? this.value.split('.')[1] : '0';
+                document.getElementById('ion-dose-value').textContent = `10^${exponent}.${decimal} atoms/cm²`;
+                updateIonProfile();
+            });
+            
+            tiltAngle.addEventListener('input', function() {
+                document.getElementById('tilt-angle-value').textContent = this.value + '°';
+                updateIonProfile();
+            });
+            
+            ionType.addEventListener('change', updateIonProfile);
+            
+            // 初始化图表
+            const ctx = document.getElementById('ion-profile-chart').getContext('2d');
+            const ionProfileChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '掺杂浓度分布',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '深度 (μm)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '浓度 (cm⁻³)'
+                            },
+                            type: 'logarithmic'
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `浓度: ${context.parsed.y.toExponential(2)} cm⁻³`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // 更新离子注入分布
+            function updateIonProfile() {
+                const energy = parseFloat(ionEnergy.value);
+                const dose = Math.pow(10, parseFloat(ionDose.value));
+                const tilt = parseFloat(tiltAngle.value);
+                const ion = ionType.value;
+                
+                // 离子参数
+                const ionParams = {
+                    'boron': { mass: 11, rangeFactor: 0.7 },
+                    'phosphorus': { mass: 31, rangeFactor: 1.0 },
+                    'arsenic': { mass: 75, rangeFactor: 1.2 },
+                    'antimony': { mass: 122, rangeFactor: 1.4 }
+                };
+                
+                const params = ionParams[ion];
+                const projectedRange = params.rangeFactor * Math.sqrt(energy) / 10; // 简化模型
+                const verticalStraggle = projectedRange * 0.3; // 纵向标准差约为射程的30%
+                
+                // 生成数据点
+                const depths = [];
+                const concentrations = [];
+                const maxDepth = projectedRange * 3;
+                
+                for (let i = 0; i <= 100; i++) {
+                    const depth = maxDepth * i / 100;
+                    depths.push(depth.toFixed(3));
+                    
+                    // 高斯分布模型
+                    const concentration = (dose / (verticalStraggle * Math.sqrt(2 * Math.PI))) * 
+                        Math.exp(-0.5 * Math.pow((depth - projectedRange) / verticalStraggle, 2));
+                    concentrations.push(concentration);
+                }
+                
+                // 更新图表
+                ionProfileChart.data.labels = depths;
+                ionProfileChart.data.datasets[0].data = concentrations;
+                ionProfileChart.update();
+                
+                // 更新结果
+                document.getElementById('projected-range').textContent = projectedRange.toFixed(2) + ' μm';
+                document.getElementById('vertical-straggle').textContent = verticalStraggle.toFixed(2) + ' μm';
+                
+                const peakConc = concentrations.reduce((max, val) => Math.max(max, val), 0);
+                document.getElementById('peak-concentration').textContent = peakConc.toExponential(1) + ' cm⁻³';
+                
+                // 计算结深（浓度降至衬底浓度的深度）
+                const substrateConc = 1e15; // 假设衬底浓度
+                let junctionDepth = 0;
+                for (let i = 0; i < concentrations.length; i++) {
+                    if (concentrations[i] < substrateConc) {
+                        junctionDepth = parseFloat(depths[i]);
+                        break;
+                    }
+                }
+                document.getElementById('junction-depth').textContent = junctionDepth.toFixed(2) + ' μm';
+                
+                // 记录实验
+                ionExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            updateIonProfile();
+        }
+        
+        // 热工艺模拟器
+        function initThermalProcessSimulator() {
+            const processType = document.getElementById('thermal-process');
+            const temperature = document.getElementById('thermal-temp');
+            const processTime = document.getElementById('thermal-time');
+            const ambientGas = document.getElementById('ambient-gas');
+            
+            // 更新显示值
+            temperature.addEventListener('input', function() {
+                document.getElementById('thermal-temp-value').textContent = this.value + '°C';
+                updateThermalProcess();
+            });
+            
+            processTime.addEventListener('input', function() {
+                let displayTime = this.value;
+                if (this.value < 60) {
+                    displayTime = this.value + ' min';
+                } else {
+                    const hours = Math.floor(this.value / 60);
+                    const mins = this.value % 60;
+                    displayTime = hours + 'h ' + mins + 'min';
+                }
+                document.getElementById('thermal-time-value').textContent = displayTime;
+                updateThermalProcess();
+            });
+            
+            processType.addEventListener('change', updateThermalProcess);
+            ambientGas.addEventListener('change', updateThermalProcess);
+            
+            // 初始化图表
+            const ctx = document.getElementById('thermal-result-chart').getContext('2d');
+            const thermalResultChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['厚度/结深', '表面浓度', '工艺速率', '质量评估'],
+                    datasets: [{
+                        label: '工艺结果',
+                        data: [0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            
+            // 更新热工艺结果
+            function updateThermalProcess() {
+                const temp = parseFloat(temperature.value);
+                const time = parseFloat(processTime.value);
+                const process = processType.value;
+                const gas = ambientGas.value;
+                
+                // 工艺参数
+                const processParams = {
+                    'dry-oxidation': { 
+                        baseRate: 0.01, 
+                        tempCoeff: 2.0, 
+                        timeCoeff: 0.5,
+                        gasFactors: { 'o2': 1.0, 'h2o': 0.2, 'n2': 0.0, 'ar': 0.0 }
+                    },
+                    'wet-oxidation': { 
+                        baseRate: 0.05, 
+                        tempCoeff: 1.8, 
+                        timeCoeff: 0.5,
+                        gasFactors: { 'o2': 0.3, 'h2o': 1.0, 'n2': 0.0, 'ar': 0.0 }
+                    },
+                    'constant-source': { 
+                        baseRate: 0.02, 
+                        tempCoeff: 2.5, 
+                        timeCoeff: 0.5,
+                        gasFactors: { 'o2': 0.1, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
+                    },
+                    'limited-source': { 
+                        baseRate: 0.01, 
+                        tempCoeff: 2.5, 
+                        timeCoeff: 0.5,
+                        gasFactors: { 'o2': 0.1, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
+                    },
+                    'rapid-anneal': { 
+                        baseRate: 0.1, 
+                        tempCoeff: 1.5, 
+                        timeCoeff: 0.2,
+                        gasFactors: { 'o2': 0.2, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
+                    }
+                };
+                
+                const params = processParams[process];
+                const gasFactor = params.gasFactors[gas];
+                
+                // 计算工艺结果
+                const tempFactor = Math.exp(-params.tempCoeff * 1000 / (temp + 273));
+                const timeFactor = Math.pow(time / 60, params.timeCoeff);
+                const processRate = params.baseRate * tempFactor * timeFactor * gasFactor;
+                
+                // 计算厚度/结深
+                let thickness;
+                if (process.includes('oxidation')) {
+                    thickness = processRate * time; // 氧化层厚度(μm)
+                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2) + ' μm';
+                } else if (process.includes('diffusion')) {
+                    thickness = Math.sqrt(processRate * time); // 扩散结深(μm)
+                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2) + ' μm';
+                } else if (process.includes('anneal')) {
+                    thickness = processRate * time / 60; // 退火效果(相对值)
+                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2);
+                }
+                
+                // 计算表面浓度
+                let surfaceConc;
+                if (process.includes('diffusion')) {
+                    surfaceConc = 1e20 * tempFactor * gasFactor; // 扩散表面浓度
+                    document.getElementById('surface-conc').textContent = surfaceConc.toExponential(1) + ' cm⁻³';
+                } else {
+                    document.getElementById('surface-conc').textContent = 'N/A';
+                }
+                
+                // 更新工艺速率
+                let rateDisplay;
+                if (process.includes('oxidation')) {
+                    rateDisplay = (processRate * 1000).toFixed(1) + ' nm/min';
+                } else if (process.includes('diffusion')) {
+                    rateDisplay = (processRate * 100).toFixed(2) + ' μm/√h';
+                } else {
+                    rateDisplay = 'N/A';
+                }
+                document.getElementById('process-rate').textContent = rateDisplay;
+                
+                // 计算质量评估
+                let qualityScore = 50; // 基础分数
+                
+                // 温度因素
+                if (process.includes('oxidation')) {
+                    if (temp >= 900 && temp <= 1100) qualityScore += 20;
+                    else if (temp >= 800 && temp < 900 || temp > 1100 && temp <= 1200) qualityScore += 10;
+                } else if (process.includes('diffusion')) {
+                    if (temp >= 950 && temp <= 1050) qualityScore += 20;
+                    else if (temp >= 900 && temp < 950 || temp > 1050 && temp <= 1150) qualityScore += 10;
+                } else if (process.includes('anneal')) {
+                    if (temp >= 800 && temp <= 1000) qualityScore += 20;
+                    else if (temp >= 700 && temp < 800 || temp > 1000 && temp <= 1100) qualityScore += 10;
+                }
+                
+                // 时间因素
+                if (process.includes('anneal')) {
+                    if (time <= 10) qualityScore += 15;
+                    else if (time <= 60) qualityScore += 10;
+                } else {
+                    if (time >= 30 && time <= 90) qualityScore += 15;
+                    else if (time >= 10 && time < 30 || time > 90 && time <= 180) qualityScore += 10;
+                }
+                
+                // 环境因素
+                if ((process.includes('oxidation') && gas === 'o2') || 
+                    (process.includes('oxidation') && process.includes('wet') && gas === 'h2o') ||
+                    (process.includes('diffusion') && (gas === 'n2' || gas === 'ar')) ||
+                    (process.includes('anneal') && (gas === 'n2' || gas === 'ar'))) {
+                    qualityScore += 15;
+                }
+                
+                document.getElementById('quality-score').textContent = qualityScore + '/100';
+                
+                // 更新图表
+                const normalizedThickness = Math.min(100, thickness * 20);
+                const normalizedConc = surfaceConc ? Math.min(100, surfaceConc / 1e19 * 20) : 0;
+                const normalizedRate = Math.min(100, processRate * 500);
+                
+                thermalResultChart.data.datasets[0].data = [
+                    normalizedThickness, 
+                    normalizedConc, 
+                    normalizedRate, 
+                    qualityScore
+                ];
+                thermalResultChart.update();
+                
+                // 记录实验
+                thermalExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            updateThermalProcess();
+        }
+        
+        // 薄膜沉积模拟器
+        function initDepositionSimulator() {
+            const depositionType = document.getElementById('deposition-type');
+            const filmMaterial = document.getElementById('film-material');
+            const depositionTemp = document.getElementById('deposition-temp');
+            const depositionPressure = document.getElementById('deposition-pressure');
+            
+            // 更新显示值
+            depositionTemp.addEventListener('input', function() {
+                document.getElementById('deposition-temp-value').textContent = this.value + '°C';
+                updateDeposition();
+            });
+            
+            depositionPressure.addEventListener('input', function() {
+                let displayPressure = parseFloat(this.value);
+                if (displayPressure < 1) {
+                    displayPressure = displayPressure.toFixed(3);
+                } else if (displayPressure < 100) {
+                    displayPressure = displayPressure.toFixed(1);
+                } else {
+                    displayPressure = Math.round(displayPressure);
+                }
+                document.getElementById('deposition-pressure-value').textContent = displayPressure + ' 托';
+                updateDeposition();
+            });
+            
+            depositionType.addEventListener('change', updateDeposition);
+            filmMaterial.addEventListener('change', updateDeposition);
+            
+            // 初始化图表
+            const ctx = document.getElementById('deposition-quality-chart').getContext('2d');
+            const depositionQualityChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['沉积速率', '薄膜密度', '台阶覆盖', '均匀性', '附着力'],
+                    datasets: [{
+                        label: '薄膜质量评估',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: true
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+            
+            // 更新薄膜沉积结果
+            function updateDeposition() {
+                const type = depositionType.value;
+                const material = filmMaterial.value;
+                const temp = parseFloat(depositionTemp.value);
+                const pressure = parseFloat(depositionPressure.value);
+                
+                // 沉积技术参数
+                const typeParams = {
+                    'apcvd': { 
+                        baseRate: 100, 
+                        densityFactor: 0.7, 
+                        coverageFactor: 0.6,
+                        uniformityFactor: 0.5,
+                        adhesionFactor: 0.8,
+                        tempOptimal: 900,
+                        pressureOptimal: 760
+                    },
+                    'lpcvd': { 
+                        baseRate: 50, 
+                        densityFactor: 0.85, 
+                        coverageFactor: 0.9,
+                        uniformityFactor: 0.9,
+                        adhesionFactor: 0.9,
+                        tempOptimal: 800,
+                        pressureOptimal: 0.5
+                    },
+                    'pecvd': { 
+                        baseRate: 80, 
+                        densityFactor: 0.6, 
+                        coverageFactor: 0.8,
+                        uniformityFactor: 0.7,
+                        adhesionFactor: 0.7,
+                        tempOptimal: 300,
+                        pressureOptimal: 1
+                    },
+                    'sputtering': { 
+                        baseRate: 60, 
+                        densityFactor: 0.9, 
+                        coverageFactor: 0.4,
+                        uniformityFactor: 0.6,
+                        adhesionFactor: 0.95,
+                        tempOptimal: 200,
+                        pressureOptimal: 0.01
+                    },
+                    'evaporation': { 
+                        baseRate: 200, 
+                        densityFactor: 0.8, 
+                        coverageFactor: 0.2,
+                        uniformityFactor: 0.3,
+                        adhesionFactor: 0.6,
+                        tempOptimal: 100,
+                        pressureOptimal: 0.0001
+                    },
+                    'ald': { 
+                        baseRate: 1, 
+                        densityFactor: 0.95, 
+                        coverageFactor: 0.98,
+                        uniformityFactor: 0.95,
+                        adhesionFactor: 0.9,
+                        tempOptimal: 250,
+                        pressureOptimal: 1
+                    }
+                };
+                
+                // 材料参数
+                const materialParams = {
+                    'sio2': { density: 2.2, refractiveIndex: 1.46, tempFactor: 1.0 },
+                    'sinx': { density: 2.9, refractiveIndex: 2.0, tempFactor: 1.0 },
+                    'poly-si': { density: 2.3, refractiveIndex: 3.5, tempFactor: 1.2 },
+                    'al': { density: 2.7, refractiveIndex: 1.0, tempFactor: 0.8 },
+                    'cu': { density: 8.9, refractiveIndex: 1.0, tempFactor: 0.7 },
+                    'ti': { density: 4.5, refractiveIndex: 2.5, tempFactor: 0.9 },
+                    'hfo2': { density: 9.7, refractiveIndex: 2.0, tempFactor: 0.9 }
+                };
+                
+                const typeParam = typeParams[type];
+                const materialParam = materialParams[material];
+                
+                // 计算温度影响因子
+                const tempDiff = Math.abs(temp - typeParam.tempOptimal);
+                const tempFactor = Math.max(0.5, 1 - tempDiff / 500);
+                
+                // 计算压力影响因子
+                let pressureDiff;
+                if (typeParam.pressureOptimal > 100) {
+                    pressureDiff = Math.abs(Math.log10(pressure) - Math.log10(typeParam.pressureOptimal));
+                } else {
+                    pressureDiff = Math.abs(Math.log10(pressure + 0.0001) - Math.log10(typeParam.pressureOptimal));
+                }
+                const pressureFactor = Math.max(0.5, 1 - pressureDiff / 3);
+                
+                // 计算沉积速率
+                const depositionRate = typeParam.baseRate * tempFactor * pressureFactor * materialParam.tempFactor;
+                document.getElementById('deposition-rate').textContent = depositionRate.toFixed(0) + ' nm/min';
+                
+                // 计算薄膜密度
+                const filmDensity = materialParam.density * typeParam.densityFactor * (0.8 + 0.2 * tempFactor);
+                document.getElementById('film-density').textContent = filmDensity.toFixed(1) + ' g/cm³';
+                
+                // 计算台阶覆盖
+                const stepCoverage = typeParam.coverageFactor * 100 * (0.7 + 0.3 * pressureFactor);
+                document.getElementById('step-coverage').textContent = stepCoverage.toFixed(0) + '%';
+                
+                // 计算折射率
+                const refractiveIndex = materialParam.refractiveIndex * (0.95 + 0.05 * typeParam.densityFactor);
+                document.getElementById('refractive-index').textContent = refractiveIndex.toFixed(2);
+                
+                // 计算质量指标
+                const rateScore = Math.min(100, depositionRate / 2);
+                const densityScore = typeParam.densityFactor * 100;
+                const coverageScore = typeParam.coverageFactor * 100;
+                const uniformityScore = typeParam.uniformityFactor * 100;
+                const adhesionScore = typeParam.adhesionFactor * 100;
+                
+                // 更新雷达图
+                depositionQualityChart.data.datasets[0].data = [
+                    rateScore, 
+                    densityScore, 
+                    coverageScore, 
+                    uniformityScore, 
+                    adhesionScore
+                ];
+                depositionQualityChart.update();
+                
+                // 记录实验
+                depositionExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            updateDeposition();
+        }
+        
+        // 更新进度
+        function updateProgress() {
+            const totalExperiments = 6; // 每个章节最多6次实验
+            const completedExperiments = ionExperiments + thermalExperiments + depositionExperiments;
+            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
+            
+            document.getElementById('progress').textContent = progress;
+        }
+        
+        // 章节页面侧边栏初始化
+        function initChapterSidebar() {
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (!sidebar || !sidebarToggle) return;
+            
+            // 从localStorage恢复侧边栏状态
+            const savedState = localStorage.getItem('sidebarState');
+            if (savedState === 'collapsed') {
+                sidebar.classList.add('collapsed');
+            } else if (savedState === 'auto-hidden') {
+                // 如果上次是自动隐藏状态，默认显示为正常状态
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+                localStorage.setItem('sidebarState', 'normal');
+            } else {
+                sidebar.classList.remove('collapsed', 'auto-hidden');
+            }
+            
+            // 侧边栏折叠/展开按钮
+            sidebarToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('collapsed');
+                
+                // 保存状态到localStorage
+                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
+                localStorage.setItem('sidebarState', newState);
+            });
+            
+            // 侧边栏隐藏按钮
+            if (sidebarHideBtn) {
+                sidebarHideBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.add('auto-hidden');
+                    localStorage.setItem('sidebarState', 'auto-hidden');
+                });
+            }
+            
+            // 鼠标悬停显示自动隐藏的侧边栏
+            sidebar.addEventListener('mouseenter', function() {
+                if (sidebar.classList.contains('auto-hidden')) {
+                    sidebar.classList.remove('auto-hidden');
+                    sidebar.classList.add('hover-show');
+                }
+            });
+            
+            sidebar.addEventListener('mouseleave', function() {
+                if (sidebar.classList.contains('hover-show')) {
+                    sidebar.classList.remove('hover-show');
+                    sidebar.classList.add('auto-hidden');
+                }
+            });
+            
+            console.log('Chapter 10 sidebar initialized');
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChapterSidebar();
+            initIonImplantationSimulator();
+            initThermalProcessSimulator();
+            initDepositionSimulator();
+        });
+    </script>
+</body>
+</html>
