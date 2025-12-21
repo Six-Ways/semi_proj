@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initTabs();
     initNotifications();
     initSidebar();
+    initScrollHeader();
 });
 
 // 导航功能
@@ -85,6 +86,36 @@ function initMobileMenu() {
             });
         });
     }
+}
+
+// 滚动时导航栏隐藏/显示效果
+function initScrollHeader() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let lastScrollTop = 0;
+    let scrollThreshold = 100; // 滚动阈值，超过此值才开始隐藏/显示
+    
+    // 添加初始样式
+    header.style.transition = 'transform 0.3s ease-in-out';
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 如果滚动距离小于阈值，不执行任何操作
+        if (Math.abs(scrollTop - lastScrollTop) < scrollThreshold) return;
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // 向下滚动且不在顶部，隐藏导航栏
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // 向上滚动或在顶部附近，显示导航栏
+            header.style.transform = 'translateY(0)';
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, { passive: true });
 }
 
 // 模态框功能
@@ -992,7 +1023,7 @@ function showNotification(message, type = 'info') {
 
 // 开始学习按钮
 document.getElementById('start-learning')?.addEventListener('click', function() {
-    document.querySelector('[href="#basics"]').click();
+    window.location.href = 'chapters/chapter1.html';
 });
 
 // 工具函数：格式化数字

@@ -888,6 +888,48 @@ a:hover {
     color: white;
 }
 
+/* 章节部分标题 */
+.nav-section-title {
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    color: var(--primary-color);
+    background-color: rgba(26, 115, 232, 0.1);
+    margin-top: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* 章节子部分 */
+.nav-subsection {
+    padding-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav-subsection-title {
+    font-weight: bold;
+    padding: 0.5rem 0;
+    color: var(--light-text);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.subsection-nav-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    border-radius: 4px;
+    padding-left: 2rem;
+    transition: var(--transition);
+}
+
+.subsection-nav-item:hover {
+    background-color: rgba(26, 115, 232, 0.1);
+    color: var(--primary-color);
+}
+
 .current-chapter-nav {
     margin-top: 2rem;
 }

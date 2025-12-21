@@ -1,0 +1,76 @@
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <!-- 第一部分：基础原理 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">第一部分：基础原理</div>
+                    <a href="chapter1.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第1章：半导体行业与技术演进
+                    </a>
+                    <a href="chapter2.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第2章：半导体材料基础
+                    </a>
+                    <a href="chapter3.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第3章：基础半导体器件
+                    </a>
+                    <a href="chapter4.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第4章：MOSFET核心技术
+                    </a>
+                </div>
+                
+                <!-- 第二部分：集成器件 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">第二部分：集成器件</div>
+                    <a href="chapter5.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第5章：数字集成器件
+                    </a>
+                    <a href="chapter6.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第6章：模拟集成器件
+                    </a>
+                    <a href="chapter7.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第7章：特殊功能器件
+                    </a>
+                </div>
+                
+                <!-- 第三部分：工艺技术 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">第三部分：工艺技术</div>
+                    <a href="chapter8.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第8章：衬底与晶圆制备
+                    </a>
+                    <a href="chapter9.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第9章：器件图形化工艺
+                    </a>
+                    <a href="chapter10.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第10章：器件掺杂与薄膜工艺
+                    </a>
+                    <a href="chapter11.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第11章：器件互连与封装
+                    </a>
+                </div>
+                
+                <!-- 第四部分：先进器件与技术趋势 -->
+                <div class="nav-section">
+                    <div class="nav-section-title">第四部分：先进器件与技术趋势</div>
+                    <a href="chapter12.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第12章：纳米尺度器件挑战与解决方案
+                    </a>
+                    <a href="chapter13.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第13章：宽禁带半导体器件
+                    </a>
+                    <a href="chapter14.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第14章：后摩尔时代器件技术
+                    </a>
+                    <a href="chapter15.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第15章：器件设计与仿真工具
+                    </a>
+                    <a href="chapter16.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第16章：故障排查与测试技术
+                    </a>
+                    <a href="chapter17.html" class="chapter-nav-item">
+                        <i class="fas fa-book"></i> 第17章：行业资源汇总
+                    </a>
+                </div>
+            </nav>

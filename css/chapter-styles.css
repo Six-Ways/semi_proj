@@ -2038,11 +2038,8 @@
 .chapter-header {
     text-align: center;
     margin-bottom: 40px;
-    background: linear-gradient(135deg, #2c3e50, #4a6491);
-    color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: none;
+    color: var(--primary-color);
 }
 
 .chapter-title {
