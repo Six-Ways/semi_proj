@@ -3,110 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第4章：MOSFET核心技术 - SEMI_PROJ</title>
+    <title>第4章：载流子输运现象 - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/chapter-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <style>
+        .chapter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .chapter-core {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection {
+            margin-bottom: 2rem;
+        }
+        
+        .subsection h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .equation {
+            background: rgba(0,123,255,0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* 章节目标样式 */
+        .chapter-objectives {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-objectives h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-objectives ul {
+            padding-left: 1.5rem;
+        }
+        
+        .chapter-objectives li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* 关键词样式 */
+        .chapter-keywords {
+            background-color: #f3e5f5;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-keywords h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .keyword {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        /* 模拟器样式 */
+        .transport-simulator {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .simulator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-group {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .slider-container {
+            margin-top: 0.5rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .chart-area {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .results-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .chapter-container {
+                padding: 1rem;
+            }
+            
+            .simulator-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-
-    <!-- 左侧菜单目录 -->
-    <aside class="sidebar">
-        <button class="sidebar-toggle">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        
-        <div class="sidebar-content">
-            <div class="sidebar-header">
-                <h3>章节导航</h3>
-                <button class="sidebar-hide-btn" title="隐藏侧边栏">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <nav class="chapter-nav">
-                <a href="../index.html" class="chapter-nav-item">
-                    <i class="fas fa-home"></i> 返回主页
-                </a>
-                
-                <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
-                </a>
-                <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
-                </a>
-                <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
-                </a>
-                <a href="chapter4.html" class="chapter-nav-item active">
-                    第4章：MOSFET核心技术
-                </a>
-                <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
-                </a>
-                <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
-                </a>
-                <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
-                </a>
-                <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
-                </a>
-                <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
-                </a>
-                <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
-                </a>
-                <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
-                </a>
-                <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
-                </a>
-                <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
-                </a>
-                <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
-                </a>
-                <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
-                </a>
-                <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
-                </a>
-                <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
-                </a>
-            </nav>
-            
-            
-                <div class="current-chapter-nav">
-                    <h4>当前章节</h4>
-                    <nav class="section-nav">
-
-                    <a href="#mosfet-structure" class="section-nav-item">
-                        MOSFET结构
-                    </a>
-                    <a href="#operation-principle" class="section-nav-item">
-                        工作原理
-                    </a>
-                    <a href="#characteristics" class="section-nav-item">
-                        特性曲线
-                    </a>
-                    <a href="#chapter-summary" class="section-nav-item">
-                        本章小结
-                    </a>
-                    </nav>
-                </div>
-        </div>
-    </aside>
-    
-
     <header class="header">
         <div class="container">
             <a href="../index.html" class="logo">
@@ -128,199 +248,363 @@
         </div>
     </header>
     
+    <!-- 左侧菜单目录 -->
+    <aside class="sidebar">
+        <button class="sidebar-toggle">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <h3>章节导航</h3>
+                <button class="sidebar-hide-btn" title="隐藏侧边栏">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="chapter-nav">
+                <a href="../index.html" class="chapter-nav-item">
+                    <i class="fas fa-home"></i> 返回主页
+                </a>
+                
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：量子力学基础与固体中的电子
+                </a>
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料与晶体结构
+                </a>
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：载流子统计与热平衡
+                </a>
+                <a href="chapter4.html" class="chapter-nav-item active">
+                    第4章：载流子输运现象
+                </a>
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：非平衡载流子与复合动力学
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：高场效应与量子输运
+                </a>
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：PN结与金属-半导体接触
+                </a>
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：MOS结构物理
+                </a>
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：异质结与能带调控
+                </a>
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：双极结型晶体管（BJT）与特种器件
+                </a>
+                <a href="chapter12.html" class="chapter-nav-item ">
+                    第12章：光电子与量子效应器件
+                </a>
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：晶圆制备与薄膜工程
+                </a>
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：图形化与掺杂技术
+                </a>
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：工艺集成与后端互连
+                </a>
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：半导体材料与器件表征
+                </a>
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
+                </a>
+            </nav>
+            
+            
+            <div class="current-chapter-nav">
+                <h4>当前章节</h4>
+                <nav class="section-nav">
+                    <a href="#drift-motion" class="section-nav-item">
+                        漂移运动
+                    </a>
+                    <a href="#diffusion-motion" class="section-nav-item">
+                        扩散运动
+                    </a>
+                    <a href="#current-density" class="section-nav-item">
+                        电流密度方程
+                    </a>
+                    <a href="#einstein-relation" class="section-nav-item">
+                        爱因斯坦关系
+                    </a>
+                    <a href="#transport-simulator" class="section-nav-item">
+                        输运现象模拟器
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </aside>
+    
 
     <main class="main-content">
         <div class="chapter-container">
             <div class="breadcrumb">
-                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第4章：MOSFET核心技术</p>
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part2">第二部分：载流子动力学与输运</a> &gt; 第4章：载流子输运现象</p>
             </div>
-            
             <div class="chapter-header">
-                <h1>第4章：MOSFET核心技术</h1>
+                <h1>第4章：载流子输运现象</h1>
             </div>
             
-            <div class="section-nav">
+            <div class="chapter-core">
+                <h3>核心内容</h3>
+                <p>讲解载流子的漂移运动与迁移率、电导率、电阻率。讲解载流子的扩散运动与扩散系数、扩散电流。建立电流密度方程（漂移电流与扩散电流之和）。推导并阐明爱因斯坦关系（D/μ = kT/q），连接扩散与漂移。</p>
+            </div>
+            
+            <div class="chapter-objectives">
+                <h3>章节目标</h3>
                 <ul>
-                    <li><a href="#section-1" class="section-link active">4.1 MOSFET基础结构</a></li>
-                    <li><a href="#section-2" class="section-link">4.2 工作机制</a></li>
-                    <li><a href="#section-3" class="section-link">4.3 关键性能优化</a></li>
-                    <li><a href="#section-4" class="section-link">4.4 交互式演示</a></li>
+                    <li>掌握载流子在外加电场和浓度梯度驱动下的运动规律</li>
+                    <li>能够计算简单情况下的电流</li>
+                    <li>理解迁移率与扩散系数的内在联系</li>
                 </ul>
             </div>
             
-            <div id="section-1" class="content-section">
-                <h3>4.1 MOSFET基础结构</h3>
-                <p>金属-氧化物-半导体场效应晶体管（MOSFET）是现代集成电路中最基本的器件结构。它由四个主要部分组成：栅极（Gate）、源极（Source）、漏极（Drain）和衬底（Substrate）。栅极与沟道之间通过一层薄薄的氧化层（通常是SiO₂）隔离，形成金属-氧化物-半导体结构。</p>
-                
-                <div class="image-container">
-                    <img src="../assets/images/mosfet-structure.png" alt="MOSFET基本结构示意图">
-                    <p class="image-caption">图4.1 MOSFET基本结构示意图</p>
+            <div class="chapter-keywords">
+                <h3>关键词</h3>
+                <div class="keywords-list">
+                    <span class="keyword">漂移</span>
+                    <span class="keyword">迁移率（μ）</span>
+                    <span class="keyword">电导率</span>
+                    <span class="keyword">扩散</span>
+                    <span class="keyword">扩散系数（D）</span>
+                    <span class="keyword">电流密度方程</span>
+                    <span class="keyword">爱因斯坦关系</span>
                 </div>
-                
-                <p>MOSFET的基本工作原理是通过栅极电压控制沟道导电性。当栅极施加足够高的正电压（对N型MOSFET而言）时，会在半导体表面形成反型层，即导电沟道，连接源极和漏极，使电流能够流过。</p>
-                
-                <div class="highlight-box">
-                    <p><strong>关键参数：</strong> MOSFET的性能主要由几个关键参数决定，包括阈值电压（Vth）、跨导（gm）、输出电阻（ro）和栅极电容（Cgs, Cgd）等。这些参数直接影响器件的开关速度、功耗和放大能力。</p>
-                </div>
-                
-                <p>随着工艺节点的不断缩小，MOSFET结构也在不断演进。从早期的平面MOSFET到现在的FinFET和GAA（Gate-All-Around）FET，器件结构变得越来越复杂，以应对短沟道效应和漏电流增加的挑战。</p>
             </div>
             
-            <div id="section-2" class="content-section">
-                <h3>4.2 工作机制</h3>
-                <p>MOSFET的工作机制可以分为三个主要区域：截止区、线性区和饱和区。这些区域由栅极电压（Vgs）和漏极电压（Vds）共同决定。</p>
+            <!-- 4.1 漂移运动与迁移率 -->
+            <div id="drift-motion" class="section">
+                <h3>4.1 漂移运动与迁移率</h3>
                 
-                <h4>反型层形成</h4>
-                <p>当栅极电压低于阈值电压（Vgs < Vth）时，MOSFET处于截止状态，没有导电沟道形成，漏极电流几乎为零。当栅极电压超过阈值电压（Vgs > Vth）时，半导体表面发生反型，形成导电沟道。</p>
-                
-                <div class="formula">
-                    Id = (1/2) * μn * Cox * (W/L) * (Vgs - Vth)²  (饱和区)
+                <div class="subsection">
+                    <h4>4.1.1 漂移运动</h4>
+                    <p>当半导体材料受到外加电场作用时，载流子会在电场力的作用下做定向运动，这种运动称为漂移运动。对于电子，其漂移方向与电场方向相反；对于空穴，其漂移方向与电场方向相同。</p>
+                    
+                    <p>载流子的漂移速度v_d与电场强度E成正比：</p>
+                    <div class="equation">
+                        v_d = μE
+                    </div>
+                    <p>其中，μ是载流子迁移率，单位为cm²/(V·s)，表示单位电场强度下载流子的平均漂移速度。</p>
                 </div>
                 
-                <p>其中，μn是电子迁移率，Cox是单位面积栅氧化层电容，W/L是沟道宽长比。</p>
-                
-                <h4>I-V特性与亚阈值特性</h4>
-                <p>MOSFET的电流-电压特性反映了器件在不同偏置条件下的电气行为。在亚阈值区域（Vgs略低于Vth），虽然器件名义上处于"关闭"状态，但仍存在微小的漏电流，这被称为亚阈值漏电流。</p>
-                
-                <div class="image-container">
-                    <img src="../assets/images/mosfet-iv-curve.png" alt="MOSFET I-V特性曲线">
-                    <p class="image-caption">图4.2 MOSFET I-V特性曲线</p>
+                <div class="subsection">
+                    <h4>4.1.2 迁移率</h4>
+                    <p>迁移率是描述载流子在电场中运动能力的重要参数，受多种因素影响：</p>
+                    <ul>
+                        <li><strong>温度</strong>：温度升高，晶格振动加剧，载流子散射增强，迁移率下降</li>
+                        <li><strong>掺杂浓度</strong>：掺杂浓度增加，杂质散射增强，迁移率下降</li>
+                        <li><strong>材料类型</strong>：不同材料的载流子迁移率差异很大，如GaAs的电子迁移率远高于Si</li>
+                    </ul>
+                    
+                    <p>对于半导体，电子迁移率通常高于空穴迁移率，这是因为电子在导带中的有效质量通常小于空穴在价带中的有效质量。</p>
                 </div>
                 
-                <p>亚阈值斜率（Subthreshold Swing, SS）是描述MOSFET从关闭到开启转换速度的重要参数，定义为栅极电压变化一个数量级所需的漏电流变化量。理想情况下，SS的最小值为60mV/dec（室温下），但实际器件中由于各种非理想效应，SS通常大于这个值。</p>
+                <div class="subsection">
+                    <h4>4.1.3 电导率与电阻率</h4>
+                    <p>载流子的漂移运动导致电流的产生。电导率σ是描述材料导电能力的参数，与载流子浓度和迁移率的关系为：</p>
+                    <div class="equation">
+                        σ = nqμ_n + pqμ_p
+                    </div>
+                    <p>其中，n和p分别是电子和空穴浓度，μ_n和μ_p分别是电子和空穴迁移率，q是电子电荷量。</p>
+                    
+                    <p>电阻率ρ是电导率的倒数，表示材料对电流的阻碍程度：</p>
+                    <div class="equation">
+                        ρ = 1/σ
+                    </div>
+                </div>
             </div>
             
-            <div id="section-3" class="content-section">
-                <h3>4.3 关键性能优化</h3>
-                <p>随着集成电路尺寸不断缩小，MOSFET面临多种性能挑战，需要采用各种优化技术来维持器件性能和可靠性。</p>
+            <!-- 4.2 扩散运动与扩散电流 -->
+            <div id="diffusion-motion" class="section">
+                <h3>4.2 扩散运动与扩散电流</h3>
                 
-                <h4>载流子迁移率提升</h4>
-                <p>载流子迁移率直接影响MOSFET的驱动能力和开关速度。提升迁移率的主要方法包括：</p>
-                <ul>
-                    <li><strong>应变硅技术：</strong> 通过引入晶格失配产生应力，改变能带结构，提高载流子迁移率。</li>
-                    <li><strong>高迁移率材料：</strong> 采用Ge、III-V族半导体等高迁移率材料替代硅作为沟道材料。</li>
-                    <li><strong>晶体取向优化：</strong> 选择合适的晶体取向，利用各向异性效应提高迁移率。</li>
-                </ul>
+                <div class="subsection">
+                    <h4>4.2.1 扩散运动</h4>
+                    <p>当半导体中存在载流子浓度梯度时，载流子会从浓度高的区域向浓度低的区域扩散，这种运动称为扩散运动。扩散运动是由于载流子的热运动导致的，是一种统计现象。</p>
+                </div>
                 
-                <h4>漏电流抑制</h4>
-                <p>随着器件尺寸缩小，漏电流问题变得越来越严重。主要的漏电流类型和抑制方法包括：</p>
-                <ul>
-                    <li><strong>亚阈值漏电流：</strong> 通过提高阈值电压、优化掺杂分布和采用高k栅介质来抑制。</li>
-                    <li><strong>栅极漏电流：</strong> 采用高k栅介质替代传统SiO₂，在保持相同电容的情况下增加物理厚度。</li>
-                    <li><strong>源漏漏电流：</strong> 通过优化源漏结深和掺杂浓度来减少带间隧穿。</li>
-                </ul>
-                
-                <h4>短沟道效应缓解</h4>
-                <p>当沟道长度缩短到与耗尽区宽度相当时，会出现短沟道效应，主要包括阈值电压滚降、漏致势垒降低（DIBL）等。缓解方法包括：</p>
-                <ul>
-                    <li><strong>轻掺杂漏（LDD）结构：</strong> 在源漏区附近引入轻掺杂区域，减小电场峰值。</li>
-                    <li><strong> halo/pocket注入：</strong> 在沟道两端引入高浓度掺杂区，抑制耗尽区扩展。</li>
-                    <li><strong>多栅结构：</strong> 采用FinFET、GAA FET等多栅结构，增强栅极对沟道的控制能力。</li>
-                </ul>
-            </div>
-            
-            <div id="section-4" class="interactive-demo-section">
-                <h3>4.4 交互式演示</h3>
-                <p>通过以下交互式工具，您可以更直观地理解MOSFET的工作原理和性能特性。</p>
-                
-                <div class="tabs-container">
-                    <div class="tabs">
-                        <div class="tab active" data-tab="switch-demo">开关动态演示</div>
-                        <div class="tab" data-tab="sce-demo">短沟道效应模拟器</div>
-                        <div class="tab" data-tab="comparison-demo">不同结构对比</div>
+                <div class="subsection">
+                    <h4>4.2.2 扩散电流</h4>
+                    <p>载流子的扩散运动导致扩散电流的产生。根据菲克定律，扩散电流密度与载流子浓度梯度成正比：</p>
+                    
+                    <p>对于电子扩散电流：</p>
+                    <div class="equation">
+                        J_n^diff = qD_n d_n/dx
                     </div>
                     
-                    <div id="switch-demo" class="tab-content active">
-                        <div class="demo-description">
-                            <p>调整栅极电压和漏极电压，观察MOSFET的开关状态和电流变化。</p>
+                    <p>对于空穴扩散电流：</p>
+                    <div class="equation">
+                        J_p^diff = -qD_p d_p/dx
+                    </div>
+                    
+                    <p>其中，D_n和D_p分别是电子和空穴的扩散系数，单位为cm²/s，d_n/dx和d_p/dx分别是电子和空穴的浓度梯度。负号表示空穴扩散电流方向与浓度梯度方向相反。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>4.2.3 扩散系数</h4>
+                    <p>扩散系数是描述载流子扩散能力的参数，与温度和材料特性有关。温度升高，载流子热运动加剧，扩散系数增大。</p>
+                    
+                    <p>扩散系数与迁移率之间存在密切联系，这一联系由爱因斯坦关系描述。</p>
+                </div>
+            </div>
+            
+            <!-- 4.3 电流密度方程 -->
+            <div id="current-density" class="section">
+                <h3>4.3 电流密度方程</h3>
+                
+                <p>在半导体中，载流子同时受到电场和浓度梯度的作用，因此总电流密度是漂移电流密度和扩散电流密度的矢量和。</p>
+                
+                <p>对于电子电流密度：</p>
+                <div class="equation">
+                    J_n = J_n^drift + J_n^diff = qμ_n n E + qD_n d_n/dx
+                </div>
+                
+                <p>对于空穴电流密度：</p>
+                <div class="equation">
+                    J_p = J_p^drift + J_p^diff = qμ_p p E - qD_p d_p/dx
+                </div>
+                
+                <p>总电流密度是电子电流密度和空穴电流密度之和：</p>
+                <div class="equation">
+                    J = J_n + J_p
+                </div>
+                
+                <p>电流密度方程是描述半导体中电流分布的基本方程，是分析半导体器件特性的基础。</p>
+            </div>
+            
+            <!-- 4.4 爱因斯坦关系 -->
+            <div id="einstein-relation" class="section">
+                <h3>4.4 爱因斯坦关系</h3>
+                
+                <p>爱因斯坦关系揭示了扩散系数与迁移率之间的内在联系，其表达式为：</p>
+                <div class="equation">
+                    D/μ = kT/q
+                </div>
+                <p>其中，k是玻尔兹曼常数，T是热力学温度，q是电子电荷量。</p>
+                
+                <p>爱因斯坦关系表明，扩散系数与迁移率之比与温度成正比，与载流子类型和材料无关。这一关系是热平衡条件下的结果，对于非平衡情况也近似成立。</p>
+                
+                <p>爱因斯坦关系的重要意义在于，它将扩散（一种统计现象）与漂移（一种电场驱动的定向运动）联系起来，为分析半导体器件中的电流提供了便利。</p>
+            </div>
+            
+            <!-- 4.5 输运现象模拟器 -->
+            <div id="transport-simulator" class="section">
+                <h3>4.5 输运现象模拟器</h3>
+                <p>通过调整参数，观察不同条件下载流子输运特性的变化：</p>
+                
+                <div class="transport-simulator">
+                    <div class="simulator-controls">
+                        <div class="control-group">
+                            <label class="control-label">半导体材料：</label>
+                            <select class="control-input" id="material-select">
+                                <option value="silicon">硅 (Si)</option>
+                                <option value="germanium">锗 (Ge)</option>
+                                <option value="gaas">砷化镓 (GaAs)</option>
+                            </select>
                         </div>
-                        <div class="simulator-container">
-                            <div class="simulator-controls">
-                                <div class="control-group">
-                                    <label for="gate-voltage">栅极电压 (V)</label>
-                                    <input type="range" id="gate-voltage" min="0" max="5" step="0.1" value="0">
-                                    <span id="gate-voltage-value">0</span> V
-                                </div>
-                                <div class="control-group">
-                                    <label for="drain-voltage">漏极电压 (V)</label>
-                                    <input type="range" id="drain-voltage" min="0" max="5" step="0.1" value="3">
-                                    <span id="drain-voltage-value">3</span> V
-                                </div>
+                        <div class="control-group">
+                            <label class="control-label">温度：</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="temperature-slider" min="77" max="600" step="10" value="300">
+                                <span class="slider-value" id="temperature-value">300</span> K
                             </div>
-                            <div class="simulator-output">
-                                <div class="mosfet-visualization">
-                                    <canvas id="mosfet-canvas" width="600" height="300"></canvas>
-                                </div>
-                                <div class="status-indicator">
-                                    <p>状态: <span id="mosfet-status">关闭</span></p>
-                                    <p>漏极电流: <span id="drain-current">0</span> mA</p>
-                                </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">电场强度：</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="electric-field-slider" min="0" max="10000" step="100" value="1000">
+                                <span class="slider-value" id="electric-field-value">1000</span> V/cm
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">掺杂浓度：</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="doping-slider" min="1e14" max="1e18" step="1e14" value="1e16">
+                                <span class="slider-value" id="doping-value">1.00e+16</span> cm⁻³
                             </div>
                         </div>
                     </div>
                     
-                    <div id="sce-demo" class="tab-content">
-                        <div class="demo-description">
-                            <p>调整沟道长度，观察短沟道效应对阈值电压和漏电流的影响。</p>
-                        </div>
-                        <div class="simulator-container">
-                            <div class="simulator-controls">
-                                <div class="control-group">
-                                    <label for="channel-length">沟道长度 (nm)</label>
-                                    <input type="range" id="channel-length" min="10" max="1000" step="10" value="100">
-                                    <span id="channel-length-value">100</span> nm
-                                </div>
-                                <div class="control-group">
-                                    <label for="oxide-thickness">氧化层厚度 (nm)</label>
-                                    <input type="range" id="oxide-thickness" min="0.5" max="5" step="0.1" value="1">
-                                    <span id="oxide-thickness-value">1.0</span> nm
-                                </div>
-                            </div>
-                            <div class="simulator-output">
-                                <div class="chart-container">
-                                    <canvas id="sce-chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="chart-area">
+                        <canvas id="transport-chart" width="800" height="400"></canvas>
                     </div>
                     
-                    <div id="comparison-demo" class="tab-content">
-                        <div class="demo-description">
-                            <p>比较不同MOSFET结构（平面、FinFET、GAA FET）的性能特性。</p>
+                    <div class="results-panel">
+                        <h4>输运特性计算结果</h4>
+                        <div class="result-item">
+                            <span class="result-label">电子迁移率 (μₙ)：</span>
+                            <span class="result-value" id="mu-n-value">1450</span> cm²/(V·s)
                         </div>
-                        <div class="simulator-container">
-                            <div class="simulator-controls">
-                                <div class="control-group">
-                                    <label for="tech-node">技术节点</label>
-                                    <select id="tech-node">
-                                        <option value="45">45nm</option>
-                                        <option value="28">28nm</option>
-                                        <option value="14">14nm</option>
-                                        <option value="7">7nm</option>
-                                        <option value="5">5nm</option>
-                                        <option value="3">3nm</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="simulator-output">
-                                <div class="chart-container">
-                                    <canvas id="comparison-chart"></canvas>
-                                </div>
-                            </div>
+                        <div class="result-item">
+                            <span class="result-label">空穴迁移率 (μₚ)：</span>
+                            <span class="result-value" id="mu-p-value">500</span> cm²/(V·s)
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">电子扩散系数 (Dₙ)：</span>
+                            <span class="result-value" id="d-n-value">37.6</span> cm²/s
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">空穴扩散系数 (Dₚ)：</span>
+                            <span class="result-value" id="d-p-value">12.9</span> cm²/s
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">电导率 (σ)：</span>
+                            <span class="result-value" id="conductivity-value">2.32</span> (Ω·cm)⁻¹
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">电阻率 (ρ)：</span>
+                            <span class="result-value" id="resistivity-value">0.43</span> Ω·cm
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">漂移电流密度：</span>
+                            <span class="result-value" id="drift-current-value">2320</span> A/cm²
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="chapter-footer">
-                <a href="chapter3.html" class="nav-button prev">
-                    <i class="fas fa-arrow-left"></i>
-                    上一章：基础离散器件
-                </a>
-                <a href="chapter5.html" class="nav-button next">
-                    下一章：数字集成器件
-                    <i class="fas fa-arrow-right"></i>
-                </a>
+            <!-- 本章小结 -->
+            <div id="chapter-summary" class="section">
+                <h3>本章小结</h3>
+                <div class="chapter-core">
+                    <ul>
+                        <li>载流子的输运机制包括漂移运动和扩散运动</li>
+                        <li>漂移运动是载流子在外加电场作用下的定向运动，其漂移速度与电场强度成正比，比例系数为迁移率</li>
+                        <li>扩散运动是载流子在浓度梯度作用下的统计运动，扩散电流密度与浓度梯度成正比，比例系数为扩散系数</li>
+                        <li>电流密度方程是漂移电流和扩散电流的矢量和，描述了半导体中的总电流</li>
+                        <li>爱因斯坦关系（D/μ = kT/q）揭示了扩散系数与迁移率之间的内在联系，将扩散和漂移这两种输运机制联系起来</li>
+                        <li>迁移率和扩散系数是描述载流子输运能力的重要参数，受温度、掺杂浓度和材料类型等因素影响</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h4>下一章预告</h4>
+                    <p>第5章将深入介绍非平衡载流子与复合动力学，包括非平衡载流子的产生与复合机制、少数载流子寿命与扩散长度，以及描述载流子时空演化的连续性方程。</p>
+                    <button class="btn btn-primary" onclick="window.location.href='chapter5.html'">前往第5章</button>
+                </div>
             </div>
         </div>
     </main>
@@ -335,10 +619,11 @@
                 <div class="footer-section">
                     <h3>快速链接</h3>
                     <ul>
-                        <li><a href="../index.html#basics">基础原理</a></li>
-                        <li><a href="../index.html#integration">集成器件</a></li>
-                        <li><a href="../index.html#process">制造工艺</a></li>
-                        <li><a href="../index.html#advanced">先进技术</a></li>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../index.html#part1">量子基石与材料特性</a></li>
+                        <li><a href="../index.html#part2">载流子动力学与输运</a></li>
+                        <li><a href="../index.html#part3">能带工程与界面物理</a></li>
+                        <li><a href="../index.html#part4">核心半导体器件物理</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -355,258 +640,262 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // 章节特定功能
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化移动菜单
-            initMobileMenu();
-            
-            // 章节内导航
-            const sectionLinks = document.querySelectorAll('.section-link');
-            const contentSections = document.querySelectorAll('.content-section');
-            
-            sectionLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 移除所有active类
-                    sectionLinks.forEach(l => l.classList.remove('active'));
-                    
-                    // 添加active类到当前链接
-                    this.classList.add('active');
-                    
-                    // 滚动到对应部分
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // 初始化标签页
-            initTabs();
-            
-            // 初始化MOSFET开关演示
-            initMOSFETSimulation();
-            
-            // 初始化短沟道效应模拟器
-            initSCESimulation();
-            
-            // 初始化结构对比图表
-            initComparisonChart();
-        });
+        // 半导体材料参数
+        const materialParams = {
+            silicon: {
+                name: '硅',
+                mn_mobility_300K: 1450, // 300K下电子迁移率 (cm²/(V·s))
+                mp_mobility_300K: 500,    // 300K下空穴迁移率 (cm²/(V·s))
+                mn_activation: 1.5,       // 电子迁移率温度系数
+                mp_activation: 2.0,       // 空穴迁移率温度系数
+                Eg: 1.12                  // 禁带宽度 (eV)
+            },
+            germanium: {
+                name: '锗',
+                mn_mobility_300K: 3900,
+                mp_mobility_300K: 1900,
+                mn_activation: 1.6,
+                mp_activation: 2.1,
+                Eg: 0.66
+            },
+            gaas: {
+                name: '砷化镓',
+                mn_mobility_300K: 8500,
+                mp_mobility_300K: 400,
+                mn_activation: 1.8,
+                mp_activation: 2.2,
+                Eg: 1.42
+            }
+        };
         
-        // 短沟道效应模拟器
-        function initSCESimulation() {
-            const channelLength = document.getElementById('channel-length');
-            const oxideThickness = document.getElementById('oxide-thickness');
-            const channelLengthValue = document.getElementById('channel-length-value');
-            const oxideThicknessValue = document.getElementById('oxide-thickness-value');
-            const canvas = document.getElementById('sce-chart');
+        // 物理常数
+        const k = 8.617e-5; // 玻尔兹曼常数 (eV/K)
+        const q = 1.602e-19; // 电子电荷量 (C)
+        const T0 = 300; // 参考温度 (K)
+        
+        // 全局变量
+        let transportChart = null;
+        
+        // 计算迁移率
+        function calculateMobility(material, T, doping) {
+            const params = materialParams[material];
+            const tempRatio = T / T0;
             
-            if (!canvas) return;
+            // 简化的迁移率模型
+            // 考虑温度和掺杂浓度的影响
+            const mn_300K = params.mn_mobility_300K;
+            const mp_300K = params.mp_mobility_300K;
+            const mn_activation = params.mn_activation;
+            const mp_activation = params.mp_activation;
             
-            const ctx = canvas.getContext('2d');
+            // 温度对迁移率的影响
+            const mn_temp = mn_300K * Math.pow(tempRatio, -mn_activation);
+            const mp_temp = mp_300K * Math.pow(tempRatio, -mp_activation);
             
-            // 创建图表
-            const chart = new Chart(ctx, {
+            // 掺杂浓度对迁移率的影响
+            const mn_doping = mn_temp / (1 + Math.pow(doping / 1e17, 0.8));
+            const mp_doping = mp_temp / (1 + Math.pow(doping / 1e17, 0.8));
+            
+            return { mn: mn_doping, mp: mp_doping };
+        }
+        
+        // 计算扩散系数
+        function calculateDiffusionCoefficient(mu_n, mu_p, T) {
+            const kTq = k * T;
+            const Dn = mu_n * kTq;
+            const Dp = mu_p * kTq;
+            return { Dn, Dp };
+        }
+        
+        // 计算电导率和电阻率
+        function calculateConductivity(mu_n, mu_p, doping) {
+            const n = doping; // N型掺杂，假设n ≈ Nd
+            const p = Math.pow(1.5e10, 2) / n; // 质量作用定律，ni=1.5e10 cm⁻³
+            
+            const sigma = q * (n * mu_n + p * mu_p) * 1e-4; // 转换为 (Ω·cm)⁻¹
+            const rho = 1 / sigma;
+            
+            return { sigma, rho, n, p };
+        }
+        
+        // 计算漂移电流密度
+        function calculateDriftCurrent(sigma, E) {
+            return sigma * E * 1e2; // E单位为V/cm，转换为A/cm²
+        }
+        
+        // 初始化输运图表
+        function initTransportChart() {
+            const ctx = document.getElementById('transport-chart').getContext('2d');
+            
+            // 销毁现有图表
+            if (transportChart) {
+                transportChart.destroy();
+            }
+            
+            // 生成初始数据
+            const electricFields = Array.from({length: 21}, (_, i) => i * 500); // 0到10000 V/cm，步长500
+            const material = document.getElementById('material-select').value;
+            const T = parseFloat(document.getElementById('temperature-slider').value);
+            const doping = parseFloat(document.getElementById('doping-slider').value);
+            
+            const { mn, mp } = calculateMobility(material, T, doping);
+            const { Dn, Dp } = calculateDiffusionCoefficient(mn, mp, T);
+            
+            const driftVelocitiesN = electricFields.map(E => mn * E);
+            const driftVelocitiesP = electricFields.map(E => mp * E);
+            
+            // 创建新图表
+            transportChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: [],
+                    labels: electricFields,
                     datasets: [
                         {
-                            label: '阈值电压 (V)',
-                            data: [],
-                            borderColor: 'rgba(26, 115, 232, 1)',
-                            backgroundColor: 'rgba(26, 115, 232, 0.1)',
-                            yAxisID: 'y',
-                            tension: 0.4
+                            label: '电子漂移速度 (cm/s)',
+                            data: driftVelocitiesN,
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            yAxisID: 'y'
                         },
                         {
-                            label: '漏电流 (μA)',
-                            data: [],
-                            borderColor: 'rgba(234, 67, 53, 1)',
-                            backgroundColor: 'rgba(234, 67, 53, 0.1)',
-                            yAxisID: 'y1',
-                            tension: 0.4
+                            label: '空穴漂移速度 (cm/s)',
+                            data: driftVelocitiesP,
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            yAxisID: 'y'
                         }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
                     scales: {
                         x: {
                             title: {
                                 display: true,
-                                text: '沟道长度 (nm)'
+                                text: '电场强度 (V/cm)'
                             }
                         },
                         y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
                             title: {
                                 display: true,
-                                text: '阈值电压 (V)'
-                            }
+                                text: '漂移速度 (cm/s)'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
                         },
-                        y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
-                            title: {
-                                display: true,
-                                text: '漏电流 (μA)'
-                            },
-                            grid: {
-                                drawOnChartArea: false,
-                            },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y.toExponential(2)} cm/s`;
+                                }
+                            }
                         }
                     }
                 }
             });
-            
-            // 更新显示值
-            channelLength.addEventListener('input', function() {
-                channelLengthValue.textContent = this.value;
-                updateSCEData();
-            });
-            
-            oxideThickness.addEventListener('input', function() {
-                oxideThicknessValue.textContent = parseFloat(this.value).toFixed(1);
-                updateSCEData();
-            });
-            
-            function updateSCEData() {
-                const L = parseFloat(channelLength.value);
-                const tox = parseFloat(oxideThickness.value);
-                
-                // 生成数据
-                const lengths = [];
-                const vths = [];
-                const leakages = [];
-                
-                for (let l = 10; l <= 1000; l *= 1.2) {
-                    lengths.push(l.toFixed(0));
-                    
-                    // 简化的阈值电压模型
-                    const vth0 = 0.7; // 长沟道阈值电压
-                    const deltaVth = 0.3 * Math.exp(-l / 100) * (tox / 1.0);
-                    vths.push((vth0 - deltaVth).toFixed(3));
-                    
-                    // 简化的漏电流模型
-                    const Ioff0 = 1e-9; // 长沟道漏电流
-                    const Ioff = Ioff0 * Math.exp(50 / l) * Math.exp(5 / tox) * 1e6; // 转换为μA
-                    leakages.push(Ioff.toFixed(3));
-                }
-                
-                // 更新图表
-                chart.data.labels = lengths;
-                chart.data.datasets[0].data = vths;
-                chart.data.datasets[1].data = leakages;
-                chart.update();
-            }
-            
-            // 初始数据
-            updateSCEData();
         }
         
-        // 结构对比图表
-        function initComparisonChart() {
-            const techNode = document.getElementById('tech-node');
-            const canvas = document.getElementById('comparison-chart');
+        // 更新输运特性计算结果
+        function updateTransportResults() {
+            const material = document.getElementById('material-select').value;
+            const T = parseFloat(document.getElementById('temperature-slider').value);
+            const E = parseFloat(document.getElementById('electric-field-slider').value);
+            const doping = parseFloat(document.getElementById('doping-slider').value);
             
-            if (!canvas) return;
+            // 计算迁移率
+            const { mn, mp } = calculateMobility(material, T, doping);
             
-            const ctx = canvas.getContext('2d');
+            // 计算扩散系数
+            const { Dn, Dp } = calculateDiffusionCoefficient(mn, mp, T);
             
-            // 创建图表
-            const chart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['驱动电流', '漏电流', '栅极电容', '面积效率'],
-                    datasets: [
-                        {
-                            label: '平面MOSFET',
-                            data: [1, 1, 1, 1],
-                            backgroundColor: 'rgba(26, 115, 232, 0.7)',
-                            borderColor: 'rgba(26, 115, 232, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'FinFET',
-                            data: [1.5, 0.5, 1.2, 0.8],
-                            backgroundColor: 'rgba(52, 168, 83, 0.7)',
-                            borderColor: 'rgba(52, 168, 83, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'GAA FET',
-                            data: [2, 0.3, 1.3, 0.7],
-                            backgroundColor: 'rgba(251, 188, 4, 0.7)',
-                            borderColor: 'rgba(251, 188, 4, 1)',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '相对性能 (归一化)'
-                            }
-                        }
-                    }
-                }
-            });
+            // 计算电导率和电阻率
+            const { sigma, rho } = calculateConductivity(mn, mp, doping);
             
-            // 监听技术节点变化
-            techNode.addEventListener('change', function() {
-                const node = parseInt(this.value);
-                
-                // 根据技术节点调整性能数据
-                let planar, finfet, gaafet;
-                
-                if (node >= 45) {
-                    // 较老节点，平面MOSFET表现良好
-                    planar = [1, 1, 1, 1];
-                    finfet = [1.3, 0.8, 1.1, 0.9];
-                    gaafet = [1.4, 0.7, 1.2, 0.8];
-                } else if (node >= 14) {
-                    // 中间节点，FinFET占优
-                    planar = [0.8, 2, 1, 1];
-                    finfet = [1.5, 0.5, 1.2, 0.8];
-                    gaafet = [1.7, 0.4, 1.3, 0.7];
-                } else {
-                    // 先进节点，GAA FET占优
-                    planar = [0.5, 5, 1, 1];
-                    finfet = [1.2, 1, 1.2, 0.8];
-                    gaafet = [2, 0.3, 1.3, 0.7];
-                }
-                
-                // 更新图表
-                chart.data.datasets[0].data = planar;
-                chart.data.datasets[1].data = finfet;
-                chart.data.datasets[2].data = gaafet;
-                chart.update();
-            });
+            // 计算漂移电流密度
+            const J_drift = calculateDriftCurrent(sigma, E);
             
-            // 初始数据
-            techNode.dispatchEvent(new Event('change'));
+            // 更新显示
+            document.getElementById('mu-n-value').textContent = mn.toFixed(0);
+            document.getElementById('mu-p-value').textContent = mp.toFixed(0);
+            document.getElementById('d-n-value').textContent = Dn.toFixed(1);
+            document.getElementById('d-p-value').textContent = Dp.toFixed(1);
+            document.getElementById('conductivity-value').textContent = sigma.toFixed(2);
+            document.getElementById('resistivity-value').textContent = rho.toFixed(2);
+            document.getElementById('drift-current-value').textContent = J_drift.toFixed(0);
         }
+        
+        // 更新图表
+        function updateChart() {
+            const electricFields = Array.from({length: 21}, (_, i) => i * 500);
+            const material = document.getElementById('material-select').value;
+            const T = parseFloat(document.getElementById('temperature-slider').value);
+            const doping = parseFloat(document.getElementById('doping-slider').value);
+            
+            const { mn, mp } = calculateMobility(material, T, doping);
+            
+            const driftVelocitiesN = electricFields.map(E => mn * E);
+            const driftVelocitiesP = electricFields.map(E => mp * E);
+            
+            transportChart.data.datasets[0].data = driftVelocitiesN;
+            transportChart.data.datasets[1].data = driftVelocitiesP;
+            transportChart.update();
+        }
+        
+        // 更新滑块值显示
+        function updateSliderValues() {
+            document.getElementById('temperature-value').textContent = document.getElementById('temperature-slider').value;
+            document.getElementById('electric-field-value').textContent = document.getElementById('electric-field-slider').value;
+            document.getElementById('doping-value').textContent = parseFloat(document.getElementById('doping-slider').value).toExponential(2);
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化图表
+            initTransportChart();
+            
+            // 更新初始结果
+            updateTransportResults();
+            
+            // 更新滑块值显示
+            updateSliderValues();
+            
+            // 添加事件监听器
+            document.getElementById('material-select').addEventListener('change', function() {
+                initTransportChart();
+                updateTransportResults();
+            });
+            
+            document.getElementById('temperature-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateTransportResults();
+                updateChart();
+            });
+            
+            document.getElementById('electric-field-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateTransportResults();
+            });
+            
+            document.getElementById('doping-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateTransportResults();
+                updateChart();
+            });
+        });
     </script>
 </body>
 </html>

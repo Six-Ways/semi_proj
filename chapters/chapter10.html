@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第10章：器件掺杂与薄膜工艺 - SEMI_PROJ</title>
+    <title>第10章：金属-氧化物-半导体场效应晶体管（MOSFET） - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/chapter-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,6 +25,9 @@
                     <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
                     <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
                     <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
+                    <li><a href="../index.html#part5" class="nav-link">第五部分</a></li>
+                    <li><a href="../index.html#part6" class="nav-link">第六部分</a></li>
+                    <li><a href="../index.html#part7" class="nav-link">第七部分</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle">
@@ -51,56 +54,68 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
                 <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                    第1章：量子力学基础与固体中的电子
                 </a>
                 <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                    第2章：半导体材料与晶体结构
                 </a>
                 <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
+                    第3章：载流子统计与热平衡
                 </a>
                 <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                    第4章：载流子输运现象
                 </a>
                 <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                    第5章：非平衡载流子与复合动力学
                 </a>
                 <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
                 <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                    第8章：MOS结构物理
                 </a>
                 <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                    第9章：异质结与能带调控
                 </a>
                 <a href="chapter10.html" class="chapter-nav-item active">
-                    第10章：器件掺杂与薄膜工艺
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
                 </a>
                 <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
                 <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                    第13章：晶圆制备与薄膜工程
                 </a>
                 <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
+                    第14章：图形化与掺杂技术
                 </a>
                 <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                    第15章：工艺集成与后端互连
                 </a>
                 <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                    第16章：半导体材料与器件表征
                 </a>
                 <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
             
@@ -109,14 +124,17 @@
                     <h4>当前章节</h4>
                     <nav class="section-nav">
 
-                    <a href="#ion-implantation" class="section-nav-item">
-                        离子注入技术
+                    <a href="#mosfet-basics" class="section-nav-item">
+                        MOSFET基本结构与工作原理
                     </a>
-                    <a href="#thermal-processes" class="section-nav-item">
-                        热工艺
+                    <a href="#iv-characteristics" class="section-nav-item">
+                        I-V特性与工作区域
                     </a>
-                    <a href="#thin-film-deposition" class="section-nav-item">
-                        薄膜沉积
+                    <a href="#short-channel-effects" class="section-nav-item">
+                        短沟道效应
+                    </a>
+                    <a href="#advanced-structures" class="section-nav-item">
+                        先进MOSFET结构
                     </a>
                     <a href="#chapter-summary" class="section-nav-item">
                         本章小结
@@ -129,150 +147,415 @@
 
     <div class="chapter-container">
         <div class="breadcrumb">
-            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十章：器件掺杂与薄膜工艺</p>
+            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part4">第四部分：核心半导体器件物理</a> &gt; 第十章：金属-氧化物-半导体场效应晶体管（MOSFET）</p>
         </div>
         <div class="chapter-header">
-            <h1>第十章：器件掺杂与薄膜工艺</h1>
+            <h1>第十章：金属-氧化物-半导体场效应晶体管（MOSFET）</h1>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">离子注入技术</h2>
-            <p>离子注入是半导体制造中精确控制掺杂浓度和分布的关键技术。本节介绍离子注入的物理原理、工艺参数控制、设备结构以及对器件性能的影响。</p>
+        <div class="chapter-core">
+            <h3>核心内容</h3>
+            <p>从MOS结构出发，推导MOSFET的线性区与饱和区电流公式。讲解体效应、沟道长度调制等效应。深入分析短沟道效应：阈值电压滚降、漏致势垒降低（DIBL）、速度饱和、热载流子注入。介绍多栅结构（FinFET、GAA纳米片晶体管）以抑制短沟道效应。</p>
+        </div>
+        
+        <div class="chapter-objectives">
+            <h3>章节目标</h3>
+            <ul>
+                <li>掌握MOSFET的基本工作原理和I-V特性模型</li>
+                <li>理解器件尺寸缩小带来的挑战及先进器件结构的解决方案</li>
+                <li>能够分析不同工作区域的MOSFET特性</li>
+                <li>了解短沟道效应的物理机制</li>
+                <li>掌握先进MOSFET结构的优势</li>
+            </ul>
+        </div>
+        
+        <div class="chapter-keywords">
+            <h3>关键词</h3>
+            <div class="keywords-list">
+                <span class="keyword">MOSFET</span>
+                <span class="keyword">增强型/耗尽型</span>
+                <span class="keyword">线性区</span>
+                <span class="keyword">饱和区</span>
+                <span class="keyword">体效应</span>
+                <span class="keyword">沟道长度调制</span>
+                <span class="keyword">短沟道效应（SCE）</span>
+                <span class="keyword">DIBL</span>
+                <span class="keyword">FinFET</span>
+                <span class="keyword">全环绕栅极（GAA）</span>
+            </div>
+        </div>
+        
+        <div class="section" id="mosfet-basics">
+            <h2 class="section-title">MOSFET基本结构与工作原理</h2>
+            <p>MOSFET是现代集成电路的核心器件，其基本结构由源极（Source）、漏极（Drain）、栅极（Gate）和衬底（Substrate）四部分组成。栅极通过氧化物绝缘层与沟道区隔开，通过控制栅压可以调节沟道的导电性，实现开关和放大功能。</p>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('ion-overview')">离子注入概述</button>
-                    <button class="tab-button" onclick="showTab('ion-interactive')">离子注入模拟器</button>
+                    <button class="tab-button active" onclick="showTab('structure-overview')">结构与工作原理</button>
+                    <button class="tab-button" onclick="showTab('enhancement-depletion')">增强型与耗尽型</button>
                 </div>
                 
                 <div class="tab-content">
-                    <div id="ion-overview" class="tab-pane active">
+                    <div id="structure-overview" class="tab-pane active">
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">MOSFET基本结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/mosfet-structure.svg" alt="MOSFET基本结构" class="diagram-image">
+                                <div class="diagram-caption">图10-1：NMOS晶体管的基本结构</div>
+                            </div>
+                        </div>
+                        
+                        <p>MOSFET的工作原理基于栅极电压对沟道区表面电势的调制。当栅压变化时，沟道区的载流子浓度随之改变，从而控制源漏之间的电流。</p>
+                        
                         <div class="process-flow">
                             <div class="process-step">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">离子源与加速</h3>
-                                    <p class="step-description">离子源产生所需掺杂元素的离子，通过电场加速获得高能量。常用掺杂元素包括硼(B)、磷(P)、砷(As)等。离子能量范围通常从几keV到几MeV，决定了注入深度。</p>
+                                    <h3 class="step-title">MOS结构基础</h3>
+                                    <p class="step-description">基于第8章的MOS结构物理，当栅极施加正电压时，P型衬底表面会形成电子反型层，这层反型层就是MOSFET的导电沟道。</p>
                                 </div>
                             </div>
                             
                             <div class="process-step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">质量分析与聚焦</h3>
-                                    <p class="step-description">通过磁场进行质量分析，选择特定质量的离子。然后通过静电透镜系统将离子束聚焦成细束，确保注入精度。束流强度通常从几μA到几mA，影响注入速率。</p>
+                                    <h3 class="step-title">沟道形成</h3>
+                                    <p class="step-description">当栅极电压超过阈值电压V<sub>th</sub>时，反型层形成，连接源极和漏极，此时源漏之间可以通过载流子导电。</p>
                                 </div>
                             </div>
                             
                             <div class="process-step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">扫描与注入</h3>
-                                    <p class="step-description">离子束通过静电或机械扫描系统均匀覆盖整个晶圆表面。注入剂量范围从10¹¹到10¹⁶ atoms/cm²，决定了掺杂浓度。注入过程中需要控制晶圆温度，避免非晶化。</p>
+                                    <h3 class="step-title">电流控制</h3>
+                                    <p class="step-description">通过改变栅极电压可以调节沟道的导电能力（沟道电导），从而控制源漏电流的大小。漏极电压的变化会影响沟道的形状，导致不同的工作区域。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="enhancement-depletion" class="tab-pane">
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">增强型MOSFET</h3>
+                                <div class="comparison-content">
+                                    <p>增强型MOSFET在零栅压下没有导电沟道，需要施加正栅压（对于NMOS）或负栅压（对于PMOS）来形成沟道。这是最常用的MOSFET类型，广泛应用于数字电路中。</p>
+                                    <ul>
+                                        <li>零栅压下，源漏之间电阻极高</li>
+                                        <li>需要施加栅压才能导通</li>
+                                        <li>阈值电压V<sub>th</sub> > 0（NMOS）或V<sub>th</sub> < 0（PMOS）</li>
+                                        <li>用于数字逻辑和开关应用</li>
+                                    </ul>
                                 </div>
                             </div>
                             
-                            <div class="process-step">
-                                <div class="step-number">4</div>
-                                <div class="step-content">
-                                    <h3 class="step-title">退火激活</h3>
-                                    <p class="step-description">注入后的晶圆需要进行退火处理，修复晶格损伤并激活掺杂剂。快速热退火(RTA)是常用技术，温度范围600-1100°C，时间几秒到几分钟。退火条件影响掺杂剂的激活率和扩散。</p>
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">耗尽型MOSFET</h3>
+                                <div class="comparison-content">
+                                    <p>耗尽型MOSFET在零栅压下就已经存在导电沟道，需要施加负栅压（对于NMOS）或正栅压（对于PMOS）来耗尽沟道，关断电流。</p>
+                                    <ul>
+                                        <li>零栅压下，源漏之间可以导电</li>
+                                        <li>需要施加反向栅压才能关断</li>
+                                        <li>阈值电压V<sub>th</sub> < 0（NMOS）或V<sub>th</sub> > 0（PMOS）</li>
+                                        <li>用于模拟电路和特殊应用</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                         
-                        <h3>离子注入技术对比</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>注入类型</th>
-                                    <th>能量范围</th>
-                                    <th>剂量范围</th>
-                                    <th>主要应用</th>
-                                    <th>优缺点</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>低能量注入</td>
-                                    <td>1-30 keV</td>
-                                    <td>10¹²-10¹⁴ atoms/cm²</td>
-                                    <td>浅结形成、超浅源漏</td>
-                                    <td>结深控制精确，但易受沟道效应影响</td>
-                                </tr>
-                                <tr>
-                                    <td>中能量注入</td>
-                                    <td>30-200 keV</td>
-                                    <td>10¹³-10¹⁵ atoms/cm²</td>
-                                    <td>阱区形成、阈值调整</td>
-                                    <td>工艺成熟，结深适中，应用广泛</td>
-                                </tr>
-                                <tr>
-                                    <td>高能量注入</td>
-                                    <td>200 keV-3 MeV</td>
-                                    <td>10¹¹-10¹³ atoms/cm²</td>
-                                    <td>埋层形成、隔离</td>
-                                    <td>结深大，但设备成本高，损伤大</td>
-                                </tr>
-                                <tr>
-                                    <td>大剂量注入</td>
-                                    <td>30-200 keV</td>
-                                    <td>10¹⁵-10¹⁶ atoms/cm²</td>
-                                    <td>源漏形成、硅化物接触</td>
-                                    <td>掺杂浓度高，但非晶化严重</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="concept-table">
+                            <h3 class="table-title">增强型与耗尽型MOSFET对比</h3>
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>特性</th>
+                                        <th>增强型NMOS</th>
+                                        <th>耗尽型NMOS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>零栅压下沟道</td>
+                                        <td>无</td>
+                                        <td>有</td>
+                                    </tr>
+                                    <tr>
+                                        <td>阈值电压</td>
+                                        <td>V<sub>th</sub> > 0</td>
+                                        <td>V<sub>th</sub> < 0</td>
+                                    </tr>
+                                    <tr>
+                                        <td>导通条件</td>
+                                        <td>V<sub>GS</sub> > V<sub>th</sub></td>
+                                        <td>V<sub>GS</sub> > V<sub>th</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <td>关断条件</td>
+                                        <td>V<sub>GS</sub> < V<sub>th</sub></td>
+                                        <td>V<sub>GS</sub> < V<sub>th</sub></td>
+                                    </tr>
+                                    <tr>
+                                        <td>主要应用</td>
+                                        <td>数字电路、开关</td>
+                                        <td>模拟电路、恒流源</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="iv-characteristics">
+            <h2 class="section-title">I-V特性与工作区域</h2>
+            <p>MOSFET的电流-电压（I-V）特性描述了源漏电流与栅源电压、漏源电压之间的关系。根据栅源电压和漏源电压的不同，MOSFET可以工作在三个主要区域：截止区、线性区和饱和区。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('iv-equations')">I-V方程</button>
+                    <button class="tab-button" onclick="showTab('iv-interactive')">I-V特性模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="iv-equations" class="tab-pane active">
+                        <h3>MOSFET电流方程</h3>
+                        <p>对于长沟道MOSFET，其I-V特性可以用以下经典方程描述：</p>
+                        
+                        <div class="equation-box">
+                            <h4>截止区（V<sub>GS</sub> < V<sub>th</sub>）</h4>
+                            <p class="equation">I<sub>D</sub> ≈ 0</p>
+                            <p class="equation-description">当栅源电压小于阈值电压时，没有反型层形成，漏源电流几乎为零。</p>
+                        </div>
+                        
+                        <div class="equation-box">
+                            <h4>线性区（V<sub>GS</sub> > V<sub>th</sub>，V<sub>DS</sub> < V<sub>GS</sub> - V<sub>th</sub>）</h4>
+                            <p class="equation">I<sub>D</sub> = μ<sub>n</sub>C<sub>ox</sub>(W/L)[(V<sub>GS</sub> - V<sub>th</sub>)V<sub>DS</sub> - (1/2)V<sub>DS</sub><sup>2</sup>]</p>
+                            <p class="equation-description">当漏源电压较小时，沟道是均匀的，电流与V<sub>DS</sub>近似线性关系，因此称为线性区。</p>
+                        </div>
+                        
+                        <div class="equation-box">
+                            <h4>饱和区（V<sub>GS</sub> > V<sub>th</sub>，V<sub>DS</sub> ≥ V<sub>GS</sub> - V<sub>th</sub>）</h4>
+                            <p class="equation">I<sub>D</sub> = (1/2)μ<sub>n</sub>C<sub>ox</sub>(W/L)(V<sub>GS</sub> - V<sub>th</sub>)<sup>2</sup>(1 + λV<sub>DS</sub>)</p>
+                            <p class="equation-description">当漏源电压足够大时，漏端沟道被夹断，电流不再随V<sub>DS</sub>显著增加，进入饱和区。λ是沟道长度调制系数。</p>
+                        </div>
+                        
+                        <h3>主要参数说明</h3>
+                        <ul class="parameter-list">
+                            <li><strong>μ<sub>n</sub></strong>：电子迁移率</li>
+                            <li><strong>C<sub>ox</sub></strong>：单位面积栅氧化层电容</li>
+                            <li><strong>W/L</strong>：宽长比，决定MOSFET的驱动能力</li>
+                            <li><strong>V<sub>th</sub></strong>：阈值电压</li>
+                            <li><strong>λ</strong>：沟道长度调制系数</li>
+                        </ul>
                     </div>
                     
-                    <div id="ion-interactive" class="tab-pane">
+                    <div id="iv-interactive" class="tab-pane">
                         <div class="interactive-tool">
-                            <h3 class="tool-title">离子注入结深与浓度分布模拟器</h3>
+                            <h3 class="tool-title">MOSFET I-V特性模拟器</h3>
                             <div class="controls">
                                 <div class="control-group">
-                                    <label for="ion-type">掺杂离子类型</label>
-                                    <select id="ion-type">
-                                        <option value="boron">硼(B)</option>
-                                        <option value="phosphorus">磷(P)</option>
-                                        <option value="arsenic">砷(As)</option>
-                                        <option value="antimony">锑(Sb)</option>
+                                    <label for="mosfet-type">MOSFET类型</label>
+                                    <select id="mosfet-type">
+                                        <option value="nmos">NMOS</option>
+                                        <option value="pmos">PMOS</option>
                                     </select>
                                 </div>
                                 <div class="control-group">
-                                    <label for="ion-energy">离子能量 (keV)</label>
-                                    <input type="range" id="ion-energy" min="1" max="300" value="50">
-                                    <span id="ion-energy-value">50 keV</span>
+                                    <label for="vth">阈值电压 (V)</label>
+                                    <input type="range" id="vth" min="0.1" max="2" step="0.1" value="0.5">
+                                    <span id="vth-value">0.5 V</span>
                                 </div>
                                 <div class="control-group">
-                                    <label for="ion-dose">注入剂量 (atoms/cm²)</label>
-                                    <input type="range" id="ion-dose" min="11" max="16" value="14" step="0.1">
-                                    <span id="ion-dose-value">10¹⁴ atoms/cm²</span>
+                                    <label for="w-l">宽长比 (W/L)</label>
+                                    <input type="range" id="w-l" min="1" max="100" step="1" value="20">
+                                    <span id="w-l-value">20</span>
                                 </div>
                                 <div class="control-group">
-                                    <label for="tilt-angle">倾斜角度 (°)</label>
-                                    <input type="range" id="tilt-angle" min="0" max="45" value="7">
-                                    <span id="tilt-angle-value">7°</span>
+                                    <label for="vgs">栅源电压 (V)</label>
+                                    <input type="range" id="vgs" min="0" max="5" step="0.1" value="2">
+                                    <span id="vgs-value">2.0 V</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="lambda">沟道长度调制系数 (1/V)</label>
+                                    <input type="range" id="lambda" min="0" max="0.1" step="0.005" value="0.02">
+                                    <span id="lambda-value">0.02 1/V</span>
                                 </div>
                             </div>
                             <div class="chart-container">
-                                <canvas id="ion-profile-chart"></canvas>
+                                <canvas id="mosfet-iv-chart"></canvas>
                             </div>
                             <div class="result-display">
                                 <div class="result-item">
-                                    <span class="result-label">投影射程</span>
-                                    <span class="result-value" id="projected-range">0.15 μm</span>
+                                    <span class="result-label">工作区域</span>
+                                    <span class="result-value" id="operation-region">线性区</span>
                                 </div>
                                 <div class="result-item">
-                                    <span class="result-label">纵向标准差</span>
-                                    <span class="result-value" id="vertical-straggle">0.05 μm</span>
+                                    <span class="result-label">漏源电流</span>
+                                    <span class="result-value" id="id-current">1.0 mA</span>
                                 </div>
                                 <div class="result-item">
-                                    <span class="result-label">峰值浓度</span>
-                                    <span class="result-value" id="peak-concentration">1.2×10¹⁹ cm⁻³</span>
+                                    <span class="result-label">跨导</span>
+                                    <span class="result-value" id="transconductance">0.5 mS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>工作区域的物理意义</h3>
+            <div class="concept-table">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>工作区域</th>
+                            <th>电压条件</th>
+                            <th>物理图像</th>
+                            <th>主要应用</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>截止区</td>
+                            <td>V<sub>GS</sub> < V<sub>th</sub></td>
+                            <td>无反型层，沟道断开</td>
+                            <td>数字电路中的关态</td>
+                        </tr>
+                        <tr>
+                            <td>线性区</td>
+                            <td>V<sub>GS</sub> > V<sub>th</sub>，V<sub>DS</sub> < V<sub>GS</sub> - V<sub>th</sub></td>
+                            <td>均匀反型层，沟道导通</td>
+                            <td>模拟电路中的可变电阻</td>
+                        </tr>
+                        <tr>
+                            <td>饱和区</td>
+                            <td>V<sub>GS</sub> > V<sub>th</sub>，V<sub>DS</sub> ≥ V<sub>GS</sub> - V<sub>th</sub></td>
+                            <td>漏端沟道夹断，电流饱和</td>
+                            <td>数字电路中的开态，模拟电路中的放大</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section" id="short-channel-effects">
+            <h2 class="section-title">短沟道效应</h2>
+            <p>随着MOSFET尺寸的不断缩小，沟道长度接近微米或纳米量级时，经典的长沟道模型不再适用，会出现一系列短沟道效应，影响器件的性能和可靠性。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('sce-overview')">短沟道效应概述</button>
+                    <button class="tab-button" onclick="showTab('sce-simulation')">短沟道效应模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="sce-overview" class="tab-pane active">
+                        <div class="effect-grid">
+                            <div class="effect-card">
+                                <h3 class="effect-title">阈值电压滚降</h3>
+                                <div class="effect-content">
+                                    <p>随着沟道长度的减小，源漏结耗尽区对沟道区的影响增强，导致阈值电压随沟道长度减小而降低的现象。</p>
+                                    <ul>
+                                        <li>物理机制：源漏耗尽区电荷共享</li>
+                                        <li>影响：关态漏电流增加</li>
+                                        <li>缓解方法：减小衬底掺杂浓度，增加栅氧化层厚度</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="effect-card">
+                                <h3 class="effect-title">漏致势垒降低（DIBL）</h3>
+                                <div class="effect-content">
+                                    <p>当漏源电压增加时，漏结耗尽区扩展，降低了源区到沟道的势垒，导致更多载流子从源区注入沟道，增加漏源电流。</p>
+                                    <ul>
+                                        <li>物理机制：漏电压对源区势垒的调制</li>
+                                        <li>影响：亚阈值摆幅恶化，关态漏电流增加</li>
+                                        <li>缓解方法：使用浅结工艺，增加栅对沟道的控制</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="effect-card">
+                                <h3 class="effect-title">速度饱和</h3>
+                                <div class="effect-content">
+                                    <p>在短沟道器件中，沟道电场很强，载流子速度达到饱和值，不再随电场增加而线性增加，导致电流饱和提前。</p>
+                                    <ul>
+                                        <li>物理机制：高电场下载流子速度饱和</li>
+                                        <li>影响：饱和电流降低，跨导减小</li>
+                                        <li>缓解方法：使用高迁移率材料，优化沟道设计</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="effect-card">
+                                <h3 class="effect-title">热载流子注入（HCI）</h3>
+                                <div class="effect-content">
+                                    <p>高电场下的热载流子获得足够能量，可能注入到栅氧化层中，导致阈值电压漂移和可靠性问题。</p>
+                                    <ul>
+                                        <li>物理机制：热载流子越过势垒注入栅氧化层</li>
+                                        <li>影响：器件老化，性能退化</li>
+                                        <li>缓解方法：优化漏端结构，降低电场峰值</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>短沟道效应的影响</h3>
+                        <p>短沟道效应综合作用的结果是：</p>
+                        <ul>
+                            <li>亚阈值摆幅增大，开关性能下降</li>
+                            <li>关态漏电流增加，静态功耗上升</li>
+                            <li>电流驱动能力降低，速度性能下降</li>
+                            <li>器件可靠性下降，寿命缩短</li>
+                            <li>I-V特性偏离长沟道模型，建模困难</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="sce-simulation" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">短沟道效应模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="channel-length">沟道长度 (μm)</label>
+                                    <input type="range" id="channel-length" min="0.1" max="10" step="0.1" value="1">
+                                    <span id="channel-length-value">1.0 μm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="oxide-thickness">栅氧化层厚度 (nm)</label>
+                                    <input type="range" id="oxide-thickness" min="1" max="20" step="0.5" value="5">
+                                    <span id="oxide-thickness-value">5.0 nm</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="substrate-doping">衬底掺杂浓度 (cm⁻³)</label>
+                                    <input type="range" id="substrate-doping" min="14" max="18" step="0.5" value="16">
+                                    <span id="substrate-doping-value">10<sup>16</sup> cm⁻³</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="drain-voltage">漏源电压 (V)</label>
+                                    <input type="range" id="drain-voltage" min="0" max="5" step="0.1" value="3">
+                                    <span id="drain-voltage-value">3.0 V</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="sce-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">阈值电压滚降</span>
+                                    <span class="result-value" id="vth-rolloff">0.15 V</span>
                                 </div>
                                 <div class="result-item">
-                                    <span class="result-label">结深</span>
-                                    <span class="result-value" id="junction-depth">0.28 μm</span>
+                                    <span class="result-label">DIBL系数</span>
+                                    <span class="result-value" id="dibl-coeff">0.05 V/V</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">亚阈值摆幅</span>
+                                    <span class="result-value" id="ss-value">75 mV/dec</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">关态漏电流</span>
+                                    <span class="result-value" id="off-current">10<sup>-12</sup> A</span>
                                 </div>
                             </div>
                         </div>
@@ -281,307 +564,131 @@
             </div>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">热工艺</h2>
-            <p>热工艺是半导体制造中通过控制温度和时间来实现材料改性和结构形成的关键技术。本节介绍氧化、扩散、退火等热工艺的原理和应用。</p>
+        <div class="section" id="advanced-structures">
+            <h2 class="section-title">先进MOSFET结构</h2>
+            <p>为了抑制短沟道效应，继续提高器件性能，科研人员开发了多种先进的MOSFET结构，主要包括多栅器件和新沟道材料器件。</p>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('thermal-overview')">热工艺概述</button>
-                    <button class="tab-button" onclick="showTab('thermal-interactive')">热工艺模拟器</button>
+                    <button class="tab-button active" onclick="showTab('multigate-overview')">多栅MOSFET</button>
+                    <button class="tab-button" onclick="showTab('gate-all-around')">全环绕栅极（GAA）</button>
                 </div>
                 
                 <div class="tab-content">
-                    <div id="thermal-overview" class="tab-pane active">
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-fire"></i>热氧化工艺</h3>
-                            <p class="tech-description">热氧化是在硅表面生长二氧化硅(SiO₂)层的重要工艺，分为干氧氧化和湿氧氧化两种。干氧氧化生长的氧化层质量高但速率慢，湿氧氧化速率快但质量稍差。氧化温度通常在800-1200°C范围，氧化层厚度从几纳米到几微米。氧化层在MOS器件中作为栅介质和场氧，在扩散中作为掩膜，在钝化中作为保护层。</p>
+                    <div id="multigate-overview" class="tab-pane active">
+                        <h3>FinFET结构</h3>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">FinFET结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/finfet-structure.svg" alt="FinFET结构" class="diagram-image">
+                                <div class="diagram-caption">图10-2：FinFET三维结构示意图</div>
+                            </div>
                         </div>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-arrows-alt-h"></i>热扩散工艺</h3>
-                            <p class="tech-description">热扩散是利用高温下掺杂原子的扩散运动实现掺杂分布的技术，包括恒定源扩散和限定源扩散两种。恒定源扩散表面浓度恒定，限定源扩散总剂量恒定。扩散温度通常在900-1200°C，时间从几分钟到几小时。扩散工艺用于形成阱区、源漏区和电阻等结构，是早期主要的掺杂技术。</p>
+                        <p>FinFET（鳍式场效应晶体管）是一种三维多栅器件，其沟道区域形成一个"鳍"状结构，栅极从三个方向（两侧和顶部）包围沟道，显著增强了栅极对沟道的控制能力。</p>
+                        
+                        <div class="advantage-list">
+                            <h4>FinFET的优势</h4>
+                            <ul>
+                                <li><strong>更好的栅控能力</strong>：多栅结构有效抑制短沟道效应</li>
+                                <li><strong>更低的关态漏电流</strong>：提高器件的开关比</li>
+                                <li><strong>更高的驱动电流</strong>：鳍状结构增大了有效沟道宽度</li>
+                                <li><strong>更好的亚阈值特性</strong>：亚阈值摆幅接近理想值</li>
+                                <li><strong>兼容传统CMOS工艺</strong>：易于集成到现有制造流程中</li>
+                            </ul>
                         </div>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-temperature-high"></i>快速热退火(RTA)</h3>
-                            <p class="tech-description">快速热退火是在极短时间内(几秒到几分钟)将晶圆加热到高温并快速冷却的工艺，主要用于离子注入后的损伤修复和掺杂剂激活。RTA减少了杂质的再分布，有利于形成浅结。温度范围600-1100°C，升温速率可达100°C/s。RTA是先进器件制造中的关键工艺，特别适用于浅结形成和硅化物退火。</p>
+                        <h3>FinFET的关键参数</h3>
+                        <div class="parameter-grid">
+                            <div class="parameter-card">
+                                <h4>鳍高（H<sub>fin</sub>）</h4>
+                                <p>鳍的高度，决定了有效沟道宽度的大小。</p>
+                            </div>
+                            <div class="parameter-card">
+                                <h4>鳍宽（W<sub>fin</sub>）</h4>
+                                <p>鳍的宽度，影响沟道的量子限制效应和短沟道抑制能力。</p>
+                            </div>
+                            <div class="parameter-card">
+                                <h4>鳍间距（S<sub>fin</sub>）</h4>
+                                <p>相邻鳍之间的距离，影响器件密度和寄生电容。</p>
+                            </div>
+                            <div class="parameter-card">
+                                <h4>栅长（L<sub>g</sub>）</h4>
+                                <p>栅极的长度，决定了器件的开关速度和短沟道效应。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="gate-all-around" class="tab-pane">
+                        <h3>全环绕栅极（GAA）晶体管</h3>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">GAA纳米片晶体管结构</h3>
+                            <div class="diagram-container">
+                                <img src="../images/gaa-structure.svg" alt="GAA结构" class="diagram-image">
+                                <div class="diagram-caption">图10-3：GAA纳米片晶体管结构示意图</div>
+                            </div>
                         </div>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-sync-alt"></i>热循环工艺</h3>
-                            <p class="tech-description">热循环是通过多次升降温循环来优化材料特性的工艺，常用于应力释放、晶粒生长和界面反应控制。循环次数、温度范围和升降温速率是关键参数。热循环可用于改善薄膜质量、降低应力和优化界面特性，在先进器件制造中应用日益增多。</p>
+                        <p>全环绕栅极（GAA）晶体管是FinFET的进一步发展，其栅极从四个方向完全包围沟道，形成纳米线或纳米片结构，具有更强的栅控能力和更好的短沟道抑制效果。</p>
+                        
+                        <div class="advantage-list">
+                            <h4>GAA的优势</h4>
+                            <ul>
+                                <li><strong>完美的栅控</strong>：栅极完全包围沟道，电场分布均匀</li>
+                                <li><strong>极致的短沟道抑制</strong>：有效控制亚10nm沟道的短沟道效应</li>
+                                <li><strong>更好的性能调节</strong>：通过调整纳米片的数量和厚度优化性能</li>
+                                <li><strong>更低的功耗</strong>：进一步降低漏电流和动态功耗</li>
+                                <li><strong>更好的热管理</strong>：三维结构有利于热量散发</li>
+                            </ul>
                         </div>
                         
-                        <h3>热工艺参数对比</h3>
+                        <h3>GAA与FinFET的对比</h3>
                         <table class="comparison-table">
                             <thead>
                                 <tr>
-                                    <th>工艺类型</th>
-                                    <th>温度范围</th>
-                                    <th>时间范围</th>
-                                    <th>主要应用</th>
-                                    <th>关键参数</th>
+                                    <th>特性</th>
+                                    <th>FinFET</th>
+                                    <th>GAA纳米片</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>干氧氧化</td>
-                                    <td>900-1200°C</td>
-                                    <td>10-300 min</td>
-                                    <td>栅氧、高质量氧化层</td>
-                                    <td>温度、时间、氧气流量</td>
+                                    <td>栅控方向</td>
+                                    <td>3个方向</td>
+                                    <td>4个方向</td>
                                 </tr>
                                 <tr>
-                                    <td>湿氧氧化</td>
-                                    <td>800-1100°C</td>
-                                    <td>5-120 min</td>
-                                    <td>厚氧化层、场氧</td>
-                                    <td>温度、时间、水汽浓度</td>
+                                    <td>沟道形状</td>
+                                    <td>鳍状</td>
+                                    <td>片状/线状</td>
                                 </tr>
                                 <tr>
-                                    <td>恒定源扩散</td>
-                                    <td>900-1200°C</td>
-                                    <td>10-180 min</td>
-                                    <td>深结、高浓度掺杂</td>
-                                    <td>温度、时间、源浓度</td>
+                                    <td>短沟道抑制</td>
+                                    <td>良好</td>
+                                    <td>优异</td>
                                 </tr>
                                 <tr>
-                                    <td>限定源扩散</td>
-                                    <td>900-1200°C</td>
-                                    <td>10-180 min</td>
-                                    <td>结深调整、浓度控制</td>
-                                    <td>温度、时间、初始剂量</td>
+                                    <td>驱动电流密度</td>
+                                    <td>高</td>
+                                    <td>更高</td>
                                 </tr>
                                 <tr>
-                                    <td>快速热退火</td>
-                                    <td>600-1100°C</td>
-                                    <td>1-300 s</td>
-                                    <td>损伤修复、浅结形成</td>
-                                    <td>峰值温度、时间、升温速率</td>
+                                    <td>工艺复杂度</td>
+                                    <td>中等</td>
+                                    <td>高</td>
+                                </tr>
+                                <tr>
+                                    <td>面积效率</td>
+                                    <td>高</td>
+                                    <td>更高</td>
+                                </tr>
+                                <tr>
+                                    <td>性能扩展性</td>
+                                    <td>受限</td>
+                                    <td>良好</td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                    
-                    <div id="thermal-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">热工艺参数优化模拟器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="thermal-process">工艺类型</label>
-                                    <select id="thermal-process">
-                                        <option value="dry-oxidation">干氧氧化</option>
-                                        <option value="wet-oxidation">湿氧氧化</option>
-                                        <option value="constant-source">恒定源扩散</option>
-                                        <option value="limited-source">限定源扩散</option>
-                                        <option value="rapid-anneal">快速热退火</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="thermal-temp">工艺温度 (°C)</label>
-                                    <input type="range" id="thermal-temp" min="600" max="1200" value="1000">
-                                    <span id="thermal-temp-value">1000°C</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="thermal-time">工艺时间</label>
-                                    <input type="range" id="thermal-time" min="1" max="180" value="30">
-                                    <span id="thermal-time-value">30 min</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="ambient-gas">环境气体</label>
-                                    <select id="ambient-gas">
-                                        <option value="o2">纯氧气</option>
-                                        <option value="h2o">水汽</option>
-                                        <option value="n2">氮气</option>
-                                        <option value="ar">氩气</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="thermal-result-chart"></canvas>
-                            </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">氧化层厚度/结深</span>
-                                    <span class="result-value" id="thermal-thickness">0.5 μm</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">表面浓度</span>
-                                    <span class="result-value" id="surface-conc">1.0×10²⁰ cm⁻³</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">工艺速率</span>
-                                    <span class="result-value" id="process-rate">15 nm/min</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">质量评估</span>
-                                    <span class="result-value" id="quality-score">85/100</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">薄膜沉积</h2>
-            <p>薄膜沉积是在晶圆表面形成功能性薄膜的关键工艺，包括化学气相沉积(CVD)、物理气相沉积(PVD)和原子层沉积(ALD)等技术。本节介绍各种沉积技术的原理和应用。</p>
-            
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('deposition-overview')">薄膜沉积概述</button>
-                    <button class="tab-button" onclick="showTab('deposition-interactive')">薄膜沉积模拟器</button>
-                </div>
-                
-                <div class="tab-content">
-                    <div id="deposition-overview" class="tab-pane active">
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-flask"></i>化学气相沉积(CVD)</h3>
-                            <p class="tech-description">CVD是通过化学反应在晶圆表面沉积薄膜的技术，包括常压CVD(APCVD)、低压CVD(LPCVD)和等离子体增强CVD(PECVD)。温度范围300-900°C，压力从大气压到几托。CVD沉积速率高，覆盖性好，适合复杂形貌。主要用于沉积多晶硅、氮化硅、氧化硅等介质层，是半导体制造中的核心工艺。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-magnet"></i>物理气相沉积(PVD)</h3>
-                            <p class="tech-description">PVD是通过物理过程将材料转移到晶圆表面的技术，包括蒸发沉积和溅射沉积。温度范围室温到500°C，真空度10⁻³-10⁻⁶托。PVD薄膜纯度高，致密性好，但台阶覆盖能力有限。主要用于沉积金属层(铝、铜、钛等)和阻挡层，是互连工艺的关键技术。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-layer-group"></i>原子层沉积(ALD)</h3>
-                            <p class="tech-description">ALD是通过表面自限制化学反应逐层沉积原子的技术，具有原子级厚度控制能力。温度范围100-400°C，压力0.1-10托。ALD薄膜均匀性好，致密度高，台阶覆盖优异，但沉积速率慢。主要用于高k栅介质、扩散阻挡层和共形涂层，是先进器件制造中的新兴技术。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-sun"></i>外延生长</h3>
-                            <p class="tech-description">外延是在衬底上生长单晶薄膜的技术，包括气相外延(VPE)、分子束外延(MBE)和金属有机化学气相沉积(MOCVD)。温度范围400-1200°C，压力从大气压到超高真空。外延层晶格质量高，电学性能优异。主要用于生长硅外延层、化合物半导体和异质结构，是高性能器件的基础。</p>
-                        </div>
-                        
-                        <h3>薄膜沉积技术对比</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>沉积技术</th>
-                                    <th>温度范围</th>
-                                    <th>压力范围</th>
-                                    <th>沉积速率</th>
-                                    <th>主要应用</th>
-                                    <th>优缺点</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>APCVD</td>
-                                    <td>300-900°C</td>
-                                    <td>760托</td>
-                                    <td>高(100-1000 nm/min)</td>
-                                    <td>厚氧化层、多晶硅</td>
-                                    <td>速率快，但均匀性差</td>
-                                </tr>
-                                <tr>
-                                    <td>LPCVD</td>
-                                    <td>300-800°C</td>
-                                    <td>0.1-1托</td>
-                                    <td>中(10-100 nm/min)</td>
-                                    <td>多晶硅、氮化硅</td>
-                                    <td>均匀性好，但速率中等</td>
-                                </tr>
-                                <tr>
-                                    <td>PECVD</td>
-                                    <td>100-400°C</td>
-                                    <td>0.1-5托</td>
-                                    <td>中(10-200 nm/min)</td>
-                                    <td>低温氧化层、钝化层</td>
-                                    <td>温度低，但质量稍差</td>
-                                </tr>
-                                <tr>
-                                    <td>溅射</td>
-                                    <td>室温-500°C</td>
-                                    <td>10⁻³-10⁻²托</td>
-                                    <td>中(10-100 nm/min)</td>
-                                    <td>金属层、阻挡层</td>
-                                    <td>纯度高，但覆盖性差</td>
-                                </tr>
-                                <tr>
-                                    <td>蒸发</td>
-                                    <td>室温-300°C</td>
-                                    <td>10⁻⁴-10⁻⁶托</td>
-                                    <td>高(10-1000 nm/min)</td>
-                                    <td>金属层、焊料</td>
-                                    <td>速率快，但方向性强</td>
-                                </tr>
-                                <tr>
-                                    <td>ALD</td>
-                                    <td>100-400°C</td>
-                                    <td>0.1-10托</td>
-                                    <td>低(0.1-1 nm/min)</td>
-                                    <td>高k介质、阻挡层</td>
-                                    <td>控制精确，但速率慢</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div id="deposition-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">薄膜沉积参数优化模拟器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="deposition-type">沉积技术</label>
-                                    <select id="deposition-type">
-                                        <option value="apcvd">APCVD</option>
-                                        <option value="lpcvd">LPCVD</option>
-                                        <option value="pecvd">PECVD</option>
-                                        <option value="sputtering">溅射</option>
-                                        <option value="evaporation">蒸发</option>
-                                        <option value="ald">ALD</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="film-material">薄膜材料</label>
-                                    <select id="film-material">
-                                        <option value="sio2">二氧化硅(SiO₂)</option>
-                                        <option value="sinx">氮化硅(SiNx)</option>
-                                        <option value="poly-si">多晶硅</option>
-                                        <option value="al">铝(Al)</option>
-                                        <option value="cu">铜(Cu)</option>
-                                        <option value="ti">钛(Ti)</option>
-                                        <option value="hfo2">氧化铪(HfO₂)</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="deposition-temp">沉积温度 (°C)</label>
-                                    <input type="range" id="deposition-temp" min="20" max="900" value="300">
-                                    <span id="deposition-temp-value">300°C</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="deposition-pressure">工作压力</label>
-                                    <input type="range" id="deposition-pressure" min="0.001" max="760" value="1" step="0.001">
-                                    <span id="deposition-pressure-value">1.0 托</span>
-                                </div>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="deposition-quality-chart"></canvas>
-                            </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">沉积速率</span>
-                                    <span class="result-value" id="deposition-rate">50 nm/min</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">薄膜密度</span>
-                                    <span class="result-value" id="film-density">2.2 g/cm³</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">台阶覆盖</span>
-                                    <span class="result-value" id="step-coverage">75%</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">折射率</span>
-                                    <span class="result-value" id="refractive-index">1.46</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -589,25 +696,25 @@
         
         <div class="section" id="chapter-summary">
             <h2 class="section-title">本章小结</h2>
-            <p>本章详细介绍了半导体器件制造中的掺杂与薄膜工艺，包括离子注入技术、热工艺和薄膜沉积三大关键技术。这些工艺是形成半导体器件结构和功能的基础，决定了器件的性能和可靠性。</p>
+            <p>本章详细介绍了金属-氧化物-半导体场效应晶体管（MOSFET）的工作原理、I-V特性、短沟道效应以及先进MOSFET结构。MOSFET作为现代集成电路的核心器件，其性能直接决定了芯片的速度、功耗和集成度。</p>
             
             <h3>核心要点</h3>
             <ul>
-                <li>离子注入技术提供了精确的掺杂控制，通过调节能量、剂量和倾斜角度可以实现所需的掺杂分布</li>
-                <li>热工艺包括氧化、扩散和退火，是形成绝缘层、实现掺杂和修复损伤的关键工艺</li>
-                <li>薄膜沉积技术包括CVD、PVD和ALD，用于形成各种功能层，如介质层、金属层和阻挡层</li>
-                <li>工艺参数的优化对器件性能至关重要，需要综合考虑温度、时间、压力等因素</li>
-                <li>随着器件尺寸不断缩小，新工艺技术如快速热退火和原子层沉积变得越来越重要</li>
+                <li>MOSFET通过栅极电压控制沟道的导电性，实现开关和放大功能</li>
+                <li>MOSFET的I-V特性分为截止区、线性区和饱和区三个主要工作区域</li>
+                <li>随着沟道长度的减小，会出现阈值电压滚降、DIBL、速度饱和等短沟道效应</li>
+                <li>FinFET和GAA等先进多栅结构通过增强栅控能力，有效抑制短沟道效应</li>
+                <li>先进MOSFET结构是延续摩尔定律的关键技术之一</li>
             </ul>
             
             <h3>学习成果</h3>
             <p>通过本章的学习，您应该能够：</p>
             <ul>
-                <li>理解离子注入的物理原理和工艺流程</li>
-                <li>掌握不同热工艺的特点和应用场景</li>
-                <li>区分各种薄膜沉积技术的优缺点</li>
-                <li>分析工艺参数对器件性能的影响</li>
-                <li>选择合适的工艺技术满足特定器件需求</li>
+                <li>理解MOSFET的基本工作原理和结构</li>
+                <li>分析MOSFET在不同工作区域的I-V特性</li>
+                <li>解释短沟道效应的物理机制和影响</li>
+                <li>比较不同先进MOSFET结构的优缺点</li>
+                <li>理解器件尺寸缩小带来的挑战和解决方案</li>
             </ul>
         </div>
         
@@ -618,9 +725,8 @@
 
     <script>
         // 实验计数器
-        let ionExperiments = 0;
-        let thermalExperiments = 0;
-        let depositionExperiments = 0;
+        let ivExperiments = 0;
+        let sceExperiments = 0;
         
         // 标签页切换功能
         function showTab(tabId) {
@@ -639,47 +745,50 @@
             event.target.classList.add('active');
         }
         
-        // 离子注入模拟器
-        function initIonImplantationSimulator() {
-            const ionType = document.getElementById('ion-type');
-            const ionEnergy = document.getElementById('ion-energy');
-            const ionDose = document.getElementById('ion-dose');
-            const tiltAngle = document.getElementById('tilt-angle');
+        // MOSFET I-V特性模拟器
+        function initMOSFETIVSimulator() {
+            const mosfetType = document.getElementById('mosfet-type');
+            const vth = document.getElementById('vth');
+            const wl = document.getElementById('w-l');
+            const vgs = document.getElementById('vgs');
+            const lambda = document.getElementById('lambda');
             
             // 更新显示值
-            ionEnergy.addEventListener('input', function() {
-                document.getElementById('ion-energy-value').textContent = this.value + ' keV';
-                updateIonProfile();
+            vth.addEventListener('input', function() {
+                document.getElementById('vth-value').textContent = this.value + ' V';
+                updateMOSFETIV();
             });
             
-            ionDose.addEventListener('input', function() {
-                const dose = Math.pow(10, this.value);
-                const exponent = this.value.split('.')[0];
-                const decimal = this.value.split('.')[1] ? this.value.split('.')[1] : '0';
-                document.getElementById('ion-dose-value').textContent = `10^${exponent}.${decimal} atoms/cm²`;
-                updateIonProfile();
+            wl.addEventListener('input', function() {
+                document.getElementById('w-l-value').textContent = this.value;
+                updateMOSFETIV();
             });
             
-            tiltAngle.addEventListener('input', function() {
-                document.getElementById('tilt-angle-value').textContent = this.value + '°';
-                updateIonProfile();
+            vgs.addEventListener('input', function() {
+                document.getElementById('vgs-value').textContent = parseFloat(this.value).toFixed(1) + ' V';
+                updateMOSFETIV();
             });
             
-            ionType.addEventListener('change', updateIonProfile);
+            lambda.addEventListener('input', function() {
+                document.getElementById('lambda-value').textContent = this.value + ' 1/V';
+                updateMOSFETIV();
+            });
+            
+            mosfetType.addEventListener('change', updateMOSFETIV);
             
             // 初始化图表
-            const ctx = document.getElementById('ion-profile-chart').getContext('2d');
-            const ionProfileChart = new Chart(ctx, {
+            const ctx = document.getElementById('mosfet-iv-chart').getContext('2d');
+            const mosfetIVChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: [],
                     datasets: [{
-                        label: '掺杂浓度分布',
+                        label: '漏源电流 I_D (mA)',
                         data: [],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
                         fill: true,
-                        tension: 0.4
+                        tension: 0.2
                     }]
                 },
                 options: {
@@ -689,570 +798,226 @@
                         x: {
                             title: {
                                 display: true,
-                                text: '深度 (μm)'
+                                text: '漏源电压 V_DS (V)'
+                            },
+                            min: 0
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '漏源电流 I_D (mA)'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 更新MOSFET I-V特性
+            function updateMOSFETIV() {
+                const Vth = parseFloat(vth.value);
+                const WL = parseFloat(wl.value);
+                const Vgs = parseFloat(vgs.value);
+                const Lambda = parseFloat(lambda.value);
+                const type = mosfetType.value;
+                
+                // 器件参数（简化模型）
+                const Cox = 3.9 * 8.85e-14 * 1e7; // F/cm²
+                const mu_n = 500; // cm²/V·s
+                const K = mu_n * Cox * WL * 1e3; // mA/V²
+                
+                // 生成VDS数据点
+                const vdsValues = [];
+                const idValues = [];
+                const maxVds = 5;
+                const step = 0.1;
+                
+                for (let vds = 0; vds <= maxVds; vds += step) {
+                    vdsValues.push(vds.toFixed(1));
+                    
+                    let id;
+                    if (Vgs < Vth) {
+                        // 截止区
+                        id = 0;
+                    } else if (vds < (Vgs - Vth)) {
+                        // 线性区
+                        id = K * [(Vgs - Vth) * vds - 0.5 * vds * vds];
+                    } else {
+                        // 饱和区
+                        id = 0.5 * K * Math.pow((Vgs - Vth), 2) * (1 + Lambda * vds);
+                    }
+                    
+                    idValues.push(id);
+                }
+                
+                // 更新图表
+                mosfetIVChart.data.labels = vdsValues;
+                mosfetIVChart.data.datasets[0].data = idValues;
+                mosfetIVChart.update();
+                
+                // 确定当前工作区域
+                const currentVds = 3.0; // 示例漏源电压
+                let operationRegion;
+                if (Vgs < Vth) {
+                    operationRegion = '截止区';
+                } else if (currentVds < (Vgs - Vth)) {
+                    operationRegion = '线性区';
+                } else {
+                    operationRegion = '饱和区';
+                }
+                document.getElementById('operation-region').textContent = operationRegion;
+                
+                // 计算当前漏源电流
+                let currentId;
+                if (Vgs < Vth) {
+                    currentId = 0;
+                } else if (currentVds < (Vgs - Vth)) {
+                    currentId = K * [(Vgs - Vth) * currentVds - 0.5 * currentVds * currentVds];
+                } else {
+                    currentId = 0.5 * K * Math.pow((Vgs - Vth), 2) * (1 + Lambda * currentVds);
+                }
+                document.getElementById('id-current').textContent = currentId.toFixed(2) + ' mA';
+                
+                // 计算跨导
+                const gm = K * (Vgs > Vth ? (Vgs - Vth) : 0);
+                document.getElementById('transconductance').textContent = gm.toFixed(2) + ' mS';
+                
+                // 记录实验
+                ivExperiments++;
+                updateProgress();
+            }
+            
+            // 初始化
+            updateMOSFETIV();
+        }
+        
+        // 短沟道效应模拟器
+        function initSCESimulator() {
+            const channelLength = document.getElementById('channel-length');
+            const oxideThickness = document.getElementById('oxide-thickness');
+            const substrateDoping = document.getElementById('substrate-doping');
+            const drainVoltage = document.getElementById('drain-voltage');
+            
+            // 更新显示值
+            channelLength.addEventListener('input', function() {
+                document.getElementById('channel-length-value').textContent = this.value + ' μm';
+                updateSCE();
+            });
+            
+            oxideThickness.addEventListener('input', function() {
+                document.getElementById('oxide-thickness-value').textContent = this.value + ' nm';
+                updateSCE();
+            });
+            
+            substrateDoping.addEventListener('input', function() {
+                document.getElementById('substrate-doping-value').textContent = '10^' + this.value + ' cm⁻³';
+                updateSCE();
+            });
+            
+            drainVoltage.addEventListener('input', function() {
+                document.getElementById('drain-voltage-value').textContent = this.value + ' V';
+                updateSCE();
+            });
+            
+            // 初始化图表
+            const ctx = document.getElementById('sce-chart').getContext('2d');
+            const sceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: '阈值电压 (V)',
+                        data: [],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        fill: true,
+                        tension: 0.2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '沟道长度 (μm)'
                             }
                         },
                         y: {
                             title: {
                                 display: true,
-                                text: '浓度 (cm⁻³)'
-                            },
-                            type: 'logarithmic'
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return `浓度: ${context.parsed.y.toExponential(2)} cm⁻³`;
-                                }
+                                text: '阈值电压 (V)'
                             }
                         }
                     }
                 }
             });
             
-            // 更新离子注入分布
-            function updateIonProfile() {
-                const energy = parseFloat(ionEnergy.value);
-                const dose = Math.pow(10, parseFloat(ionDose.value));
-                const tilt = parseFloat(tiltAngle.value);
-                const ion = ionType.value;
+            // 更新短沟道效应
+            function updateSCE() {
+                const L = parseFloat(channelLength.value);
+                const tox = parseFloat(oxideThickness.value) * 1e-7; // cm
+                const Na = Math.pow(10, parseFloat(substrateDoping.value)); // cm⁻³
+                const Vds = parseFloat(drainVoltage.value);
                 
-                // 离子参数
-                const ionParams = {
-                    'boron': { mass: 11, rangeFactor: 0.7 },
-                    'phosphorus': { mass: 31, rangeFactor: 1.0 },
-                    'arsenic': { mass: 75, rangeFactor: 1.2 },
-                    'antimony': { mass: 122, rangeFactor: 1.4 }
-                };
+                // 长沟道阈值电压（参考）
+                const Vth_long = 0.5; // V
                 
-                const params = ionParams[ion];
-                const projectedRange = params.rangeFactor * Math.sqrt(energy) / 10; // 简化模型
-                const verticalStraggle = projectedRange * 0.3; // 纵向标准差约为射程的30%
+                // 计算阈值电压滚降（简化模型）
+                const deltaVth = 0.1 * Math.exp(-L / 0.2); // V
+                const Vth = Vth_long - deltaVth;
                 
-                // 生成数据点
-                const depths = [];
-                const concentrations = [];
-                const maxDepth = projectedRange * 3;
+                // 计算DIBL系数（简化模型）
+                const DIBL = 0.05 * Math.exp(-L / 0.3); // V/V
                 
-                for (let i = 0; i <= 100; i++) {
-                    const depth = maxDepth * i / 100;
-                    depths.push(depth.toFixed(3));
-                    
-                    // 高斯分布模型
-                    const concentration = (dose / (verticalStraggle * Math.sqrt(2 * Math.PI))) * 
-                        Math.exp(-0.5 * Math.pow((depth - projectedRange) / verticalStraggle, 2));
-                    concentrations.push(concentration);
+                // 计算亚阈值摆幅（简化模型）
+                const SS = 60 + 20 * Math.exp(-L / 0.5); // mV/dec
+                
+                // 计算关态漏电流（简化模型）
+                const Ioff = Math.pow(10, -12) * Math.exp(deltaVth / 0.1); // A
+                
+                // 生成不同沟道长度下的阈值电压数据
+                const lengths = [];
+                const vths = [];
+                for (let l = 0.1; l <= 10; l += 0.1) {
+                    lengths.push(l.toFixed(1));
+                    const dvth = 0.1 * Math.exp(-l / 0.2);
+                    vths.push((Vth_long - dvth).toFixed(3));
                 }
                 
                 // 更新图表
-                ionProfileChart.data.labels = depths;
-                ionProfileChart.data.datasets[0].data = concentrations;
-                ionProfileChart.update();
+                sceChart.data.labels = lengths;
+                sceChart.data.datasets[0].data = vths;
+                sceChart.update();
                 
-                // 更新结果
-                document.getElementById('projected-range').textContent = projectedRange.toFixed(2) + ' μm';
-                document.getElementById('vertical-straggle').textContent = verticalStraggle.toFixed(2) + ' μm';
-                
-                const peakConc = concentrations.reduce((max, val) => Math.max(max, val), 0);
-                document.getElementById('peak-concentration').textContent = peakConc.toExponential(1) + ' cm⁻³';
-                
-                // 计算结深（浓度降至衬底浓度的深度）
-                const substrateConc = 1e15; // 假设衬底浓度
-                let junctionDepth = 0;
-                for (let i = 0; i < concentrations.length; i++) {
-                    if (concentrations[i] < substrateConc) {
-                        junctionDepth = parseFloat(depths[i]);
-                        break;
-                    }
-                }
-                document.getElementById('junction-depth').textContent = junctionDepth.toFixed(2) + ' μm';
+                // 更新结果显示
+                document.getElementById('vth-rolloff').textContent = deltaVth.toFixed(3) + ' V';
+                document.getElementById('dibl-coeff').textContent = DIBL.toFixed(3) + ' V/V';
+                document.getElementById('ss-value').textContent = SS.toFixed(0) + ' mV/dec';
+                document.getElementById('off-current').textContent = '10^' + Math.log10(Ioff).toFixed(0) + ' A';
                 
                 // 记录实验
-                ionExperiments++;
+                sceExperiments++;
                 updateProgress();
             }
             
             // 初始化
-            updateIonProfile();
+            updateSCE();
         }
         
-        // 热工艺模拟器
-        function initThermalProcessSimulator() {
-            const processType = document.getElementById('thermal-process');
-            const temperature = document.getElementById('thermal-temp');
-            const processTime = document.getElementById('thermal-time');
-            const ambientGas = document.getElementById('ambient-gas');
-            
-            // 更新显示值
-            temperature.addEventListener('input', function() {
-                document.getElementById('thermal-temp-value').textContent = this.value + '°C';
-                updateThermalProcess();
-            });
-            
-            processTime.addEventListener('input', function() {
-                let displayTime = this.value;
-                if (this.value < 60) {
-                    displayTime = this.value + ' min';
-                } else {
-                    const hours = Math.floor(this.value / 60);
-                    const mins = this.value % 60;
-                    displayTime = hours + 'h ' + mins + 'min';
-                }
-                document.getElementById('thermal-time-value').textContent = displayTime;
-                updateThermalProcess();
-            });
-            
-            processType.addEventListener('change', updateThermalProcess);
-            ambientGas.addEventListener('change', updateThermalProcess);
-            
-            // 初始化图表
-            const ctx = document.getElementById('thermal-result-chart').getContext('2d');
-            const thermalResultChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['厚度/结深', '表面浓度', '工艺速率', '质量评估'],
-                    datasets: [{
-                        label: '工艺结果',
-                        data: [0, 0, 0, 0],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    }
-                }
-            });
-            
-            // 更新热工艺结果
-            function updateThermalProcess() {
-                const temp = parseFloat(temperature.value);
-                const time = parseFloat(processTime.value);
-                const process = processType.value;
-                const gas = ambientGas.value;
-                
-                // 工艺参数
-                const processParams = {
-                    'dry-oxidation': { 
-                        baseRate: 0.01, 
-                        tempCoeff: 2.0, 
-                        timeCoeff: 0.5,
-                        gasFactors: { 'o2': 1.0, 'h2o': 0.2, 'n2': 0.0, 'ar': 0.0 }
-                    },
-                    'wet-oxidation': { 
-                        baseRate: 0.05, 
-                        tempCoeff: 1.8, 
-                        timeCoeff: 0.5,
-                        gasFactors: { 'o2': 0.3, 'h2o': 1.0, 'n2': 0.0, 'ar': 0.0 }
-                    },
-                    'constant-source': { 
-                        baseRate: 0.02, 
-                        tempCoeff: 2.5, 
-                        timeCoeff: 0.5,
-                        gasFactors: { 'o2': 0.1, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
-                    },
-                    'limited-source': { 
-                        baseRate: 0.01, 
-                        tempCoeff: 2.5, 
-                        timeCoeff: 0.5,
-                        gasFactors: { 'o2': 0.1, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
-                    },
-                    'rapid-anneal': { 
-                        baseRate: 0.1, 
-                        tempCoeff: 1.5, 
-                        timeCoeff: 0.2,
-                        gasFactors: { 'o2': 0.2, 'h2o': 0.1, 'n2': 1.0, 'ar': 0.9 }
-                    }
-                };
-                
-                const params = processParams[process];
-                const gasFactor = params.gasFactors[gas];
-                
-                // 计算工艺结果
-                const tempFactor = Math.exp(-params.tempCoeff * 1000 / (temp + 273));
-                const timeFactor = Math.pow(time / 60, params.timeCoeff);
-                const processRate = params.baseRate * tempFactor * timeFactor * gasFactor;
-                
-                // 计算厚度/结深
-                let thickness;
-                if (process.includes('oxidation')) {
-                    thickness = processRate * time; // 氧化层厚度(μm)
-                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2) + ' μm';
-                } else if (process.includes('diffusion')) {
-                    thickness = Math.sqrt(processRate * time); // 扩散结深(μm)
-                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2) + ' μm';
-                } else if (process.includes('anneal')) {
-                    thickness = processRate * time / 60; // 退火效果(相对值)
-                    document.getElementById('thermal-thickness').textContent = thickness.toFixed(2);
-                }
-                
-                // 计算表面浓度
-                let surfaceConc;
-                if (process.includes('diffusion')) {
-                    surfaceConc = 1e20 * tempFactor * gasFactor; // 扩散表面浓度
-                    document.getElementById('surface-conc').textContent = surfaceConc.toExponential(1) + ' cm⁻³';
-                } else {
-                    document.getElementById('surface-conc').textContent = 'N/A';
-                }
-                
-                // 更新工艺速率
-                let rateDisplay;
-                if (process.includes('oxidation')) {
-                    rateDisplay = (processRate * 1000).toFixed(1) + ' nm/min';
-                } else if (process.includes('diffusion')) {
-                    rateDisplay = (processRate * 100).toFixed(2) + ' μm/√h';
-                } else {
-                    rateDisplay = 'N/A';
-                }
-                document.getElementById('process-rate').textContent = rateDisplay;
-                
-                // 计算质量评估
-                let qualityScore = 50; // 基础分数
-                
-                // 温度因素
-                if (process.includes('oxidation')) {
-                    if (temp >= 900 && temp <= 1100) qualityScore += 20;
-                    else if (temp >= 800 && temp < 900 || temp > 1100 && temp <= 1200) qualityScore += 10;
-                } else if (process.includes('diffusion')) {
-                    if (temp >= 950 && temp <= 1050) qualityScore += 20;
-                    else if (temp >= 900 && temp < 950 || temp > 1050 && temp <= 1150) qualityScore += 10;
-                } else if (process.includes('anneal')) {
-                    if (temp >= 800 && temp <= 1000) qualityScore += 20;
-                    else if (temp >= 700 && temp < 800 || temp > 1000 && temp <= 1100) qualityScore += 10;
-                }
-                
-                // 时间因素
-                if (process.includes('anneal')) {
-                    if (time <= 10) qualityScore += 15;
-                    else if (time <= 60) qualityScore += 10;
-                } else {
-                    if (time >= 30 && time <= 90) qualityScore += 15;
-                    else if (time >= 10 && time < 30 || time > 90 && time <= 180) qualityScore += 10;
-                }
-                
-                // 环境因素
-                if ((process.includes('oxidation') && gas === 'o2') || 
-                    (process.includes('oxidation') && process.includes('wet') && gas === 'h2o') ||
-                    (process.includes('diffusion') && (gas === 'n2' || gas === 'ar')) ||
-                    (process.includes('anneal') && (gas === 'n2' || gas === 'ar'))) {
-                    qualityScore += 15;
-                }
-                
-                document.getElementById('quality-score').textContent = qualityScore + '/100';
-                
-                // 更新图表
-                const normalizedThickness = Math.min(100, thickness * 20);
-                const normalizedConc = surfaceConc ? Math.min(100, surfaceConc / 1e19 * 20) : 0;
-                const normalizedRate = Math.min(100, processRate * 500);
-                
-                thermalResultChart.data.datasets[0].data = [
-                    normalizedThickness, 
-                    normalizedConc, 
-                    normalizedRate, 
-                    qualityScore
-                ];
-                thermalResultChart.update();
-                
-                // 记录实验
-                thermalExperiments++;
-                updateProgress();
-            }
-            
-            // 初始化
-            updateThermalProcess();
-        }
-        
-        // 薄膜沉积模拟器
-        function initDepositionSimulator() {
-            const depositionType = document.getElementById('deposition-type');
-            const filmMaterial = document.getElementById('film-material');
-            const depositionTemp = document.getElementById('deposition-temp');
-            const depositionPressure = document.getElementById('deposition-pressure');
-            
-            // 更新显示值
-            depositionTemp.addEventListener('input', function() {
-                document.getElementById('deposition-temp-value').textContent = this.value + '°C';
-                updateDeposition();
-            });
-            
-            depositionPressure.addEventListener('input', function() {
-                let displayPressure = parseFloat(this.value);
-                if (displayPressure < 1) {
-                    displayPressure = displayPressure.toFixed(3);
-                } else if (displayPressure < 100) {
-                    displayPressure = displayPressure.toFixed(1);
-                } else {
-                    displayPressure = Math.round(displayPressure);
-                }
-                document.getElementById('deposition-pressure-value').textContent = displayPressure + ' 托';
-                updateDeposition();
-            });
-            
-            depositionType.addEventListener('change', updateDeposition);
-            filmMaterial.addEventListener('change', updateDeposition);
-            
-            // 初始化图表
-            const ctx = document.getElementById('deposition-quality-chart').getContext('2d');
-            const depositionQualityChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['沉积速率', '薄膜密度', '台阶覆盖', '均匀性', '附着力'],
-                    datasets: [{
-                        label: '薄膜质量评估',
-                        data: [0, 0, 0, 0, 0],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: true
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    }
-                }
-            });
-            
-            // 更新薄膜沉积结果
-            function updateDeposition() {
-                const type = depositionType.value;
-                const material = filmMaterial.value;
-                const temp = parseFloat(depositionTemp.value);
-                const pressure = parseFloat(depositionPressure.value);
-                
-                // 沉积技术参数
-                const typeParams = {
-                    'apcvd': { 
-                        baseRate: 100, 
-                        densityFactor: 0.7, 
-                        coverageFactor: 0.6,
-                        uniformityFactor: 0.5,
-                        adhesionFactor: 0.8,
-                        tempOptimal: 900,
-                        pressureOptimal: 760
-                    },
-                    'lpcvd': { 
-                        baseRate: 50, 
-                        densityFactor: 0.85, 
-                        coverageFactor: 0.9,
-                        uniformityFactor: 0.9,
-                        adhesionFactor: 0.9,
-                        tempOptimal: 800,
-                        pressureOptimal: 0.5
-                    },
-                    'pecvd': { 
-                        baseRate: 80, 
-                        densityFactor: 0.6, 
-                        coverageFactor: 0.8,
-                        uniformityFactor: 0.7,
-                        adhesionFactor: 0.7,
-                        tempOptimal: 300,
-                        pressureOptimal: 1
-                    },
-                    'sputtering': { 
-                        baseRate: 60, 
-                        densityFactor: 0.9, 
-                        coverageFactor: 0.4,
-                        uniformityFactor: 0.6,
-                        adhesionFactor: 0.95,
-                        tempOptimal: 200,
-                        pressureOptimal: 0.01
-                    },
-                    'evaporation': { 
-                        baseRate: 200, 
-                        densityFactor: 0.8, 
-                        coverageFactor: 0.2,
-                        uniformityFactor: 0.3,
-                        adhesionFactor: 0.6,
-                        tempOptimal: 100,
-                        pressureOptimal: 0.0001
-                    },
-                    'ald': { 
-                        baseRate: 1, 
-                        densityFactor: 0.95, 
-                        coverageFactor: 0.98,
-                        uniformityFactor: 0.95,
-                        adhesionFactor: 0.9,
-                        tempOptimal: 250,
-                        pressureOptimal: 1
-                    }
-                };
-                
-                // 材料参数
-                const materialParams = {
-                    'sio2': { density: 2.2, refractiveIndex: 1.46, tempFactor: 1.0 },
-                    'sinx': { density: 2.9, refractiveIndex: 2.0, tempFactor: 1.0 },
-                    'poly-si': { density: 2.3, refractiveIndex: 3.5, tempFactor: 1.2 },
-                    'al': { density: 2.7, refractiveIndex: 1.0, tempFactor: 0.8 },
-                    'cu': { density: 8.9, refractiveIndex: 1.0, tempFactor: 0.7 },
-                    'ti': { density: 4.5, refractiveIndex: 2.5, tempFactor: 0.9 },
-                    'hfo2': { density: 9.7, refractiveIndex: 2.0, tempFactor: 0.9 }
-                };
-                
-                const typeParam = typeParams[type];
-                const materialParam = materialParams[material];
-                
-                // 计算温度影响因子
-                const tempDiff = Math.abs(temp - typeParam.tempOptimal);
-                const tempFactor = Math.max(0.5, 1 - tempDiff / 500);
-                
-                // 计算压力影响因子
-                let pressureDiff;
-                if (typeParam.pressureOptimal > 100) {
-                    pressureDiff = Math.abs(Math.log10(pressure) - Math.log10(typeParam.pressureOptimal));
-                } else {
-                    pressureDiff = Math.abs(Math.log10(pressure + 0.0001) - Math.log10(typeParam.pressureOptimal));
-                }
-                const pressureFactor = Math.max(0.5, 1 - pressureDiff / 3);
-                
-                // 计算沉积速率
-                const depositionRate = typeParam.baseRate * tempFactor * pressureFactor * materialParam.tempFactor;
-                document.getElementById('deposition-rate').textContent = depositionRate.toFixed(0) + ' nm/min';
-                
-                // 计算薄膜密度
-                const filmDensity = materialParam.density * typeParam.densityFactor * (0.8 + 0.2 * tempFactor);
-                document.getElementById('film-density').textContent = filmDensity.toFixed(1) + ' g/cm³';
-                
-                // 计算台阶覆盖
-                const stepCoverage = typeParam.coverageFactor * 100 * (0.7 + 0.3 * pressureFactor);
-                document.getElementById('step-coverage').textContent = stepCoverage.toFixed(0) + '%';
-                
-                // 计算折射率
-                const refractiveIndex = materialParam.refractiveIndex * (0.95 + 0.05 * typeParam.densityFactor);
-                document.getElementById('refractive-index').textContent = refractiveIndex.toFixed(2);
-                
-                // 计算质量指标
-                const rateScore = Math.min(100, depositionRate / 2);
-                const densityScore = typeParam.densityFactor * 100;
-                const coverageScore = typeParam.coverageFactor * 100;
-                const uniformityScore = typeParam.uniformityFactor * 100;
-                const adhesionScore = typeParam.adhesionFactor * 100;
-                
-                // 更新雷达图
-                depositionQualityChart.data.datasets[0].data = [
-                    rateScore, 
-                    densityScore, 
-                    coverageScore, 
-                    uniformityScore, 
-                    adhesionScore
-                ];
-                depositionQualityChart.update();
-                
-                // 记录实验
-                depositionExperiments++;
-                updateProgress();
-            }
-            
-            // 初始化
-            updateDeposition();
-        }
-        
-        // 更新进度
+        // 更新学习进度
         function updateProgress() {
-            const totalExperiments = 6; // 每个章节最多6次实验
-            const completedExperiments = ionExperiments + thermalExperiments + depositionExperiments;
-            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
-            
-            document.getElementById('progress').textContent = progress;
+            const totalExperiments = ivExperiments + sceExperiments;
+            const maxExperiments = 20; // 最大实验次数
+            const progress = Math.min(Math.round((totalExperiments / maxExperiments) * 100), 100);
+            document.getElementById('progress').textContent = progress + '%';
         }
         
-        // 章节页面侧边栏初始化
-        function initChapterSidebar() {
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
-            const sidebar = document.querySelector('.sidebar');
-            
-            if (!sidebar || !sidebarToggle) return;
-            
-            // 从localStorage恢复侧边栏状态
-            const savedState = localStorage.getItem('sidebarState');
-            if (savedState === 'collapsed') {
-                sidebar.classList.add('collapsed');
-            } else if (savedState === 'auto-hidden') {
-                // 如果上次是自动隐藏状态，默认显示为正常状态
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-                localStorage.setItem('sidebarState', 'normal');
-            } else {
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-            }
-            
-            // 侧边栏折叠/展开按钮
-            sidebarToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                sidebar.classList.toggle('collapsed');
-                
-                // 保存状态到localStorage
-                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
-                localStorage.setItem('sidebarState', newState);
-            });
-            
-            // 侧边栏隐藏按钮
-            if (sidebarHideBtn) {
-                sidebarHideBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    sidebar.classList.add('auto-hidden');
-                    localStorage.setItem('sidebarState', 'auto-hidden');
-                });
-            }
-            
-            // 鼠标悬停显示自动隐藏的侧边栏
-            sidebar.addEventListener('mouseenter', function() {
-                if (sidebar.classList.contains('auto-hidden')) {
-                    sidebar.classList.remove('auto-hidden');
-                    sidebar.classList.add('hover-show');
-                }
-            });
-            
-            sidebar.addEventListener('mouseleave', function() {
-                if (sidebar.classList.contains('hover-show')) {
-                    sidebar.classList.remove('hover-show');
-                    sidebar.classList.add('auto-hidden');
-                }
-            });
-            
-            console.log('Chapter 10 sidebar initialized');
-        }
-        
-        // 页面加载完成后初始化
+        // 页面加载完成后初始化模拟器
         document.addEventListener('DOMContentLoaded', function() {
-            initChapterSidebar();
-            initIonImplantationSimulator();
-            initThermalProcessSimulator();
-            initDepositionSimulator();
+            initMOSFETIVSimulator();
+            initSCESimulator();
         });
     </script>
 </body>

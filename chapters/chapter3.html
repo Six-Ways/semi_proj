@@ -3,12 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第3章：半导体器件基础 - SEMI_PROJ</title>
+    <title>第3章：载流子统计与热平衡 - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/chapter-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <style>
+        .chapter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .chapter-core {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection {
+            margin-bottom: 2rem;
+        }
+        
+        .subsection h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .equation {
+            background: rgba(0,123,255,0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* 章节目标样式 */
+        .chapter-objectives {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-objectives h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-objectives ul {
+            padding-left: 1.5rem;
+        }
+        
+        .chapter-objectives li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* 关键词样式 */
+        .chapter-keywords {
+            background-color: #f3e5f5;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-keywords h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .keyword {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        /* 载流子统计模拟器样式 */
+        .carrier-stats-simulator {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .simulator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-group {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .slider-container {
+            margin-top: 0.5rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .chart-area {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .results-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .chapter-container {
+                padding: 1rem;
+            }
+            
+            .simulator-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -50,56 +266,68 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
                 <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                    第1章：量子力学基础与固体中的电子
                 </a>
                 <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                    第2章：半导体材料与晶体结构
                 </a>
                 <a href="chapter3.html" class="chapter-nav-item active">
-                    第3章：基础半导体器件
+                    第3章：载流子统计与热平衡
                 </a>
                 <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                    第4章：载流子输运现象
                 </a>
                 <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                    第5章：非平衡载流子与复合动力学
                 </a>
                 <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
                 <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                    第8章：MOS结构物理
                 </a>
                 <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                    第9章：异质结与能带调控
                 </a>
                 <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
+                    第10章：MOSFET
                 </a>
                 <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
+                    第11章：BJT与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
                 <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                    第13章：晶圆制备与薄膜工程
                 </a>
                 <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
+                    第14章：图形化与掺杂技术
                 </a>
                 <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                    第15章：工艺集成与后端互连
                 </a>
                 <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                    第16章：半导体材料与器件表征
                 </a>
                 <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
             
@@ -108,14 +336,17 @@
                     <h4>当前章节</h4>
                     <nav class="section-nav">
 
-                    <a href="#pn-junction" class="section-nav-item">
-                        PN结原理
+                    <a href="#carrier-distribution" class="section-nav-item">
+                        载流子分布函数
                     </a>
-                    <a href="#diode-characteristics" class="section-nav-item">
-                        二极管特性
+                    <a href="#intrinsic-semiconductor" class="section-nav-item">
+                        本征半导体
                     </a>
-                    <a href="#bjt-basics" class="section-nav-item">
-                        BJT基础
+                    <a href="#extrinsic-semiconductor" class="section-nav-item">
+                        杂质半导体
+                    </a>
+                    <a href="#carrier-stats-simulator" class="section-nav-item">
+                        载流子统计模拟器
                     </a>
                     <a href="#chapter-summary" class="section-nav-item">
                         本章小结
@@ -129,147 +360,242 @@
     <main class="main-content">
         <div class="chapter-container">
             <div class="breadcrumb">
-                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第3章：半导体器件基础</p>
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part1">第一部分：量子基石与材料特性</a> &gt; 第3章：载流子统计与热平衡</p>
             </div>
         <div class="chapter-header">
-            <h1>第3章：半导体器件基础</h1>
+            <h1>第3章：载流子统计与热平衡</h1>
         </div>
         
         <div class="chapter-core">
-            <h3>本章核心</h3>
-            <p>半导体器件是现代电子技术的核心组件，理解其工作原理对于掌握电子系统至关重要。本章将深入探讨PN结的形成机理、二极管的整流特性以及晶体管的放大作用，通过交互式模拟器帮助您直观理解器件内部载流子的运动规律和电学特性。</p>
+            <h3>核心内容</h3>
+            <p>定义本征半导体、电子与空穴。讲解掺杂原理：施主（N型）与受主（P型）。推导热平衡状态下的载流子浓度公式（n₀, p₀），引入质量作用定律（n₀p₀ = nᵢ²）。深入讲解费米-狄拉克分布函数与费米能级的概念，以及费米能级随掺杂和温度的变化规律。</p>
         </div>
         
-        <!-- PN结模拟器 -->
-        <div class="pn-junction-simulator">
-            <h2>⚛️ PN结模拟器：探索结的形成与特性 <span class="progress-indicator" id="junction-progress">0/0</span></h2>
-            <p>通过调整掺杂浓度和偏置电压，观察PN结内部载流子分布和电场变化。</p>
-            
-            <div class="simulator-container">
-                <div class="junction-visualization" id="junction-viz">
-                    <div class="junction-region p-region">P区</div>
-                    <div class="junction-region n-region">N区</div>
-                    <div class="depletion-region" id="depletion-region"></div>
-                    <!-- 动态生成的载流子 -->
-                </div>
-                
-                <div class="controls-panel">
-                    <div class="control-group">
-                        <label class="control-label">P区掺杂浓度</label>
-                        <div class="slider-container">
-                            <input type="range" class="slider" id="p-doping" min="15" max="18" value="16" step="0.1" oninput="updateJunction()">
-                            <span class="slider-value" id="p-doping-value">10¹⁶ cm⁻³</span>
-                        </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label">N区掺杂浓度</label>
-                        <div class="slider-container">
-                            <input type="range" class="slider" id="n-doping" min="15" max="18" value="16" step="0.1" oninput="updateJunction()">
-                            <span class="slider-value" id="n-doping-value">10¹⁶ cm⁻³</span>
-                        </div>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label class="control-label">偏置电压</label>
-                        <div class="slider-container">
-                            <input type="range" class="slider" id="bias-voltage" min="-2" max="2" value="0" step="0.1" oninput="updateJunction()">
-                            <span class="slider-value" id="bias-voltage-value">0.0 V</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="results-panel">
-                <h3>PN结特性</h3>
-                <div class="result-item">
-                    <span class="result-label">耗尽区宽度</span>
-                    <span class="result-value" id="depletion-width">-</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">内建电势</span>
-                    <span class="result-value" id="built-in-potential">-</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">结电容</span>
-                    <span class="result-value" id="junction-capacitance">-</span>
-                </div>
-                <div class="result-item">
-                    <span class="result-label">结电流</span>
-                    <span class="result-value" id="junction-current">-</span>
-                </div>
+        <div class="chapter-objectives">
+            <h3>章节目标</h3>
+            <ul>
+                <li>掌握计算本征与掺杂半导体中载流子浓度的方法</li>
+                <li>深刻理解费米能级作为系统电化学势的物理意义</li>
+                <li>能够分析掺杂对半导体电学性质的根本性影响</li>
+            </ul>
+        </div>
+        
+        <div class="chapter-keywords">
+            <h3>关键词</h3>
+            <div class="keywords-list">
+                <span class="keyword">本征半导体</span>
+                <span class="keyword">掺杂</span>
+                <span class="keyword">施主</span>
+                <span class="keyword">受主</span>
+                <span class="keyword">N型</span>
+                <span class="keyword">P型</span>
+                <span class="keyword">载流子浓度</span>
+                <span class="keyword">本征浓度（nᵢ）</span>
+                <span class="keyword">质量作用定律</span>
+                <span class="keyword">费米-狄拉克分布</span>
+                <span class="keyword">费米能级（E_F）</span>
             </div>
         </div>
         
-        <!-- 器件实验室 -->
-        <div class="device-lab">
-            <h2>🔬 器件实验室：测试半导体器件特性 <span class="progress-indicator" id="device-progress">0/0</span></h2>
-            <p>选择不同的半导体器件，搭建测试电路，观察器件的电学特性曲线。</p>
+        <!-- 3.1 载流子分布函数 -->
+        <div id="carrier-distribution" class="section">
+            <h3>3.1 载流子分布函数</h3>
             
-            <div class="device-selector">
-                <div class="device-card" onclick="selectDevice('diode')">
-                    <div class="device-icon">⚡</div>
-                    <div class="device-name">二极管</div>
-                    <div class="device-description">单向导电器件，用于整流和检波</div>
-                </div>
-                
-                <div class="device-card" onclick="selectDevice('bjt')">
-                    <div class="device-icon">🔧</div>
-                    <div class="device-name">双极晶体管</div>
-                    <div class="device-description">电流控制器件，用于信号放大</div>
-                </div>
-                
-                <div class="device-card" onclick="selectDevice('mosfet')">
-                    <div class="device-icon">💻</div>
-                    <div class="device-name">MOSFET</div>
-                    <div class="device-description">电压控制器件，用于开关和放大</div>
-                </div>
-            </div>
-            
-            <div class="device-test-area" id="device-test-area">
-                <div class="test-circuit" id="test-circuit">
-                    <div class="circuit-element voltage-source">V</div>
-                    <div class="wire"></div>
-                    <div class="circuit-element resistor" id="test-device"></div>
-                    <div class="wire"></div>
-                    <div class="circuit-element voltage-source">GND</div>
-                </div>
-                
-                <div class="measurement-display">
-                    <div class="measurement-item">
-                        <span class="measurement-label">电压</span>
-                        <span class="measurement-value" id="voltage-value">0.0 V</span>
-                    </div>
-                    <div class="measurement-item">
-                        <span class="measurement-label">电流</span>
-                        <span class="measurement-value" id="current-value">0.0 mA</span>
-                    </div>
-                    <div class="measurement-item">
-                        <span class="measurement-label">功率</span>
-                        <span class="measurement-value" id="power-value">0.0 mW</span>
-                    </div>
-                </div>
-                
-                <div class="iv-curve">
-                    <canvas id="iv-chart"></canvas>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 章节总结 -->
-        <div class="section">
-            <h3>本章小结</h3>
             <div class="subsection">
-                <p>PN结是半导体器件的基础结构，通过P型和N型半导体的结合形成内建电场，实现对载流子运动的控制。二极管利用PN结的单向导通特性实现整流功能，是电子电路中最基本的器件之一。</p>
+                <h4>3.1.1 费米-狄拉克分布</h4>
+                <p>在热平衡状态下，电子占据能量为E的量子态的概率由费米-狄拉克分布函数描述：</p>
+                <div class="equation">
+                    f(E) = \frac{1}{1 + e^{(E - E_F)/(kT)}}
+                </div>
+                <p>其中：</p>
+                <ul>
+                    <li>f(E)：能量为E的量子态被电子占据的概率</li>
+                    <li>E_F：费米能级（化学势）</li>
+                    <li>k：玻尔兹曼常数（1.38×10⁻²³ J/K）</li>
+                    <li>T：热力学温度（K）</li>
+                </ul>
+                <p>费米分布函数的特点：</p>
+                <ul>
+                    <li>当E = E_F时，f(E) = 1/2，即量子态被电子占据和空出的概率相等</li>
+                    <li>当E << E_F时，f(E) ≈ 1，量子态几乎被电子完全占据</li>
+                    <li>当E >> E_F时，f(E) ≈ 0，量子态几乎为空</li>
+                    <li>温度升高时，分布曲线变宽，电子更容易跃迁到高能态</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <h4>3.1.2 玻尔兹曼近似</h4>
+                <p>在半导体中，导带底E_C和价带顶E_V通常远离费米能级E_F，满足|E - E_F| >> kT（室温下kT≈0.026 eV）。此时费米-狄拉克分布可以近似为玻尔兹曼分布：</p>
+                <div class="equation">
+                    f(E) ≈ e^{-(E - E_F)/(kT)} \quad (E >> E_F) \\ \\ 
+                    1 - f(E) ≈ e^{(E - E_F)/(kT)} \quad (E << E_F)
+                </div>
+                <p>其中，1 - f(E)是空穴占据能量为E的量子态的概率。玻尔兹曼近似大大简化了载流子浓度的计算，是半导体物理中最常用的近似之一。</p>
+            </div>
+            
+            <div class="subsection">
+                <h4>3.1.3 态密度</h4>
+                <p>态密度g(E)表示单位体积、单位能量间隔内的量子态数。对于三维晶体，导带和价带的态密度分别为：</p>
+                <div class="equation">
+                    g_C(E) = \frac{m_n^*^{3/2}}{2\pi^2 \hbar^3} \sqrt{2(E - E_C)} \quad (E ≥ E_C) \\ \\ 
+                    g_V(E) = \frac{m_p^*^{3/2}}{2\pi^2 \hbar^3} \sqrt{2(E_V - E)} \quad (E ≤ E_V)
+                </div>
+                <p>其中，m_n^*和m_p^*分别是电子和空穴的有效质量，ℏ是约化普朗克常数。态密度曲线呈抛物线形状，在带边处为零，随着能量远离带边而增加。</p>
+            </div>
+        </div>
+        
+        <!-- 3.2 本征半导体 -->
+        <div id="intrinsic-semiconductor" class="section">
+            <h3>3.2 本征半导体</h3>
+            
+            <div class="subsection">
+                <h4>3.2.1 本征激发与质量作用定律</h4>
+                <p>在本征半导体中，没有杂质掺杂，载流子主要通过热激发产生（本征激发）。热平衡状态下，电子浓度n和空穴浓度p满足质量作用定律：</p>
+                <div class="equation">
+                    np = n_i^2
+                </div>
+                <p>其中，n_i是本征载流子浓度，与温度和禁带宽度有关：</p>
+                <div class="equation">
+                    n_i = 2\left(\frac{kT}{2\pi \hbar^2}\right)^{3/2} (m_n^* m_p^*)^{3/4} e^{-E_g/(2kT)}
+                </div>
+                <p>对于本征半导体，电子浓度等于空穴浓度，即n = p = n_i。</p>
+            </div>
+            
+            <div class="subsection">
+                <h4>3.2.2 本征费米能级</h4>
+                <p>本征半导体的费米能级（本征费米能级E_i）可以通过求解n = p得到：</p>
+                <div class="equation">
+                    E_i = E_V + \frac{E_g}{2} + \frac{3kT}{4} \ln\left(\frac{m_p^*}{m_n^*}\right)
+                </div>
+                <p>对于Si和Ge等半导体，m_p^* ≈ m_n^*，因此E_i近似位于禁带中央。对于GaAs等材料，由于电子和空穴的有效质量差异较大，E_i会偏离禁带中央。</p>
+            </div>
+        </div>
+        
+        <!-- 3.3 杂质半导体 -->
+        <div id="extrinsic-semiconductor" class="section">
+            <h3>3.3 杂质半导体</h3>
+            
+            <div class="subsection">
+                <h4>3.3.1 N型半导体</h4>
+                <p>当半导体中掺杂施主杂质（如Si中掺杂P、As）时，形成N型半导体。施主杂质提供多余的电子，使得导带电子浓度远大于价带空穴浓度。热平衡状态下，载流子浓度满足：</p>
+                <div class="equation">
+                    n_0 ≈ N_D^+ \quad (强电离区)
+                </div>
+                <p>其中，N_D^+是电离施主浓度，近似等于施主杂质浓度N_D（在强电离区）。空穴浓度则通过质量作用定律得到：</p>
+                <div class="equation">
+                    p_0 = \frac{n_i^2}{n_0} ≈ \frac{n_i^2}{N_D}
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h4>3.3.2 P型半导体</h4>
+                <p>当半导体中掺杂受主杂质（如Si中掺杂B、Al）时，形成P型半导体。受主杂质提供多余的空穴，使得价带空穴浓度远大于导带电子浓度。热平衡状态下，载流子浓度满足：</p>
+                <div class="equation">
+                    p_0 ≈ N_A^- \quad (强电离区)
+                </div>
+                <p>其中，N_A^-是电离受主浓度，近似等于受主杂质浓度N_A（在强电离区）。电子浓度则通过质量作用定律得到：</p>
+                <div class="equation">
+                    n_0 = \frac{n_i^2}{p_0} ≈ \frac{n_i^2}{N_A}
+                </div>
+            </div>
+            
+            <div class="subsection">
+                <h4>3.3.3 费米能级与掺杂浓度的关系</h4>
+                <p>杂质半导体的费米能级位置与掺杂浓度密切相关：</p>
+                <ul>
+                    <li><strong>N型半导体</strong>：费米能级位于导带底附近，随施主浓度增加而升高</li>
+                    <li><strong>P型半导体</strong>：费米能级位于价带顶附近，随受主浓度增加而降低</li>
+                    <li><strong>中等掺杂</strong>：费米能级在禁带内</li>
+                    <li><strong>重掺杂</strong>：费米能级可能进入导带或价带，形成简并半导体</li>
+                </ul>
+                <p>费米能级的位置直接影响载流子浓度，是半导体器件设计的基础参数。</p>
+            </div>
+        </div>
+        
+        <!-- 3.4 载流子统计模拟器 -->
+        <div id="carrier-stats-simulator" class="section">
+            <h3>3.4 载流子统计模拟器</h3>
+            <p>通过调整参数，观察不同条件下载流子浓度的变化：</p>
+            
+            <div class="carrier-stats-simulator">
+                <div class="simulator-controls">
+                    <div class="control-group">
+                        <label class="control-label">半导体材料：</label>
+                        <select class="control-input" id="material-select">
+                            <option value="silicon">硅 (Si)</option>
+                            <option value="germanium">锗 (Ge)</option>
+                            <option value="gaas">砷化镓 (GaAs)</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">温度：</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="temperature-slider" min="77" max="600" step="10" value="300">
+                            <span class="slider-value" id="temperature-value">300</span> K
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">施主浓度：</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="nd-slider" min="1e14" max="1e18" step="1e14" value="0">
+                            <span class="slider-value" id="nd-value">0.00e+00</span> cm⁻³
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">受主浓度：</label>
+                        <div class="slider-container">
+                            <input type="range" class="slider" id="na-slider" min="1e14" max="1e18" step="1e14" value="0">
+                            <span class="slider-value" id="na-value">0.00e+00</span> cm⁻³
+                        </div>
+                    </div>
+                </div>
                 
-                <p>晶体管是现代电子技术的核心，双极晶体管(BJT)通过电流控制实现信号放大，而MOSFET通过电压控制实现开关和放大功能。不同类型的晶体管各有优势，在数字电路、模拟电路和功率电子中都有广泛应用。</p>
+                <div class="chart-area">
+                    <canvas id="carrier-concentration-chart" width="800" height="400"></canvas>
+                </div>
                 
-                <p>理解半导体器件的工作原理需要掌握载流子运动、能带结构和电场分布等物理概念，这些知识是设计和分析电子电路的基础。下一章将深入介绍集成电路的设计与制造，帮助您了解如何将单个器件集成为功能复杂的电子系统。</p>
+                <div class="results-panel">
+                    <h4>载流子浓度计算结果</h4>
+                    <div class="result-item">
+                        <span class="result-label">本征载流子浓度 (n_i)：</span>
+                        <span class="result-value" id="ni-value">1.50e+10</span> cm⁻³
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">电子浓度 (n)：</span>
+                        <span class="result-value" id="n-value">1.50e+10</span> cm⁻³
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">空穴浓度 (p)：</span>
+                        <span class="result-value" id="p-value">1.50e+10</span> cm⁻³
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">费米能级位置 (E_F - E_i)：</span>
+                        <span class="result-value" id="ef-value">0.00</span> eV
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">半导体类型：</span>
+                        <span class="result-value" id="type-value">本征</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 本章小结 -->
+        <div id="chapter-summary" class="section">
+            <h3>本章小结</h3>
+            <div class="chapter-core">
+                <ul>
+                    <li>费米-狄拉克分布函数描述了热平衡状态下电子在量子态上的占据概率，玻尔兹曼近似是半导体物理中常用的简化模型</li>
+                    <li>本征半导体中，载流子通过本征激发产生，电子浓度等于空穴浓度，满足质量作用定律</li>
+                    <li>杂质半导体中，掺杂施主杂质形成N型半导体，掺杂受主杂质形成P型半导体，多数载流子浓度近似等于掺杂浓度</li>
+                    <li>费米能级位置随掺杂浓度变化，N型半导体中费米能级靠近导带，P型半导体中费米能级靠近价带</li>
+                    <li>载流子浓度与温度、禁带宽度和掺杂浓度密切相关，是半导体器件设计的基础参数</li>
+                </ul>
             </div>
             
             <div class="subsection">
                 <h4>下一章预告</h4>
-                <p>第4章将深入集成电路的设计与制造，带你理解"如何将数百万个晶体管集成在一块芯片上？"、"集成电路设计流程是怎样的？"、"制造工艺如何影响器件性能？"，并通过交互式工具直观感受集成电路的设计与制造过程。</p>
+                <p>第4章将深入介绍载流子输运现象，包括漂移运动、扩散运动和霍尔效应，理解这些输运机制对于分析半导体器件的电流-电压特性至关重要。</p>
                 <button class="btn btn-primary" onclick="window.location.href='chapter4.html'">前往第4章</button>
             </div>
         </div>
@@ -277,230 +603,161 @@
     
     <script src="../js/main.js"></script>
     <script>
-        // 进度跟踪
-        let junctionExperiments = 0;
-        let testedDevices = [];
-        let ivChart = null;
-        
-        // 器件特性数据
-        const deviceCharacteristics = {
-            diode: {
-                name: "二极管",
-                element: "diode",
-                ivFunction: function(v) {
-                    // 二极管的指数特性
-                    const Is = 1e-12; // 反向饱和电流
-                    const Vt = 0.026; // 热电压
-                    const n = 1.5; // 理想因子
-                    
-                    if (v < -0.5) {
-                        return -Is * 1e6; // 反向饱和电流，单位μA
-                    } else {
-                        return Is * (Math.exp(v / (n * Vt)) - 1) * 1e6; // 正向电流，单位μA
-                    }
-                }
+        // 半导体材料参数
+        const materialParams = {
+            silicon: {
+                name: '硅',
+                Eg: 1.12, // 禁带宽度 (eV)
+                mn_star: 1.08, // 电子有效质量 (m0)
+                mp_star: 0.56, // 空穴有效质量 (m0)
+                ni_300K: 1.5e10 // 300K下的本征载流子浓度 (cm⁻³)
             },
-            bjt: {
-                name: "双极晶体管",
-                element: "transistor",
-                ivFunction: function(v) {
-                    // 简化的BJT特性
-                    const Vbe = 0.7; // 基极-发射极电压
-                    const beta = 100; // 电流放大系数
-                    
-                    if (v < Vbe) {
-                        return 0;
-                    } else {
-                        return beta * (v - Vbe) * 10; // 集电极电流，单位μA
-                    }
-                }
+            germanium: {
+                name: '锗',
+                Eg: 0.66,
+                mn_star: 0.55,
+                mp_star: 0.37,
+                ni_300K: 2.4e13
             },
-            mosfet: {
-                name: "MOSFET",
-                element: "transistor",
-                ivFunction: function(v) {
-                    // 简化的MOSFET特性
-                    const Vth = 1.0; // 阈值电压
-                    const k = 0.5; // 跨导参数
-                    
-                    if (v < Vth) {
-                        return 0;
-                    } else {
-                        return k * (v - Vth) * (v - Vth) * 100; // 漏极电流，单位μA
-                    }
-                }
+            gaas: {
+                name: '砷化镓',
+                Eg: 1.42,
+                mn_star: 0.067,
+                mp_star: 0.48,
+                ni_300K: 2.1e6
             }
         };
         
-        // 当前选中的器件
-        let selectedDeviceType = null;
+        // 物理常数
+        const k = 8.617e-5; // 玻尔兹曼常数 (eV/K)
+        const T0 = 300; // 参考温度 (K)
         
-        // 更新PN结模拟
-        function updateJunction() {
-            const pDoping = parseFloat(document.getElementById('p-doping').value);
-            const nDoping = parseFloat(document.getElementById('n-doping').value);
-            const biasVoltage = parseFloat(document.getElementById('bias-voltage').value);
+        // 全局变量
+        let carrierChart = null;
+        
+        // 计算本征载流子浓度
+        function calculateNi(material, T) {
+            const params = materialParams[material];
+            const Eg = params.Eg;
+            const mn_star = params.mn_star;
+            const mp_star = params.mp_star;
             
-            // 更新显示值
-            document.getElementById('p-doping-value').textContent = `10^${pDoping} cm⁻³`;
-            document.getElementById('n-doping-value').textContent = `10^${nDoping} cm⁻³`;
-            document.getElementById('bias-voltage-value').textContent = `${biasVoltage.toFixed(1)} V`;
+            // 使用简化公式计算本征载流子浓度
+            const ni_300K = params.ni_300K;
+            const ni = ni_300K * Math.pow(T / T0, 3/2) * Math.exp((Eg / (2 * k * T0)) * (1 - T0 / T));
+            return ni;
+        }
+        
+        // 计算载流子浓度
+        function calculateCarrierConcentrations(material, T, Nd, Na) {
+            const ni = calculateNi(material, T);
             
-            // 计算PN结特性
-            const k = 1.38e-23; // 玻尔兹曼常数
-            const T = 300; // 温度 K
-            const q = 1.6e-19; // 电子电荷
-            const ni = 1.5e10; // 本征载流子浓度
-            const epsilon = 11.7 * 8.85e-14; // 硅的介电常数
+            // 净掺杂浓度
+            const N_net = Nd - Na;
             
-            // 计算内建电势
-            const Vbi = (k * T / q) * Math.log((Math.pow(10, pDoping) * Math.pow(10, nDoping)) / (ni * ni));
-            
-            // 计算耗尽区宽度
-            const W = Math.sqrt(2 * epsilon / q * (1 / Math.pow(10, pDoping) + 1 / Math.pow(10, nDoping)) * (Vbi - biasVoltage));
-            
-            // 计算结电容
-            const Cj = epsilon / W * 1e8; // 单位 pF/μm²
-            
-            // 计算结电流
-            let Ij;
-            if (biasVoltage < 0) {
-                // 反向偏置
-                Ij = -1e-9; // 反向饱和电流，单位 A
+            // 强电离区近似
+            let n0, p0;
+            if (N_net > 0) {
+                // N型半导体
+                n0 = N_net;
+                p0 = Math.pow(ni, 2) / n0;
+            } else if (N_net < 0) {
+                // P型半导体
+                p0 = Math.abs(N_net);
+                n0 = Math.pow(ni, 2) / p0;
             } else {
-                // 正向偏置
-                const Is = 1e-12; // 反向饱和电流
-                const Vt = k * T / q; // 热电压
-                Ij = Is * (Math.exp(biasVoltage / Vt) - 1); // 单位 A
+                // 本征半导体
+                n0 = ni;
+                p0 = ni;
             }
             
-            // 更新显示
-            document.getElementById('depletion-width').textContent = `${(W * 1e4).toFixed(2)} μm`;
-            document.getElementById('built-in-potential').textContent = `${Vbi.toFixed(2)} V`;
-            document.getElementById('junction-capacitance').textContent = `${Cj.toFixed(2)} pF/μm²`;
-            document.getElementById('junction-current').textContent = `${(Ij * 1e6).toFixed(2)} μA`;
+            return { n0, p0, ni };
+        }
+        
+        // 计算费米能级位置
+        function calculateFermiLevel(material, T, n0, p0, ni) {
+            const params = materialParams[material];
+            const kT = k * T;
             
-            // 更新耗尽区可视化
-            const depletionRegion = document.getElementById('depletion-region');
-            const depletionWidth = Math.max(10, Math.min(100, 40 + biasVoltage * 20));
-            depletionRegion.style.width = `${depletionWidth}px`;
-            
-            // 添加载流子动画
-            addCarriers(biasVoltage);
-            
-            // 记录进度
-            if (junctionExperiments === 0) {
-                junctionExperiments = 1;
-                updateProgress();
+            // 计算相对于本征费米能级的位置
+            let Ef_Ei;
+            if (n0 > p0) {
+                // N型半导体
+                Ef_Ei = kT * Math.log(n0 / ni);
+            } else {
+                // P型或本征半导体
+                Ef_Ei = kT * Math.log(p0 / ni);
             }
+            
+            return Ef_Ei;
         }
         
-        // 添加载流子动画
-        function addCarriers(biasVoltage) {
-            const junctionViz = document.getElementById('junction-viz');
-            
-            // 清除现有载流子
-            junctionViz.querySelectorAll('.charge-carrier').forEach(carrier => {
-                carrier.remove();
-            });
-            
-            // 根据偏置电压添加载流子
-            const carrierCount = Math.max(0, Math.min(10, Math.floor(biasVoltage * 3 + 5)));
-            
-            for (let i = 0; i < carrierCount; i++) {
-                setTimeout(() => {
-                    const isElectron = Math.random() > 0.5;
-                    const carrier = document.createElement('div');
-                    carrier.className = `charge-carrier ${isElectron ? 'electron' : 'hole'}`;
-                    carrier.textContent = isElectron ? 'e-' : 'h+';
-                    
-                    // 随机位置
-                    const left = Math.random() * 80 + 10; // 10% to 90%
-                    const top = Math.random() * 80 + 10; // 10% to 90%
-                    
-                    carrier.style.left = `${left}%`;
-                    carrier.style.top = `${top}%`;
-                    
-                    // 随机动画延迟和持续时间
-                    carrier.style.animationDelay = `${Math.random() * 2}s`;
-                    carrier.style.animationDuration = `${3 + Math.random() * 2}s`;
-                    
-                    junctionViz.appendChild(carrier);
-                }, i * 200);
-            }
-        }
-        
-        // 选择器件
-        function selectDevice(deviceType) {
-            // 更新选中状态
-            document.querySelectorAll('.device-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            document.querySelector(`.device-card[onclick="selectDevice('${deviceType}')"]`).classList.add('selected');
-            
-            // 更新选中的器件
-            selectedDeviceType = deviceType;
-            const device = deviceCharacteristics[deviceType];
-            
-            // 更新测试电路
-            updateTestCircuit(device);
-            
-            // 初始化IV曲线
-            initIVCurve(device);
-            
-            // 记录进度
-            if (!testedDevices.includes(deviceType)) {
-                testedDevices.push(deviceType);
-                updateProgress();
-            }
-        }
-        
-        // 更新测试电路
-        function updateTestCircuit(device) {
-            const testDevice = document.getElementById('test-device');
-            
-            // 清除现有类
-            testDevice.className = 'circuit-element';
-            
-            // 添加器件特定的类
-            testDevice.classList.add(device.element);
-            
-            // 更新测量显示
-            updateMeasurements(0);
-        }
-        
-        // 初始化IV曲线
-        function initIVCurve(device) {
-            const ctx = document.getElementById('iv-chart').getContext('2d');
+        // 初始化载流子浓度图表
+        function initCarrierChart() {
+            const ctx = document.getElementById('carrier-concentration-chart').getContext('2d');
             
             // 销毁现有图表
-            if (ivChart) {
-                ivChart.destroy();
+            if (carrierChart) {
+                carrierChart.destroy();
             }
             
-            // 生成数据点
-            const voltages = [];
-            const currents = [];
+            // 生成初始数据
+            const temperatures = Array.from({length: 21}, (_, i) => 100 + i * 20); // 100K到500K，步长20K
+            const material = document.getElementById('material-select').value;
+            const Nd = parseFloat(document.getElementById('nd-slider').value);
+            const Na = parseFloat(document.getElementById('na-slider').value);
             
-            for (let v = -2; v <= 2; v += 0.1) {
-                voltages.push(v);
-                currents.push(device.ivFunction(v));
-            }
+            const nData = [];
+            const pData = [];
+            const niData = [];
+            
+            temperatures.forEach(T => {
+                const { n0, p0, ni } = calculateCarrierConcentrations(material, T, Nd, Na);
+                nData.push(n0);
+                pData.push(p0);
+                niData.push(ni);
+            });
             
             // 创建新图表
-            ivChart = new Chart(ctx, {
+            carrierChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: voltages,
-                    datasets: [{
-                        label: `${device.name} IV特性`,
-                        data: currents,
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        borderWidth: 2,
-                        pointRadius: 0,
-                        tension: 0.4
-                    }]
+                    labels: temperatures,
+                    datasets: [
+                        {
+                            label: '电子浓度 (n)',
+                            data: nData,
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '空穴浓度 (p)',
+                            data: pData,
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: '本征载流子浓度 (n_i)',
+                            data: niData,
+                            borderColor: '#2ecc71',
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 2,
+                            fill: false,
+                            pointRadius: 0,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -509,15 +766,17 @@
                         x: {
                             title: {
                                 display: true,
-                                text: '电压 (V)'
+                                text: '温度 (K)'
                             }
                         },
                         y: {
+                            type: 'logarithmic',
                             title: {
                                 display: true,
-                                text: '电流 (μA)'
+                                text: '载流子浓度 (cm⁻³)'
                             },
-                            beginAtZero: true
+                            min: 1e6,
+                            max: 1e18
                         }
                     },
                     plugins: {
@@ -528,117 +787,110 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return `电流: ${context.parsed.y.toFixed(2)} μA`;
+                                    return `${context.dataset.label}: ${context.parsed.y.toExponential(2)} cm⁻³`;
                                 }
                             }
                         }
                     }
                 }
             });
-            
-            // 添加交互式电压控制
-            addVoltageControl(device);
         }
         
-        // 添加电压控制
-        function addVoltageControl(device) {
-            const testArea = document.getElementById('device-test-area');
+        // 更新载流子浓度计算结果
+        function updateCarrierResults() {
+            const material = document.getElementById('material-select').value;
+            const T = parseFloat(document.getElementById('temperature-slider').value);
+            const Nd = parseFloat(document.getElementById('nd-slider').value);
+            const Na = parseFloat(document.getElementById('na-slider').value);
             
-            // 检查是否已存在电压控制
-            let voltageControl = document.getElementById('voltage-control');
-            if (!voltageControl) {
-                voltageControl = document.createElement('div');
-                voltageControl.id = 'voltage-control';
-                voltageControl.className = 'control-group';
-                voltageControl.innerHTML = `
-                    <label class="control-label">电压控制</label>
-                    <div class="slider-container">
-                        <input type="range" class="slider" id="device-voltage" min="-2" max="2" value="0" step="0.1" oninput="updateDeviceVoltage()">
-                        <span class="slider-value" id="device-voltage-value">0.0 V</span>
-                    </div>
-                `;
-                testArea.insertBefore(voltageControl, testArea.querySelector('.measurement-display'));
+            // 计算载流子浓度
+            const { n0, p0, ni } = calculateCarrierConcentrations(material, T, Nd, Na);
+            
+            // 计算费米能级位置
+            const Ef_Ei = calculateFermiLevel(material, T, n0, p0, ni);
+            
+            // 确定半导体类型
+            let type = '本征';
+            if (Nd > Na) {
+                type = 'N型';
+            } else if (Na > Nd) {
+                type = 'P型';
             }
             
-            // 更新电压控制事件
-            document.getElementById('device-voltage').oninput = function() {
-                updateDeviceVoltage(device);
-            };
+            // 更新显示
+            document.getElementById('ni-value').textContent = ni.toExponential(2);
+            document.getElementById('n-value').textContent = n0.toExponential(2);
+            document.getElementById('p-value').textContent = p0.toExponential(2);
+            document.getElementById('ef-value').textContent = Ef_Ei.toFixed(3);
+            document.getElementById('type-value').textContent = type;
         }
         
-        // 更新器件电压
-        function updateDeviceVoltage(device) {
-            const voltage = parseFloat(document.getElementById('device-voltage').value);
-            document.getElementById('device-voltage-value').textContent = `${voltage.toFixed(1)} V`;
+        // 更新图表
+        function updateChart() {
+            const temperatures = Array.from({length: 21}, (_, i) => 100 + i * 20);
+            const material = document.getElementById('material-select').value;
+            const T = parseFloat(document.getElementById('temperature-slider').value);
+            const Nd = parseFloat(document.getElementById('nd-slider').value);
+            const Na = parseFloat(document.getElementById('na-slider').value);
             
-            // 计算电流
-            const current = device ? device.ivFunction(voltage) : 0;
+            const nData = [];
+            const pData = [];
+            const niData = [];
             
-            // 更新测量显示
-            updateMeasurements(voltage, current);
+            temperatures.forEach(temp => {
+                const { n0, p0, ni } = calculateCarrierConcentrations(material, temp, Nd, Na);
+                nData.push(n0);
+                pData.push(p0);
+                niData.push(ni);
+            });
             
-            // 在IV图表上标记当前工作点
-            if (ivChart) {
-                ivChart.data.datasets.push({
-                    label: '工作点',
-                    data: [{x: voltage, y: current}],
-                    backgroundColor: '#e74c3c',
-                    borderColor: '#e74c3c',
-                    pointRadius: 5,
-                    pointHoverRadius: 7,
-                    showLine: false
-                });
-                ivChart.update();
-            }
+            carrierChart.data.datasets[0].data = nData;
+            carrierChart.data.datasets[1].data = pData;
+            carrierChart.data.datasets[2].data = niData;
+            carrierChart.update();
         }
         
-        // 更新测量显示
-        function updateMeasurements(voltage, current) {
-            const power = voltage * current / 1000; // 转换为mW
-            
-            document.getElementById('voltage-value').textContent = `${voltage.toFixed(2)} V`;
-            document.getElementById('current-value').textContent = `${current.toFixed(2)} μA`;
-            document.getElementById('power-value').textContent = `${power.toFixed(2)} mW`;
-        }
-        
-        // 更新进度
-        function updateProgress() {
-            // 更新PN结模拟进度
-            document.getElementById('junction-progress').textContent = `${junctionExperiments}/1`;
-            
-            // 更新器件测试进度
-            document.getElementById('device-progress').textContent = `${testedDevices.length}/${Object.keys(deviceCharacteristics).length}`;
-            
-            // 保存进度
-            saveProgress();
-        }
-        
-        // 保存进度
-        function saveProgress() {
-            const progress = {
-                junctionExperiments,
-                testedDevices,
-                timestamp: Date.now()
-            };
-            localStorage.setItem('semiProj_chapter3_progress', JSON.stringify(progress));
-        }
-        
-        // 加载进度
-        function loadProgress() {
-            const saved = localStorage.getItem('semiProj_chapter3_progress');
-            if (saved) {
-                const progress = JSON.parse(saved);
-                junctionExperiments = progress.junctionExperiments || 0;
-                testedDevices = progress.testedDevices || [];
-                
-                updateProgress();
-            }
+        // 更新滑块值显示
+        function updateSliderValues() {
+            document.getElementById('temperature-value').textContent = document.getElementById('temperature-slider').value;
+            document.getElementById('nd-value').textContent = parseFloat(document.getElementById('nd-slider').value).toExponential(2);
+            document.getElementById('na-value').textContent = parseFloat(document.getElementById('na-slider').value).toExponential(2);
         }
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            loadProgress();
-            updateJunction();
+            // 初始化图表
+            initCarrierChart();
+            
+            // 更新初始结果
+            updateCarrierResults();
+            
+            // 更新滑块值显示
+            updateSliderValues();
+            
+            // 添加事件监听器
+            document.getElementById('material-select').addEventListener('change', function() {
+                initCarrierChart();
+                updateCarrierResults();
+            });
+            
+            document.getElementById('temperature-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateCarrierResults();
+                updateChart();
+            });
+            
+            document.getElementById('nd-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateCarrierResults();
+                updateChart();
+            });
+            
+            document.getElementById('na-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateCarrierResults();
+                updateChart();
+            });
         });
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第11章：器件互连与封装 - SEMI_PROJ</title>
+    <title>第11章：双极结型晶体管（BJT）与特种器件 - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/chapter-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -25,6 +25,9 @@
                     <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
                     <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
                     <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
+                    <li><a href="../index.html#part5" class="nav-link">第五部分</a></li>
+                    <li><a href="../index.html#part6" class="nav-link">第六部分</a></li>
+                    <li><a href="../index.html#part7" class="nav-link">第七部分</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle">
@@ -51,56 +54,68 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
                 <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                    第1章：量子力学基础与固体中的电子
                 </a>
                 <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                    第2章：半导体材料与晶体结构
                 </a>
                 <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
+                    第3章：载流子统计与热平衡
                 </a>
                 <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                    第4章：载流子输运现象
                 </a>
                 <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                    第5章：非平衡载流子与复合动力学
                 </a>
                 <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
                 <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                    第8章：MOS结构物理
                 </a>
                 <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                    第9章：异质结与能带调控
                 </a>
                 <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
                 </a>
                 <a href="chapter11.html" class="chapter-nav-item active">
-                    第11章：器件互连与封装
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
                 <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                    第13章：晶圆制备与薄膜工程
                 </a>
                 <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
+                    第14章：图形化与掺杂技术
                 </a>
                 <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                    第15章：工艺集成与后端互连
                 </a>
                 <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                    第16章：半导体材料与器件表征
                 </a>
                 <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
             
@@ -109,14 +124,17 @@
                     <h4>当前章节</h4>
                     <nav class="section-nav">
 
-                    <a href="#interconnect-technology" class="section-nav-item">
-                        互连技术
+                    <a href="#bjt-basics" class="section-nav-item">
+                        BJT基本结构与工作原理
                     </a>
-                    <a href="#packaging-technology" class="section-nav-item">
-                        封装技术
+                    <a href="#bjt-models" class="section-nav-item">
+                        BJT模型与特性
                     </a>
-                    <a href="#advanced-packaging" class="section-nav-item">
-                        先进封装与器件集成
+                    <a href="#hbt" class="section-nav-item">
+                        异质结双极晶体管（HBT）
+                    </a>
+                    <a href="#special-devices" class="section-nav-item">
+                        特种半导体器件
                     </a>
                     <a href="#chapter-summary" class="section-nav-item">
                         本章小结
@@ -129,639 +147,631 @@
 
     <div class="chapter-container">
         <div class="breadcrumb">
-            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十一章：器件互连与封装</p>
+            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part4">第四部分：核心半导体器件物理</a> &gt; 第十一章：双极结型晶体管（BJT）与特种器件</p>
         </div>
         <div class="chapter-header">
-            <h1>第十一章：器件互连与封装</h1>
+            <h1>第十一章：双极结型晶体管（BJT）与特种器件</h1>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">互连技术</h2>
-            <p>互连技术是连接半导体芯片内部器件以及芯片与外部系统的关键技术。本节介绍金属互连、接触与通孔、多层互连结构以及互连中的可靠性问题。</p>
+        <div class="chapter-core">
+            <h3>核心内容</h3>
+            <p>讲解BJT的放大原理、埃伯斯-莫尔（Ebers-Moll）模型、电流增益（β）。介绍异质结双极晶体管（HBT） 的优势。概述其他重要器件：结型场效应晶体管（JFET）、金属半导体场效应晶体管（MESFET）、微波器件（IMPATT, Gunn二极管）、功率器件（IGBT）的基本原理。</p>
+        </div>
+        
+        <div class="chapter-objectives">
+            <h3>章节目标</h3>
+            <ul>
+                <li>掌握BJT的工作原理和基本模型</li>
+                <li>了解HBT的性能优势</li>
+                <li>认识除MOSFET外其他重要半导体器件家族</li>
+                <li>理解不同类型晶体管的工作特点和应用场景</li>
+                <li>掌握双极型晶体管与场效应晶体管的区别</li>
+            </ul>
+        </div>
+        
+        <div class="chapter-keywords">
+            <h3>关键词</h3>
+            <div class="keywords-list">
+                <span class="keyword">双极结型晶体管（BJT）</span>
+                <span class="keyword">发射极</span>
+                <span class="keyword">基极</span>
+                <span class="keyword">集电极</span>
+                <span class="keyword">电流增益</span>
+                <span class="keyword">埃伯斯-莫尔模型</span>
+                <span class="keyword">异质结双极晶体管（HBT）</span>
+                <span class="keyword">JFET</span>
+                <span class="keyword">MESFET</span>
+            </div>
+        </div>
+        
+        <div class="section" id="bjt-basics">
+            <h2 class="section-title">BJT基本结构与工作原理</h2>
+            <p>双极结型晶体管（BJT）是一种电流控制型器件，其工作原理基于两种载流子（电子和空穴）的协同作用，因此称为"双极"。BJT具有电流放大能力，是早期集成电路的核心器件，至今仍广泛应用于模拟电路和功率电路中。</p>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('interconnect-overview')">互连技术概述</button>
-                    <button class="tab-button" onclick="showTab('interconnect-interactive')">互连RC延迟计算器</button>
+                    <button class="tab-button active" onclick="showTab('bjt-structure')">结构与工作模式</button>
+                    <button class="tab-button" onclick="showTab('bjt-operation')">工作原理</button>
                 </div>
                 
                 <div class="tab-content">
-                    <div id="interconnect-overview" class="tab-pane active">
+                    <div id="bjt-structure" class="tab-pane active">
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">BJT结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/bjt-structure.svg" alt="BJT基本结构" class="diagram-image">
+                                <div class="diagram-caption">图11-1：NPN型BJT的基本结构</div>
+                            </div>
+                        </div>
+                        
+                        <h3>BJT的基本结构</h3>
+                        <p>BJT由两个背靠背的PN结组成，形成三个区域：</p>
+                        <ul>
+                            <li><strong>发射区（Emitter）</strong>：高掺杂区，负责向基区注入载流子</li>
+                            <li><strong>基区（Base）</strong>：薄且低掺杂区，是载流子传输的通道</li>
+                            <li><strong>集电区（Collector）</strong>：中等掺杂区，面积较大，负责收集载流子</li>
+                        </ul>
+                        
+                        <p>BJT有两种类型：</p>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">NPN型BJT</h3>
+                                <div class="comparison-content">
+                                    <p>结构为N型发射区、P型基区、N型集电区，多数载流子为电子。</p>
+                                    <ul>
+                                        <li>电流方向：从集电极流向发射极</li>
+                                        <li>常用材料：硅、锗</li>
+                                        <li>应用：高频、高速电路</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">PNP型BJT</h3>
+                                <div class="comparison-content">
+                                    <p>结构为P型发射区、N型基区、P型集电区，多数载流子为空穴。</p>
+                                    <ul>
+                                        <li>电流方向：从发射极流向集电极</li>
+                                        <li>常用材料：锗、硅</li>
+                                        <li>应用：低频、功率电路</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>BJT的工作模式</h3>
+                        <p>根据两个PN结的偏置状态，BJT可工作在四种模式：</p>
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>工作模式</th>
+                                    <th>发射结偏置</th>
+                                    <th>集电结偏置</th>
+                                    <th>主要应用</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>放大模式</td>
+                                    <td>正向偏置</td>
+                                    <td>反向偏置</td>
+                                    <td>放大电路</td>
+                                </tr>
+                                <tr>
+                                    <td>截止模式</td>
+                                    <td>反向偏置</td>
+                                    <td>反向偏置</td>
+                                    <td>开关电路（关态）</td>
+                                </tr>
+                                <tr>
+                                    <td>饱和模式</td>
+                                    <td>正向偏置</td>
+                                    <td>正向偏置</td>
+                                    <td>开关电路（开态）</td>
+                                </tr>
+                                <tr>
+                                    <td>反向放大模式</td>
+                                    <td>反向偏置</td>
+                                    <td>正向偏置</td>
+                                    <td>特殊应用</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="bjt-operation" class="tab-pane">
+                        <h3>BJT放大模式的工作原理</h3>
+                        <p>在放大模式下，发射结正向偏置，集电结反向偏置，BJT表现出电流放大特性。以NPN型BJT为例，其工作过程包括三个阶段：</p>
+                        
                         <div class="process-flow">
                             <div class="process-step">
                                 <div class="step-number">1</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">接触与通孔形成</h3>
-                                    <p class="step-description">接触孔连接器件有源区与第一层金属，通孔连接不同金属层。通过光刻和刻蚀工艺形成孔洞，然后填充导电材料。接触电阻是关键参数，通常要求小于10Ω·μm²。阻挡层如Ti/TiN用于防止金属扩散，提高可靠性。</p>
+                                    <h3 class="step-title">发射区向基区注入载流子</h3>
+                                    <p class="step-description">由于发射结正向偏置，发射区的多数载流子（电子）向基区大量注入，形成发射极电流I<sub>E</sub>。同时，基区的多数载流子（空穴）也会向发射区注入，但由于基区掺杂浓度低，这部分电流很小，可以忽略。</p>
                                 </div>
                             </div>
                             
                             <div class="process-step">
                                 <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">金属沉积与图形化</h3>
-                                    <p class="step-description">金属层通过PVD或CVD工艺沉积，常用材料包括铝、铜和钨。铜互连采用大马士革工艺，先刻蚀沟槽再填充铜。金属层通过光刻和刻蚀形成互连线形。线宽从微米级缩小到纳米级，对工艺控制要求极高。</p>
+                                    <h3 class="step-title">载流子在基区的传输与复合</h3>
+                                    <p class="step-description">注入到基区的电子作为少数载流子，会向集电结方向扩散。由于基区很薄（通常只有微米级），大部分电子在扩散过程中不会与基区的空穴复合，只有少部分会复合，形成基极电流I<sub>B</sub>。复合电流与注入电流的比值取决于基区宽度和掺杂浓度。</p>
                                 </div>
                             </div>
                             
                             <div class="process-step">
                                 <div class="step-number">3</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">介质层沉积与平坦化</h3>
-                                    <p class="step-description">介电材料如SiO₂和低k材料用于隔离金属层。通过CVD工艺沉积，然后通过化学机械抛光(CMP)实现表面平坦化。低k介质(k<3.0)用于减少RC延迟，但机械强度较差，需要特殊工艺处理。</p>
+                                    <h3 class="step-title">集电区收集载流子</h3>
+                                    <p class="step-description">到达集电结边缘的电子，由于集电结反向偏置，会被强大的电场拉向集电区，形成集电极电流I<sub>C</sub>。集电结的反向偏置还会产生少量的反向饱和电流，但相对于注入电流可以忽略。</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3>BJT的电流关系</h3>
+                        <p>根据基尔霍夫电流定律，BJT的三个电极电流满足：</p>
+                        <div class="equation-box">
+                            <p class="equation">I<sub>E</sub> = I<sub>B</sub> + I<sub>C</sub></p>
+                        </div>
+                        
+                        <p>电流放大系数是BJT的重要参数：</p>
+                        <ul>
+                            <li><strong>共基极电流放大系数α</strong>：集电极电流与发射极电流的比值，α = I<sub>C</sub>/I<sub>E</sub>，通常接近1（0.95-0.999）</li>
+                            <li><strong>共发射极电流放大系数β</strong>：集电极电流与基极电流的比值，β = I<sub>C</sub>/I<sub>B</sub>，通常为几十到几百</li>
+                            <li><strong>α与β的关系</strong>：β = α/(1-α)，当α接近1时，β可以达到很大的值</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="bjt-models">
+            <h2 class="section-title">BJT模型与特性</h2>
+            <p>为了分析和设计BJT电路，需要建立BJT的数学模型，描述其电流-电压特性。常用的BJT模型包括埃伯斯-莫尔模型、Gummel-Poon模型等，这些模型在电路仿真软件中得到广泛应用。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('ebers-moll')">埃伯斯-莫尔模型</button>
+                    <button class="tab-button" onclick="showTab('bjt-iv')">I-V特性</button>
+                    <button class="tab-button" onclick="showTab('bjt-simulation')">BJT特性模拟器</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="ebers-moll" class="tab-pane active">
+                        <h3>埃伯斯-莫尔模型</h3>
+                        <p>埃伯斯-莫尔（Ebers-Moll）模型是BJT的基础模型，它将BJT视为两个相互作用的PN结，通过电流源描述它们之间的耦合关系。</p>
+                        
+                        <h4>基本埃伯斯-莫尔模型</h4>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">埃伯斯-莫尔模型示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/ebers-moll.svg" alt="埃伯斯-莫尔模型" class="diagram-image">
+                                <div class="diagram-caption">图11-2：NPN型BJT的埃伯斯-莫尔模型</div>
+                            </div>
+                        </div>
+                        
+                        <p>基本埃伯斯-莫尔模型的电流方程为：</p>
+                        <div class="equation-box">
+                            <p class="equation">I<sub>E</sub> = I<sub>ES</sub>(e<sup>qV<sub>BE</sub>/kT</sup> - 1) - α<sub>R</sub>I<sub>CS</sub>(e<sup>qV<sub>BC</sub>/kT</sup> - 1)</p>
+                            <p class="equation">I<sub>C</sub> = α<sub>F</sub>I<sub>ES</sub>(e<sup>qV<sub>BE</sub>/kT</sup> - 1) - I<sub>CS</sub>(e<sup>qV<sub>BC</sub>/kT</sup> - 1)</p>
+                        </div>
+                        
+                        <p>其中：</p>
+                        <ul>
+                            <li>I<sub>ES</sub>：发射结反向饱和电流</li>
+                            <li>I<sub>CS</sub>：集电结反向饱和电流</li>
+                            <li>α<sub>F</sub>：正向电流放大系数</li>
+                            <li>α<sub>R</sub>：反向电流放大系数</li>
+                        </ul>
+                        
+                        <h4>简化的埃伯斯-莫尔模型（放大模式）</h4>
+                        <p>在放大模式下，V<sub>BC</sub> < 0，集电结反向偏置，e<sup>qV<sub>BC</sub>/kT</sup> ≈ 0，模型可以简化为：</p>
+                        <div class="equation-box">
+                            <p class="equation">I<sub>C</sub> ≈ α<sub>F</sub>I<sub>ES</sub>(e<sup>qV<sub>BE</sub>/kT</sup> - 1) ≈ α<sub>F</sub>I<sub>E</sub></p>
+                            <p class="equation">I<sub>B</sub> ≈ (1 - α<sub>F</sub>)I<sub>E</sub> ≈ I<sub>C</sub>/β<sub>F</sub></p>
+                        </div>
+                        
+                        <h3>Gummel-Poon模型</h3>
+                        <p>Gummel-Poon模型是埃伯斯-莫尔模型的改进版，考虑了更多的物理效应，如：</p>
+                        <ul>
+                            <li>基区宽度调制效应（Early效应）</li>
+                            <li>电流增益随电流变化的效应</li>
+                            <li>温度对参数的影响</li>
+                            <li>击穿效应</li>
+                        </ul>
+                        <p>Gummel-Poon模型是SPICE等电路仿真软件中使用的主要BJT模型，能够更准确地描述BJT在各种工作条件下的特性。</p>
+                    </div>
+                    
+                    <div id="bjt-iv" class="tab-pane">
+                        <h3>BJT的I-V特性曲线</h3>
+                        <p>BJT的I-V特性曲线是描述其电流与电压关系的重要工具，主要包括输出特性曲线和输入特性曲线。</p>
+                        
+                        <h4>共发射极输出特性曲线</h4>
+                        <p>共发射极输出特性曲线是指在不同基极电流I<sub>B</sub>下，集电极电流I<sub>C</sub>与集射电压V<sub>CE</sub>之间的关系曲线。</p>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">BJT共发射极输出特性曲线</h3>
+                            <div class="diagram-container">
+                                <img src="../images/bjt-output-characteristics.svg" alt="BJT输出特性曲线" class="diagram-image">
+                                <div class="diagram-caption">图11-3：NPN型BJT的共发射极输出特性曲线</div>
+                            </div>
+                        </div>
+                        
+                        <p>输出特性曲线可以分为三个区域：</p>
+                        <ul>
+                            <li><strong>截止区</strong>：I<sub>B</sub> = 0，I<sub>C</sub> ≈ 0，BJT处于关断状态</li>
+                            <li><strong>放大区</strong>：I<sub>C</sub>随I<sub>B</sub>线性变化，I<sub>C</sub> = βI<sub>B</sub>，与V<sub>CE</sub>关系不大</li>
+                            <li><strong>饱和区</strong>：I<sub>C</sub>不再随I<sub>B</sub>增加而显著增加，V<sub>CE</sub>很小，BJT处于导通状态</li>
+                        </ul>
+                        
+                        <h4>共发射极输入特性曲线</h4>
+                        <p>共发射极输入特性曲线是指在不同集射电压V<sub>CE</sub>下，基极电流I<sub>B</sub>与基射电压V<sub>BE</sub>之间的关系曲线。</p>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">BJT共发射极输入特性曲线</h3>
+                            <div class="diagram-container">
+                                <img src="../images/bjt-input-characteristics.svg" alt="BJT输入特性曲线" class="diagram-image">
+                                <div class="diagram-caption">图11-4：NPN型BJT的共发射极输入特性曲线</div>
+                            </div>
+                        </div>
+                        
+                        <p>输入特性曲线类似于PN结的正向特性曲线，具有指数关系：I<sub>B</sub> ∝ e<sup>qV<sub>BE</sub>/kT</sup>。当V<sub>CE</sub>增加时，曲线会向右移动，这是因为基区宽度调制效应（Early效应）导致基区有效宽度减小，复合电流降低。</p>
+                    </div>
+                    
+                    <div id="bjt-simulation" class="tab-pane">
+                        <div class="interactive-tool">
+                            <h3 class="tool-title">BJT特性模拟器</h3>
+                            <div class="controls">
+                                <div class="control-group">
+                                    <label for="bjt-type">BJT类型</label>
+                                    <select id="bjt-type">
+                                        <option value="npn">NPN</option>
+                                        <option value="pnp">PNP</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="beta">电流增益β</label>
+                                    <input type="range" id="beta" min="10" max="500" step="10" value="100">
+                                    <span id="beta-value">100</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="vbe">基射电压V<sub>BE</sub> (V)</label>
+                                    <input type="range" id="vbe" min="0" max="1" step="0.01" value="0.7">
+                                    <span id="vbe-value">0.7 V</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="vce">集射电压V<sub>CE</sub> (V)</label>
+                                    <input type="range" id="vce" min="0" max="10" step="0.1" value="5">
+                                    <span id="vce-value">5.0 V</span>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="bjt-iv-chart"></canvas>
+                            </div>
+                            <div class="result-display">
+                                <div class="result-item">
+                                    <span class="result-label">基极电流I<sub>B</sub></span>
+                                    <span class="result-value" id="ib-value">7.0 μA</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">集电极电流I<sub>C</sub></span>
+                                    <span class="result-value" id="ic-value">0.7 mA</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">发射极电流I<sub>E</sub></span>
+                                    <span class="result-value" id="ie-value">0.707 mA</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">工作区域</span>
+                                    <span class="result-value" id="operation-region">放大区</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="hbt">
+            <h2 class="section-title">异质结双极晶体管（HBT）</h2>
+            <p>异质结双极晶体管（HBT）是一种使用异质结代替同质结的BJT，通常由不同带隙的半导体材料组成，如GaAs/AlGaAs、InP/InGaAs等。HBT利用异质结的能带不连续性，实现了更好的性能，特别是在高频和高速应用中。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('hbt-structure')">HBT结构与原理</button>
+                    <button class="tab-button" onclick="showTab('hbt-advantages')">HBT的优势</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="hbt-structure" class="tab-pane active">
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">HBT结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/hbt-structure.svg" alt="HBT结构" class="diagram-image">
+                                <div class="diagram-caption">图11-5：NPN型GaAs/AlGaAs HBT结构</div>
+                            </div>
+                        </div>
+                        
+                        <h3>HBT的工作原理</h3>
+                        <p>HBT的工作原理与传统BJT类似，但异质结的引入带来了独特的优势：</p>
+                        
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">发射结的单向注入特性</h3>
+                                    <p class="step-description">HBT的发射结是异质结，发射区采用宽禁带材料（如AlGaAs），基区采用窄禁带材料（如GaAs）。由于能带不连续性，电子从发射区到基区的势垒远小于空穴从基区到发射区的势垒，实现了电子的高效注入和空穴的有效阻挡，发射效率接近100%。</p>
                                 </div>
                             </div>
                             
                             <div class="process-step">
-                                <div class="step-number">4</div>
+                                <div class="step-number">2</div>
                                 <div class="step-content">
-                                    <h3 class="step-title">多层互连堆叠</h3>
-                                    <p class="step-description">重复上述工艺形成多层互连结构，现代芯片可达10-15层金属。层间通过通孔连接，形成复杂的3D互连网络。信号线通常分布在中间层，电源和地线分布在顶层和底层，以优化电磁兼容性。</p>
+                                    <h3 class="step-title">高掺杂基区的优势</h3>
+                                    <p class="step-description">由于异质结的单向注入特性，HBT的基区可以进行高掺杂，降低基极电阻，同时不会影响发射效率。低基极电阻有助于提高频率特性和功率增益。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3 class="step-title">高电子迁移率</h3>
+                                    <p class="step-description">HBT通常采用高电子迁移率材料（如GaAs、InGaAs）作为基区和集电区，电子迁移率比硅高3-5倍，显著提高了载流子的传输速度，有利于高频和高速应用。</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div id="hbt-advantages" class="tab-pane">
+                        <h3>HBT的性能优势</h3>
+                        <p>与传统硅BJT相比，HBT具有以下显著优势：</p>
                         
-                        <h3>互连材料技术对比</h3>
+                        <div class="advantage-grid">
+                            <div class="advantage-card">
+                                <h4>更高的截止频率</h4>
+                                <p>HBT的截止频率f<sub>T</sub>可以达到数百GHz，远高于硅BJT的几十GHz，适合高频和微波应用。</p>
+                            </div>
+                            
+                            <div class="advantage-card">
+                                <h4>更高的功率增益</h4>
+                                <p>HBT具有更高的最大振荡频率f<sub>max</sub>和功率附加效率（PAE），是射频功率放大器的理想选择。</p>
+                            </div>
+                            
+                            <div class="advantage-card">
+                                <h4>更快的开关速度</h4>
+                                <p>高电子迁移率和低基极电阻使HBT具有更快的开关速度，适合高速数字电路和脉冲应用。</p>
+                            </div>
+                            
+                            <div class="advantage-card">
+                                <h4>更好的线性度</h4>
+                                <p>HBT的电流-电压特性更接近理想的指数关系，线性度优于MOSFET，适合高性能模拟电路。</p>
+                            </div>
+                            
+                            <div class="advantage-card">
+                                <h4>耐高温性能</h4>
+                                <p>化合物半导体HBT具有更好的耐高温性能，可以在200°C以上的高温环境下工作。</p>
+                            </div>
+                            
+                            <div class="advantage-card">
+                                <h4>低噪声特性</h4>
+                                <p>HBT的低基极电阻和高电流增益使其具有优异的低噪声性能，适合低噪声放大器应用。</p>
+                            </div>
+                        </div>
+                        
+                        <h3>HBT的应用领域</h3>
+                        <p>HBT主要应用于以下领域：</p>
+                        <ul>
+                            <li>射频和微波通信系统</li>
+                            <li>无线基站和手机功率放大器</li>
+                            <li>高速数字电路和光通信收发器</li>
+                            <li>雷达和卫星通信系统</li>
+                            <li>高性能模拟集成电路</li>
+                        </ul>
+                        
+                        <h3>HBT与传统BJT的对比</h3>
                         <table class="comparison-table">
                             <thead>
                                 <tr>
-                                    <th>互连材料</th>
-                                    <th>电阻率 (μΩ·cm)</th>
-                                    <th>熔点 (°C)</th>
-                                    <th>抗电迁移能力</th>
-                                    <th>主要应用</th>
-                                    <th>优缺点</th>
+                                    <th>特性</th>
+                                    <th>传统Si BJT</th>
+                                    <th>GaAs HBT</th>
+                                    <th>InP HBT</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>铝(Al)</td>
-                                    <td>2.7</td>
-                                    <td>660</td>
-                                    <td>中等</td>
-                                    <td>传统互连、接触</td>
-                                    <td>工艺成熟，成本低，但抗电迁移能力差</td>
+                                    <td>截止频率f<sub>T</sub></td>
+                                    <td>10-50 GHz</td>
+                                    <td>50-200 GHz</td>
+                                    <td>100-400 GHz</td>
                                 </tr>
                                 <tr>
-                                    <td>铜(Cu)</td>
-                                    <td>1.7</td>
-                                    <td>1083</td>
-                                    <td>高</td>
-                                    <td>先进互连、通孔</td>
-                                    <td>电阻率低，抗电迁移强，但需要阻挡层</td>
+                                    <td>功率附加效率</td>
+                                    <td>30-50%</td>
+                                    <td>50-70%</td>
+                                    <td>60-80%</td>
                                 </tr>
                                 <tr>
-                                    <td>钨(W)</td>
-                                    <td>5.6</td>
-                                    <td>3422</td>
-                                    <td>很高</td>
-                                    <td>通孔填充、接触</td>
-                                    <td>熔点高，稳定性好，但电阻率较高</td>
+                                    <td>电子迁移率</td>
+                                    <td>1500 cm²/V·s</td>
+                                    <td>8500 cm²/V·s</td>
+                                    <td>15000 cm²/V·s</td>
                                 </tr>
                                 <tr>
-                                    <td>钛(Ti)</td>
-                                    <td>4.2</td>
-                                    <td>1668</td>
-                                    <td>中等</td>
-                                    <td>阻挡层、粘附层</td>
-                                    <td>粘附性好，但电阻率较高</td>
+                                    <td>工作温度</td>
+                                    <td>-55-175°C</td>
+                                    <td>-55-225°C</td>
+                                    <td>-55-200°C</td>
                                 </tr>
                                 <tr>
-                                    <td>氮化钛(TiN)</td>
-                                    <td>20-50</td>
-                                    <td>2950</td>
-                                    <td>高</td>
-                                    <td>阻挡层、硬掩膜</td>
-                                    <td>扩散阻挡效果好，但电阻率高</td>
+                                    <td>主要应用</td>
+                                    <td>低频模拟、功率电路</td>
+                                    <td>射频通信、手机PA</td>
+                                    <td>高速光通信、毫米波</td>
                                 </tr>
                             </tbody>
                         </table>
-                        
-                        <h3>互连可靠性问题</h3>
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-exclamation-triangle"></i>电迁移</h3>
-                            <p class="tech-description">电迁移是高电流密度下金属原子发生迁移的现象，导致互连线断裂或短路。电流密度超过10⁶ A/cm²时显著发生。解决方案包括使用铜互连、优化线宽、添加合金元素和降低工作温度。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-bolt"></i>应力迁移</h3>
-                            <p class="tech-description">应力迁移是热应力导致的金属原子迁移，主要发生在温度循环过程中。与材料热膨胀系数不匹配和工艺应力有关。通过优化退火工艺、使用低应力介质和改进金属沉积条件可以减轻应力迁移。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-water"></i>腐蚀</h3>
-                            <p class="tech-description">金属互连在湿气或污染环境下可能发生腐蚀，导致电阻增加或断路。铝互连特别容易发生腐蚀。通过使用钝化层、密封封装和洁净工艺环境可以有效防止腐蚀。</p>
-                        </div>
-                    </div>
-                    
-                    <div id="interconnect-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">互连RC延迟计算器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="interconnect-material">互连材料</label>
-                                    <select id="interconnect-material">
-                                        <option value="aluminum">铝(Al)</option>
-                                        <option value="copper">铜(Cu)</option>
-                                        <option value="tungsten">钨(W)</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="line-width">线宽 (nm)</label>
-                                    <input type="range" id="line-width" min="10" max="1000" value="100">
-                                    <span id="line-width-value">100 nm</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="line-height">线高 (nm)</label>
-                                    <input type="range" id="line-height" min="20" max="500" value="200">
-                                    <span id="line-height-value">200 nm</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="line-length">线长 (μm)</label>
-                                    <input type="range" id="line-length" min="1" max="1000" value="100">
-                                    <span id="line-length-value">100 μm</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="dielectric-constant">介电常数</label>
-                                    <input type="range" id="dielectric-constant" min="2" max="4" step="0.1" value="3.9">
-                                    <span id="dielectric-constant-value">3.9</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="spacing">线间距 (nm)</label>
-                                    <input type="range" id="spacing" min="10" max="500" value="100">
-                                    <span id="spacing-value">100 nm</span>
-                                </div>
-                            </div>
-                            <div class="chart-container">
-                                <canvas id="rc-delay-chart"></canvas>
-                            </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">线电阻</span>
-                                    <span class="result-value" id="line-resistance">50 Ω</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">线电容</span>
-                                    <span class="result-value" id="line-capacitance">2.5 fF</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">RC延迟</span>
-                                    <span class="result-value" id="rc-delay">125 ps</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">传播速度</span>
-                                    <span class="result-value" id="propagation-speed">1.2×10⁸ m/s</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">封装技术</h2>
-            <p>封装技术是保护半导体芯片并提供电气连接和散热通道的关键工艺。本节介绍传统封装技术、封装材料、封装工艺流程以及封装对器件性能的影响。</p>
+        <div class="section" id="special-devices">
+            <h2 class="section-title">特种半导体器件</h2>
+            <p>除了BJT和MOSFET这两种主流晶体管外，还有许多特种半导体器件，它们基于不同的物理原理，具有独特的性能，广泛应用于各种特殊场合。</p>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('packaging-overview')">封装技术概述</button>
-                    <button class="tab-button" onclick="showTab('packaging-interactive')">封装散热模拟器</button>
+                    <button class="tab-button active" onclick="showTab('jfet-mesfet')">结型场效应晶体管</button>
+                    <button class="tab-button" onclick="showTab('microwave-devices')">微波器件</button>
+                    <button class="tab-button" onclick="showTab('power-devices')">功率器件</button>
                 </div>
                 
                 <div class="tab-content">
-                    <div id="packaging-overview" class="tab-pane active">
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-microchip"></i>引线键合封装</h3>
-                            <p class="tech-description">引线键合是最传统的芯片互连技术，使用细金属线(金、铜或铝)连接芯片焊盘和封装引脚。键合方法包括球焊和楔焊，线径通常为15-50μm。引线键合成本低，工艺成熟，但互连长度长，寄生参数大，适用于引脚数较少的封装。</p>
+                    <div id="jfet-mesfet" class="tab-pane active">
+                        <h3>结型场效应晶体管（JFET）</h3>
+                        <p>结型场效应晶体管（JFET）是一种电压控制型器件，其工作原理基于电场对沟道电导的调制。JFET只有一种载流子参与导电，因此称为单极型器件。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">JFET结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/jfet-structure.svg" alt="JFET结构" class="diagram-image">
+                                <div class="diagram-caption">图11-6：N沟道JFET结构</div>
+                            </div>
                         </div>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-project-diagram"></i>载带自动焊(TAB)</h3>
-                            <p class="tech-description">TAB技术使用载带上的铜箔引线连接芯片和封装基板，可实现更高密度的互连。先在载带上形成铜引线，然后通过热压焊将芯片焊盘与引线连接。TAB比引线键合电性能更好，但工艺复杂，成本较高，适用于中等引脚数的封装。</p>
+                        <h4>JFET的工作原理</h4>
+                        <p>JFET的结构包括：</p>
+                        <ul>
+                            <li><strong>沟道</strong>：导电通道，分为N沟道和P沟道两种</li>
+                            <li><strong>栅极</strong>：通过PN结与沟道隔离，反向偏置</li>
+                            <li><strong>源极和漏极</strong>：连接沟道的两端，用于输入和输出电流</li>
+                        </ul>
+                        
+                        <p>JFET的工作原理：通过改变栅源电压V<sub>GS</sub>，可以调节PN结耗尽区的宽度，从而改变沟道的有效截面积和电导，控制漏极电流I<sub>D</sub>。当V<sub>GS</sub>负向增大到一定值时，耗尽区将沟道完全夹断，I<sub>D</sub>变为零，此时的V<sub>GS</sub>称为夹断电压V<sub>P</sub>。</p>
+                        
+                        <h3>金属半导体场效应晶体管（MESFET）</h3>
+                        <p>金属半导体场效应晶体管（MESFET）是JFET的一种变体，它使用金属-半导体接触（肖特基势垒）代替PN结作为栅极，适合于化合物半导体材料如GaAs、InP等。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">MESFET结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/mesfet-structure.svg" alt="MESFET结构" class="diagram-image">
+                                <div class="diagram-caption">图11-7：N沟道GaAs MESFET结构</div>
+                            </div>
                         </div>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-expand-arrows-alt"></i>倒装芯片(Flip-Chip)</h3>
-                            <p class="tech-description">倒装芯片技术通过芯片上的焊料凸点直接与封装基板连接，实现最短的互连路径。焊料凸点直径通常为50-200μm，间距可达100μm以下。倒装芯片电性能优异，散热好，I/O密度高，但需要凸点制备和精密对准设备，成本较高。</p>
-                        </div>
+                        <h4>MESFET的优势</h4>
+                        <ul>
+                            <li>适合于高速、高频应用，截止频率可达数百GHz</li>
+                            <li>制造工艺简单，成本较低</li>
+                            <li>适合于化合物半导体材料，利用其高电子迁移率特性</li>
+                            <li>噪声系数低，适合低噪声放大器应用</li>
+                        </ul>
                         
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-cube"></i>晶圆级封装(WLP)</h3>
-                            <p class="tech-description">晶圆级封装在晶圆上完成大部分封装工艺，然后进行切割。WLP封装尺寸接近芯片尺寸，可实现最小封装。包括重布线(RDL)、凸点制备和底部填充等工艺。WLP成本效益高，适合大批量生产，但散热和可靠性面临挑战。</p>
-                        </div>
-                        
-                        <h3>封装类型对比</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>封装类型</th>
-                                    <th>引脚数范围</th>
-                                    <th>尺寸(mm²)</th>
-                                    <th>电性能</th>
-                                    <th>热性能</th>
-                                    <th>成本</th>
-                                    <th>主要应用</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>DIP</td>
-                                    <td>8-64</td>
-                                    <td>100-400</td>
-                                    <td>差</td>
-                                    <td>中等</td>
-                                    <td>低</td>
-                                    <td>传统逻辑电路、接口芯片</td>
-                                </tr>
-                                <tr>
-                                    <td>SOP</td>
-                                    <td>8-128</td>
-                                    <td>30-150</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>低</td>
-                                    <td>消费电子、通用IC</td>
-                                </tr>
-                                <tr>
-                                    <td>QFP</td>
-                                    <td>32-304</td>
-                                    <td>80-400</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>微控制器、ASIC</td>
-                                </tr>
-                                <tr>
-                                    <td>BGA</td>
-                                    <td>49-1920</td>
-                                    <td>100-900</td>
-                                    <td>好</td>
-                                    <td>好</td>
-                                    <td>高</td>
-                                    <td>处理器、FPGA、高速存储</td>
-                                </tr>
-                                <tr>
-                                    <td>CSP</td>
-                                    <td>4-200</td>
-                                    <td>4-100</td>
-                                    <td>好</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>移动设备、便携式产品</td>
-                                </tr>
-                                <tr>
-                                    <td>WLP</td>
-                                    <td>4-100</td>
-                                    <td>4-64</td>
-                                    <td>优秀</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>传感器、RF器件、移动设备</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <h3>封装材料</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>材料类型</th>
-                                    <th>热导率(W/m·K)</th>
-                                    <th>热膨胀系数(ppm/°C)</th>
-                                    <th>介电常数</th>
-                                    <th>主要应用</th>
-                                    <th>特点</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>环氧树脂</td>
-                                    <td>0.2-0.8</td>
-                                    <td>15-60</td>
-                                    <td>3.5-4.5</td>
-                                    <td>塑封料、底部填充</td>
-                                    <td>成本低，工艺性好，但散热差</td>
-                                </tr>
-                                <tr>
-                                    <td>陶瓷(氧化铝)</td>
-                                    <td>20-30</td>
-                                    <td>6-8</td>
-                                    <td>9-10</td>
-                                    <td>陶瓷封装基板</td>
-                                    <td>散热好，可靠性高，但成本高</td>
-                                </tr>
-                                <tr>
-                                    <td>金属(铜、铝)</td>
-                                    <td>200-400</td>
-                                    <td>16-24</td>
-                                    <td>N/A</td>
-                                    <td>金属封装、散热器</td>
-                                    <td>散热极佳，但重量大，成本高</td>
-                                </tr>
-                                <tr>
-                                    <td>BT树脂</td>
-                                    <td>0.3-0.6</td>
-                                    <td>14-17</td>
-                                    <td>4.0-4.5</td>
-                                    <td>有机基板</td>
-                                    <td>电性能好，适合高频应用</td>
-                                </tr>
-                                <tr>
-                                    <td>聚酰亚胺</td>
-                                    <td>0.1-0.3</td>
-                                    <td>20-60</td>
-                                    <td>3.2-3.5</td>
-                                    <td>柔性基板、芯片涂层</td>
-                                    <td>耐高温，柔性好，但成本高</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h4>MESFET的应用</h4>
+                        <p>MESFET主要应用于射频和微波领域，如：</p>
+                        <ul>
+                            <li>无线通信系统</li>
+                            <li>雷达和卫星通信</li>
+                            <li>射频功率放大器</li>
+                            <li>低噪声放大器</li>
+                        </ul>
                     </div>
                     
-                    <div id="packaging-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">封装散热模拟器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="package-type">封装类型</label>
-                                    <select id="package-type">
-                                        <option value="dip">DIP</option>
-                                        <option value="sop">SOP</option>
-                                        <option value="qfp">QFP</option>
-                                        <option value="bga">BGA</option>
-                                        <option value="csp">CSP</option>
-                                        <option value="wlp">WLP</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="chip-power">芯片功耗 (W)</label>
-                                    <input type="range" id="chip-power" min="0.1" max="10" step="0.1" value="1">
-                                    <span id="chip-power-value">1.0 W</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="ambient-temp">环境温度 (°C)</label>
-                                    <input type="range" id="ambient-temp" min="20" max="85" value="25">
-                                    <span id="ambient-temp-value">25°C</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="thermal-interface">热界面材料</label>
-                                    <select id="thermal-interface">
-                                        <option value="none">无</option>
-                                        <option value="grease">导热硅脂</option>
-                                        <option value="pad">导热垫片</option>
-                                        <option value="epoxy">导热环氧</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="heatsink">散热器类型</label>
-                                    <select id="heatsink">
-                                        <option value="none">无</option>
-                                        <option value="passive">被动散热器</option>
-                                        <option value="active">主动散热器(风扇)</option>
-                                        <option value="liquid">液冷系统</option>
-                                    </select>
-                                </div>
+                    <div id="microwave-devices" class="tab-pane">
+                        <h3>微波半导体器件</h3>
+                        <p>微波器件是指工作在微波频段（300 MHz - 300 GHz）的半导体器件，它们基于特殊的物理效应，具有高频、高速的特点。</p>
+                        
+                        <div class="device-grid">
+                            <div class="device-card">
+                                <h4>IMPATT二极管</h4>
+                                <p><strong>工作原理</strong>：碰撞电离雪崩渡越时间效应</p>
+                                <p><strong>特点</strong>：输出功率大，效率高，但噪声大</p>
+                                <p><strong>应用</strong>：微波振荡器、雷达发射机</p>
                             </div>
                             
-                            <div class="thermal-simulation">
-                                <div class="thermal-map" id="thermal-map">
-                                    <!-- 热分布图将通过JavaScript动态生成 -->
-                                </div>
+                            <div class="device-card">
+                                <h4>Gunn二极管</h4>
+                                <p><strong>工作原理</strong>：Gunn效应（负微分迁移率）</p>
+                                <p><strong>特点</strong>：结构简单，成本低，可靠性高</p>
+                                <p><strong>应用</strong>：微波振荡器、雷达、通信系统</p>
                             </div>
                             
-                            <div class="chart-container">
-                                <canvas id="thermal-chart"></canvas>
+                            <div class="device-card">
+                                <h4>变容二极管</h4>
+                                <p><strong>工作原理</strong>：PN结电容随反向偏压变化</p>
+                                <p><strong>特点</strong>：电调谐范围宽，Q值高</p>
+                                <p><strong>应用</strong>：压控振荡器、频率合成器</p>
                             </div>
                             
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">结温</span>
-                                    <span class="result-value" id="junction-temp">85°C</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">热阻</span>
-                                    <span class="result-value" id="thermal-resistance">60°C/W</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">散热效率</span>
-                                    <span class="result-value" id="cooling-efficiency">75%</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">可靠性评估</span>
-                                    <span class="result-value" id="reliability-score">良好</span>
-                                </div>
+                            <div class="device-card">
+                                <h4>肖特基二极管</h4>
+                                <p><strong>工作原理</strong>：金属-半导体接触的整流特性</p>
+                                <p><strong>特点</strong>：开关速度快，正向压降小</p>
+                                <p><strong>应用</strong>：混频器、检波器、高速开关</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">先进封装与器件集成</h2>
-            <p>随着器件密度和性能需求的不断提高，先进封装技术成为半导体发展的重要方向。本节介绍系统级封装、三维封装、硅通孔技术等先进封装技术。</p>
-            
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('advanced-overview')">先进封装概述</button>
-                    <button class="tab-button" onclick="showTab('advanced-interactive')">3D封装可视化</button>
-                </div>
-                
-                <div class="tab-content">
-                    <div id="advanced-overview" class="tab-pane active">
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-cubes"></i>系统级封装(SiP)</h3>
-                            <p class="tech-description">系统级封装将多个芯片(处理器、存储器、射频等)集成在一个封装内，实现系统级功能。可采用堆叠、并排或混合布局。SiP缩短了信号路径，提高了系统集成度，减少了PCB面积。关键技术包括芯片堆叠、嵌入式芯片和多功能基板。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-layer-group"></i>三维封装(3D Packaging)</h3>
-                            <p class="tech-description">三维封装通过垂直堆叠多个芯片实现更高集成度和更短互连路径。包括芯片堆叠、封装堆叠和晶圆堆叠三种形式。关键技术包括硅通孔(TSV)、微凸点和薄芯片处理。3D封装显著提高了性能密度，但热管理和应力控制是挑战。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-bullseye"></i>硅通孔技术(TSV)</h3>
-                            <p class="tech-description">硅通孔是穿过硅晶圆的垂直互连通道，是实现3D集成的核心技术。TSV直径通常为1-10μm，深宽比可达10:1。工艺包括深孔刻蚀、绝缘层沉积、导电填充和CMP。TSV提供了最短的芯片间互连，但成本高，工艺复杂。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-microchip"></i>扇出型封装(Fan-Out)</h3>
-                            <p class="tech-description">扇出型封装通过重布线(RDL)将I/O连接扩展到芯片面积之外，实现更高的I/O密度。包括晶圆级扇出(WLFO)和面板级扇出(PLFO)。扇出封装尺寸小，电性能好，适合移动设备和射频应用。关键技术包括环氧模压化合物(EMC)成型和精密RDL工艺。</p>
-                        </div>
-                        
-                        <div class="tech-card">
-                            <h3 class="tech-title"><i class="fas fa-memory"></i>高带宽内存(HBM)</h3>
-                            <p class="tech-description">高带宽内存通过3D堆叠多个DRAM芯片和硅中介层实现超高带宽内存解决方案。HBM使用1024位宽接口和TSV技术，带宽可达传统DDR的数倍。主要用于高性能计算、图形处理和AI加速器，是先进3D封装的成功应用案例。</p>
-                        </div>
-                        
-                        <h3>先进封装技术对比</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>封装技术</th>
-                                    <th>集成度</th>
-                                    <th>互连长度</th>
-                                    <th>带宽</th>
-                                    <th>功耗</th>
-                                    <th>成本</th>
-                                    <th>主要应用</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SiP</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>中等</td>
-                                    <td>智能手机、可穿戴设备</td>
-                                </tr>
-                                <tr>
-                                    <td>2.5D封装</td>
-                                    <td>高</td>
-                                    <td>短</td>
-                                    <td>高</td>
-                                    <td>低</td>
-                                    <td>高</td>
-                                    <td>高性能计算、GPU</td>
-                                </tr>
-                                <tr>
-                                    <td>3D-TSV</td>
-                                    <td>很高</td>
-                                    <td>极短</td>
-                                    <td>很高</td>
-                                    <td>很低</td>
-                                    <td>很高</td>
-                                    <td>HBM、图像传感器</td>
-                                </tr>
-                                <tr>
-                                    <td>扇出型</td>
-                                    <td>中等</td>
-                                    <td>短</td>
-                                    <td>高</td>
-                                    <td>低</td>
-                                    <td>中等</td>
-                                    <td>射频器件、处理器</td>
-                                </tr>
-                                <tr>
-                                    <td>嵌入式芯片</td>
-                                    <td>高</td>
-                                    <td>极短</td>
-                                    <td>高</td>
-                                    <td>低</td>
-                                    <td>高</td>
-                                    <td>汽车电子、IoT</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <h3>先进封装挑战与解决方案</h3>
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>挑战</th>
-                                    <th>影响</th>
-                                    <th>解决方案</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>热管理</td>
-                                    <td>功率密度高，散热困难</td>
-                                    <td>热界面材料、微流道冷却、热TSV</td>
-                                </tr>
-                                <tr>
-                                    <td>应力控制</td>
-                                    <td>热失配导致翘曲和开裂</td>
-                                    <td>低CTE材料、中性轴设计、应力缓冲结构</td>
-                                </tr>
-                                <tr>
-                                    <td>测试与良率</td>
-                                    <td>已知良好芯片(KGD)获取困难</td>
-                                    <td>内建自测试、冗余设计、晶圆级测试</td>
-                                </tr>
-                                <tr>
-                                    <td>成本控制</td>
-                                    <td>工艺复杂，设备投资大</td>
-                                    <td>面板级封装、工艺优化、批量生产</td>
-                                </tr>
-                                <tr>
-                                    <td>设计复杂性</td>
-                                    <td>多物理场耦合，设计难度大</td>
-                                    <td>协同设计工具、多物理场仿真、标准化接口</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                     
-                    <div id="advanced-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">3D封装可视化</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="package-3d-type">封装类型</label>
-                                    <select id="package-3d-type">
-                                        <option value="sip">系统级封装(SiP)</option>
-                                        <option value="2.5d">2.5D封装</option>
-                                        <option value="3d-tsv">3D-TSV封装</option>
-                                        <option value="fan-out">扇出型封装</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="chip-stack">芯片堆叠层数</label>
-                                    <input type="range" id="chip-stack" min="1" max="8" value="4">
-                                    <span id="chip-stack-value">4层</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="tsv-density">TSV密度</label>
-                                    <input type="range" id="tsv-density" min="1" max="10" value="5">
-                                    <span id="tsv-density-value">中</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="interposer">中介层类型</label>
-                                    <select id="interposer">
-                                        <option value="none">无</option>
-                                        <option value="silicon">硅中介层</option>
-                                        <option value="organic">有机中介层</option>
-                                        <option value="glass">玻璃中介层</option>
-                                    </select>
-                                </div>
+                    <div id="power-devices" class="tab-pane">
+                        <h3>功率半导体器件</h3>
+                        <p>功率半导体器件是指用于处理高电压、大电流的半导体器件，主要应用于电力电子领域，实现电能的转换和控制。</p>
+                        
+                        <h4>绝缘栅双极晶体管（IGBT）</h4>
+                        <p>IGBT是一种复合器件，结合了MOSFET的电压控制特性和BJT的高电流密度特性，是目前功率电子领域应用最广泛的器件之一。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">IGBT结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/igbt-structure.svg" alt="IGBT结构" class="diagram-image">
+                                <div class="diagram-caption">图11-8：IGBT结构</div>
+                            </div>
+                        </div>
+                        
+                        <h4>IGBT的特点</h4>
+                        <ul>
+                            <li>高输入阻抗，电压控制，驱动电路简单</li>
+                            <li>低导通压降，损耗小</li>
+                            <li>高电压、大电流处理能力</li>
+                            <li>开关速度快</li>
+                            <li>安全工作区大</li>
+                        </ul>
+                        
+                        <h4>IGBT的应用</h4>
+                        <p>IGBT主要应用于：</p>
+                        <ul>
+                            <li>电机驱动系统</li>
+                            <li>开关电源</li>
+                            <li>变频器</li>
+                            <li>不间断电源（UPS）</li>
+                            <li>新能源发电系统</li>
+                            <li>电动汽车</li>
+                        </ul>
+                        
+                        <h4>其他功率器件</h4>
+                        <div class="device-grid">
+                            <div class="device-card">
+                                <h4>功率MOSFET</h4>
+                                <p><strong>特点</strong>：开关速度快，高频性能好</p>
+                                <p><strong>应用</strong>：开关电源、DC-DC转换器</p>
                             </div>
                             
-                            <div class="package-3d">
-                                <div class="package-model" id="package-model">
-                                    <div class="package-face face-front">正面</div>
-                                    <div class="package-face face-back">背面</div>
-                                    <div class="package-face face-right">右侧</div>
-                                    <div class="package-face face-left">左侧</div>
-                                    <div class="package-face face-top">顶部</div>
-                                    <div class="package-face face-bottom">底部</div>
-                                </div>
+                            <div class="device-card">
+                                <h4>晶闸管（SCR）</h4>
+                                <p><strong>特点</strong>：高电压、大电流，单向导电</p>
+                                <p><strong>应用</strong>：整流器、调光器、电焊机</p>
                             </div>
                             
-                            <div class="chart-container">
-                                <canvas id="package-performance-chart"></canvas>
+                            <div class="device-card">
+                                <h4>双向晶闸管（TRIAC）</h4>
+                                <p><strong>特点</strong>：双向导电，交流控制</p>
+                                <p><strong>应用</strong>：交流电机控制、家电控制</p>
                             </div>
                             
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">集成度提升</span>
-                                    <span class="result-value" id="integration-density">3.5x</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">带宽提升</span>
-                                    <span class="result-value" id="bandwidth-improvement">5.2x</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">功耗降低</span>
-                                    <span class="result-value" id="power-reduction">35%</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">成本增加</span>
-                                    <span class="result-value" id="cost-increase">2.8x</span>
-                                </div>
+                            <div class="device-card">
+                                <h4>功率二极管</h4>
+                                <p><strong>特点</strong>：高电压、大电流，低正向压降</p>
+                                <p><strong>应用</strong>：整流、续流、保护</p>
                             </div>
                         </div>
                     </div>
@@ -771,25 +781,27 @@
         
         <div class="section" id="chapter-summary">
             <h2 class="section-title">本章小结</h2>
-            <p>本章详细介绍了半导体器件的互连与封装技术，包括传统互连技术、封装工艺以及先进封装与器件集成。这些技术是半导体器件实现系统级应用的关键，直接影响器件的性能、可靠性和成本。</p>
+            <p>本章详细介绍了双极结型晶体管（BJT）的工作原理、模型和特性，以及异质结双极晶体管（HBT）和多种特种半导体器件。这些器件各自具有独特的性能和应用领域，共同构成了丰富多彩的半导体器件家族。</p>
             
             <h3>核心要点</h3>
             <ul>
-                <li>互连技术连接芯片内部器件和芯片与外部系统，金属互连从铝发展到铜，有效降低了RC延迟</li>
-                <li>封装技术保护芯片并提供电气连接和散热通道，从传统引线键合发展到倒装芯片和晶圆级封装</li>
-                <li>先进封装技术如SiP、3D封装和TSV实现了更高集成度和更短互连路径，满足了高性能应用需求</li>
-                <li>热管理、应力控制和测试是先进封装面临的主要挑战，需要材料、工艺和设计的协同创新</li>
-                <li>封装技术的发展趋势是更高集成度、更好电性能和更低成本，系统级优化成为关键</li>
+                <li>BJT是电流控制型器件，基于两种载流子（电子和空穴）的协同作用，具有电流放大能力</li>
+                <li>埃伯斯-莫尔模型是BJT的基础模型，描述了BJT在各种工作模式下的电流-电压特性</li>
+                <li>HBT利用异质结的能带不连续性，实现了更高的性能，特别是在高频和高速应用中</li>
+                <li>JFET和MESFET是单极型器件，基于电场对沟道电导的调制，适合不同的应用场景</li>
+                <li>微波器件如IMPATT二极管、Gunn二极管基于特殊的物理效应，用于高频应用</li>
+                <li>功率器件如IGBT结合了MOSFET和BJT的优点，广泛应用于电力电子领域</li>
             </ul>
             
             <h3>学习成果</h3>
             <p>通过本章的学习，您应该能够：</p>
             <ul>
-                <li>理解互连技术的原理和发展趋势</li>
-                <li>掌握不同封装技术的特点和应用场景</li>
-                <li>分析封装对器件性能和可靠性的影响</li>
-                <li>评估先进封装技术的优缺点</li>
-                <li>选择合适的互连和封装方案满足特定应用需求</li>
+                <li>理解BJT的基本结构和工作原理</li>
+                <li>掌握BJT的电流放大机制和I-V特性</li>
+                <li>了解埃伯斯-莫尔模型的基本概念</li>
+                <li>分析HBT相对于传统BJT的性能优势</li>
+                <li>区分不同类型的特种半导体器件及其应用领域</li>
+                <li>理解各种半导体器件的工作特点和适用场景</li>
             </ul>
         </div>
         
@@ -800,9 +812,7 @@
 
     <script>
         // 实验计数器
-        let interconnectExperiments = 0;
-        let packagingExperiments = 0;
-        let advancedExperiments = 0;
+        let bjtExperiments = 0;
         
         // 标签页切换功能
         function showTab(tabId) {
@@ -821,56 +831,44 @@
             event.target.classList.add('active');
         }
         
-        // 互连RC延迟计算器
-        function initInterconnectCalculator() {
-            const material = document.getElementById('interconnect-material');
-            const lineWidth = document.getElementById('line-width');
-            const lineHeight = document.getElementById('line-height');
-            const lineLength = document.getElementById('line-length');
-            const dielectricConstant = document.getElementById('dielectric-constant');
-            const spacing = document.getElementById('spacing');
+        // BJT特性模拟器
+        function initBJT Simulator() {
+            const bjtType = document.getElementById('bjt-type');
+            const beta = document.getElementById('beta');
+            const vbe = document.getElementById('vbe');
+            const vce = document.getElementById('vce');
             
             // 更新显示值
-            lineWidth.addEventListener('input', function() {
-                document.getElementById('line-width-value').textContent = this.value + ' nm';
-                updateRCDelay();
+            beta.addEventListener('input', function() {
+                document.getElementById('beta-value').textContent = this.value;
+                updateBJT特性();
             });
             
-            lineHeight.addEventListener('input', function() {
-                document.getElementById('line-height-value').textContent = this.value + ' nm';
-                updateRCDelay();
+            vbe.addEventListener('input', function() {
+                document.getElementById('vbe-value').textContent = this.value + ' V';
+                updateBJT特性();
             });
             
-            lineLength.addEventListener('input', function() {
-                document.getElementById('line-length-value').textContent = this.value + ' μm';
-                updateRCDelay();
+            vce.addEventListener('input', function() {
+                document.getElementById('vce-value').textContent = this.value + ' V';
+                updateBJT特性();
             });
             
-            dielectricConstant.addEventListener('input', function() {
-                document.getElementById('dielectric-constant-value').textContent = this.value;
-                updateRCDelay();
-            });
-            
-            spacing.addEventListener('input', function() {
-                document.getElementById('spacing-value').textContent = this.value + ' nm';
-                updateRCDelay();
-            });
-            
-            material.addEventListener('change', updateRCDelay);
+            bjtType.addEventListener('change', updateBJT特性);
             
             // 初始化图表
-            const ctx = document.getElementById('rc-delay-chart').getContext('2d');
-            const rcDelayChart = new Chart(ctx, {
+            const ctx = document.getElementById('bjt-iv-chart').getContext('2d');
+            const bjtIVChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: [],
                     datasets: [{
-                        label: 'RC延迟',
+                        label: 'I_C - V_CE 特性',
                         data: [],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
                         fill: true,
-                        tension: 0.4
+                        tension: 0.2
                     }]
                 },
                 options: {
@@ -880,505 +878,92 @@
                         x: {
                             title: {
                                 display: true,
-                                text: '线长 (μm)'
-                            }
+                                text: '集射电压 V_CE (V)'
+                            },
+                            min: 0
                         },
                         y: {
                             title: {
                                 display: true,
-                                text: '延迟 (ps)'
-                            }
+                                text: '集电极电流 I_C (mA)'
+                            },
+                            beginAtZero: true
                         }
                     }
                 }
             });
             
-            // 更新RC延迟计算
-            function updateRCDelay() {
-                const mat = material.value;
-                const width = parseFloat(lineWidth.value) * 1e-9; // 转换为米
-                const height = parseFloat(lineHeight.value) * 1e-9; // 转换为米
-                const length = parseFloat(lineLength.value) * 1e-6; // 转换为米
-                const k = parseFloat(dielectricConstant.value);
-                const s = parseFloat(spacing.value) * 1e-9; // 转换为米
+            // 更新BJT特性
+            function updateBJT特性() {
+                const type = bjtType.value;
+                const Beta = parseFloat(beta.value);
+                const Vbe = parseFloat(vbe.value);
+                const Vce = parseFloat(vce.value);
                 
-                // 材料电阻率 (Ω·m)
-                const resistivity = {
-                    'aluminum': 2.7e-8,
-                    'copper': 1.7e-8,
-                    'tungsten': 5.6e-8
-                };
+                // 简化的BJT模型
+                const Is = 1e-15; // 反向饱和电流
+                const Vt = 0.026; // 热电压
                 
-                const rho = resistivity[mat];
+                // 计算基极电流
+                const Ib = Is * (Math.exp(Vbe / Vt) - 1);
                 
-                // 计算线电阻
-                const crossSection = width * height;
-                const resistance = rho * length / crossSection;
+                // 计算集电极电流（考虑Early效应）
+                const Va = 100; // Early电压
+                const Ic = Beta * Ib * (1 + Vce / Va);
                 
-                // 计算线电容 (简化平行板模型)
-                const epsilon0 = 8.854e-12; // 真空介电常数
-                const effectiveK = (k + 1) / 2; // 有效介电常数
-                const capacitance = effectiveK * epsilon0 * length * height / s;
+                // 发射极电流
+                const Ie = Ic + Ib;
                 
-                // 计算RC延迟
-                const rcDelay = resistance * capacitance * 1e12; // 转换为皮秒
-                
-                // 计算传播速度
-                const propagationSpeed = length / (rcDelay * 1e-12); // m/s
-                
-                // 更新结果显示
-                document.getElementById('line-resistance').textContent = resistance.toExponential(1) + ' Ω';
-                document.getElementById('line-capacitance').textContent = (capacitance * 1e15).toFixed(2) + ' fF';
-                document.getElementById('rc-delay').textContent = rcDelay.toFixed(1) + ' ps';
-                document.getElementById('propagation-speed').textContent = propagationSpeed.toExponential(1) + ' m/s';
-                
-                // 更新图表 - 显示不同线长下的RC延迟
-                const lengths = [];
-                const delays = [];
-                
-                for (let i = 10; i <= 1000; i += 10) {
-                    const l = i * 1e-6; // 转换为米
-                    const r = rho * l / crossSection;
-                    const c = effectiveK * epsilon0 * l * height / s;
-                    const delay = r * c * 1e12; // 转换为皮秒
-                    
-                    lengths.push(i);
-                    delays.push(delay);
-                }
-                
-                rcDelayChart.data.labels = lengths;
-                rcDelayChart.data.datasets[0].data = delays;
-                rcDelayChart.update();
-                
-                // 记录实验
-                interconnectExperiments++;
-                updateProgress();
-            }
-            
-            // 初始化
-            updateRCDelay();
-        }
-        
-        // 封装散热模拟器
-        function initThermalSimulator() {
-            const packageType = document.getElementById('package-type');
-            const chipPower = document.getElementById('chip-power');
-            const ambientTemp = document.getElementById('ambient-temp');
-            const thermalInterface = document.getElementById('thermal-interface');
-            const heatsink = document.getElementById('heatsink');
-            
-            // 更新显示值
-            chipPower.addEventListener('input', function() {
-                document.getElementById('chip-power-value').textContent = this.value + ' W';
-                updateThermalSimulation();
-            });
-            
-            ambientTemp.addEventListener('input', function() {
-                document.getElementById('ambient-temp-value').textContent = this.value + '°C';
-                updateThermalSimulation();
-            });
-            
-            packageType.addEventListener('change', updateThermalSimulation);
-            thermalInterface.addEventListener('change', updateThermalSimulation);
-            heatsink.addEventListener('change', updateThermalSimulation);
-            
-            // 初始化图表
-            const ctx = document.getElementById('thermal-chart').getContext('2d');
-            const thermalChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['结-壳热阻', '壳-环境热阻', '总热阻'],
-                    datasets: [{
-                        label: '热阻分布 (°C/W)',
-                        data: [0, 0, 0],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '热阻 (°C/W)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 更新热模拟
-            function updateThermalSimulation() {
-                const pkg = packageType.value;
-                const power = parseFloat(chipPower.value);
-                const ambient = parseFloat(ambientTemp.value);
-                const interface = thermalInterface.value;
-                const sink = heatsink.value;
-                
-                // 封装热阻参数 (°C/W)
-                const packageThermalResistance = {
-                    'dip': { junctionToCase: 50, caseToAmbient: 70 },
-                    'sop': { junctionToCase: 30, caseToAmbient: 60 },
-                    'qfp': { junctionToCase: 20, caseToAmbient: 40 },
-                    'bga': { junctionToCase: 10, caseToAmbient: 25 },
-                    'csp': { junctionToCase: 5, caseToAmbient: 20 },
-                    'wlp': { junctionToCase: 3, caseToAmbient: 15 }
-                };
-                
-                // 热界面材料热阻 (°C/W)
-                const interfaceResistance = {
-                    'none': 0,
-                    'grease': 0.1,
-                    'pad': 0.5,
-                    'epoxy': 1.0
-                };
-                
-                // 散热器热阻 (°C/W)
-                const heatsinkResistance = {
-                    'none': 100,
-                    'passive': 5,
-                    'active': 1,
-                    'liquid': 0.2
-                };
-                
-                const pkgResistance = packageThermalResistance[pkg];
-                const intResistance = interfaceResistance[interface];
-                const sinkResistance = heatsinkResistance[sink];
-                
-                // 计算热阻
-                const junctionToCase = pkgResistance.junctionToCase;
-                const caseToAmbient = pkgResistance.caseToAmbient + intResistance + sinkResistance;
-                const totalResistance = junctionToCase + caseToAmbient;
-                
-                // 计算结温
-                const junctionTemp = ambient + power * totalResistance;
-                
-                // 计算散热效率
-                const maxTempRise = 100; // 最大允许温升
-                const actualTempRise = junctionTemp - ambient;
-                const coolingEfficiency = Math.max(0, Math.min(100, 100 * (1 - actualTempRise / maxTempRise)));
-                
-                // 可靠性评估
-                let reliabilityScore;
-                if (junctionTemp < 85) {
-                    reliabilityScore = '优秀';
-                } else if (junctionTemp < 105) {
-                    reliabilityScore = '良好';
-                } else if (junctionTemp < 125) {
-                    reliabilityScore = '一般';
+                // 确定工作区域
+                let region;
+                if (Vbe < 0.5) {
+                    region = '截止区';
+                } else if (Vce < Vbe - 0.3) {
+                    region = '饱和区';
                 } else {
-                    reliabilityScore = '差';
+                    region = '放大区';
                 }
                 
-                // 更新结果显示
-                document.getElementById('junction-temp').textContent = junctionTemp.toFixed(1) + '°C';
-                document.getElementById('thermal-resistance').textContent = totalResistance.toFixed(1) + '°C/W';
-                document.getElementById('cooling-efficiency').textContent = coolingEfficiency.toFixed(0) + '%';
-                document.getElementById('reliability-score').textContent = reliabilityScore;
+                // 生成不同VCE下的IC数据
+                const vces = [];
+                const ics = [];
+                for (let v = 0; v <= 10; v += 0.1) {
+                    vces.push(v.toFixed(1));
+                    const ic = Beta * Ib * (1 + v / Va);
+                    ics.push(ic * 1000); // 转换为mA
+                }
                 
                 // 更新图表
-                thermalChart.data.datasets[0].data = [
-                    junctionToCase, 
-                    caseToAmbient, 
-                    totalResistance
-                ];
-                thermalChart.update();
-                
-                // 更新热分布图
-                updateThermalMap(junctionTemp, ambient);
-                
-                // 记录实验
-                packagingExperiments++;
-                updateProgress();
-            }
-            
-            // 更新热分布图
-            function updateThermalMap(junctionTemp, ambientTemp) {
-                const thermalMap = document.getElementById('thermal-map');
-                thermalMap.innerHTML = '';
-                
-                // 创建热分布点
-                for (let i = 0; i < 50; i++) {
-                    const point = document.createElement('div');
-                    point.className = 'thermal-point';
-                    
-                    // 随机位置
-                    const x = Math.random() * 100;
-                    const y = Math.random() * 100;
-                    point.style.left = x + '%';
-                    point.style.top = y + '%';
-                    
-                    // 计算温度（中心温度高，边缘温度低）
-                    const centerX = 50;
-                    const centerY = 50;
-                    const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-                    const maxDistance = Math.sqrt(Math.pow(centerX, 2) + Math.pow(centerY, 2));
-                    const tempRatio = 1 - (distance / maxDistance);
-                    const pointTemp = ambientTemp + (junctionTemp - ambientTemp) * tempRatio;
-                    
-                    // 根据温度设置颜色
-                    let color;
-                    if (pointTemp < 50) {
-                        color = 'rgb(0, 0, 255)'; // 蓝色
-                    } else if (pointTemp < 75) {
-                        color = 'rgb(0, 255, 0)'; // 绿色
-                    } else if (pointTemp < 100) {
-                        color = 'rgb(255, 255, 0)'; // 黄色
-                    } else {
-                        color = 'rgb(255, 0, 0)'; // 红色
-                    }
-                    
-                    point.style.backgroundColor = color;
-                    point.style.opacity = 0.7;
-                    point.title = `温度: ${pointTemp.toFixed(1)}°C`;
-                    
-                    thermalMap.appendChild(point);
-                }
-            }
-            
-            // 初始化
-            updateThermalSimulation();
-        }
-        
-        // 3D封装可视化
-        function init3DPackageVisualization() {
-            const packageType = document.getElementById('package-3d-type');
-            const chipStack = document.getElementById('chip-stack');
-            const tsvDensity = document.getElementById('tsv-density');
-            const interposer = document.getElementById('interposer');
-            
-            // 更新显示值
-            chipStack.addEventListener('input', function() {
-                document.getElementById('chip-stack-value').textContent = this.value + '层';
-                update3DVisualization();
-            });
-            
-            tsvDensity.addEventListener('input', function() {
-                const density = parseInt(this.value);
-                let densityText;
-                if (density <= 3) densityText = '低';
-                else if (density <= 7) densityText = '中';
-                else densityText = '高';
-                document.getElementById('tsv-density-value').textContent = densityText;
-                update3DVisualization();
-            });
-            
-            packageType.addEventListener('change', update3DVisualization);
-            interposer.addEventListener('change', update3DVisualization);
-            
-            // 初始化图表
-            const ctx = document.getElementById('package-performance-chart').getContext('2d');
-            const packagePerformanceChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['集成度', '带宽', '功耗', '成本效益', '制造复杂度'],
-                    datasets: [{
-                        label: '性能评估',
-                        data: [0, 0, 0, 0, 0],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        pointBackgroundColor: 'rgba(54, 162, 235, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(54, 162, 235, 1)'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: true
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    }
-                }
-            });
-            
-            // 更新3D可视化
-            function update3DVisualization() {
-                const pkg = packageType.value;
-                const layers = parseInt(chipStack.value);
-                const density = parseInt(tsvDensity.value);
-                const interp = interposer.value;
-                
-                // 更新3D模型
-                const model = document.getElementById('package-model');
-                
-                // 根据封装类型调整模型
-                switch(pkg) {
-                    case 'sip':
-                        model.style.transform = 'scale(1.0, 0.8, 1.2)';
-                        break;
-                    case '2.5d':
-                        model.style.transform = 'scale(1.2, 0.6, 1.2)';
-                        break;
-                    case '3d-tsv':
-                        model.style.transform = 'scale(1.0, 1.5, 1.0)';
-                        break;
-                    case 'fan-out':
-                        model.style.transform = 'scale(1.3, 0.5, 1.3)';
-                        break;
-                }
-                
-                // 计算性能指标
-                let integrationDensity, bandwidthImprovement, powerReduction, costIncrease, complexity;
-                
-                switch(pkg) {
-                    case 'sip':
-                        integrationDensity = 2.0 + layers * 0.3;
-                        bandwidthImprovement = 2.5 + density * 0.2;
-                        powerReduction = 20 + layers * 3;
-                        costIncrease = 1.5 + layers * 0.2;
-                        complexity = 40 + layers * 5;
-                        break;
-                    case '2.5d':
-                        integrationDensity = 3.0 + layers * 0.4;
-                        bandwidthImprovement = 4.0 + density * 0.3;
-                        powerReduction = 30 + layers * 4;
-                        costIncrease = 2.5 + layers * 0.3;
-                        complexity = 60 + layers * 5;
-                        break;
-                    case '3d-tsv':
-                        integrationDensity = 4.0 + layers * 0.5;
-                        bandwidthImprovement = 6.0 + density * 0.4;
-                        powerReduction = 40 + layers * 5;
-                        costIncrease = 3.5 + layers * 0.4;
-                        complexity = 80 + layers * 5;
-                        break;
-                    case 'fan-out':
-                        integrationDensity = 2.5 + layers * 0.2;
-                        bandwidthImprovement = 3.0 + density * 0.3;
-                        powerReduction = 25 + layers * 3;
-                        costIncrease = 1.8 + layers * 0.2;
-                        complexity = 50 + layers * 5;
-                        break;
-                }
-                
-                // 中介层影响
-                if (interp === 'silicon') {
-                    bandwidthImprovement *= 1.2;
-                    costIncrease *= 1.3;
-                } else if (interp === 'organic') {
-                    bandwidthImprovement *= 1.1;
-                    costIncrease *= 1.1;
-                } else if (interp === 'glass') {
-                    bandwidthImprovement *= 1.15;
-                    costIncrease *= 1.2;
-                }
+                bjtIVChart.data.labels = vces;
+                bjtIVChart.data.datasets[0].data = ics;
+                bjtIVChart.update();
                 
                 // 更新结果显示
-                document.getElementById('integration-density').textContent = integrationDensity.toFixed(1) + 'x';
-                document.getElementById('bandwidth-improvement').textContent = bandwidthImprovement.toFixed(1) + 'x';
-                document.getElementById('power-reduction').textContent = powerReduction.toFixed(0) + '%';
-                document.getElementById('cost-increase').textContent = costIncrease.toFixed(1) + 'x';
-                
-                // 更新雷达图
-                packagePerformanceChart.data.datasets[0].data = [
-                    Math.min(100, integrationDensity * 20),
-                    Math.min(100, bandwidthImprovement * 15),
-                    Math.min(100, powerReduction),
-                    Math.min(100, 100 - (costIncrease - 1) * 30),
-                    Math.min(100, complexity)
-                ];
-                packagePerformanceChart.update();
+                document.getElementById('ib-value').textContent = (Ib * 1e6).toFixed(1) + ' μA';
+                document.getElementById('ic-value').textContent = (Ic * 1000).toFixed(2) + ' mA';
+                document.getElementById('ie-value').textContent = (Ie * 1000).toFixed(3) + ' mA';
+                document.getElementById('operation-region').textContent = region;
                 
                 // 记录实验
-                advancedExperiments++;
+                bjtExperiments++;
                 updateProgress();
             }
             
             // 初始化
-            update3DVisualization();
+            updateBJT特性();
         }
         
-        // 更新进度
+        // 更新学习进度
         function updateProgress() {
-            const totalExperiments = 6; // 每个章节最多6次实验
-            const completedExperiments = interconnectExperiments + packagingExperiments + advancedExperiments;
-            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
-            
-            document.getElementById('progress').textContent = progress;
+            const totalExperiments = bjtExperiments;
+            const maxExperiments = 10; // 最大实验次数
+            const progress = Math.min(Math.round((totalExperiments / maxExperiments) * 100), 100);
+            document.getElementById('progress').textContent = progress + '%';
         }
         
-        // 章节页面侧边栏初始化
-        function initChapterSidebar() {
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
-            const sidebar = document.querySelector('.sidebar');
-            
-            if (!sidebar || !sidebarToggle) return;
-            
-            // 从localStorage恢复侧边栏状态
-            const savedState = localStorage.getItem('sidebarState');
-            if (savedState === 'collapsed') {
-                sidebar.classList.add('collapsed');
-            } else if (savedState === 'auto-hidden') {
-                // 如果上次是自动隐藏状态，默认显示为正常状态
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-                localStorage.setItem('sidebarState', 'normal');
-            } else {
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-            }
-            
-            // 侧边栏折叠/展开按钮
-            sidebarToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                sidebar.classList.toggle('collapsed');
-                
-                // 保存状态到localStorage
-                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
-                localStorage.setItem('sidebarState', newState);
-            });
-            
-            // 侧边栏隐藏按钮
-            if (sidebarHideBtn) {
-                sidebarHideBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    sidebar.classList.add('auto-hidden');
-                    localStorage.setItem('sidebarState', 'auto-hidden');
-                });
-            }
-            
-            // 鼠标悬停显示自动隐藏的侧边栏
-            sidebar.addEventListener('mouseenter', function() {
-                if (sidebar.classList.contains('auto-hidden')) {
-                    sidebar.classList.remove('auto-hidden');
-                    sidebar.classList.add('hover-show');
-                }
-            });
-            
-            sidebar.addEventListener('mouseleave', function() {
-                if (sidebar.classList.contains('hover-show')) {
-                    sidebar.classList.remove('hover-show');
-                    sidebar.classList.add('auto-hidden');
-                }
-            });
-            
-            console.log('Chapter 11 sidebar initialized');
-        }
-        
-        // 页面加载完成后初始化
+        // 页面加载完成后初始化模拟器
         document.addEventListener('DOMContentLoaded', function() {
-            initChapterSidebar();
-            initInterconnectCalculator();
-            initThermalSimulator();
-            init3DPackageVisualization();
+            initBJT Simulator();
         });
     </script>
 </body>

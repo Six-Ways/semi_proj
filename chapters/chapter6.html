@@ -3,16 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第6章：模拟集成器件 - SEMI_PROJ</title>
+    <title>第6章：高场效应与量子输运 - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/chapter-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <style>
+        .chapter-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .chapter-core {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection {
+            margin-bottom: 2rem;
+        }
+        
+        .subsection h4 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .equation {
+            background: rgba(0,123,255,0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        /* 章节目标样式 */
+        .chapter-objectives {
+            background-color: #e3f2fd;
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-objectives h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-objectives ul {
+            padding-left: 1.5rem;
+        }
+        
+        .chapter-objectives li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        /* 关键词样式 */
+        .chapter-keywords {
+            background-color: #f3e5f5;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .chapter-keywords h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .keywords-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .keyword {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        
+        /* 模拟器样式 */
+        .quantum-transport-simulator {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .simulator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-group {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .slider-container {
+            margin-top: 0.5rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .chart-area {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .results-panel {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-label {
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* 量子结构可视化样式 */
+        .quantum-structure {
+            position: relative;
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .quantum-well {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            background: rgba(52, 152, 219, 0.3);
+            border: 2px solid #3498db;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+        
+        .electron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #e74c3c;
+            border-radius: 50%;
+            animation: electronMotion 2s infinite linear;
+        }
+        
+        @keyframes electronMotion {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50px, -20px); }
+            50% { transform: translate(100px, 0); }
+            75% { transform: translate(50px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .chapter-container {
+                padding: 1rem;
+            }
+            
+            .simulator-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header">
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <h1>SEMI_PROJ</h1>
+                <p>半导体器件与制造技术交互式指南</p>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" class="nav-link">首页</a></li>
+                    <li><a href="../index.html#part1" class="nav-link">第一部分</a></li>
+                    <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
+                    <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
+                    <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
     
-
     <!-- 左侧菜单目录 -->
     <aside class="sidebar">
         <button class="sidebar-toggle">
@@ -31,537 +305,371 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
                 <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                    第1章：量子力学基础与固体中的电子
                 </a>
                 <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                    第2章：半导体材料与晶体结构
                 </a>
                 <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
+                    第3章：载流子统计与热平衡
                 </a>
                 <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                    第4章：载流子输运现象
                 </a>
                 <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                    第5章：非平衡载流子与复合动力学
                 </a>
                 <a href="chapter6.html" class="chapter-nav-item active">
-                    第6章：模拟集成器件
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
                 <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                    第8章：MOS结构物理
                 </a>
                 <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                    第9章：异质结与能带调控
                 </a>
                 <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
                 </a>
                 <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
                 <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                    第13章：晶圆制备与薄膜工程
                 </a>
                 <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
+                    第14章：图形化与掺杂技术
                 </a>
                 <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                    第15章：工艺集成与后端互连
                 </a>
                 <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                    第16章：半导体材料与器件表征
                 </a>
                 <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
             
             
-                <div class="current-chapter-nav">
-                    <h4>当前章节</h4>
-                    <nav class="section-nav">
-
-                    <a href="#amplifier-basics" class="section-nav-item">
-                        放大器基础
+            <div class="current-chapter-nav">
+                <h4>当前章节</h4>
+                <nav class="section-nav">
+                    <a href="#high-field-effects" class="section-nav-item">
+                        高场效应
                     </a>
-                    <a href="#operational-amplifier" class="section-nav-item">
-                        运算放大器
+                    <a href="#tunneling-effect" class="section-nav-item">
+                        隧穿效应
                     </a>
-                    <a href="#analog-circuits" class="section-nav-item">
-                        模拟电路
+                    <a href="#quantum-transport" class="section-nav-item">
+                        量子输运
+                    </a>
+                    <a href="#quantum-transport-simulator" class="section-nav-item">
+                        量子输运模拟器
                     </a>
                     <a href="#chapter-summary" class="section-nav-item">
                         本章小结
                     </a>
-                    </nav>
-                </div>
+                </nav>
+            </div>
         </div>
     </aside>
-    
-
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <h1>SEMI_PROJ</h1>
-                <p>半导体器件与制造技术交互式指南</p>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../index.html" class="nav-link">首页</a></li>
-                    <li><a href="../index.html#part1" class="nav-link">第一部分</a></li>
-                    <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
-                    <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
-                    <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
-                </ul>
-            </nav>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
     
 
     <main class="main-content">
         <div class="chapter-container">
             <div class="breadcrumb">
-                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第6章：模拟集成器件</p>
+                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part2">第二部分：载流子动力学与输运</a> &gt; 第6章：高场效应与量子输运</p>
             </div>
             <div class="chapter-header">
-                <h1>第6章：模拟集成器件</h1>
+                <h1>第6章：高场效应与量子输运</h1>
             </div>
-
-            <div class="section-nav">
+            
+            <div class="chapter-core">
+                <h3>核心内容</h3>
+                <p>讲解高电场下的速度饱和效应与迁移率退化。介绍热电子效应、碰撞电离与雪崩倍增。阐述隧穿效应的原理及其在器件中的应用（如隧道二极管）。简要介绍低维结构（量子阱、线、点）中的量子限制效应对输运性质的影响。</p>
+            </div>
+            
+            <div class="chapter-objectives">
+                <h3>章节目标</h3>
                 <ul>
-                    <li><a href="#analog-basics" class="section-link">模拟电路基础</a></li>
-                    <li><a href="#op-amp" class="section-link">运算放大器</a></li>
-                    <li><a href="#rf-devices" class="section-link">射频器件</a></li>
-                    <li><a href="#mixed-signal" class="section-link">混合信号器件</a></li>
+                    <li>了解当电场很强时，载流子输运行为对欧姆定律的偏离</li>
+                    <li>理解隧穿这一典型的量子力学过程</li>
+                    <li>认识纳米尺度下量子效应对器件特性的重要影响</li>
                 </ul>
             </div>
-
-            <div class="chapter-content">
-                <section id="analog-basics" class="content-section">
-                    <h2>模拟电路基础</h2>
-                    <p>模拟集成电路处理连续变化的信号，与数字电路处理离散信号不同。模拟电路在信号放大、滤波、转换等方面具有不可替代的作用，是现代电子系统的重要组成部分。</p>
+            
+            <div class="chapter-keywords">
+                <h3>关键词</h3>
+                <div class="keywords-list">
+                    <span class="keyword">速度饱和</span>
+                    <span class="keyword">热电子</span>
+                    <span class="keyword">碰撞电离</span>
+                    <span class="keyword">雪崩击穿</span>
+                    <span class="keyword">隧穿效应</span>
+                    <span class="keyword">共振隧穿</span>
+                    <span class="keyword">量子限制效应</span>
+                    <span class="keyword">低维半导体</span>
+                </div>
+            </div>
+            
+            <!-- 6.1 高场效应 -->
+            <div id="high-field-effects" class="section">
+                <h3>6.1 高场效应</h3>
+                
+                <p>当半导体中的电场强度较低时，载流子的漂移速度与电场强度成正比，满足欧姆定律。但当电场强度很高时，载流子的输运行为会偏离欧姆定律，出现一系列高场效应。</p>
+                
+                <div class="subsection">
+                    <h4>6.1.1 速度饱和效应</h4>
+                    <p>在低电场下，载流子的漂移速度v_d与电场强度E成正比：v_d = μE，其中μ是迁移率。但当电场强度超过某一临界值E_sat时，载流子的漂移速度不再随电场强度线性增加，而是趋于一个饱和值v_sat，这就是速度饱和效应。</p>
                     
-                    <div class="highlight-box">
-                        <h3>模拟电路的特点</h3>
-                        <ul>
-                            <li><strong>连续信号处理：</strong>处理连续变化的电压和电流信号</li>
-                            <li><strong>高精度要求：</strong>对器件参数匹配和精度要求极高</li>
-                            <li><strong>噪声敏感：</strong>容易受到噪声干扰，需要精心设计</li>
-                            <li><strong>功耗优化：</strong>在性能和功耗之间需要平衡</li>
-                        </ul>
+                    <div class="equation">
+                        v_d = frac{μE}{1 + E/E_sat} quad (E ≤ E_sat)
                     </div>
+                    <p>当E >> E_sat时，v_d ≈ v_sat，其中v_sat对于硅中的电子约为1×10⁷ cm/s，对于空穴约为6×10⁶ cm/s。</p>
                     
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" data-tab="current-mirror">电流镜</button>
-                            <button class="tab-button" data-tab="differential-pair">差分对</button>
-                            <button class="tab-button" data-tab="active-load">有源负载</button>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="current-mirror">
-                                <h4>电流镜</h4>
-                                <p>电流镜是模拟电路中的基本构建模块，用于复制和放大电流。它通过匹配晶体管的尺寸和偏置条件，实现精确的电流复制功能。</p>
-                                
-                                <div class="circuit-diagram">
-                                    <div class="circuit-element">M1</div>
-                                    <div class="circuit-element">M2</div>
-                                </div>
-                                
-                                <div class="formula-box">
-                                    I<sub>out</sub> = (W/L)<sub>2</sub> / (W/L)<sub>1</sub> × I<sub>ref</sub>
-                                </div>
-                                
-                                <p>电流镜的性能取决于晶体管的匹配程度、输出阻抗和温度稳定性。在精密模拟电路设计中，电流镜的精度直接影响整体电路性能。</p>
-                            </div>
-                            <div class="tab-pane" id="differential-pair">
-                                <h4>差分对</h4>
-                                <p>差分对是模拟电路的核心结构，用于放大差分信号并抑制共模信号。它是运算放大器、比较器等模拟电路的基础。</p>
-                                
-                                <div class="circuit-diagram">
-                                    <div class="circuit-element">M1</div>
-                                    <div class="circuit-element">M2</div>
-                                    <div class="circuit-element">M3</div>
-                                </div>
-                                
-                                <div class="formula-box">
-                                    A<sub>d</sub> = g<sub>m</sub> × r<sub>o</sub><br>
-                                    CMRR = A<sub>d</sub> / A<sub>c</sub>
-                                </div>
-                                
-                                <p>差分对的性能由跨导(gm)、输出阻抗(ro)和共模抑制比(CMRR)决定。提高差分对的线性度和带宽是模拟电路设计的关键挑战。</p>
-                            </div>
-                            <div class="tab-pane" id="active-load">
-                                <h4>有源负载</h4>
-                                <p>有源负载使用晶体管代替电阻作为负载，可以提供高阻抗负载，提高放大器的增益。有源负载在面积和性能上优于无源电阻。</p>
-                                
-                                <div class="circuit-diagram">
-                                    <div class="circuit-element">M1</div>
-                                    <div class="circuit-element">M2</div>
-                                    <div class="circuit-element">M3</div>
-                                    <div class="circuit-element">M4</div>
-                                </div>
-                                
-                                <div class="formula-box">
-                                    A<sub>v</sub> = -g<sub>m1</sub> × (r<sub>o2</sub> || r<sub>o4</sub>)
-                                </div>
-                                
-                                <p>有源负载的设计需要考虑输出阻抗、频率响应和稳定性。在低电压设计中，有源负载是实现高增益放大器的关键技术。</p>
-                            </div>
-                        </div>
+                    <p>速度饱和效应是由于高电场下载流子与晶格振动（声子）的强烈散射导致的，载流子获得的能量迅速通过声子散射释放，无法进一步提高漂移速度。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.1.2 迁移率退化</h4>
+                    <p>在高电场下，载流子的迁移率会随着电场强度的增加而减小，这一现象称为迁移率退化。迁移率退化的主要原因是高电场下载流子的能量增加，与晶格振动的散射概率增大，导致平均自由程减小。</p>
+                    
+                    <p>迁移率与电场强度的关系可以表示为：</p>
+                    <div class="equation">
+                        μ(E) = frac{μ_0}{1 + (E/E_c)^alpha}
                     </div>
-                </section>
-
-                <section id="op-amp" class="content-section">
-                    <h2>运算放大器 <span class="progress-indicator" id="opamp-progress">0/2 已完成</span></h2>
-                    <p>运算放大器是模拟电路设计的核心器件，具有高增益、高输入阻抗和低输出阻抗的特点。它是各种模拟系统和信号处理电路的基础构建模块。</p>
+                    <p>其中，μ_0是低场迁移率，E_c是临界电场，α是与材料相关的常数。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.1.3 热电子效应</h4>
+                    <p>当电场强度很高时，载流子从电场获得的能量超过热平衡时的平均能量，成为热电子（或热空穴）。热电子的能量可以达到几个电子伏特，远高于晶格热平衡能量（室温下约为0.026 eV）。</p>
                     
-                    <div class="interactive-demo">
-                        <h3>运算放大器增益计算器</h3>
-                        <div class="demo-controls">
-                            <div class="control-group">
-                                <label for="opamp-type">运算放大器类型</label>
-                                <select id="opamp-type">
-                                    <option value="two-stage">两级运算放大器</option>
-                                    <option value="folded-cascode">折叠共源共栅</option>
-                                    <option value="telescopic">套筒式</option>
-                                    <option value="rail-to-rail">轨到轨</option>
-                                </select>
-                            </div>
-                            <div class="control-group">
-                                <label for="supply-voltage">电源电压 (V)</label>
-                                <input type="range" id="supply-voltage" min="1.8" max="5" step="0.1" value="3.3">
-                                <span id="supply-voltage-value">3.3 V</span>
-                            </div>
-                            <div class="control-group">
-                                <label for="load-capacitance">负载电容 (pF)</label>
-                                <input type="range" id="load-capacitance" min="0.1" max="10" step="0.1" value="1">
-                                <span id="load-capacitance-value">1 pF</span>
-                            </div>
-                        </div>
-                        <div class="demo-output">
-                            <div class="chart-container">
-                                <canvas id="opamp-gain-chart"></canvas>
-                            </div>
-                            <div id="opamp-results" style="margin-top: 1rem;">
-                                <p><strong>直流增益：</strong> <span id="dc-gain">0</span> dB</p>
-                                <p><strong>单位增益带宽：</strong> <span id="unity-gain-bandwidth">0</span> MHz</p>
-                                <p><strong>相位裕度：</strong> <span id="phase-margin">0</span> °</p>
-                                <p><strong>功耗：</strong> <span id="opamp-power">0</span> μW</p>
-                            </div>
-                        </div>
+                    <p>热电子效应会导致以下问题：</p>
+                    <ul>
+                        <li>热电子注入到栅氧化层，导致氧化层损伤，影响器件可靠性</li>
+                        <li>热电子产生的二次电子发射，影响器件性能</li>
+                        <li>热电子引起的噪声增加</li>
+                    </ul>
+                    
+                    <p>为了抑制热电子效应，通常采用轻掺杂漏（LDD）结构、应变硅技术和高k栅介质等技术。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.1.4 碰撞电离与雪崩倍增</h4>
+                    <p>当电场强度足够高时，热电子的能量可以超过半导体的禁带宽度E_g，此时热电子与价带电子碰撞，会将价带电子激发到导带，产生电子-空穴对，这一过程称为碰撞电离。</p>
+                    
+                    <p>碰撞电离产生的电子和空穴在电场作用下加速，又会引发新的碰撞电离，形成连锁反应，导致载流子浓度急剧增加，这种现象称为雪崩倍增。</p>
+                    
+                    <p>雪崩倍增因子M定义为：</p>
+                    <div class="equation">
+                        M = frac{1}{1 - int_0^d α_e(x)dx}
                     </div>
+                    <p>其中，α_e是电子的碰撞电离系数，d是雪崩区宽度。</p>
                     
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" data-tab="frequency-response">频率响应</button>
-                            <button class="tab-button" data-tab="stability">稳定性分析</button>
-                            <button class="tab-button" data-tab="noise">噪声性能</button>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="frequency-response">
-                                <h4>频率响应</h4>
-                                <p>运算放大器的频率响应描述了增益随频率变化的关系。运算放大器的增益在高频区域会下降，这是由内部晶体管的寄生电容和负载电容引起的。</p>
-                                
-                                <div class="frequency-response">
-                                    <div class="frequency-line"></div>
-                                    <div class="frequency-curve">
-                                        <canvas id="frequency-response-curve"></canvas>
-                                    </div>
-                                </div>
-                                
-                                <p>频率响应的关键参数包括直流增益、单位增益带宽和相位裕度。这些参数决定了运算放大器在不同应用中的适用性。</p>
-                            </div>
-                            <div class="tab-pane" id="stability">
-                                <h4>稳定性分析</h4>
-                                <p>运算放大器的稳定性是指其在反馈应用中不产生振荡的能力。稳定性主要由相位裕度和增益裕度决定，通常要求相位裕度大于45度。</p>
-                                
-                                <div class="chart-container">
-                                    <canvas id="stability-chart"></canvas>
-                                </div>
-                                
-                                <p>补偿技术是提高运算放大器稳定性的关键方法，包括米勒补偿、前馈补偿和零极点抵消等。不同的补偿技术适用于不同的应用场景。</p>
-                            </div>
-                            <div class="tab-pane" id="noise">
-                                <h4>噪声性能</h4>
-                                <p>运算放大器的噪声性能直接影响其信号处理能力，特别是在低噪声应用中。噪声主要包括热噪声、闪烁噪声和散粒噪声。</p>
-                                
-                                <div class="noise-spectrum">
-                                    <div class="noise-line"></div>
-                                    <div class="noise-curve">
-                                        <canvas id="noise-spectrum-chart"></canvas>
-                                    </div>
-                                </div>
-                                
-                                <p>噪声性能由输入参考噪声和噪声谱密度描述。在低噪声设计中，需要优化晶体管尺寸、偏置电流和电路结构来降低噪声。</p>
-                            </div>
-                        </div>
+                    <p>雪崩倍增是雪崩二极管（APD）、雪崩三极管等器件的工作原理，但也是PN结雪崩击穿的原因。</p>
+                </div>
+            </div>
+            
+            <!-- 6.2 隧穿效应 -->
+            <div id="tunneling-effect" class="section">
+                <h3>6.2 隧穿效应</h3>
+                
+                <p>隧穿效应是量子力学中的一个重要现象，指粒子能够穿过高于其能量的势垒的现象。在半导体器件中，隧穿效应在纳米尺度器件和量子器件中起着重要作用。</p>
+                
+                <div class="subsection">
+                    <h4>6.2.1 量子隧穿的基本原理</h4>
+                    <p>根据经典物理，当粒子的能量E小于势垒高度V₀时，粒子无法穿过势垒。但根据量子力学，粒子具有波动性，其波函数在势垒内不会完全消失，而是以指数形式衰减。如果势垒厚度足够薄，粒子就有一定概率穿过势垒，这就是量子隧穿效应。</p>
+                    
+                    <p>隧穿概率T与势垒厚度d和势垒高度V₀的关系为：</p>
+                    <div class="equation">
+                        T ≈ e^{-2dsqrt{2m(V₀-E)/ħ²}}
                     </div>
-                </section>
-
-                <section id="rf-devices" class="content-section">
-                    <h2>射频器件基础 <span class="progress-indicator" id="rf-progress">0/2 已完成</span></h2>
-                    <p>射频器件工作在高频范围，用于无线通信、雷达和射频识别等应用。射频器件设计需要考虑高频效应，如寄生参数、噪声和线性度等。</p>
+                    <p>其中，m是粒子质量，E是粒子能量，ħ是约化普朗克常数。</p>
                     
-                    <div class="highlight-box">
-                        <h3>射频器件的特殊挑战</h3>
-                        <ul>
-                            <li><strong>寄生参数影响：</strong>在高频下，寄生电容和电感对电路性能影响显著</li>
-                            <li><strong>噪声系数：</strong>射频器件的噪声直接影响接收灵敏度</li>
-                            <li><strong>线性度：</strong>非线性失真会影响信号质量和频谱效率</li>
-                            <li><strong>阻抗匹配：</strong>需要精确的阻抗匹配以实现最大功率传输</li>
-                        </ul>
-                    </div>
+                    <p>隧穿概率随势垒厚度的增加而指数下降，因此只有当势垒厚度小于几个纳米时，隧穿效应才会显著。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.2.2 隧道二极管</h4>
+                    <p>隧道二极管是利用隧穿效应工作的一种半导体器件，它是由重掺杂的PN结构成的。当PN结反向偏置时，载流子通过隧穿效应穿过耗尽区，形成隧道电流。</p>
                     
-                    <div class="interactive-demo">
-                        <h3>射频器件噪声模拟器</h3>
-                        <div class="demo-controls">
-                            <div class="control-group">
-                                <label for="rf-device-type">器件类型</label>
-                                <select id="rf-device-type">
-                                    <option value="lna">低噪声放大器(LNA)</option>
-                                    <option value="mixer">混频器</option>
-                                    <option value="vco">压控振荡器(VCO)</option>
-                                    <option value="pa">功率放大器(PA)</option>
-                                </select>
-                            </div>
-                            <div class="control-group">
-                                <label for="frequency">工作频率 (GHz)</label>
-                                <input type="range" id="frequency" min="0.1" max="10" step="0.1" value="2.4">
-                                <span id="frequency-value">2.4 GHz</span>
-                            </div>
-                            <div class="control-group">
-                                <label for="temperature">温度 (°C)</label>
-                                <input type="range" id="temperature" min="-40" max="125" step="5" value="25">
-                                <span id="temperature-value">25°C</span>
-                            </div>
+                    <p>隧道二极管的I-V特性曲线具有负阻区，这是由于当反向偏压增加时，隧道电流先增加到一个峰值，然后由于能带偏移导致隧穿概率下降，电流反而减小。隧道二极管的负阻特性使其在高频振荡器、放大器和高速开关等领域有重要应用。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.2.3 共振隧穿二极管</h4>
+                    <p>共振隧穿二极管（RTD）是基于量子阱结构的隧穿器件，它由两个势垒和一个中间势阱组成。当电子能量与量子阱中的能级匹配时，隧穿概率会显著增加，出现共振隧穿现象。</p>
+                    
+                    <p>共振隧穿二极管的I-V特性曲线具有多个负阻区，这是由于量子阱中存在多个能级。共振隧穿二极管具有超高速度（响应时间可达皮秒级）和低功耗的特点，在高速电子学和光电子学领域有广泛的应用前景。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.2.4 隧穿场效应晶体管（TFET）</h4>
+                    <p>隧穿场效应晶体管（TFET）是一种新型的低功耗晶体管，它利用带间隧穿效应控制电流。与传统MOSFET不同，TFET的电流不是通过热激发产生的，而是通过量子隧穿效应产生的。</p>
+                    
+                    <p>TFET的主要优点是亚阈值斜率可以小于60mV/dec（室温下的理论极限），这意味着它可以在非常低的电压下工作，从而显著降低功耗。TFET被认为是后摩尔时代的候选器件之一，有望用于低功耗集成电路。</p>
+                </div>
+            </div>
+            
+            <!-- 6.3 量子输运 -->
+            <div id="quantum-transport" class="section">
+                <h3>6.3 量子输运</h3>
+                
+                <p>当半导体器件的尺寸缩小到纳米尺度时，量子效应开始主导载流子的输运行为，这种输运称为量子输运。量子输运与经典输运的主要区别在于载流子的波动性和量子限制效应。</p>
+                
+                <div class="subsection">
+                    <h4>6.3.1 低维半导体结构</h4>
+                    <p>低维半导体结构是指在一个或多个维度上尺寸小于载流子德布罗意波长的半导体结构，主要包括：</p>
+                    
+                    <ul>
+                        <li><strong>量子阱（2D）</strong>：在一个维度上尺寸受限，载流子只能在二维平面内运动</li>
+                        <li><strong>量子线（1D）</strong>：在两个维度上尺寸受限，载流子只能沿一条线运动</li>
+                        <li><strong>量子点（0D）</strong>：在三个维度上尺寸受限，载流子的运动完全被限制</li>
+                    </ul>
+                    
+                    <div class="quantum-structure">
+                        <div class="quantum-well">
+                            <div class="electron"></div>
+                            <div class="electron" style="animation-delay: 0.5s;"></div>
+                            <div class="electron" style="animation-delay: 1s;"></div>
                         </div>
-                        <div class="demo-output">
-                            <div class="chart-container">
-                                <canvas id="rf-noise-chart"></canvas>
-                            </div>
-                            <div id="rf-results" style="margin-top: 1rem;">
-                                <p><strong>噪声系数：</strong> <span id="noise-figure">0</span> dB</p>
-                                <p><strong>增益：</strong> <span id="rf-gain">0</span> dB</p>
-                                <p><strong>1dB压缩点：</strong> <span id="p1db">0</span> dBm</p>
-                                <p><strong>三阶交调点：</strong> <span id="ip3">0</span> dBm</p>
-                            </div>
+                        <div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); text-align: center;">
+                            <p>量子阱结构中的电子运动</p>
                         </div>
                     </div>
                     
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" data-tab="matching">阻抗匹配</button>
-                            <button class="tab-button" data-tab="linearity">线性度分析</button>
-                            <button class="tab-button" data-tab="layout">版图考虑</button>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="matching">
-                                <h4>阻抗匹配</h4>
-                                <p>阻抗匹配是射频设计中的关键技术，用于实现最大功率传输和最小反射。匹配网络通常由电感和电容组成，需要根据工作频率和阻抗要求进行设计。</p>
-                                
-                                <div class="chart-container">
-                                    <canvas id="smith-chart"></canvas>
-                                </div>
-                                
-                                <p>史密斯圆图是阻抗匹配设计的常用工具，可以直观地显示阻抗和反射系数的关系。现代射频设计软件通常集成了史密斯圆图功能。</p>
-                            </div>
-                            <div class="tab-pane" id="linearity">
-                                <h4>线性度分析</h4>
-                                <p>射频器件的线性度决定了其处理大信号的能力。线性度主要由1dB压缩点和三阶交调点(IP3)描述，这些参数直接影响系统的动态范围和信号质量。</p>
-                                
-                                <div class="chart-container">
-                                    <canvas id="linearity-chart"></canvas>
-                                </div>
-                                
-                                <p>提高线性度的技术包括负反馈、前馈线性化和预失真等。不同的技术适用于不同的应用场景和性能要求。</p>
-                            </div>
-                            <div class="tab-pane" id="layout">
-                                <h4>版图考虑</h4>
-                                <p>射频器件的版图设计对性能影响极大，需要考虑寄生参数、电磁耦合和热效应等因素。射频版图通常采用对称结构、屏蔽技术和特殊布线规则。</p>
-                                
-                                <div class="highlight-box">
-                                    <h4>射频版图设计要点</h4>
-                                    <ul>
-                                        <li><strong>对称布局：</strong>差分对采用完全对称的版图结构</li>
-                                        <li><strong>屏蔽技术：</strong>使用屏蔽环和隔离环减少干扰</li>
-                                        <li><strong>地平面设计：</strong>完整的地平面提供良好的参考和屏蔽</li>
-                                        <li><strong>传输线设计：</strong>精确控制传输线阻抗和延迟</li>
-                                    </ul>
-                                </div>
-                                
-                                <p>射频版图设计需要与电路设计紧密结合，通过电磁仿真验证版图性能，确保满足设计指标。</p>
-                            </div>
-                        </div>
+                    <p>低维半导体结构通常采用分子束外延（MBE）或金属有机物化学气相沉积（MOCVD）等技术制备，通过不同半导体材料的交替生长形成势垒和势阱。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.3.2 量子限制效应</h4>
+                    <p>当半导体结构的尺寸小于载流子的德布罗意波长时，载流子的能量会量子化，形成离散的能级，这就是量子限制效应。量子限制效应导致低维半导体结构具有独特的电学和光学性质。</p>
+                    
+                    <p>对于量子阱中的电子，其能量可以表示为：</p>
+                    <div class="equation">
+                        E = E_c + frac{hbar²k_x²}{2m_n} + frac{hbar²k_y²}{2m_n} + frac{hbar²(nπ)²}{2m_nL_z²}
                     </div>
-                </section>
-
-                <section id="mixed-signal" class="content-section">
-                    <h2>模拟-数字混合器件兼容性设计 <span class="progress-indicator" id="mixed-progress">0/2 已完成</span></h2>
-                    <p>模拟-数字混合集成电路结合了模拟和数字电路的功能，在单个芯片上实现信号采集、处理和转换。混合信号设计需要解决模拟和数字电路之间的干扰和兼容性问题。</p>
+                    <p>其中，E_c是导带底能量，k_x和k_y是二维平面内的波矢，L_z是量子阱宽度，n是量子数（n=1,2,3,...）。</p>
                     
-                    <div class="device-3d">
-                        <div class="device-layer layer-substrate">硅衬底</div>
-                        <div class="device-layer" style="bottom: 150px; left: 10%; width: 35%; background-color: #4169E1; z-index: 2;">模拟电路</div>
-                        <div class="device-layer" style="bottom: 150px; right: 10%; width: 35%; background-color: #FF6347; z-index: 2;">数字电路</div>
-                        <div class="device-layer" style="bottom: 220px; left: 25%; width: 50%; background-color: #2ECC71; z-index: 3;">接口电路</div>
-                        <div style="position: absolute; top: 50px; left: 10%; width: 80%; height: 2px; background-color: #333; z-index: 4;">隔离带</div>
-                    </div>
+                    <p>量子限制效应导致低维半导体结构的带隙变宽，发光波长蓝移，同时载流子的态密度也发生变化，这些特性在光电子器件中有重要应用。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.3.3 量子霍尔效应</h4>
+                    <p>量子霍尔效应是量子输运中的一个重要现象，当二维电子气在强磁场和低温下时，霍尔电阻会出现量子化平台，平台值为h/(ie²)，其中i是整数或分数，h是普朗克常数，e是电子电荷量。</p>
                     
-                    <p>混合信号设计的关键挑战包括噪声隔离、电源管理、时钟分配和版图规划。通过合理的架构设计和版图规划，可以实现模拟和数字电路的高效集成。</p>
+                    <p>量子霍尔效应是由于强磁场下电子运动的量子化导致的，电子在垂直于磁场的方向上形成离散的朗道能级。当费米能级位于两个朗道能级之间时，霍尔电阻出现量子化平台。</p>
                     
-                    <div class="interactive-demo">
-                        <h3>混合信号干扰分析器</h3>
-                        <div class="demo-controls">
-                            <div class="control-group">
-                                <label for="digital-activity">数字开关活动</label>
-                                <input type="range" id="digital-activity" min="0" max="100" step="1" value="50">
-                                <span id="digital-activity-value">50%</span>
-                            </div>
-                            <div class="control-group">
-                                <label for="supply-separation">电源隔离度 (dB)</label>
-                                <input type="range" id="supply-separation" min="20" max="80" step="1" value="40">
-                                <span id="supply-separation-value">40 dB</span>
-                            </div>
-                            <div class="control-group">
-                                <label for="ground-isolation">地隔离度 (dB)</label>
-                                <input type="range" id="ground-isolation" min="20" max="80" step="1" value="40">
-                                <span id="ground-isolation-value">40 dB</span>
+                    <p>量子霍尔效应不仅具有重要的物理意义，而且在精密测量和量子计算等领域有实际应用。</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>6.3.4 自旋输运</h4>
+                    <p>自旋输运是指利用电子的自旋自由度进行信息传递和处理的输运方式。与传统的电荷输运不同，自旋输运具有低功耗、高速和高存储密度的潜力，是自旋电子学的核心内容。</p>
+                    
+                    <p>自旋输运的关键问题是如何有效地产生、操纵和检测自旋极化电流。目前，自旋输运在磁性隧道结、自旋阀和自旋场效应晶体管等器件中已有应用，有望在未来的电子学中发挥重要作用。</p>
+                </div>
+            </div>
+            
+            <!-- 6.4 量子输运模拟器 -->
+            <div id="quantum-transport-simulator" class="section">
+                <h3>6.4 量子输运模拟器</h3>
+                <p>通过调整参数，观察不同条件下量子输运特性的变化：</p>
+                
+                <div class="quantum-transport-simulator">
+                    <div class="simulator-controls">
+                        <div class="control-group">
+                            <label class="control-label">结构类型：</label>
+                            <select class="control-input" id="structure-type">
+                                <option value="quantum-well">量子阱</option>
+                                <option value="quantum-wire">量子线</option>
+                                <option value="quantum-dot">量子点</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">势垒宽度 (nm)</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="barrier-width-slider" min="1" max="20" step="0.5" value="5">
+                                <span class="slider-value" id="barrier-width-value">5.0</span> nm
                             </div>
                         </div>
-                        <div class="demo-output">
-                            <div class="chart-container">
-                                <canvas id="mixed-signal-chart"></canvas>
+                        <div class="control-group">
+                            <label class="control-label">势垒高度 (eV)</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="barrier-height-slider" min="0.1" max="2" step="0.1" value="0.5">
+                                <span class="slider-value" id="barrier-height-value">0.5</span> eV
                             </div>
-                            <div id="mixed-results" style="margin-top: 1rem;">
-                                <p><strong>模拟噪声：</strong> <span id="analog-noise">0</span> μV</p>
-                                <p><strong>数字毛刺：</strong> <span id="digital-glitch">0</span> mV</p>
-                                <p><strong>信噪比：</strong> <span id="snr">0</span> dB</p>
-                                <p><strong>有效位数：</strong> <span id="enob">0</span> bits</p>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">电子能量 (eV)</label>
+                            <div class="slider-container">
+                                <input type="range" class="slider" id="electron-energy-slider" min="0" max="1" step="0.05" value="0.2">
+                                <span class="slider-value" id="electron-energy-value">0.2</span> eV
                             </div>
                         </div>
                     </div>
                     
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" data-tab="adc-dac">数据转换器</button>
-                            <button class="tab-button" data-tab="pll">锁相环</button>
-                            <button class="tab-button" data-tab="isolation">隔离技术</button>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="adc-dac">
-                                <h4>数据转换器</h4>
-                                <p>模数转换器(ADC)和数模转换器(DAC)是混合信号系统的核心接口，负责模拟和数字信号之间的转换。数据转换器的性能直接影响整个系统的精度和速度。</p>
-                                
-                                <table class="comparison-table">
-                                    <tr>
-                                        <th>ADC类型</th>
-                                        <th>分辨率</th>
-                                        <th>采样率</th>
-                                        <th>功耗</th>
-                                        <th>应用场景</th>
-                                    </tr>
-                                    <tr>
-                                        <td>逐次逼近型(SAR)</td>
-                                        <td>12-18位</td>
-                                        <td>1-100 MSPS</td>
-                                        <td>低</td>
-                                        <td>数据采集、传感器接口</td>
-                                    </tr>
-                                    <tr>
-                                        <td>流水线型</td>
-                                        <td>12-16位</td>
-                                        <td>10-1000 MSPS</td>
-                                        <td>中</td>
-                                        <td>通信、视频处理</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Σ-Δ型</td>
-                                        <td>16-24位</td>
-                                        <td>1-1M SPS</td>
-                                        <td>低</td>
-                                        <td>音频、高精度测量</td>
-                                    </tr>
-                                    <tr>
-                                        <td>闪烁型</td>
-                                        <td>6-8位</td>
-                                        <td>1-100 GSPS</td>
-                                        <td>高</td>
-                                        <td>示波器、雷达</td>
-                                    </tr>
-                                </table>
-                                
-                                <p>数据转换器的设计需要在分辨率、速度和功耗之间进行权衡。现代混合信号系统通常采用多种类型的转换器以满足不同的应用需求。</p>
-                            </div>
-                            <div class="tab-pane" id="pll">
-                                <h4>锁相环</h4>
-                                <p>锁相环(PLL)是混合信号系统中的关键时钟生成和管理电路，用于频率合成、时钟恢复和时钟分配。PLL的性能直接影响数字电路的时序和模拟电路的采样精度。</p>
-                                
-                                <div class="circuit-diagram">
-                                    <div class="circuit-element">PFD</div>
-                                    <div class="circuit-element">CP</div>
-                                    <div class="circuit-element">LF</div>
-                                    <div class="circuit-element">VCO</div>
-                                    <div class="circuit-element">DIV</div>
-                                </div>
-                                
-                                <div class="formula-box">
-                                    f<sub>out</sub> = N × f<sub>ref</sub><br>
-                                    ω<sub>n</sub> = √(K<sub>VCO</sub> × K<sub>PD</sub> / N)<br>
-                                    ζ = (R × C × ω<sub>n</sub>) / 2
-                                </div>
-                                
-                                <p>PLL设计需要考虑锁定时间、相位噪声、杂散和功耗等参数。在混合信号系统中，PLL的相位噪声和抖动直接影响数据转换器的性能。</p>
-                            </div>
-                            <div class="tab-pane" id="isolation">
-                                <h4>隔离技术</h4>
-                                <p>隔离技术是混合信号设计中的关键技术，用于减少数字电路对模拟电路的干扰。隔离技术包括物理隔离、电源隔离和时序隔离等。</p>
-                                
-                                <div class="highlight-box">
-                                    <h4>常用隔离技术</h4>
-                                    <ul>
-                                        <li><strong>物理隔离：</strong>通过增加距离和使用隔离带减少电磁耦合</li>
-                                        <li><strong>电源隔离：</strong>使用独立的电源域和滤波器减少电源噪声</li>
-                                        <li><strong>地隔离：</strong>采用星形接地和分离地平面减少地噪声</li>
-                                        <li><strong>时序隔离：</strong>通过时钟门控和时序控制减少开关噪声</li>
-                                    </ul>
-                                </div>
-                                
-                                <p>高级隔离技术包括深N阱隔离、硅通孔(TSV)隔离和屏蔽结构等。在纳米级工艺中，隔离技术变得更加重要，因为器件间距减小导致耦合增强。</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <div class="content-section">
-                    <h2>本章小结</h2>
-                    <p>模拟集成器件是现代电子系统的重要组成部分，负责处理连续变化的信号。通过理解模拟电路基础、运算放大器、射频器件和混合信号器件的设计原理，可以更好地设计和分析模拟集成电路。</p>
-                    
-                    <div class="highlight-box">
-                        <h3>关键要点</h3>
-                        <ul>
-                            <li>模拟电路处理连续信号，对精度和噪声敏感，需要精心设计</li>
-                            <li>电流镜、差分对和有源负载是模拟电路的基本构建模块</li>
-                            <li>运算放大器是模拟电路设计的核心器件，其性能由增益、带宽和稳定性决定</li>
-                            <li>射频器件工作在高频范围，需要考虑寄生参数、噪声和线性度等特殊挑战</li>
-                            <li>混合信号设计需要解决模拟和数字电路之间的干扰和兼容性问题</li>
-                        </ul>
+                    <div class="chart-area">
+                        <canvas id="quantum-transport-chart" width="800" height="400"></canvas>
                     </div>
                     
-                    <div class="chapter-navigation">
-                        <a href="chapter5.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> 上一章</a>
-                        <a href="chapter7.html" class="btn btn-primary">下一章 <i class="fas fa-arrow-right"></i></a>
+                    <div class="results-panel">
+                        <h4>量子输运计算结果</h4>
+                        <div class="result-item">
+                            <span class="result-label">隧穿概率：</span>
+                            <span class="result-value" id="tunneling-probability-value">0.02</span> %
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">共振能级 (eV)：</span>
+                            <span class="result-value" id="resonance-energy-value">0.15</span> eV
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">态密度峰宽 (meV)：</span>
+                            <span class="result-value" id="density-width-value">10</span> meV
+                        </div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- 本章小结 -->
+            <div id="chapter-summary" class="section">
+                <h3>本章小结</h3>
+                <div class="chapter-core">
+                    <ul>
+                        <li>当电场强度很高时，载流子的输运行为会偏离欧姆定律，出现速度饱和、迁移率退化和热电子效应等高场效应</li>
+                        <li>碰撞电离和雪崩倍增是高电场下的重要现象，它们是雪崩二极管的工作原理，也是PN结雪崩击穿的原因</li>
+                        <li>隧穿效应是量子力学中的重要现象，它在隧道二极管、共振隧穿二极管和隧穿场效应晶体管等器件中有重要应用</li>
+                        <li>当半导体结构的尺寸缩小到纳米尺度时，量子限制效应开始主导载流子的输运行为，形成低维半导体结构</li>
+                        <li>低维半导体结构包括量子阱、量子线和量子点，它们具有独特的电学和光学性质</li>
+                        <li>量子输运是纳米尺度器件的重要特征，包括量子霍尔效应和自旋输运等现象</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h4>下一章预告</h4>
+                    <p>第7章将深入介绍PN结与金属-半导体接触，包括PN结的能带图、内建电场、耗尽区宽度、电容等特性，以及金属-半导体接触的形成条件和物理机制。</p>
+                    <button class="btn btn-primary" onclick="window.location.href='chapter7.html'">前往第7章</button>
                 </div>
             </div>
         </div>
@@ -577,15 +685,16 @@
                 <div class="footer-section">
                     <h3>快速链接</h3>
                     <ul>
-                        <li><a href="../index.html#basics">基础原理</a></li>
-                        <li><a href="../index.html#integration">集成器件</a></li>
-                        <li><a href="../index.html#process">制造工艺</a></li>
-                        <li><a href="../index.html#advanced">先进技术</a></li>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../index.html#part1">量子基石与材料特性</a></li>
+                        <li><a href="../index.html#part2">载流子动力学与输运</a></li>
+                        <li><a href="../index.html#part3">能带工程与界面物理</a></li>
+                        <li><a href="../index.html#part4">核心半导体器件物理</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>联系我们</h3>
-                    <p>邮箱：info@semiproj.com</p>
+                    <p>邮箱：info@semiproj.edu</p>
                     <p>电话：+86 123-4567-8900</p>
                 </div>
             </div>
@@ -597,748 +706,171 @@
 
     <script src="../js/main.js"></script>
     <script>
-        // 进度跟踪变量
-        let opampExperiments = 0;
-        let rfTests = 0;
-        let mixedSignalSimulations = 0;
+        // 物理常数
+        const hbar = 1.0546e-34; // 约化普朗克常数 (J·s)
+        const m_e = 9.109e-31; // 电子质量 (kg)
+        const q = 1.602e-19; // 电子电荷量 (C)
         
-        // 初始化所有功能
+        // 全局变量
+        let quantumChart = null;
+        
+        // 计算隧穿概率
+        function calculateTunnelingProbability(barrierWidth, barrierHeight, electronEnergy) {
+            // 将单位转换为国际单位制
+            const d = barrierWidth * 1e-9; // m
+            const V0 = barrierHeight * q; // J
+            const E = electronEnergy * q; // J
+            
+            // 计算隧穿概率
+            if (E > V0) {
+                return 100; // 能量大于势垒高度，隧穿概率为100%
+            }
+            
+            const k = Math.sqrt(2 * m_e * (V0 - E)) / hbar;
+            const T = Math.exp(-2 * k * d) * 100; // 转换为百分比
+            
+            return T;
+        }
+        
+        // 初始化量子输运图表
+        function initQuantumChart() {
+            const ctx = document.getElementById('quantum-transport-chart').getContext('2d');
+            
+            // 销毁现有图表
+            if (quantumChart) {
+                quantumChart.destroy();
+            }
+            
+            // 生成初始数据
+            const energies = Array.from({length: 50}, (_, i) => i * 0.02); // 0到1 eV，步长0.02 eV
+            const barrierWidth = parseFloat(document.getElementById('barrier-width-slider').value);
+            const barrierHeight = parseFloat(document.getElementById('barrier-height-slider').value);
+            
+            // 计算不同能量下的隧穿概率
+            const tunnelingData = energies.map(E => calculateTunnelingProbability(barrierWidth, barrierHeight, E));
+            
+            // 创建新图表
+            quantumChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: energies,
+                    datasets: [
+                        {
+                            label: '隧穿概率 (%)',
+                            data: tunnelingData,
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '电子能量 (eV)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '隧穿概率 (%)'
+                            },
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新计算结果
+        function updateResults() {
+            const barrierWidth = parseFloat(document.getElementById('barrier-width-slider').value);
+            const barrierHeight = parseFloat(document.getElementById('barrier-height-slider').value);
+            const electronEnergy = parseFloat(document.getElementById('electron-energy-slider').value);
+            
+            // 计算隧穿概率
+            const tunnelingProbability = calculateTunnelingProbability(barrierWidth, barrierHeight, electronEnergy);
+            
+            // 更新显示
+            document.getElementById('tunneling-probability-value').textContent = tunnelingProbability.toFixed(2);
+            document.getElementById('resonance-energy-value').textContent = (electronEnergy * 0.75).toFixed(2);
+            document.getElementById('density-width-value').textContent = (100 / barrierWidth).toFixed(0);
+        }
+        
+        // 更新滑块值显示
+        function updateSliderValues() {
+            document.getElementById('barrier-width-value').textContent = document.getElementById('barrier-width-slider').value;
+            document.getElementById('barrier-height-value').textContent = document.getElementById('barrier-height-slider').value;
+            document.getElementById('electron-energy-value').textContent = document.getElementById('electron-energy-slider').value;
+        }
+        
+        // 初始化
         document.addEventListener('DOMContentLoaded', function() {
-            initSectionNavigation();
-            initTabs();
-            initOpAmpCalculator();
-            initRFNoiseSimulator();
-            initMixedSignalAnalyzer();
-            initProgressTracking();
+            // 初始化图表
+            initQuantumChart();
+            
+            // 更新初始结果
+            updateResults();
+            
+            // 更新滑块值显示
+            updateSliderValues();
+            
+            // 添加事件监听器
+            document.getElementById('barrier-width-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateResults();
+                initQuantumChart();
+            });
+            
+            document.getElementById('barrier-height-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateResults();
+                initQuantumChart();
+            });
+            
+            document.getElementById('electron-energy-slider').addEventListener('input', function() {
+                updateSliderValues();
+                updateResults();
+            });
+            
+            document.getElementById('structure-type').addEventListener('change', function() {
+                // 根据结构类型调整参数范围
+                const type = this.value;
+                const barrierWidthSlider = document.getElementById('barrier-width-slider');
+                
+                if (type === 'quantum-dot') {
+                    barrierWidthSlider.max = 10;
+                } else if (type === 'quantum-wire') {
+                    barrierWidthSlider.max = 15;
+                } else {
+                    barrierWidthSlider.max = 20;
+                }
+                
+                initQuantumChart();
+                updateResults();
+            });
         });
-        
-        // 章节导航
-        function initSectionNavigation() {
-            const sectionLinks = document.querySelectorAll('.section-link');
-            const sections = document.querySelectorAll('.content-section');
-            
-            sectionLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 移除所有active类
-                    sectionLinks.forEach(l => l.classList.remove('active'));
-                    sections.forEach(s => s.classList.remove('active'));
-                    
-                    // 添加active类到当前链接和对应部分
-                    this.classList.add('active');
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    
-                    if (targetSection) {
-                        targetSection.classList.add('active');
-                        
-                        // 滚动到目标部分
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-        
-        // 标签页功能
-        function initTabs() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // 移除所有active类
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabPanes.forEach(pane => pane.classList.remove('active'));
-                    
-                    // 添加active类到当前按钮和对应面板
-                    this.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        }
-        
-        // 运算放大器增益计算器
-        function initOpAmpCalculator() {
-            const opampType = document.getElementById('opamp-type');
-            const supplyVoltage = document.getElementById('supply-voltage');
-            const loadCapacitance = document.getElementById('load-capacitance');
-            
-            const supplyVoltageValue = document.getElementById('supply-voltage-value');
-            const loadCapacitanceValue = document.getElementById('load-capacitance-value');
-            
-            const dcGain = document.getElementById('dc-gain');
-            const unityGainBandwidth = document.getElementById('unity-gain-bandwidth');
-            const phaseMargin = document.getElementById('phase-margin');
-            const opampPower = document.getElementById('opamp-power');
-            
-            // 创建图表
-            const ctx = document.getElementById('opamp-gain-chart').getContext('2d');
-            const opampChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'],
-                    datasets: [{
-                        label: '增益 (dB)',
-                        data: [80, 80, 80, 70, 60, 40, 20, 0],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }, {
-                        label: '相位 (°)',
-                        data: [0, -5, -10, -30, -60, -90, -120, -150],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: false,
-                        yAxisID: 'y1'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            title: {
-                                display: true,
-                                text: '增益 (dB)'
-                            }
-                        },
-                        y1: {
-                            position: 'right',
-                            beginAtZero: false,
-                            title: {
-                                display: true,
-                                text: '相位 (°)'
-                            },
-                            grid: {
-                                drawOnChartArea: false
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '频率'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 创建频率响应曲线
-            const freqCtx = document.getElementById('frequency-response-curve').getContext('2d');
-            const freqChart = new Chart(freqCtx, {
-                type: 'line',
-                data: {
-                    labels: Array.from({length: 101}, (_, i) => Math.pow(10, i/20 - 1).toFixed(2)),
-                    datasets: [{
-                        label: '增益 (dB)',
-                        data: Array.from({length: 101}, (_, i) => {
-                            const freq = Math.pow(10, i/20 - 1);
-                            const dcGain = 80;
-                            const unityGainFreq = 1e6; // 1MHz
-                            
-                            if (freq < unityGainFreq / 1000) {
-                                return dcGain;
-                            } else {
-                                return dcGain - 20 * Math.log10(freq / (unityGainFreq / 1000));
-                            }
-                        }),
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            title: {
-                                display: true,
-                                text: '增益 (dB)'
-                            }
-                        },
-                        x: {
-                            type: 'logarithmic',
-                            title: {
-                                display: true,
-                                text: '频率 (Hz)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 创建稳定性图表
-            const stabilityCtx = document.getElementById('stability-chart').getContext('2d');
-            const stabilityChart = new Chart(stabilityCtx, {
-                type: 'line',
-                data: {
-                    labels: ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'],
-                    datasets: [{
-                        label: '增益 (dB)',
-                        data: [80, 80, 80, 70, 60, 40, 20, 0],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }, {
-                        label: '相位 (°)',
-                        data: [0, -5, -10, -30, -60, -90, -120, -150],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: false,
-                        yAxisID: 'y1'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            title: {
-                                display: true,
-                                text: '增益 (dB)'
-                            }
-                        },
-                        y1: {
-                            position: 'right',
-                            beginAtZero: false,
-                            title: {
-                                display: true,
-                                text: '相位 (°)'
-                            },
-                            grid: {
-                                drawOnChartArea: false
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '频率'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 创建噪声谱图
-            const noiseCtx = document.getElementById('noise-spectrum-chart').getContext('2d');
-            const noiseChart = new Chart(noiseCtx, {
-                type: 'line',
-                data: {
-                    labels: Array.from({length: 101}, (_, i) => Math.pow(10, i/20 - 1).toFixed(2)),
-                    datasets: [{
-                        label: '噪声密度 (nV/√Hz)',
-                        data: Array.from({length: 101}, (_, i) => {
-                            const freq = Math.pow(10, i/20 - 1);
-                            const flickerNoise = 100 / Math.sqrt(freq); // 1/f噪声
-                            const thermalNoise = 10; // 热噪声
-                            
-                            return Math.sqrt(flickerNoise * flickerNoise + thermalNoise * thermalNoise);
-                        }),
-                        borderColor: '#9b59b6',
-                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            title: {
-                                display: true,
-                                text: '噪声密度 (nV/√Hz)'
-                            }
-                        },
-                        x: {
-                            type: 'logarithmic',
-                            title: {
-                                display: true,
-                                text: '频率 (Hz)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            function updateOpAmp() {
-                const type = opampType.value;
-                const Vdd = parseFloat(supplyVoltage.value);
-                const CL = parseFloat(loadCapacitance.value);
-                
-                // 更新显示值
-                supplyVoltageValue.textContent = `${Vdd} V`;
-                loadCapacitanceValue.textContent = `${CL} pF`;
-                
-                // 计算性能参数（简化模型）
-                let dcGainValue, unityGainFreq, phaseMarginValue, power;
-                
-                switch(type) {
-                    case 'two-stage':
-                        dcGainValue = 60 + 10 * Vdd;
-                        unityGainFreq = 10 / CL;
-                        phaseMarginValue = 60 - 5 * CL;
-                        power = 100 * Vdd;
-                        break;
-                    case 'folded-cascode':
-                        dcGainValue = 70 + 8 * Vdd;
-                        unityGainFreq = 15 / CL;
-                        phaseMarginValue = 65 - 3 * CL;
-                        power = 150 * Vdd;
-                        break;
-                    case 'telescopic':
-                        dcGainValue = 80 + 5 * Vdd;
-                        unityGainFreq = 8 / CL;
-                        phaseMarginValue = 55 - 4 * CL;
-                        power = 80 * Vdd;
-                        break;
-                    case 'rail-to-rail':
-                        dcGainValue = 50 + 12 * Vdd;
-                        unityGainFreq = 12 / CL;
-                        phaseMarginValue = 70 - 2 * CL;
-                        power = 120 * Vdd;
-                        break;
-                }
-                
-                // 更新显示
-                dcGain.textContent = dcGainValue.toFixed(1);
-                unityGainBandwidth.textContent = unityGainFreq.toFixed(1);
-                phaseMargin.textContent = phaseMarginValue.toFixed(1);
-                opampPower.textContent = power.toFixed(1);
-                
-                // 更新图表
-                const frequencies = ['10Hz', '100Hz', '1kHz', '10kHz', '100kHz', '1MHz', '10MHz', '100MHz'];
-                const gainData = frequencies.map((freq, i) => {
-                    const freqHz = parseFloat(freq) * (i < 3 ? 1 : i < 6 ? 1000 : 1000000);
-                    if (freqHz < unityGainFreq * 1000) {
-                        return dcGainValue;
-                    } else {
-                        return dcGainValue - 20 * Math.log10(freqHz / (unityGainFreq * 1000));
-                    }
-                });
-                
-                const phaseData = frequencies.map((freq, i) => {
-                    const freqHz = parseFloat(freq) * (i < 3 ? 1 : i < 6 ? 1000 : 1000000);
-                    if (freqHz < unityGainFreq / 10) {
-                        return 0;
-                    } else {
-                        return -45 * Math.log10(freqHz / (unityGainFreq / 10));
-                    }
-                });
-                
-                opampChart.data.datasets[0].data = gainData;
-                opampChart.data.datasets[1].data = phaseData;
-                opampChart.update();
-                
-                // 更新进度
-                if (opampExperiments < 2) {
-                    opampExperiments++;
-                    updateProgress();
-                }
-            }
-            
-            opampType.addEventListener('change', updateOpAmp);
-            supplyVoltage.addEventListener('input', updateOpAmp);
-            loadCapacitance.addEventListener('input', updateOpAmp);
-            
-            // 初始化
-            updateOpAmp();
-        }
-        
-        // 射频器件噪声模拟器
-        function initRFNoiseSimulator() {
-            const deviceType = document.getElementById('rf-device-type');
-            const frequency = document.getElementById('frequency');
-            const temperature = document.getElementById('temperature');
-            
-            const frequencyValue = document.getElementById('frequency-value');
-            const temperatureValue = document.getElementById('temperature-value');
-            
-            const noiseFigure = document.getElementById('noise-figure');
-            const rfGain = document.getElementById('rf-gain');
-            const p1db = document.getElementById('p1db');
-            const ip3 = document.getElementById('ip3');
-            
-            // 创建图表
-            const ctx = document.getElementById('rf-noise-chart').getContext('2d');
-            const rfChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['0.1GHz', '0.5GHz', '1GHz', '2GHz', '5GHz', '10GHz'],
-                    datasets: [{
-                        label: '噪声系数 (dB)',
-                        data: [0.5, 0.8, 1.2, 1.8, 2.5, 3.5],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }, {
-                        label: '增益 (dB)',
-                        data: [20, 19, 18, 16, 14, 12],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '值 (dB)'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '频率'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 创建史密斯圆图
-            const smithCtx = document.getElementById('smith-chart').getContext('2d');
-            const smithChart = new Chart(smithCtx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: '阻抗点',
-                        data: [
-                            {x: 0.3, y: 0.4},
-                            {x: 0.5, y: 0.2},
-                            {x: 0.7, y: -0.1},
-                            {x: 0.9, y: -0.3}
-                        ],
-                        backgroundColor: '#3498db',
-                        pointRadius: 5
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            min: -1.5,
-                            max: 1.5,
-                            title: {
-                                display: true,
-                                text: '实部'
-                            }
-                        },
-                        y: {
-                            min: -1.5,
-                            max: 1.5,
-                            title: {
-                                display: true,
-                                text: '虚部'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 创建线性度图表
-            const linearityCtx = document.getElementById('linearity-chart').getContext('2d');
-            const linearityChart = new Chart(linearityCtx, {
-                type: 'line',
-                data: {
-                    labels: ['-60', '-50', '-40', '-30', '-20', '-10', '0', '10'],
-                    datasets: [{
-                        label: '基波输出 (dBm)',
-                        data: [-60, -50, -40, -30, -20, -10, 0, 9],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: false
-                    }, {
-                        label: '三阶互调 (dBm)',
-                        data: [-180, -150, -120, -90, -60, -30, 0, 15],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: false
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            title: {
-                                display: true,
-                                text: '输出功率 (dBm)'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '输入功率 (dBm)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            function updateRFNoise() {
-                const type = deviceType.value;
-                const freq = parseFloat(frequency.value);
-                const temp = parseFloat(temperature.value);
-                
-                // 更新显示值
-                frequencyValue.textContent = `${freq} GHz`;
-                temperatureValue.textContent = `${temp}°C`;
-                
-                // 计算性能参数（简化模型）
-                let noiseFigureValue, gainValue, p1dbValue, ip3Value;
-                
-                switch(type) {
-                    case 'lna':
-                        noiseFigureValue = 0.5 + 0.2 * freq + 0.001 * temp;
-                        gainValue = 20 - 0.5 * freq;
-                        p1dbValue = -10 - 2 * freq;
-                        ip3Value = 5 - 2 * freq;
-                        break;
-                    case 'mixer':
-                        noiseFigureValue = 5 + 0.3 * freq + 0.002 * temp;
-                        gainValue = 0 - 0.2 * freq;
-                        p1dbValue = 0 - 2 * freq;
-                        ip3Value = 10 - 2 * freq;
-                        break;
-                    case 'vco':
-                        noiseFigureValue = 10 + 0.5 * freq + 0.003 * temp;
-                        gainValue = -5 - 0.1 * freq;
-                        p1dbValue = -5 - freq;
-                        ip3Value = 5 - freq;
-                        break;
-                    case 'pa':
-                        noiseFigureValue = 8 + 0.4 * freq + 0.002 * temp;
-                        gainValue = 25 - 0.8 * freq;
-                        p1dbValue = 20 - 1.5 * freq;
-                        ip3Value = 30 - 1.5 * freq;
-                        break;
-                }
-                
-                // 更新显示
-                noiseFigure.textContent = noiseFigureValue.toFixed(2);
-                rfGain.textContent = gainValue.toFixed(1);
-                p1db.textContent = p1dbValue.toFixed(1);
-                ip3.textContent = ip3Value.toFixed(1);
-                
-                // 更新图表
-                const frequencies = [0.1, 0.5, 1, 2, 5, 10];
-                const noiseData = frequencies.map(f => {
-                    let nf;
-                    switch(type) {
-                        case 'lna':
-                            nf = 0.5 + 0.2 * f + 0.001 * temp;
-                            break;
-                        case 'mixer':
-                            nf = 5 + 0.3 * f + 0.002 * temp;
-                            break;
-                        case 'vco':
-                            nf = 10 + 0.5 * f + 0.003 * temp;
-                            break;
-                        case 'pa':
-                            nf = 8 + 0.4 * f + 0.002 * temp;
-                            break;
-                    }
-                    return nf;
-                });
-                
-                const gainData = frequencies.map(f => {
-                    let g;
-                    switch(type) {
-                        case 'lna':
-                            g = 20 - 0.5 * f;
-                            break;
-                        case 'mixer':
-                            g = 0 - 0.2 * f;
-                            break;
-                        case 'vco':
-                            g = -5 - 0.1 * f;
-                            break;
-                        case 'pa':
-                            g = 25 - 0.8 * f;
-                            break;
-                    }
-                    return g;
-                });
-                
-                rfChart.data.datasets[0].data = noiseData;
-                rfChart.data.datasets[1].data = gainData;
-                rfChart.update();
-                
-                // 更新进度
-                if (rfTests < 2) {
-                    rfTests++;
-                    updateProgress();
-                }
-            }
-            
-            deviceType.addEventListener('change', updateRFNoise);
-            frequency.addEventListener('input', updateRFNoise);
-            temperature.addEventListener('input', updateRFNoise);
-            
-            // 初始化
-            updateRFNoise();
-        }
-        
-        // 混合信号干扰分析器
-        function initMixedSignalAnalyzer() {
-            const digitalActivity = document.getElementById('digital-activity');
-            const supplySeparation = document.getElementById('supply-separation');
-            const groundIsolation = document.getElementById('ground-isolation');
-            
-            const digitalActivityValue = document.getElementById('digital-activity-value');
-            const supplySeparationValue = document.getElementById('supply-separation-value');
-            const groundIsolationValue = document.getElementById('ground-isolation-value');
-            
-            const analogNoise = document.getElementById('analog-noise');
-            const digitalGlitch = document.getElementById('digital-glitch');
-            const snr = document.getElementById('snr');
-            const enob = document.getElementById('enob');
-            
-            // 创建图表
-            const ctx = document.getElementById('mixed-signal-chart').getContext('2d');
-            const mixedChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
-                    datasets: [{
-                        label: '模拟噪声 (μV)',
-                        data: [10, 15, 25, 40, 60, 85, 115, 150, 190, 235, 285],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }, {
-                        label: '数字毛刺 (mV)',
-                        data: [5, 8, 12, 18, 25, 33, 42, 52, 63, 75, 88],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '噪声/毛刺'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '数字活动 (%)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            function updateMixedSignal() {
-                const activity = parseFloat(digitalActivity.value);
-                const supplySep = parseFloat(supplySeparation.value);
-                const groundIso = parseFloat(groundIsolation.value);
-                
-                // 更新显示值
-                digitalActivityValue.textContent = `${activity}%`;
-                supplySeparationValue.textContent = `${supplySep} dB`;
-                groundIsolationValue.textContent = `${groundIso} dB`;
-                
-                // 计算性能参数（简化模型）
-                const baseAnalogNoise = 10;
-                const baseDigitalGlitch = 5;
-                
-                const analogNoiseValue = baseAnalogNoise * (1 + activity / 20) * (40 / supplySep);
-                const digitalGlitchValue = baseDigitalGlitch * (1 + activity / 15) * (40 / groundIso);
-                const snrValue = 20 * Math.log10(1000 / analogNoiseValue); // 假设信号幅度为1mV
-                const enobValue = (snrValue - 1.76) / 6.02; // SNR到ENOB的转换公式
-                
-                // 更新显示
-                analogNoise.textContent = analogNoiseValue.toFixed(1);
-                digitalGlitch.textContent = digitalGlitchValue.toFixed(2);
-                snr.textContent = snrValue.toFixed(1);
-                enob.textContent = enobValue.toFixed(1);
-                
-                // 更新图表
-                const activities = Array.from({length: 11}, (_, i) => i * 10);
-                const analogNoiseData = activities.map(a => baseAnalogNoise * (1 + a / 20) * (40 / supplySep));
-                const digitalGlitchData = activities.map(a => baseDigitalGlitch * (1 + a / 15) * (40 / groundIso));
-                
-                mixedChart.data.datasets[0].data = analogNoiseData;
-                mixedChart.data.datasets[1].data = digitalGlitchData;
-                mixedChart.update();
-                
-                // 更新进度
-                if (mixedSignalSimulations < 2) {
-                    mixedSignalSimulations++;
-                    updateProgress();
-                }
-            }
-            
-            digitalActivity.addEventListener('input', updateMixedSignal);
-            supplySeparation.addEventListener('input', updateMixedSignal);
-            groundIsolation.addEventListener('input', updateMixedSignal);
-            
-            // 初始化
-            updateMixedSignal();
-        }
-        
-        // 进度跟踪
-        function updateProgress() {
-            // 更新运算放大器进度
-            document.getElementById('opamp-progress').textContent = `${opampExperiments}/2 已完成`;
-            
-            // 更新射频器件进度
-            document.getElementById('rf-progress').textContent = `${rfTests}/2 已完成`;
-            
-            // 更新混合信号进度
-            document.getElementById('mixed-progress').textContent = `${mixedSignalSimulations}/2 已完成`;
-            
-            // 保存进度
-            saveProgress();
-        }
-        
-        // 保存进度
-        function saveProgress() {
-            const progress = {
-                opampExperiments,
-                rfTests,
-                mixedSignalSimulations
-            };
-            
-            localStorage.setItem('chapter6-progress', JSON.stringify(progress));
-        }
-        
-        // 加载进度
-        function loadProgress() {
-            const savedProgress = localStorage.getItem('chapter6-progress');
-            if (savedProgress) {
-                const progress = JSON.parse(savedProgress);
-                opampExperiments = progress.opampExperiments || 0;
-                rfTests = progress.rfTests || 0;
-                mixedSignalSimulations = progress.mixedSignalSimulations || 0;
-                
-                updateProgress();
-            }
-        }
-        
-        // 加载进度
-        loadProgress();
     </script>
 </body>
 </html>

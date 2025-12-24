@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第十四章：后摩尔时代器件技术 - SEMI_PROJ</title>
+    <title>第14章：图形化与掺杂技术 - SEMI_PROJ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -203,61 +203,67 @@
             display: block;
         }
         
-        .roadmap {
-            position: relative;
-            padding: 20px 0;
-        }
-        
-        .roadmap-line {
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: #3498db;
-        }
-        
-        .roadmap-item {
-            position: relative;
-            padding-left: 70px;
-            margin-bottom: 30px;
-        }
-        
-        .roadmap-dot {
-            position: absolute;
-            left: 18px;
-            top: 5px;
-            width: 28px;
-            height: 28px;
-            background: #3498db;
-            border-radius: 50%;
+        .process-flow {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
-            color: white;
-            font-weight: bold;
+            gap: 20px;
+            margin: 20px 0;
         }
         
-        .roadmap-content {
-            background: #f8f9fa;
+        .process-step {
+            background: white;
             border-radius: 8px;
-            padding: 15px;
-            border-left: 4px solid #3498db;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
         }
         
-        .roadmap-year {
+        .process-step::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #3498db;
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .process-icon {
+            font-size: 36px;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+        
+        .process-title {
             font-weight: bold;
-            color: #2c3e50;
             margin-bottom: 5px;
+            color: #2c3e50;
         }
         
-        .result-display {
-            background: #2c3e50;
-            color: white;
+        .equation-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
             padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
+            margin: 15px 0;
             font-family: monospace;
+        }
+        
+        .equation {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .equation-description {
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
@@ -276,6 +282,9 @@
                     <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
                     <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
                     <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
+                    <li><a href="../index.html#part5" class="nav-link">第五部分</a></li>
+                    <li><a href="../index.html#part6" class="nav-link">第六部分</a></li>
+                    <li><a href="../index.html#part7" class="nav-link">第七部分</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle">
@@ -302,56 +311,68 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
+                </a>
                 <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                    第1章：量子力学基础与固体中的电子
                 </a>
                 <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                    第2章：半导体材料与晶体结构
                 </a>
                 <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
+                    第3章：载流子统计与热平衡
                 </a>
                 <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                    第4章：载流子输运现象
                 </a>
                 <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                    第5章：非平衡载流子与复合动力学
                 </a>
                 <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item ">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
                 <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                    第8章：MOS结构物理
                 </a>
                 <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                    第9章：异质结与能带调控
                 </a>
                 <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
                 </a>
                 <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
                 <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                    第13章：晶圆制备与薄膜工程
                 </a>
                 <a href="chapter14.html" class="chapter-nav-item active">
-                    第14章：后摩尔时代器件技术
+                    第14章：图形化与掺杂技术
                 </a>
                 <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                    第15章：工艺集成与后端互连
                 </a>
                 <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                    第16章：半导体材料与器件表征
                 </a>
                 <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
             
@@ -360,14 +381,17 @@
                     <h4>当前章节</h4>
                     <nav class="section-nav">
 
-                    <a href="#beyond-moore" class="section-nav-item">
-                        超越摩尔定律
+                    <a href="#lithography" class="section-nav-item">
+                        光刻工艺流程
                     </a>
-                    <a href="#new-materials" class="section-nav-item">
-                        新材料技术
+                    <a href="#lithography-enhancement" class="section-nav-item">
+                        光刻分辨率增强技术
                     </a>
-                    <a href="#novel-structures" class="section-nav-item">
-                        新型结构
+                    <a href="#etching" class="section-nav-item">
+                        刻蚀技术
+                    </a>
+                    <a href="#doping" class="section-nav-item">
+                        掺杂技术
                     </a>
                     <a href="#chapter-summary" class="section-nav-item">
                         本章小结
@@ -381,212 +405,217 @@
     <main class="main-content">
         <div class="chapter-container">
         <div class="chapter-header">
-            <h1>第十四章：后摩尔时代器件技术</h1>
-            <p class="chapter-intro">探索超越传统摩尔定律的创新器件技术，包括三维集成、新型存储器、量子器件等前沿技术，了解半导体行业在后摩尔时代的发展方向和挑战。</p>
+            <h1>第十四章：图形化与掺杂技术</h1>
+            <div class="chapter-core">
+                <h3>核心内容</h3>
+                <p>详解光刻工艺流程：涂胶、曝光、显影。介绍光学光刻分辨率增强技术（如相移掩模）及下一代光刻技术（极紫外EUV）。讲解刻蚀技术：湿法刻蚀与干法（等离子体）刻蚀，以及各向异性与选择性。阐述掺杂技术：扩散与离子注入，以及注入后的快速热退火（RTA）激活。</p>
+            </div>
+            
+            <div class="chapter-objectives">
+                <h3>章节目标</h3>
+                <ul>
+                    <li>掌握实现器件图形转移和选择性掺杂的核心工艺步骤</li>
+                    <li>理解光刻分辨率面临的挑战及解决方案</li>
+                    <li>掌握不同刻蚀技术的原理和应用场景</li>
+                    <li>理解掺杂技术的工作原理和工艺控制</li>
+                    <li>了解先进光刻和掺杂技术的发展趋势</li>
+                </ul>
+            </div>
+            
+            <div class="chapter-keywords">
+                <h3>关键词</h3>
+                <div class="keywords-list">
+                    <span class="keyword">光刻</span>
+                    <span class="keyword">光刻胶</span>
+                    <span class="keyword">曝光</span>
+                    <span class="keyword">显影</span>
+                    <span class="keyword">极紫外（EUV）光刻</span>
+                    <span class="keyword">刻蚀</span>
+                    <span class="keyword">各向异性</span>
+                    <span class="keyword">选择性</span>
+                    <span class="keyword">扩散</span>
+                    <span class="keyword">离子注入</span>
+                    <span class="keyword">快速热退火（RTA）</span>
+                </div>
+            </div>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">后摩尔时代技术概览</h2>
-            <p>随着传统CMOS技术接近物理极限，半导体行业正在探索多种超越摩尔定律的创新技术路径。这些技术不仅在尺寸上继续缩小，更在功能、架构和材料等方面实现突破。</p>
+        <div class="section" id="lithography">
+            <h2 class="section-title">14.1 光刻工艺流程</h2>
+            <p>光刻是半导体制造中实现图形转移的核心工艺，通过一系列步骤将设计好的图案从掩模转移到晶圆表面。</p>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-wind"></i></div>
+                    <div class="process-title">表面预处理</div>
+                    <div class="process-description">清洁晶圆表面，增强光刻胶附着力</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-paint-brush"></i></div>
+                    <div class="process-title">涂胶</div>
+                    <div class="process-description">旋转涂胶，形成均匀光刻胶层</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-temperature-high"></i></div>
+                    <div class="process-title">软烘</div>
+                    <div class="process-description">蒸发溶剂，增强光刻胶稳定性</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="process-title">曝光</div>
+                    <div class="process-description">掩模图案投影到光刻胶上</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-temperature-high"></i></div>
+                    <div class="process-title">曝光后烘焙</div>
+                    <div class="process-description">促进化学反应，提高分辨率</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-tint"></i></div>
+                    <div class="process-title">显影</div>
+                    <div class="process-description">去除曝光或未曝光的光刻胶</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon"><i class="fas fa-fire"></i></div>
+                    <div class="process-title">硬烘</div>
+                    <div class="process-description">固化光刻胶，增强刻蚀抗性</div>
+                </div>
+            </div>
+            
+            <div class="interactive-tool">
+                <div class="tool-title">
+                    <i class="fas fa-sliders-h"></i>
+                    光刻工艺参数优化
+                </div>
+                
+                <div class="control-group">
+                    <label>旋转速度 (转/分钟)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="spin-speed" class="slider" min="1000" max="10000" value="5000" oninput="updateLithoSimulation()">
+                        <span class="slider-value" id="spin-speed-value">5000</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>光刻胶厚度 (纳米)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="resist-thickness" class="slider" min="50" max="500" value="200" oninput="updateLithoSimulation()">
+                        <span class="slider-value" id="resist-thickness-value">200</span>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>曝光剂量 (mJ/cm²)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="exposure-dose" class="slider" min="10" max="200" value="80" oninput="updateLithoSimulation()">
+                        <span class="slider-value" id="exposure-dose-value">80</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="litho-results-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="lithography-enhancement">
+            <h2 class="section-title">14.2 光刻分辨率增强技术</h2>
+            <p>随着器件尺寸不断缩小，传统光学光刻面临分辨率极限，需要采用多种分辨率增强技术来突破限制。</p>
+            
+            <h3>14.2.1 瑞利分辨率公式</h3>
+            <div class="equation-box">
+                <p class="equation">R = k₁ · λ / NA</p>
+                <p class="equation-description">其中：</p>
+                <p class="equation-description">R：分辨率（最小可分辨线宽）</p>
+                <p class="equation-description">k₁：工艺因子（与光刻胶、掩模等相关，理论最小值约0.25）</p>
+                <p class="equation-description">λ：曝光波长</p>
+                <p class="equation-description">NA：数值孔径（NA = n · sinθ，n为介质折射率，θ为最大半角）</p>
+            </div>
+            
+            <h3>14.2.2 分辨率增强技术 (RET)</h3>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="switchTab('overview', 'scaling')">延续摩尔定律</button>
-                    <button class="tab-button" onclick="switchTab('overview', 'beyond')">超越摩尔定律</button>
-                    <button class="tab-button" onclick="switchTab('overview', 'more')">扩展摩尔定律</button>
+                    <button class="tab-button active" onclick="switchTab('ret', 'opc')">光学邻近校正 (OPC)</button>
+                    <button class="tab-button" onclick="switchTab('ret', 'psm')">相移掩模 (PSM)</button>
+                    <button class="tab-button" onclick="switchTab('ret', 'dfm')">设计与工艺协同 (DFM)</button>
+                    <button class="tab-button" onclick="switchTab('ret', 'immersion')">沉浸式光刻</button>
                 </div>
                 
-                <div id="scaling" class="tab-pane active">
-                    <h3>延续摩尔定律 (More Moore)</h3>
-                    <p>继续沿传统路径缩小晶体管尺寸，提高集成度和性能：</p>
+                <div id="opc" class="tab-pane active">
+                    <h4>光学邻近校正 (OPC)</h4>
+                    <p>通过修改掩模图案来补偿光学系统的衍射效应，提高光刻图案的保真度。</p>
                     <ul>
-                        <li>FinFET与GAA晶体管技术</li>
-                        <li>极紫外光刻技术(EUV)</li>
-                        <li>多图案化技术</li>
-                        <li>原子层沉积与刻蚀技术</li>
+                        <li>预畸变技术：在掩模上故意引入相反的畸变</li>
+                        <li>亚分辨率辅助特征 (SRAF)：在主图案周围添加小尺寸辅助特征</li>
+                        <li>基于模型的OPC：使用光刻模型精确计算掩模修正</li>
                     </ul>
-                    <div class="chart-container">
-                        <canvas id="scaling-chart"></canvas>
-                    </div>
                 </div>
                 
-                <div id="beyond" class="tab-pane">
-                    <h3>超越摩尔定律 (Beyond Moore)</h3>
-                    <p>探索非传统CMOS器件和计算范式：</p>
+                <div id="psm" class="tab-pane">
+                    <h4>相移掩模 (PSM)</h4>
+                    <p>通过在掩模上引入相位差，增强光刻图案的对比度和分辨率。</p>
                     <ul>
-                        <li>量子计算与量子器件</li>
-                        <li>神经形态计算器件</li>
-                        <li>自旋电子学器件</li>
-                        <li>单电子晶体管</li>
+                        <li>交替型相移掩模：相邻透光区域相位相差180°，增强对比度</li>
+                        <li>衰减型相移掩模：部分区域使用半透明材料，降低背景光强</li>
+                        <li>边缘增强型相移掩模：仅在图案边缘引入相移</li>
                     </ul>
-                    <div class="chart-container">
-                        <canvas id="beyond-chart"></canvas>
-                    </div>
                 </div>
                 
-                <div id="more" class="tab-pane">
-                    <h3>扩展摩尔定律 (More than Moore)</h3>
-                    <p>通过功能集成和系统级创新提升价值：</p>
+                <div id="dfm" class="tab-pane">
+                    <h4>设计与工艺协同 (DFM)</h4>
+                    <p>在芯片设计阶段考虑工艺限制，优化设计规则，提高可制造性。</p>
                     <ul>
-                        <li>三维集成与先进封装</li>
-                        <li>异构集成技术</li>
-                        <li>传感器与执行器集成</li>
-                        <li>射频与功率器件集成</li>
+                        <li>可制造性设计规则检查 (DRC)</li>
+                        <li>光刻友好型设计</li>
+                        <li>热点检测与修复</li>
+                        <li>统计工艺控制</li>
                     </ul>
-                    <div class="chart-container">
-                        <canvas id="more-chart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">三维集成技术</h2>
-            <p>三维集成通过垂直堆叠多层芯片，突破传统平面集成的限制，实现更高的集成密度和更短的互连距离。</p>
-            
-            <div class="interactive-tool">
-                <div class="tool-title">
-                    <i class="fas fa-cube"></i>
-                    三维集成技术比较器
                 </div>
                 
-                <div class="control-group">
-                    <label>选择比较的技术类型：</label>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button class="btn btn-primary" onclick="compare3D('tsv')">硅通孔(TSV)</button>
-                        <button class="btn btn-primary" onclick="compare3D('monolithic')">单片3D</button>
-                        <button class="btn btn-primary" onclick="compare3D('fanout')">扇出型封装</button>
-                        <button class="btn btn-primary" onclick="compare3D('hybrid')">混合键合</button>
-                    </div>
+                <div id="immersion" class="tab-pane">
+                    <h4>沉浸式光刻</h4>
+                    <p>将光刻镜头与晶圆之间的介质从空气（n≈1）改为水（n≈1.43），提高数值孔径。</p>
+                    <ul>
+                        <li>193nm沉浸式光刻：NA可达1.35-1.44</li>
+                        <li>可将193nm光刻分辨率从约65nm提高到22nm以下</li>
+                        <li>需要特殊的光刻胶和晶圆处理技术</li>
+                    </ul>
                 </div>
-                
-                <div class="chart-container">
-                    <canvas id="3d-comparison-chart"></canvas>
-                </div>
-                
-                <table class="comparison-table" id="3d-comparison-table">
-                    <thead>
-                        <tr>
-                            <th>技术参数</th>
-                            <th>硅通孔(TSV)</th>
-                            <th>单片3D</th>
-                            <th>扇出型封装</th>
-                            <th>混合键合</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>互连密度</td>
-                            <td>高</td>
-                            <td>极高</td>
-                            <td>中等</td>
-                            <td>极高</td>
-                        </tr>
-                        <tr>
-                            <td>热管理</td>
-                            <td>中等</td>
-                            <td>挑战</td>
-                            <td>良好</td>
-                            <td>良好</td>
-                        </tr>
-                        <tr>
-                            <td>成本</td>
-                            <td>高</td>
-                            <td>极高</td>
-                            <td>中等</td>
-                            <td>高</td>
-                        </tr>
-                        <tr>
-                            <td>成熟度</td>
-                            <td>成熟</td>
-                            <td>发展中</td>
-                            <td>成熟</td>
-                            <td>发展中</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
             
-            <div class="interactive-tool">
-                <div class="tool-title">
-                    <i class="fas fa-layer-group"></i>
-                    3D堆叠层数优化模拟器
-                </div>
-                
-                <div class="control-group">
-                    <label>堆叠层数：</label>
-                    <div class="slider-container">
-                        <input type="range" id="stack-layers" class="slider" min="2" max="16" value="4" oninput="updateStackSimulation()">
-                        <span class="slider-value" id="stack-layers-value">4</span>
-                    </div>
-                </div>
-                
-                <div class="control-group">
-                    <label>每层晶体管密度(亿/平方厘米)：</label>
-                    <div class="slider-container">
-                        <input type="range" id="layer-density" class="slider" min="1" max="100" value="10" oninput="updateStackSimulation()">
-                        <span class="slider-value" id="layer-density-value">10</span>
-                    </div>
-                </div>
-                
-                <div class="control-group">
-                    <label>层间互连间距(纳米)：</label>
-                    <div class="slider-container">
-                        <input type="range" id="interconnect-pitch" class="slider" min="10" max="100" value="50" oninput="updateStackSimulation()">
-                        <span class="slider-value" id="interconnect-pitch-value">50</span>
-                    </div>
-                </div>
-                
-                <div class="chart-container">
-                    <canvas id="stack-performance-chart"></canvas>
-                </div>
-                
-                <div class="result-display" id="stack-result">
-                    计算结果将显示在这里...
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">新型存储器技术</h2>
-            <p>随着传统存储器技术接近物理极限，新型存储器技术正在崛起，提供更高的密度、更低的功耗和更好的性能。</p>
+            <h3>14.2.3 下一代光刻技术</h3>
             
             <div class="technology-card">
                 <div class="tech-header">
                     <div class="tech-icon">
-                        <i class="fas fa-memory"></i>
+                        <i class="fas fa-atom"></i>
                     </div>
-                    <div class="tech-title">相变存储器(PCRAM)</div>
+                    <div class="tech-title">极紫外（EUV）光刻</div>
                 </div>
-                <p>利用材料在晶态和非晶态之间的可逆相变来存储数据，具有非易失性、高速度和良好耐久性的特点。</p>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 75%;">存储密度: 75%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 85%;">读写速度: 85%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 70%;">功耗效率: 70%</div>
-                </div>
+                <p>使用13.5nm的极紫外光作为曝光光源，可实现7nm及以下节点的光刻需求。</p>
+                <ul>
+                    <li>极高的分辨率：理论分辨率可达3nm</li>
+                    <li>简化工艺流程：减少多重曝光步骤</li>
+                    <li>技术挑战：光源功率低、掩模寿命短、光刻胶敏感性差</li>
+                    <li>应用：5nm、3nm及以下工艺节点</li>
+                </ul>
             </div>
             
             <div class="technology-card">
                 <div class="tech-header">
                     <div class="tech-icon">
-                        <i class="fas fa-magnet"></i>
+                        <i class="fas fa-microscope"></i>
                     </div>
-                    <div class="tech-title">磁性存储器(MRAM)</div>
+                    <div class="tech-title">电子束光刻（EBL）</div>
                 </div>
-                <p>利用磁性材料的磁化方向存储数据，具有非易失性、高速度和几乎无限的耐久性。</p>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 65%;">存储密度: 65%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 90%;">读写速度: 90%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 80%;">功耗效率: 80%</div>
-                </div>
+                <p>使用聚焦电子束直接在光刻胶上写入图案，具有极高的分辨率。</p>
+                <ul>
+                    <li>超高分辨率：可达10nm以下</li>
+                    <li>无需掩模：适合小批量生产和研发</li>
+                    <li>缺点：写入速度慢，不适合大规模生产</li>
+                    <li>应用：掩模制造、特殊器件加工、研发</li>
+                </ul>
             </div>
             
             <div class="technology-card">
@@ -594,599 +623,375 @@
                     <div class="tech-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <div class="tech-title">阻变存储器(ReRAM)</div>
+                    <div class="tech-title">离子束光刻（IBL）</div>
                 </div>
-                <p>通过材料的电阻变化来存储数据，具有结构简单、高密度和低功耗的特点。</p>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 90%;">存储密度: 90%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 75%;">读写速度: 75%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 85%;">功耗效率: 85%</div>
-                </div>
-            </div>
-            
-            <div class="technology-card">
-                <div class="tech-header">
-                    <div class="tech-icon">
-                        <i class="fas fa-atom"></i>
-                    </div>
-                    <div class="tech-title">铁电存储器(FeRAM)</div>
-                </div>
-                <p>利用铁电材料的极化状态存储数据，具有低功耗、高速度和良好耐久性的特点。</p>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 60%;">存储密度: 60%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 95%;">读写速度: 95%</div>
-                </div>
-                <div class="advantage-bar">
-                    <div class="advantage-fill" style="width: 90%;">功耗效率: 90%</div>
-                </div>
+                <p>使用聚焦离子束进行光刻，具有极高的分辨率和选择性。</p>
+                <ul>
+                    <li>分辨率：可达5nm以下</li>
+                    <li>可直接刻蚀：无需后续刻蚀步骤</li>
+                    <li>缺点：写入速度慢，成本高</li>
+                    <li>应用：纳米器件制造、掩模修复</li>
+                </ul>
             </div>
             
             <div class="interactive-tool">
                 <div class="tool-title">
                     <i class="fas fa-chart-bar"></i>
-                    新型存储器性能对比
+                    不同光刻技术性能对比
                 </div>
                 <div class="chart-container">
-                    <canvas id="memory-comparison-chart"></canvas>
+                    <canvas id="litho-tech-comparison-chart"></canvas>
                 </div>
             </div>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">新兴计算范式</h2>
-            <p>后摩尔时代不仅需要器件技术的创新，还需要计算范式的变革，包括量子计算、神经形态计算等新兴领域。</p>
+        <div class="section" id="etching">
+            <h2 class="section-title">14.3 刻蚀技术</h2>
+            <p>刻蚀是将光刻定义的图案转移到晶圆表面薄膜或衬底上的工艺，根据刻蚀机制可分为湿法刻蚀和干法刻蚀。</p>
+            
+            <h3>14.3.1 湿法刻蚀</h3>
+            <p>湿法刻蚀使用化学溶液与被刻蚀材料发生化学反应，将材料溶解去除。</p>
+            
+            <div class="equation-box">
+                <p class="equation">Si + 2H₂O₂ + 2HF → H₂SiF₆ + 3H₂O</p>
+                <p class="equation-description">硅的湿法刻蚀反应式</p>
+            </div>
+            
+            <h4>湿法刻蚀特点</h4>
+            <ul>
+                <li><strong>各向同性</strong>：各个方向刻蚀速率相同，存在侧蚀现象</li>
+                <li><strong>高选择性</strong>：对不同材料的刻蚀速率差异大</li>
+                <li><strong>高刻蚀速率</strong>：刻蚀速度快，适合批量生产</li>
+                <li><strong>设备简单</strong>：成本低，维护容易</li>
+                <li><strong>表面光滑</strong>：刻蚀表面质量好</li>
+                <li><strong>侧蚀问题</strong>：限制了精细化图案的刻蚀</li>
+            </ul>
+            
+            <h3>14.3.2 干法刻蚀</h3>
+            <p>干法刻蚀使用等离子体或离子束等物理或化学方法去除材料，是现代半导体制造的主要刻蚀技术。</p>
             
             <div class="tab-container">
                 <div class="tab-buttons">
-                    <button class="tab-button active" onclick="switchTab('computing', 'quantum')">量子计算</button>
-                    <button class="tab-button" onclick="switchTab('computing', 'neuromorphic')">神经形态计算</button>
-                    <button class="tab-button" onclick="switchTab('computing', 'spintronics')">自旋电子学</button>
+                    <button class="tab-button active" onclick="switchTab('etching', 'plasma')">等离子体刻蚀</button>
+                    <button class="tab-button" onclick="switchTab('etching', 'rie')">反应离子刻蚀 (RIE)</button>
+                    <button class="tab-button" onclick="switchTab('etching', 'icp')">电感耦合等离子体刻蚀 (ICP)</button>
+                    <button class="tab-button" onclick="switchTab('etching', 'mre')">磁增强反应离子刻蚀 (MERIE)</button>
                 </div>
                 
-                <div id="quantum" class="tab-pane active">
-                    <h3>量子计算</h3>
-                    <p>利用量子力学原理进行信息处理，有望解决传统计算机难以处理的复杂问题。</p>
-                    
-                    <div class="interactive-tool">
-                        <div class="tool-title">
-                            <i class="fas fa-atom"></i>
-                            量子比特稳定性模拟器
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>量子比特类型：</label>
-                            <select id="qubit-type" onchange="updateQuantumSimulation()">
-                                <option value="superconducting">超导量子比特</option>
-                                <option value="trapped">离子阱量子比特</option>
-                                <option value="photonic">光量子比特</option>
-                                <option value="silicon">硅量子点量子比特</option>
-                            </select>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>工作温度(毫开尔文)：</label>
-                            <div class="slider-container">
-                                <input type="range" id="quantum-temp" class="slider" min="10" max="1000" value="20" oninput="updateQuantumSimulation()">
-                                <span class="slider-value" id="quantum-temp-value">20</span>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>退相干时间(微秒)：</label>
-                            <div class="slider-container">
-                                <input type="range" id="decoherence-time" class="slider" min="10" max="1000" value="100" oninput="updateQuantumSimulation()">
-                                <span class="slider-value" id="decoherence-time-value">100</span>
-                            </div>
-                        </div>
-                        
-                        <div class="chart-container">
-                            <canvas id="quantum-performance-chart"></canvas>
-                        </div>
-                        
-                        <div class="result-display" id="quantum-result">
-                            量子计算性能分析结果将显示在这里...
-                        </div>
-                    </div>
+                <div id="plasma" class="tab-pane active">
+                    <h4>等离子体刻蚀</h4>
+                    <p>利用等离子体中的活性自由基与材料发生化学反应，实现刻蚀。</p>
+                    <ul>
+                        <li>主要依靠化学作用</li>
+                        <li>各向同性刻蚀</li>
+                        <li>高选择性</li>
+                        <li>较低的刻蚀速率</li>
+                        <li>应用：光刻胶灰化、表面清洁</li>
+                    </ul>
                 </div>
                 
-                <div id="neuromorphic" class="tab-pane">
-                    <h3>神经形态计算</h3>
-                    <p>模仿生物神经网络的结构和功能，实现高效的人工智能计算。</p>
-                    
-                    <div class="interactive-tool">
-                        <div class="tool-title">
-                            <i class="fas fa-brain"></i>
-                            神经形态芯片架构模拟器
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>神经元数量：</label>
-                            <div class="slider-container">
-                                <input type="range" id="neuron-count" class="slider" min="1000" max="1000000" value="100000" step="1000" oninput="updateNeuromorphicSimulation()">
-                                <span class="slider-value" id="neuron-count-value">100000</span>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>突触密度(每神经元)：</label>
-                            <div class="slider-container">
-                                <input type="range" id="synapse-density" class="slider" min="100" max="10000" value="1000" step="100" oninput="updateNeuromorphicSimulation()">
-                                <span class="slider-value" id="synapse-density-value">1000</span>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>精度等级：</label>
-                            <select id="precision-level" onchange="updateNeuromorphicSimulation()">
-                                <option value="1">1位(二值)</option>
-                                <option value="2">2位</option>
-                                <option value="4">4位</option>
-                                <option value="8">8位</option>
-                                <option value="16">16位</option>
-                                <option value="32">32位</option>
-                            </select>
-                        </div>
-                        
-                        <div class="chart-container">
-                            <canvas id="neuromorphic-performance-chart"></canvas>
-                        </div>
-                        
-                        <div class="result-display" id="neuromorphic-result">
-                            神经形态芯片性能分析结果将显示在这里...
-                        </div>
-                    </div>
+                <div id="rie" class="tab-pane">
+                    <h4>反应离子刻蚀 (RIE)</h4>
+                    <p>结合物理轰击和化学反应，实现各向异性刻蚀。</p>
+                    <ul>
+                        <li>物理作用：离子轰击增强化学反应</li>
+                        <li>化学作用：活性自由基与材料反应</li>
+                        <li>各向异性刻蚀：垂直方向刻蚀速率远大于横向</li>
+                        <li>中等选择性</li>
+                        <li>应用：接触孔刻蚀、金属刻蚀</li>
+                    </ul>
                 </div>
                 
-                <div id="spintronics" class="tab-pane">
-                    <h3>自旋电子学</h3>
-                    <p>利用电子的自旋自由度进行信息处理和存储，实现低功耗、高速度的器件。</p>
-                    
-                    <div class="interactive-tool">
-                        <div class="tool-title">
-                            <i class="fas fa-sync-alt"></i>
-                            自旋电子器件性能模拟器
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>器件类型：</label>
-                            <select id="spin-device-type" onchange="updateSpintronicsSimulation()">
-                                <option value="gmr">巨磁阻(GMR)器件</option>
-                                <option value="tmr">隧穿磁阻(TMR)器件</option>
-                                <option value="spinfet">自旋场效应晶体管</option>
-                                <option value="racetrack">赛道存储器</option>
-                            </select>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>磁阻变化率(%)：</label>
-                            <div class="slider-container">
-                                <input type="range" id="magnetoresistance" class="slider" min="10" max="1000" value="200" oninput="updateSpintronicsSimulation()">
-                                <span class="slider-value" id="magnetoresistance-value">200</span>
-                            </div>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>临界电流密度(安培/平方厘米)：</label>
-                            <div class="slider-container">
-                                <input type="range" id="critical-current" class="slider" min="1e5" max="1e8" value="1e6" step="1e5" oninput="updateSpintronicsSimulation()">
-                                <span class="slider-value" id="critical-current-value">1e6</span>
-                            </div>
-                        </div>
-                        
-                        <div class="chart-container">
-                            <canvas id="spintronics-performance-chart"></canvas>
-                        </div>
-                        
-                        <div class="result-display" id="spintronics-result">
-                            自旋电子器件性能分析结果将显示在这里...
-                        </div>
-                    </div>
+                <div id="icp" class="tab-pane">
+                    <h4>电感耦合等离子体刻蚀 (ICP)</h4>
+                    <p>使用电感耦合方式产生高密度等离子体，实现高刻蚀速率和良好的各向异性。</p>
+                    <ul>
+                        <li>高密度等离子体：10¹⁰-10¹² cm⁻³</li>
+                        <li>独立控制等离子体密度和离子能量</li>
+                        <li>高刻蚀速率：可达1-10 μm/min</li>
+                        <li>良好的各向异性和选择性</li>
+                        <li>应用：深硅刻蚀、高 aspect ratio 结构</li>
+                    </ul>
+                </div>
+                
+                <div id="mre" class="tab-pane">
+                    <h4>磁增强反应离子刻蚀 (MERIE)</h4>
+                    <p>在RIE基础上添加磁场，增强等离子体密度和刻蚀速率。</p>
+                    <ul>
+                        <li>磁场约束电子运动，增加等离子体密度</li>
+                        <li>提高刻蚀速率和各向异性</li>
+                        <li>适合硅、二氧化硅等材料的刻蚀</li>
+                        <li>应用：栅极刻蚀、浅槽隔离刻蚀</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">后摩尔时代技术发展路线图</h2>
-            <p>半导体行业正在通过多种技术路径应对摩尔定律放缓的挑战，形成多元化的发展格局。</p>
             
-            <div class="roadmap">
-                <div class="roadmap-line"></div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">1</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2020-2022：3nm/2nm工艺节点</div>
-                        <p>FinFET向GAA晶体管过渡，EUV光刻技术成熟，高数值孔径EUV研发加速。</p>
-                    </div>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">2</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2023-2025：先进封装与3D集成普及</div>
-                        <p>Chiplet架构成为主流，异构集成技术成熟，硅光子学开始商业化应用。</p>
-                    </div>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">3</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2026-2028：新型存储器商业化</div>
-                        <p>MRAM、ReRAM等新型存储器在特定应用领域取代传统存储器，存储级内存技术成熟。</p>
-                    </div>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">4</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2029-2032：量子计算实用化</div>
-                        <p>容错量子计算机实现，量子优势在特定问题中显现，量子-经典混合计算系统普及。</p>
-                    </div>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">5</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2033-2035：神经形态计算广泛应用</div>
-                        <p>大规模神经形态芯片实现，边缘AI计算效率大幅提升，类脑计算系统商业化。</p>
-                    </div>
-                </div>
-                
-                <div class="roadmap-item">
-                    <div class="roadmap-dot">6</div>
-                    <div class="roadmap-content">
-                        <div class="roadmap-year">2036-2040：后摩尔时代全面到来</div>
-                        <p>多种技术路径并行发展，专用计算架构普及，半导体行业进入多元化创新时代。</p>
-                    </div>
-                </div>
-            </div>
+            <h4>干法刻蚀特点</h4>
+            <ul>
+                <li><strong>各向异性</strong>：垂直方向刻蚀速率远大于横向，适合精细化图案</li>
+                <li><strong>可控性好</strong>：可精确控制刻蚀深度和轮廓</li>
+                <li><strong>适用范围广</strong>：可刻蚀多种材料</li>
+                <li><strong>适合复杂结构</strong>：可刻蚀高深宽比结构</li>
+                <li><strong>设备复杂</strong>：成本高，维护要求高</li>
+            </ul>
+            
+            <h3>14.3.3 刻蚀工艺参数</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>参数</th>
+                        <th>湿法刻蚀</th>
+                        <th>干法刻蚀</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>各向异性</td>
+                        <td>低</td>
+                        <td>高</td>
+                    </tr>
+                    <tr>
+                        <td>选择性</td>
+                        <td>高</td>
+                        <td>中到高</td>
+                    </tr>
+                    <tr>
+                        <td>刻蚀速率</td>
+                        <td>高</td>
+                        <td>中到高</td>
+                    </tr>
+                    <tr>
+                        <td>表面质量</td>
+                        <td>高</td>
+                        <td>中到高</td>
+                    </tr>
+                    <tr>
+                        <td>设备成本</td>
+                        <td>低</td>
+                        <td>高</td>
+                    </tr>
+                    <tr>
+                        <td>最小特征尺寸</td>
+                        <td>>1μm</td>
+                        <td><10nm</td>
+                    </tr>
+                    <tr>
+                        <td>适用材料</td>
+                        <td>有限</td>
+                        <td>广泛</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
-        <div class="section">
-            <h2 class="section-title">本章小结</h2>
-            <p>后摩尔时代的半导体技术发展呈现多元化趋势，不再单纯依赖尺寸缩小，而是通过材料创新、结构革新和计算范式变革来实现性能提升。三维集成、新型存储器和新兴计算范式等技术路径共同推动半导体行业持续发展，为信息技术的进步提供基础支撑。</p>
+        <div class="section" id="doping">
+            <h2 class="section-title">14.4 掺杂技术</h2>
+            <p>掺杂是向半导体中引入杂质原子，改变其电学性质的工艺，主要包括扩散和离子注入两种方法。</p>
+            
+            <h3>14.4.1 扩散掺杂</h3>
+            <p>扩散掺杂是利用热运动将杂质原子从高浓度区域向低浓度区域扩散，实现均匀掺杂。</p>
+            
+            <div class="equation-box">
+                <p class="equation">C(x, t) = C₀ · erfc(x / (2√(Dt)))</p>
+                <p class="equation-description">其中：</p>
+                <p class="equation-description">C(x, t)：深度x处的杂质浓度</p>
+                <p class="equation-description">C₀：表面杂质浓度</p>
+                <p class="equation-description">D：扩散系数</p>
+                <p class="equation-description">t：扩散时间</p>
+                <p class="equation-description">erfc：互补误差函数</p>
+            </div>
+            
+            <h4>扩散掺杂特点</h4>
+            <ul>
+                <li><strong>高温工艺</strong>：通常在800-1200°C下进行</li>
+                <li><strong>各向同性</strong>：杂质向各个方向扩散</li>
+                <li><strong>均匀性好</strong>：整片晶圆掺杂均匀</li>
+                <li><strong>掺杂深度深</strong>：适合深结掺杂</li>
+                <li><strong>污染风险</strong>：高温下易引入杂质</li>
+                <li><strong>图形分辨率低</strong>：受扩散效应限制</li>
+            </ul>
+            
+            <h3>14.4.2 离子注入</h3>
+            <p>离子注入将杂质离子加速到高能状态，直接注入到半导体中，实现精确的掺杂控制。</p>
+            
+            <h4>离子注入工艺步骤</h4>
+            <ol>
+                <li><strong>离子产生</strong>：在离子源中产生所需杂质离子</li>
+                <li><strong>质量分析</strong>：分离出所需的离子种类</li>
+                <li><strong>加速</strong>：将离子加速到所需能量</li>
+                <li><strong>聚焦与扫描</strong>：将离子束聚焦并扫描晶圆表面</li>
+                <li><strong>注入</strong>：离子注入到半导体中</li>
+                <li><strong>退火激活</strong>：修复晶格损伤，激活杂质</li>
+            </ol>
+            
+            <h4>离子注入特点</h4>
+            <ul>
+                <li><strong>精确控制</strong>：可精确控制掺杂浓度和深度</li>
+                <li><strong>低温工艺</strong>：注入过程在室温或低温下进行</li>
+                <li><strong>各向异性</strong>：主要沿离子入射方向注入</li>
+                <li><strong>掺杂深度浅</strong>：适合浅结掺杂</li>
+                <li><strong>图形化掺杂</strong>：可通过光刻胶掩模实现选择性掺杂</li>
+                <li><strong>晶格损伤</strong>：注入过程会产生晶格缺陷，需要退火修复</li>
+                <li><strong>剂量可控</strong>：可实现从低剂量（10¹¹ cm⁻²）到高剂量（10¹⁶ cm⁻²）的掺杂</li>
+            </ul>
+            
+            <h3>14.4.3 退火激活</h3>
+            <p>离子注入后，半导体晶格受到损伤，杂质原子处于间隙位置，需要通过退火工艺修复晶格并激活杂质。</p>
+            
+            <h4>主要退火技术</h4>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="tech-title">快速热退火 (RTA)</div>
+                </div>
+                <p>使用快速加热和冷却技术，在短时间内（几秒到几十秒）将晶圆加热到高温（800-1200°C）。</p>
+                <ul>
+                    <li>快速升温：升温速率可达100°C/s</li>
+                    <li>高温短时间：减少杂质扩散</li>
+                    <li>均匀性好：整片晶圆温度均匀</li>
+                    <li>减少热预算：降低晶圆变形风险</li>
+                    <li>主要应用：离子注入后激活、硅化物形成</li>
+                </ul>
+            </div>
+            
+            <div class="technology-card">
+                <div class="tech-header">
+                    <div class="tech-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="tech-title">激光退火</div>
+                </div>
+                <p>使用激光束扫描晶圆表面，实现局部高温退火。</p>
+                <ul>
+                    <li>超高升温速率：可达10⁶°C/s</li>
+                    <li>极短退火时间：纳秒到微秒级</li>
+                    <li>局部加热：仅加热表面薄层</li>
+                    <li>可实现选择性退火</li>
+                    <li>主要应用：超浅结激活、先进工艺节点</li>
+                </ul>
+            </div>
             
             <div class="interactive-tool">
                 <div class="tool-title">
-                    <i class="fas fa-graduation-cap"></i>
-                    章节测验
+                    <i class="fas fa-chart-line"></i>
+                    掺杂浓度分布模拟器
                 </div>
                 
-                <div id="quiz-container">
-                    <div class="quiz-question">
-                        <p>1. 下列哪项不属于"超越摩尔定律"的技术路径？</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q1" value="a"> a. 量子计算</label>
-                            <label><input type="radio" name="q1" value="b"> b. 三维集成</label>
-                            <label><input type="radio" name="q1" value="c"> c. 神经形态计算</label>
-                            <label><input type="radio" name="q1" value="d"> d. FinFET晶体管</label>
-                        </div>
+                <div class="control-group">
+                    <label>掺杂方式：</label>
+                    <select id="doping-method" onchange="updateDopingSimulation()">
+                        <option value="diffusion">扩散掺杂</option>
+                        <option value="implantation">离子注入</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>掺杂剂量 (cm⁻²)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="doping-dose" class="slider" min="1e13" max="1e16" value="1e15" step="1e13" oninput="updateDopingSimulation()">
+                        <span class="slider-value" id="doping-dose-value">1e15</span>
                     </div>
-                    
-                    <div class="quiz-question">
-                        <p>2. 下列哪种新型存储器技术具有最高的读写速度？</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q2" value="a"> a. 相变存储器(PCRAM)</label>
-                            <label><input type="radio" name="q2" value="b"> b. 磁性存储器(MRAM)</label>
-                            <label><input type="radio" name="q2" value="c"> c. 阻变存储器(ReRAM)</label>
-                            <label><input type="radio" name="q2" value="d"> d. 铁电存储器(FeRAM)</label>
-                        </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>退火温度 (°C)：</label>
+                    <div class="slider-container">
+                        <input type="range" id="anneal-temp" class="slider" min="700" max="1200" value="1000" oninput="updateDopingSimulation()">
+                        <span class="slider-value" id="anneal-temp-value">1000</span>
                     </div>
-                    
-                    <div class="quiz-question">
-                        <p>3. 三维集成技术中，哪种技术具有最高的互连密度？</p>
-                        <div class="quiz-options">
-                            <label><input type="radio" name="q3" value="a"> a. 硅通孔(TSV)</label>
-                            <label><input type="radio" name="q3" value="b"> b. 单片3D</label>
-                            <label><input type="radio" name="q3" value="c"> c. 扇出型封装</label>
-                            <label><input type="radio" name="q3" value="d"> d. 混合键合</label>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary" onclick="checkQuizAnswers()">提交答案</button>
-                    <div id="quiz-result" class="result-display" style="display: none;"></div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="doping-profile-chart"></canvas>
                 </div>
             </div>
+        </div>
+        
+        <div class="section" id="chapter-summary">
+            <h2 class="section-title">14.5 本章小结</h2>
+            <p>图形化与掺杂技术是半导体制造的核心工艺，直接影响器件的性能和集成度。本章介绍了光刻、刻蚀和掺杂三大关键工艺的原理、特点和应用。</p>
+            
+            <h3>核心要点</h3>
+            <ul>
+                <li>光刻是实现图形转移的核心工艺，包括涂胶、曝光、显影等步骤</li>
+                <li>光刻分辨率受瑞利公式限制，通过分辨率增强技术和新型光刻技术突破限制</li>
+                <li>刻蚀技术分为湿法刻蚀和干法刻蚀，干法刻蚀是现代半导体制造的主要技术</li>
+                <li>扩散和离子注入是两种主要的掺杂技术，各有优缺点和适用场景</li>
+                <li>离子注入后需要退火工艺修复晶格损伤，激活杂质</li>
+            </ul>
+            
+            <h3>技术发展趋势</h3>
+            <ul>
+                <li>EUV光刻技术将成为5nm及以下工艺节点的主流</li>
+                <li>多重曝光技术继续在先进工艺中发挥作用</li>
+                <li>干法刻蚀向更高选择性、更高各向异性方向发展</li>
+                <li>离子注入向更低能量、更高剂量精度方向发展</li>
+                <li>退火技术向更快速、更局部化方向发展</li>
+            </ul>
+            
+            <h3>学习成果</h3>
+            <p>通过本章学习，您应该能够：</p>
+            <ul>
+                <li>掌握光刻工艺的基本流程和原理</li>
+                <li>理解光刻分辨率的限制和突破方法</li>
+                <li>比较湿法刻蚀和干法刻蚀的优缺点</li>
+                <li>理解扩散和离子注入的工作原理</li>
+                <li>了解先进图形化和掺杂技术的发展趋势</li>
+            </ul>
         </div>
         
         <div class="navigation">
             <button class="btn btn-secondary" onclick="window.location.href='chapter13.html'">
-                <i class="fas fa-arrow-left"></i> 上一章：宽禁带半导体器件
+                <i class="fas fa-arrow-left"></i> 上一章：晶圆制备与薄膜工程
             </button>
             <button class="btn btn-primary" onclick="window.location.href='chapter15.html'">
-                下一章：器件设计与仿真工具 <i class="fas fa-arrow-right"></i>
+                下一章：工艺集成与后端互连 <i class="fas fa-arrow-right"></i>
             </button>
         </div>
     </main>
     
     <script>
         // 初始化图表
-        let scalingChart, beyondChart, moreChart;
-        let comparison3DChart, stackPerformanceChart;
-        let memoryComparisonChart;
-        let quantumPerformanceChart, neuromorphicPerformanceChart, spintronicsPerformanceChart;
+        let lithoResultsChart, lithoTechComparisonChart, dopingProfileChart;
         
         // 页面加载完成后初始化
         document.addEventListener('DOMContentLoaded', function() {
-            initOverviewCharts();
-            init3DComparisonChart();
-            initStackPerformanceChart();
-            initMemoryComparisonChart();
-            initQuantumPerformanceChart();
-            initNeuromorphicPerformanceChart();
-            initSpintronicsPerformanceChart();
+            initLithoResultsChart();
+            initLithoTechComparisonChart();
+            initDopingProfileChart();
         });
         
-        // 初始化概览图表
-        function initOverviewCharts() {
-            // 延续摩尔定律图表
-            const scalingCtx = document.getElementById('scaling-chart').getContext('2d');
-            scalingChart = new Chart(scalingCtx, {
+        // 初始化光刻结果图表
+        function initLithoResultsChart() {
+            const ctx = document.getElementById('litho-results-chart').getContext('2d');
+            lithoResultsChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['90nm', '65nm', '45nm', '32nm', '22nm', '14nm', '10nm', '7nm', '5nm', '3nm'],
-                    datasets: [{
-                        label: '晶体管密度(亿/平方毫米)',
-                        data: [0.1, 0.2, 0.4, 0.8, 1.5, 2.5, 4.0, 6.5, 10.0, 15.0],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'CMOS技术节点与晶体管密度发展趋势'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '晶体管密度(亿/平方毫米)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 超越摩尔定律图表
-            const beyondCtx = document.getElementById('beyond-chart').getContext('2d');
-            beyondChart = new Chart(beyondCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['计算速度', '能效比', '集成度', '成本效益', '技术成熟度'],
+                    labels: ['1000', '3000', '5000', '7000', '9000'],
                     datasets: [
                         {
-                            label: '量子计算',
-                            data: [90, 70, 30, 20, 40],
-                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                            borderColor: '#3498db',
-                            pointBackgroundColor: '#3498db'
-                        },
-                        {
-                            label: '神经形态计算',
-                            data: [70, 90, 60, 50, 60],
-                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                            borderColor: '#2ecc71',
-                            pointBackgroundColor: '#2ecc71'
-                        },
-                        {
-                            label: '自旋电子学',
-                            data: [60, 80, 70, 60, 70],
-                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
-                            borderColor: '#e74c3c',
-                            pointBackgroundColor: '#e74c3c'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: '新兴计算技术性能对比'
-                        }
-                    },
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-            
-            // 扩展摩尔定律图表
-            const moreCtx = document.getElementById('more-chart').getContext('2d');
-            moreChart = new Chart(moreCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['三维集成', '异构集成', '传感器集成', '射频集成', '功率集成'],
-                    datasets: [{
-                        label: '市场增长率(%)',
-                        data: [25, 30, 15, 20, 18],
-                        backgroundColor: [
-                            'rgba(52, 152, 219, 0.7)',
-                            'rgba(46, 204, 113, 0.7)',
-                            'rgba(231, 76, 60, 0.7)',
-                            'rgba(241, 196, 15, 0.7)',
-                            'rgba(155, 89, 182, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(52, 152, 219, 1)',
-                            'rgba(46, 204, 113, 1)',
-                            'rgba(231, 76, 60, 1)',
-                            'rgba(241, 196, 15, 1)',
-                            'rgba(155, 89, 182, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: '扩展摩尔定律技术市场增长率'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '年增长率(%)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        
-        // 初始化3D技术比较图表
-        function init3DComparisonChart() {
-            const ctx = document.getElementById('3d-comparison-chart').getContext('2d');
-            comparison3DChart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['互连密度', '热管理', '成本效益', '技术成熟度', '设计复杂度'],
-                    datasets: [
-                        {
-                            label: '硅通孔(TSV)',
-                            data: [75, 60, 50, 85, 70],
-                            backgroundColor: 'rgba(52, 152, 219, 0.2)',
-                            borderColor: '#3498db',
-                            pointBackgroundColor: '#3498db'
-                        },
-                        {
-                            label: '单片3D',
-                            data: [95, 30, 20, 40, 90],
-                            backgroundColor: 'rgba(46, 204, 113, 0.2)',
-                            borderColor: '#2ecc71',
-                            pointBackgroundColor: '#2ecc71'
-                        },
-                        {
-                            label: '扇出型封装',
-                            data: [60, 80, 70, 80, 50],
-                            backgroundColor: 'rgba(231, 76, 60, 0.2)',
-                            borderColor: '#e74c3c',
-                            pointBackgroundColor: '#e74c3c'
-                        },
-                        {
-                            label: '混合键合',
-                            data: [90, 75, 40, 50, 85],
-                            backgroundColor: 'rgba(241, 196, 15, 0.2)',
-                            borderColor: '#f1c40f',
-                            pointBackgroundColor: '#f1c40f'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: '三维集成技术性能对比'
-                        }
-                    },
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
-        }
-        
-        // 比较3D技术
-        function compare3D(techType) {
-            // 高亮显示选中的技术
-            const datasets = comparison3DChart.data.datasets;
-            
-            datasets.forEach(dataset => {
-                dataset.borderWidth = 1;
-                dataset.pointRadius = 3;
-            });
-            
-            // 根据技术类型设置高亮
-            let highlightIndex;
-            switch(techType) {
-                case 'tsv': highlightIndex = 0; break;
-                case 'monolithic': highlightIndex = 1; break;
-                case 'fanout': highlightIndex = 2; break;
-                case 'hybrid': highlightIndex = 3; break;
-            }
-            
-            datasets[highlightIndex].borderWidth = 3;
-            datasets[highlightIndex].pointRadius = 6;
-            
-            comparison3DChart.update();
-            
-            // 在表格中高亮对应行
-            const table = document.getElementById('3d-comparison-table');
-            const rows = table.getElementsByTagName('tr');
-            
-            // 重置所有行的背景色
-            for (let i = 1; i < rows.length; i++) {
-                rows[i].style.backgroundColor = '';
-            }
-            
-            // 高亮对应列
-            const columnIndex = highlightIndex + 1;
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].getElementsByTagName('td');
-                if (cells[columnIndex]) {
-                    cells[columnIndex].style.backgroundColor = 'rgba(52, 152, 219, 0.2)';
-                }
-            }
-        }
-        
-        // 初始化堆叠性能图表
-        function initStackPerformanceChart() {
-            const ctx = document.getElementById('stack-performance-chart').getContext('2d');
-            stackPerformanceChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['2层', '4层', '6层', '8层', '10层', '12层', '14层', '16层'],
-                    datasets: [
-                        {
-                            label: '总晶体管数量(十亿)',
-                            data: [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6],
+                            label: '光刻胶厚度 (nm)',
+                            data: [450, 300, 200, 150, 120],
                             borderColor: '#3498db',
                             backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            fill: true,
                             yAxisID: 'y'
                         },
                         {
-                            label: '互连延迟(皮秒)',
-                            data: [100, 80, 70, 65, 62, 60, 58, 57],
+                            label: '线宽偏差 (nm)',
+                            data: [25, 15, 10, 8, 12],
                             borderColor: '#e74c3c',
                             backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                            fill: true,
                             yAxisID: 'y1'
                         },
                         {
-                            label: '功耗(瓦特)',
-                            data: [10, 15, 22, 30, 40, 52, 65, 80],
+                            label: '均匀性 (%)',
+                            data: [85, 92, 95, 93, 90],
                             borderColor: '#2ecc71',
                             backgroundColor: 'rgba(46, 204, 113, 0.1)',
-                            fill: true,
                             yAxisID: 'y2'
                         }
                     ]
@@ -1197,7 +1002,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: '3D堆叠性能参数随层数变化'
+                            text: '光刻工艺参数对结果的影响'
                         }
                     },
                     scales: {
@@ -1207,7 +1012,7 @@
                             position: 'left',
                             title: {
                                 display: true,
-                                text: '晶体管数量(十亿)'
+                                text: '光刻胶厚度 (nm)'
                             }
                         },
                         y1: {
@@ -1216,7 +1021,7 @@
                             position: 'right',
                             title: {
                                 display: true,
-                                text: '互连延迟(皮秒)'
+                                text: '线宽偏差 (nm)'
                             },
                             grid: {
                                 drawOnChartArea: false
@@ -1225,9 +1030,19 @@
                         y2: {
                             type: 'linear',
                             display: false,
+                            position: 'right',
                             title: {
                                 display: true,
-                                text: '功耗(瓦特)'
+                                text: '均匀性 (%)'
+                            },
+                            grid: {
+                                drawOnChartArea: false
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '旋转速度 (rpm)'
                             }
                         }
                     }
@@ -1235,103 +1050,34 @@
             });
         }
         
-        // 更新堆叠模拟
-        function updateStackSimulation() {
-            const layers = document.getElementById('stack-layers').value;
-            const density = document.getElementById('layer-density').value;
-            const pitch = document.getElementById('interconnect-pitch').value;
-            
-            // 更新显示值
-            document.getElementById('stack-layers-value').textContent = layers;
-            document.getElementById('layer-density-value').textContent = density;
-            document.getElementById('interconnect-pitch-value').textContent = pitch;
-            
-            // 计算性能参数
-            const totalTransistors = layers * density / 10; // 转换为十亿
-            const interconnectDelay = 100 * Math.pow(0.9, layers-2) * (pitch/50);
-            const power = 10 * Math.pow(layers/2, 1.5) * (density/10);
-            const thermalChallenge = Math.pow(layers, 1.8) * Math.pow(density/10, 0.8);
-            
-            // 更新图表
-            const layerLabels = [];
-            const transistorData = [];
-            const delayData = [];
-            const powerData = [];
-            
-            for (let i = 2; i <= 16; i += 2) {
-                layerLabels.push(i + '层');
-                transistorData.push(i * density / 10);
-                delayData.push(100 * Math.pow(0.9, i-2) * (pitch/50));
-                powerData.push(10 * Math.pow(i/2, 1.5) * (density/10));
-            }
-            
-            stackPerformanceChart.data.labels = layerLabels;
-            stackPerformanceChart.data.datasets[0].data = transistorData;
-            stackPerformanceChart.data.datasets[1].data = delayData;
-            stackPerformanceChart.data.datasets[2].data = powerData;
-            stackPerformanceChart.update();
-            
-            // 更新结果文本
-            const resultText = `
-                3D堆叠性能分析结果：
-                总晶体管数量: ${totalTransistors.toFixed(2)} 十亿
-                互连延迟: ${interconnectDelay.toFixed(2)} 皮秒
-                预估功耗: ${power.toFixed(2)} 瓦特
-                热管理挑战指数: ${thermalChallenge.toFixed(2)}
-                推荐应用场景: ${getRecommendedScenario(layers, density, pitch)}
-            `;
-            
-            document.getElementById('stack-result').textContent = resultText;
-        }
-        
-        // 获取推荐应用场景
-        function getRecommendedScenario(layers, density, pitch) {
-            if (layers <= 4 && density <= 20) {
-                return "移动设备与消费电子产品";
-            } else if (layers <= 8 && density <= 50) {
-                return "高性能计算与人工智能加速器";
-            } else if (layers <= 12 && density <= 80) {
-                return "数据中心与企业级服务器";
-            } else {
-                return "尖端计算与科研应用(需先进散热方案)";
-            }
-        }
-        
-        // 初始化存储器比较图表
-        function initMemoryComparisonChart() {
-            const ctx = document.getElementById('memory-comparison-chart').getContext('2d');
-            memoryComparisonChart = new Chart(ctx, {
+        // 初始化光刻技术比较图表
+        function initLithoTechComparisonChart() {
+            const ctx = document.getElementById('litho-tech-comparison-chart').getContext('2d');
+            lithoTechComparisonChart = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['存储密度', '读写速度', '功耗效率', '耐久性', '成本效益', '技术成熟度'],
+                    labels: ['分辨率 (nm)', '生产率 (wafers/hour)', '成本 (相对值)', '成熟度', '工艺复杂度'],
                     datasets: [
                         {
-                            label: '相变存储器(PCRAM)',
-                            data: [75, 85, 70, 80, 60, 70],
+                            label: '193nm沉浸式光刻',
+                            data: [20, 200, 5, 9, 7],
                             backgroundColor: 'rgba(52, 152, 219, 0.2)',
                             borderColor: '#3498db',
                             pointBackgroundColor: '#3498db'
                         },
                         {
-                            label: '磁性存储器(MRAM)',
-                            data: [65, 90, 80, 95, 50, 75],
+                            label: 'EUV光刻',
+                            data: [5, 50, 10, 6, 9],
                             backgroundColor: 'rgba(46, 204, 113, 0.2)',
                             borderColor: '#2ecc71',
                             pointBackgroundColor: '#2ecc71'
                         },
                         {
-                            label: '阻变存储器(ReRAM)',
-                            data: [90, 75, 85, 70, 65, 60],
+                            label: '电子束光刻',
+                            data: [2, 1, 8, 8, 8],
                             backgroundColor: 'rgba(231, 76, 60, 0.2)',
                             borderColor: '#e74c3c',
                             pointBackgroundColor: '#e74c3c'
-                        },
-                        {
-                            label: '铁电存储器(FeRAM)',
-                            data: [60, 95, 90, 85, 70, 80],
-                            backgroundColor: 'rgba(241, 196, 15, 0.2)',
-                            borderColor: '#f1c40f',
-                            pointBackgroundColor: '#f1c40f'
                         }
                     ]
                 },
@@ -1341,211 +1087,50 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: '新型存储器技术综合性能对比'
+                            text: '不同光刻技术性能对比'
                         }
                     },
                     scales: {
                         r: {
                             beginAtZero: true,
-                            max: 100
+                            max: 10,
+                            ticks: {
+                                stepSize: 2
+                            }
                         }
                     }
                 }
             });
         }
         
-        // 初始化量子性能图表
-        function initQuantumPerformanceChart() {
-            const ctx = document.getElementById('quantum-performance-chart').getContext('2d');
-            quantumPerformanceChart = new Chart(ctx, {
+        // 初始化掺杂浓度分布图表
+        function initDopingProfileChart() {
+            const ctx = document.getElementById('doping-profile-chart').getContext('2d');
+            dopingProfileChart = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['10', '20', '50', '100', '200', '500', '1000'],
+                    labels: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
                     datasets: [
                         {
-                            label: '量子保真度',
-                            data: [99.5, 99.0, 98.0, 96.0, 92.0, 85.0, 75.0],
+                            label: '扩散掺杂',
+                            data: [1e19, 5e18, 2e18, 8e17, 3e17, 1e17, 4e16, 1e16, 3e15, 8e14, 2e14],
                             borderColor: '#3498db',
                             backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                            fill: true,
-                            tension: 0.3
+                            borderWidth: 2
                         },
                         {
-                            label: '门操作成功率',
-                            data: [99.0, 98.5, 97.0, 94.0, 88.0, 78.0, 65.0],
+                            label: '离子注入',
+                            data: [1e15, 5e17, 2e19, 5e19, 3e19, 1e19, 3e18, 5e17, 8e16, 1e16, 2e15],
                             borderColor: '#e74c3c',
                             backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                            fill: true,
-                            tension: 0.3
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: '量子比特性能与退相干时间关系'
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: '退相干时间(微秒)'
-                            }
-                        },
-                        y: {
-                            beginAtZero: false,
-                            min: 50,
-                            max: 100,
-                            title: {
-                                display: true,
-                                text: '性能指标(%)'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-        
-        // 更新量子模拟
-        function updateQuantumSimulation() {
-            const qubitType = document.getElementById('qubit-type').value;
-            const temperature = document.getElementById('quantum-temp').value;
-            const decoherenceTime = document.getElementById('decoherence-time').value;
-            
-            // 更新显示值
-            document.getElementById('quantum-temp-value').textContent = temperature;
-            document.getElementById('decoherence-time-value').textContent = decoherenceTime;
-            
-            // 根据量子比特类型设置基础参数
-            let baseFidelity, baseGateSuccess, tempSensitivity;
-            
-            switch(qubitType) {
-                case 'superconducting':
-                    baseFidelity = 99.5;
-                    baseGateSuccess = 99.0;
-                    tempSensitivity = 0.02;
-                    break;
-                case 'trapped':
-                    baseFidelity = 99.9;
-                    baseGateSuccess = 99.5;
-                    tempSensitivity = 0.001;
-                    break;
-                case 'photonic':
-                    baseFidelity = 98.5;
-                    baseGateSuccess = 98.0;
-                    tempSensitivity = 0.005;
-                    break;
-                case 'silicon':
-                    baseFidelity = 99.0;
-                    baseGateSuccess = 98.5;
-                    tempSensitivity = 0.01;
-                    break;
-            }
-            
-            // 计算温度影响
-            const tempFactor = Math.exp(-tempSensitivity * (temperature - 20));
-            
-            // 计算退相干时间影响
-            const coherenceFactor = Math.log(decoherenceTime / 10) / Math.log(100);
-            
-            // 计算最终性能
-            const fidelity = baseFidelity * tempFactor * coherenceFactor;
-            const gateSuccess = baseGateSuccess * tempFactor * coherenceFactor;
-            
-            // 更新图表
-            const timePoints = [10, 20, 50, 100, 200, 500, 1000];
-            const fidelityData = timePoints.map(t => {
-                const factor = Math.log(t / 10) / Math.log(100);
-                return Math.min(99.9, fidelity * factor);
-            });
-            
-            const gateSuccessData = timePoints.map(t => {
-                const factor = Math.log(t / 10) / Math.log(100);
-                return Math.min(99.9, gateSuccess * factor);
-            });
-            
-            quantumPerformanceChart.data.datasets[0].data = fidelityData;
-            quantumPerformanceChart.data.datasets[1].data = gateSuccessData;
-            quantumPerformanceChart.update();
-            
-            // 更新结果文本
-            const resultText = `
-                量子计算性能分析结果：
-                量子比特类型: ${getQubitTypeName(qubitType)}
-                工作温度: ${temperature} 毫开尔文
-                退相干时间: ${decoherenceTime} 微秒
-                量子保真度: ${fidelity.toFixed(2)}%
-                门操作成功率: ${gateSuccess.toFixed(2)}%
-                可实现量子体积: ${calculateQuantumVolume(fidelity, gateSuccess, decoherenceTime)}
-                适用应用场景: ${getQuantumApplication(fidelity, gateSuccess, decoherenceTime)}
-            `;
-            
-            document.getElementById('quantum-result').textContent = resultText;
-        }
-        
-        // 获取量子比特类型名称
-        function getQubitTypeName(type) {
-            switch(type) {
-                case 'superconducting': return "超导量子比特";
-                case 'trapped': return "离子阱量子比特";
-                case 'photonic': return "光量子比特";
-                case 'silicon": return "硅量子点量子比特";
-                default: return "未知类型";
-            }
-        }
-        
-        // 计算量子体积
-        function calculateQuantumVolume(fidelity, gateSuccess, decoherenceTime) {
-            const quality = fidelity * gateSuccess / 10000;
-            const time = decoherenceTime / 100;
-            return (quality * time * 100).toFixed(0);
-        }
-        
-        // 获取量子应用场景
-        function getQuantumApplication(fidelity, gateSuccess, decoherenceTime) {
-            if (fidelity > 99 && gateSuccess > 99 && decoherenceTime > 500) {
-                return "容错量子计算与复杂问题求解";
-            } else if (fidelity > 95 && gateSuccess > 95 && decoherenceTime > 100) {
-                return "量子化学模拟与优化问题";
-            } else if (fidelity > 90 && gateSuccess > 90 && decoherenceTime > 50) {
-                return "量子机器学习与基本算法演示";
-            } else {
-                return "量子教育与研究实验";
-            }
-        }
-        
-        // 初始化神经形态性能图表
-        function initNeuromorphicPerformanceChart() {
-            const ctx = document.getElementById('neuromorphic-performance-chart').getContext('2d');
-            neuromorphicPerformanceChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['能效比(TOPS/W)', '计算密度(TOPS/mm²)', '延迟(微秒)', '成本(TOPS/$)'],
-                    datasets: [
-                        {
-                            label: '神经形态芯片',
-                            data: [10, 5, 10, 2],
-                            backgroundColor: 'rgba(52, 152, 219, 0.7)',
-                            borderColor: '#3498db',
-                            borderWidth: 1
+                            borderWidth: 2
                         },
                         {
-                            label: '传统GPU',
-                            data: [1, 2, 50, 0.5],
-                            backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                            borderColor: '#e74c3c',
-                            borderWidth: 1
-                        },
-                        {
-                            label: '专用ASIC',
-                            data: [5, 8, 5, 1],
-                            backgroundColor: 'rgba(46, 204, 113, 0.7)',
+                            label: '离子注入+退火',
+                            data: [5e15, 2e18, 1e19, 3e19, 3e19, 2e19, 8e18, 2e18, 5e17, 8e16, 1e16],
                             borderColor: '#2ecc71',
-                            borderWidth: 1
+                            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+                            borderWidth: 2
                         }
                     ]
                 },
@@ -1555,269 +1140,72 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: '神经形态芯片与传统计算平台性能对比'
+                            text: '不同掺杂方式的浓度分布'
                         }
                     },
                     scales: {
                         y: {
-                            beginAtZero: true,
-                            type: 'logarithmic'
-                        }
-                    }
-                }
-            });
-        }
-        
-        // 更新神经形态模拟
-        function updateNeuromorphicSimulation() {
-            const neuronCount = document.getElementById('neuron-count').value;
-            const synapseDensity = document.getElementById('synapse-density').value;
-            const precisionLevel = document.getElementById('precision-level').value;
-            
-            // 更新显示值
-            document.getElementById('neuron-count-value').textContent = neuronCount;
-            document.getElementById('synapse-density-value').textContent = synapseDensity;
-            
-            // 计算性能参数
-            const totalSynapses = neuronCount * synapseDensity;
-            const operationsPerSecond = totalSynapses * 1000 / precisionLevel; // 每秒操作次数
-            const powerConsumption = Math.pow(neuronCount/100000, 0.7) * Math.pow(precisionLevel/8, 0.5); // 瓦特
-            const energyEfficiency = operationsPerSecond / powerConsumption / 1e12; // TOPS/W
-            const chipArea = Math.pow(neuronCount/100000, 0.8) * Math.pow(precisionLevel/8, 0.3); // 平方毫米
-            const computeDensity = operationsPerSecond / chipArea / 1e12; // TOPS/mm²
-            const latency = 10 + precisionLevel * 2; // 微秒
-            const costPerTOPS = 1000 / (operationsPerSecond / 1e12); // $/TOPS
-            
-            // 更新图表
-            neuromorphicPerformanceChart.data.datasets[0].data = [
-                energyEfficiency.toFixed(1),
-                computeDensity.toFixed(1),
-                latency,
-                costPerTOPS.toFixed(2)
-            ];
-            neuromorphicPerformanceChart.update();
-            
-            // 更新结果文本
-            const resultText = `
-                神经形态芯片性能分析结果：
-                神经元数量: ${parseInt(neuronCount).toLocaleString()}
-                突触总数: ${parseInt(totalSynapses).toLocaleString()}
-                计算精度: ${precisionLevel} 位
-                计算性能: ${(operationsPerSecond/1e12).toFixed(2)} TOPS
-                功耗估计: ${powerConsumption.toFixed(2)} 瓦特
-                能效比: ${energyEfficiency.toFixed(2)} TOPS/W
-                计算密度: ${computeDensity.toFixed(2)} TOPS/mm²
-                推荐应用: ${getNeuromorphicApplication(neuronCount, synapseDensity, precisionLevel)}
-            `;
-            
-            document.getElementById('neuromorphic-result').textContent = resultText;
-        }
-        
-        // 获取神经形态应用推荐
-        function getNeuromorphicApplication(neurons, synapses, precision) {
-            if (neurons >= 500000 && synapses >= 5000 && precision <= 4) {
-                return "大规模脉冲神经网络与实时边缘AI";
-            } else if (neurons >= 100000 && synapses >= 1000 && precision <= 8) {
-                return "模式识别与感知计算";
-            } else if (neurons >= 50000 && synapses >= 500 && precision <= 16) {
-                return "物联网设备与智能传感器";
-            } else {
-                return "教育与科研实验平台";
-            }
-        }
-        
-        // 初始化自旋电子学性能图表
-        function initSpintronicsPerformanceChart() {
-            const ctx = document.getElementById('spintronics-performance-chart').getContext('2d');
-            spintronicsPerformanceChart = new Chart(ctx, {
-                type: 'scatter',
-                data: {
-                    datasets: [
-                        {
-                            label: '巨磁阻(GMR)',
-                            data: [{x: 50, y: 1e7}],
-                            backgroundColor: '#3498db',
-                            pointRadius: 10
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: '杂质浓度 (cm⁻³)'
+                            }
                         },
-                        {
-                            label: '隧穿磁阻(TMR)',
-                            data: [{x: 200, y: 1e6}],
-                            backgroundColor: '#2ecc71',
-                            pointRadius: 10
-                        },
-                        {
-                            label: '自旋场效应晶体管',
-                            data: [{x: 500, y: 1e5}],
-                            backgroundColor: '#e74c3c',
-                            pointRadius: 10
-                        },
-                        {
-                            label: '赛道存储器',
-                            data: [{x: 1000, y: 1e6}],
-                            backgroundColor: '#f1c40f',
-                            pointRadius: 10
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: '自旋电子器件磁阻变化率与临界电流密度关系'
-                        }
-                    },
-                    scales: {
                         x: {
                             title: {
                                 display: true,
-                                text: '磁阻变化率(%)'
-                            },
-                            type: 'logarithmic'
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: '临界电流密度(安培/平方厘米)'
-                            },
-                            type: 'logarithmic'
+                                text: '深度 (nm)'
+                            }
                         }
                     }
                 }
             });
         }
         
-        // 更新自旋电子学模拟
-        function updateSpintronicsSimulation() {
-            const deviceType = document.getElementById('spin-device-type').value;
-            const magnetoresistance = document.getElementById('magnetoresistance').value;
-            const criticalCurrent = document.getElementById('critical-current').value;
+        // 更新光刻模拟结果
+        function updateLithoSimulation() {
+            // 模拟数据更新逻辑
+            const spinSpeed = document.getElementById('spin-speed').value;
+            document.getElementById('spin-speed-value').textContent = spinSpeed;
             
-            // 更新显示值
-            document.getElementById('magnetoresistance-value').textContent = magnetoresistance;
-            document.getElementById('critical-current-value').textContent = parseFloat(criticalCurrent).toExponential(1);
+            const resistThickness = document.getElementById('resist-thickness').value;
+            document.getElementById('resist-thickness-value').textContent = resistThickness;
             
-            // 计算性能参数
-            const readSpeed = Math.log10(magnetoresistance) * 10 + 50; // 纳秒
-            const writeEnergy = criticalCurrent * 1e-12 * Math.pow(magnetoresistance/100, 0.5); // 皮焦
-            const endurance = 1e15 / Math.pow(criticalCurrent/1e6, 0.5); // 写入周期
-            const thermalStability = Math.log10(magnetoresistance) * 20 + 40; // kT
-            const density = Math.pow(magnetoresistance/100, 0.8) * 1e10; // 位/平方厘米
+            const exposureDose = document.getElementById('exposure-dose').value;
+            document.getElementById('exposure-dose-value').textContent = exposureDose;
             
-            // 更新图表中的当前点
-            let datasetIndex;
-            switch(deviceType) {
-                case 'gmr': datasetIndex = 0; break;
-                case 'tmr': datasetIndex = 1; break;
-                case 'spinfet': datasetIndex = 2; break;
-                case 'racetrack': datasetIndex = 3; break;
-            }
-            
-            spintronicsPerformanceChart.data.datasets[datasetIndex].data = [{x: magnetoresistance, y: parseFloat(criticalCurrent)}];
-            spintronicsPerformanceChart.update();
-            
-            // 更新结果文本
-            const resultText = `
-                自旋电子器件性能分析结果：
-                器件类型: ${getSpinDeviceTypeName(deviceType)}
-                磁阻变化率: ${magnetoresistance}%
-                临界电流密度: ${parseFloat(criticalCurrent).toExponential(1)} 安培/平方厘米
-                读取速度: ${readSpeed.toFixed(1)} 纳秒
-                写入能量: ${writeEnergy.toFixed(2)} 皮焦
-                耐久性: ${endurance.toExponential(1)} 写入周期
-                热稳定性: ${thermalStability.toFixed(1)} kT
-                存储密度: ${density.toExponential(1)} 位/平方厘米
-                推荐应用: ${getSpintronicsApplication(deviceType, magnetoresistance, criticalCurrent)}
-            `;
-            
-            document.getElementById('spintronics-result').textContent = resultText;
+            // 这里可以添加实际的模拟逻辑，目前仅更新图表标题
+            lithoResultsChart.options.plugins.title.text = `光刻模拟结果 (旋转速度: ${spinSpeed} rpm, 厚度: ${resistThickness} nm, 剂量: ${exposureDose} mJ/cm²)`;
+            lithoResultsChart.update();
         }
         
-        // 获取自旋电子器件类型名称
-        function getSpinDeviceTypeName(type) {
-            switch(type) {
-                case 'gmr': return "巨磁阻(GMR)器件";
-                case 'tmr': return "隧穿磁阻(TMR)器件";
-                case 'spinfet': return "自旋场效应晶体管";
-                case 'racetrack': return "赛道存储器";
-                default: return "未知类型";
-            }
-        }
-        
-        // 获取自旋电子应用推荐
-        function getSpintronicsApplication(type, mr, current) {
-            if (type === 'gmr' && mr >= 50 && current <= 1e7) {
-                return "磁传感器与读取头";
-            } else if (type === 'tmr' && mr >= 200 && current <= 1e6) {
-                return "MRAM存储器与磁性逻辑";
-            } else if (type === 'spinfet' && mr >= 500 && current <= 1e5) {
-                return "低功耗逻辑电路与处理器";
-            } else if (type === 'racetrack' && mr >= 1000 && current <= 1e7) {
-                return "高密度存储器与存储级内存";
-            } else {
-                return "科研实验与新兴应用探索";
-            }
+        // 更新掺杂模拟结果
+        function updateDopingSimulation() {
+            const method = document.getElementById('doping-method').value;
+            const dose = document.getElementById('doping-dose').value;
+            const temp = document.getElementById('anneal-temp').value;
+            
+            document.getElementById('doping-dose-value').textContent = dose;
+            document.getElementById('anneal-temp-value').textContent = temp;
+            
+            // 这里可以添加实际的模拟逻辑，目前仅更新图表标题
+            dopingProfileChart.options.plugins.title.text = `${method === 'diffusion' ? '扩散掺杂' : '离子注入'}模拟结果 (剂量: ${dose} cm⁻², 退火温度: ${temp}°C)`;
+            dopingProfileChart.update();
         }
         
         // 切换标签页
-        function switchTab(tabGroup, tabId) {
-            // 隐藏所有标签页内容
-            const tabPanes = document.querySelectorAll(`#${tabGroup} .tab-pane`);
-            tabPanes.forEach(pane => {
-                pane.classList.remove('active');
-            });
+        function switchTab(container, tabId) {
+            const tabs = document.getElementById(container).getElementsByClassName('tab-pane');
+            const buttons = document.getElementById(container).getElementsByClassName('tab-button');
             
-            // 移除所有按钮的活动状态
-            const tabButtons = document.querySelectorAll(`#${tabGroup}-buttons .tab-button`);
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+                buttons[i].classList.remove('active');
+            }
             
-            // 显示选中的标签页内容
             document.getElementById(tabId).classList.add('active');
-            
-            // 设置对应按钮的活动状态
             event.target.classList.add('active');
         }
-        
-        // 检查测验答案
-        function checkQuizAnswers() {
-            const q1Answer = document.querySelector('input[name="q1"]:checked')?.value;
-            const q2Answer = document.querySelector('input[name="q2"]:checked')?.value;
-            const q3Answer = document.querySelector('input[name="q3"]:checked')?.value;
-            
-            let score = 0;
-            let feedback = '';
-            
-            // 检查答案
-            if (q1Answer === 'd') {
-                score++;
-                feedback += '问题1正确！FinFET晶体管属于"延续摩尔定律"技术路径，而非"超越摩尔定律"。\n';
-            } else {
-                feedback += '问题1错误。正确答案是d. FinFET晶体管，它属于"延续摩尔定律"技术路径。\n';
-            }
-            
-            if (q2Answer === 'd') {
-                score++;
-                feedback += '问题2正确！铁电存储器(FeRAM)具有最高的读写速度。\n';
-            } else {
-                feedback += '问题2错误。正确答案是d. 铁电存储器(FeRAM)，它具有最高的读写速度。\n';
-            }
-            
-            if (q3Answer === 'b' || q3Answer === 'd') {
-                score++;
-                feedback += '问题3正确！单片3D和混合键合技术具有最高的互连密度。\n';
-            } else {
-                feedback += '问题3错误。正确答案是b. 单片3D或d. 混合键合，这两项技术具有最高的互连密度。\n';
-            }
-            
-            // 显示结果
-            const resultDiv = document.getElementById('quiz-result');
-            resultDiv.style.display = 'block';
-            resultDiv.textContent = `测验得分：${score}/3\n\n${feedback}`;
-        }
     </script>
-    <script src="../js/main.js"></script>
 </body>
 </html>

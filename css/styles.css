@@ -64,6 +64,114 @@ h1 {
     margin-bottom: 0.5rem;
 }
 
+/* Python图表样式 */
+.chart-container {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin: 1.5rem 0;
+    transition: var(--transition);
+}
+
+.chart-container:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.python-chart {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin: 1rem 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.python-chart-interactive {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin: 1rem 0;
+}
+
+.chart-caption {
+    text-align: center;
+    color: var(--light-text);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+/* 章节核心内容样式 */
+.chapter-core {
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.chapter-core h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* 章节目标样式 */
+.chapter-objectives {
+    background-color: #e3f2fd;
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.chapter-objectives h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.chapter-objectives ul {
+    padding-left: 1.5rem;
+}
+
+.chapter-objectives li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* 关键词样式 */
+.chapter-keywords {
+    background-color: #f3e5f5;
+    border-left: 4px solid var(--secondary-color);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.chapter-keywords h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.keywords-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.keyword {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
 /* 面包屑导航样式 */
 .breadcrumb {
     margin-bottom: 1.5rem;
@@ -288,10 +396,6 @@ a:hover {
     background: linear-gradient(135deg, rgba(26, 115, 232, 0.1), rgba(66, 133, 244, 0.1));
     border-radius: 8px;
     margin-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 .hero h2 {
@@ -317,7 +421,6 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-bottom: 4rem;
-    justify-items: center;
 }
 
 .feature-card {
@@ -347,7 +450,6 @@ a:hover {
 /* 学习路径 */
 .learning-path {
     margin-bottom: 4rem;
-    text-align: center;
 }
 
 .path-options {
@@ -355,7 +457,6 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
-    justify-items: center;
 }
 
 .path-card {
@@ -391,7 +492,6 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
-    justify-items: center;
 }
 
 .chapter-card {

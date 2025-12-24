@@ -1,43 +1,45 @@
-# 操作系统生成的文件
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Dependencies
+node_modules/
 
-# 编辑器和IDE
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# 日志文件
-*.log
-logs/
+# OS files
+.DS_Store
+Thumbs.db
 
-# 临时文件
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+.temp/
+
+# PDF files
+*.pdf
+
+# Large files
+*.zip
+*.rar
+*.7z
+
+# Temporary files
 *.tmp
 *.temp
-
-# 依赖目录
-node_modules/
-bower_components/
-
-# 构建输出
-dist/
-build/
-out/
-
-# 缓存
-.cache/
-.parcel-cache/
-
-# 环境变量文件
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local

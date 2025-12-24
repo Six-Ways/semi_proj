@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第12章：纳米尺度器件挑战与解决方案 - SEMI_PROJ</title>
+    <title>第12章：光电子与量子效应器件 - SEMI_PROJ</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/chapter-styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -23,6 +24,9 @@
                     <li><a href="../index.html#part2" class="nav-link">第二部分</a></li>
                     <li><a href="../index.html#part3" class="nav-link">第三部分</a></li>
                     <li><a href="../index.html#part4" class="nav-link">第四部分</a></li>
+                    <li><a href="../index.html#part5" class="nav-link">第五部分</a></li>
+                    <li><a href="../index.html#part6" class="nav-link">第六部分</a></li>
+                    <li><a href="../index.html#part7" class="nav-link">第七部分</a></li>
                 </ul>
             </nav>
             <div class="menu-toggle">
@@ -48,1097 +52,727 @@
                 <a href="../index.html" class="chapter-nav-item">
                     <i class="fas fa-home"></i> 返回主页
                 </a>
-                <a href="chapter1.html" class="chapter-nav-item">
-                    第1章：半导体行业与技术演进
+                
+                <a href="preface.html" class="chapter-nav-item ">
+                    序言：硅基文明与信息时代
                 </a>
-                <a href="chapter2.html" class="chapter-nav-item">
-                    第2章：半导体材料基础
+                <a href="chapter1.html" class="chapter-nav-item ">
+                    第1章：量子力学基础与固体中的电子
                 </a>
-                <a href="chapter3.html" class="chapter-nav-item">
-                    第3章：基础半导体器件
+                <a href="chapter2.html" class="chapter-nav-item ">
+                    第2章：半导体材料与晶体结构
                 </a>
-                <a href="chapter4.html" class="chapter-nav-item">
-                    第4章：MOSFET核心技术
+                <a href="chapter3.html" class="chapter-nav-item ">
+                    第3章：载流子统计与热平衡
                 </a>
-                <a href="chapter5.html" class="chapter-nav-item">
-                    第5章：数字集成器件
+                <a href="chapter4.html" class="chapter-nav-item ">
+                    第4章：载流子输运现象
                 </a>
-                <a href="chapter6.html" class="chapter-nav-item">
-                    第6章：模拟集成器件
+                <a href="chapter5.html" class="chapter-nav-item ">
+                    第5章：非平衡载流子与复合动力学
                 </a>
-                <a href="chapter7.html" class="chapter-nav-item">
-                    第7章：特殊功能器件
+                <a href="chapter6.html" class="chapter-nav-item ">
+                    第6章：高场效应与量子输运
                 </a>
-                <a href="chapter8.html" class="chapter-nav-item">
-                    第8章：衬底与晶圆制备
+                <a href="chapter7.html" class="chapter-nav-item ">
+                    第7章：PN结与金属-半导体接触
                 </a>
-                <a href="chapter9.html" class="chapter-nav-item">
-                    第9章：器件图形化工艺
+                <a href="chapter8.html" class="chapter-nav-item ">
+                    第8章：MOS结构物理
                 </a>
-                <a href="chapter10.html" class="chapter-nav-item">
-                    第10章：器件掺杂与薄膜工艺
+                <a href="chapter9.html" class="chapter-nav-item ">
+                    第9章：异质结与能带调控
                 </a>
-                <a href="chapter11.html" class="chapter-nav-item">
-                    第11章：器件互连与封装
+                <a href="chapter10.html" class="chapter-nav-item ">
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
+                </a>
+                <a href="chapter11.html" class="chapter-nav-item ">
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
                 <a href="chapter12.html" class="chapter-nav-item active">
-                    第12章：纳米尺度器件挑战与解决方案
+                    第12章：光电子与量子效应器件
                 </a>
-                <a href="chapter13.html" class="chapter-nav-item">
-                    第13章：宽禁带半导体器件
+                <a href="chapter13.html" class="chapter-nav-item ">
+                    第13章：晶圆制备与薄膜工程
                 </a>
-                <a href="chapter14.html" class="chapter-nav-item">
-                    第14章：后摩尔时代器件技术
+                <a href="chapter14.html" class="chapter-nav-item ">
+                    第14章：图形化与掺杂技术
                 </a>
-                <a href="chapter15.html" class="chapter-nav-item">
-                    第15章：器件设计与仿真工具
+                <a href="chapter15.html" class="chapter-nav-item ">
+                    第15章：工艺集成与后端互连
                 </a>
-                <a href="chapter16.html" class="chapter-nav-item">
-                    第16章：故障排查与测试技术
+                <a href="chapter16.html" class="chapter-nav-item ">
+                    第16章：半导体材料与器件表征
                 </a>
-                <a href="chapter17.html" class="chapter-nav-item">
-                    第17章：行业资源汇总
+                <a href="chapter17.html" class="chapter-nav-item ">
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item ">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item ">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item ">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
+            
+            
+                <div class="current-chapter-nav">
+                    <h4>当前章节</h4>
+                    <nav class="section-nav">
+
+                    <a href="#optical-absorption" class="section-nav-item">
+                        半导体中的光吸收与辐射复合
+                    </a>
+                    <a href="#led-ld" class="section-nav-item">
+                        发光二极管与半导体激光器
+                    </a>
+                    <a href="#photodetectors" class="section-nav-item">
+                        光电探测器与太阳能电池
+                    </a>
+                    <a href="#quantum-devices" class="section-nav-item">
+                        量子效应器件
+                    </a>
+                    <a href="#chapter-summary" class="section-nav-item">
+                        本章小结
+                    </a>
+                    </nav>
+                </div>
         </div>
     </aside>
+    
 
-        <!-- 主内容区 -->
-    <main class="main-content">
-        <div class="chapter-container">
-            <div class="breadcrumb">
-                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第十二章：纳米尺度器件挑战与解决方案</p>
+    <div class="chapter-container">
+        <div class="breadcrumb">
+            <p><a href="../index.html">首页</a> &gt; <a href="../index.html#part4">第四部分：核心半导体器件物理</a> &gt; 第十二章：光电子与量子效应器件</p>
+        </div>
+        <div class="chapter-header">
+            <h1>第十二章：光电子与量子效应器件</h1>
+        </div>
+        
+        <div class="chapter-core">
+            <h3>核心内容</h3>
+            <p>阐述半导体中的辐射复合与光吸收过程。讲解发光二极管（LED） 与半导体激光器（LD） 的工作原理。详解光电探测器（PIN，APD）与太阳能电池的物理机制。介绍基于量子效应的新兴器件，如共振隧穿二极管（RTD）、单电子晶体管（SET）。</p>
+        </div>
+        
+        <div class="chapter-objectives">
+            <h3>章节目标</h3>
+            <ul>
+                <li>理解半导体光-电转换与电-光转换的基本物理过程</li>
+                <li>掌握主要光电子器件的工作原理</li>
+                <li>了解量子效应在新一代器件中的应用前景</li>
+                <li>分析不同光电子器件的性能特点和应用场景</li>
+                <li>理解量子效应器件的工作机制和优势</li>
+            </ul>
+        </div>
+        
+        <div class="chapter-keywords">
+            <h3>关键词</h3>
+            <div class="keywords-list">
+                <span class="keyword">辐射复合</span>
+                <span class="keyword">受激辐射</span>
+                <span class="keyword">发光二极管（LED）</span>
+                <span class="keyword">激光二极管（LD）</span>
+                <span class="keyword">光电探测器</span>
+                <span class="keyword">光伏效应</span>
+                <span class="keyword">太阳能电池</span>
+                <span class="keyword">共振隧穿二极管（RTD）</span>
             </div>
-            <!-- 章节标题 -->
-            <div class="chapter-header">
-                <h1>第十二章：纳米尺度器件挑战与解决方案</h1>
-            </div>
-
-            <!-- 章节导航 -->
-            <div class="chapter-nav">
-                <a href="chapter11.html" class="nav-btn prev-btn">
-                    <i class="fas fa-chevron-left"></i> 上一章
-                </a>
-                <div class="nav-center">
-                    <span class="progress-indicator">12 / 12</span>
+        </div>
+        
+        <div class="section" id="optical-absorption">
+            <h2 class="section-title">半导体中的光吸收与辐射复合</h2>
+            <p>半导体中的光与物质相互作用是光电子器件的物理基础。当光照射到半导体上时，会发生光吸收过程，产生电子-空穴对；而当电子和空穴复合时，会以光的形式释放能量，称为辐射复合。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('absorption')">光吸收过程</button>
+                    <button class="tab-button" onclick="showTab('recombination')">辐射复合过程</button>
                 </div>
-                <a href="#" class="nav-btn next-btn disabled">
-                    下一章 <i class="fas fa-chevron-right"></i>
-                </a>
-            </div>
-
-            <!-- 章节内容 -->
-            <div class="content-wrapper">
-                <!-- 短沟道效应 -->
-                <section class="section">
-                    <h2 class="section-title">短沟道效应</h2>
-                    <p>当MOSFET的沟道长度缩小到与源漏耗尽区宽度相当时，会出现一系列短沟道效应，严重影响器件性能和可靠性。本节深入分析阈值电压漂移、亚阈值斜率退化、DIBL效应等关键问题，并介绍多栅结构、应变硅技术等解决方案。</p>
-                    
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" onclick="showTab('sce-overview')">短沟道效应概述</button>
-                            <button class="tab-button" onclick="showTab('sce-simulator')">短沟道效应模拟器</button>
-                            <button class="tab-button" onclick="showTab('sce-solutions')">解决方案</button>
-                        </div>
+                
+                <div class="tab-content">
+                    <div id="absorption" class="tab-pane active">
+                        <h3>半导体中的光吸收</h3>
+                        <p>当光子能量大于或等于半导体的禁带宽度时，光子会被半导体吸收，将价带中的电子激发到导带，产生电子-空穴对。</p>
                         
-                        <div id="sce-overview" class="tab-content active">
-                            <div class="content-card">
-                                <h3>短沟道效应的物理机制</h3>
-                                <p>当MOSFET沟道长度缩小到纳米尺度时，源极和漏极的电场会穿透到沟道区域，导致栅极对沟道的控制能力减弱。这种电场耦合效应引发了一系列短沟道效应：</p>
-                                
-                                <ul>
-                                    <li><strong>阈值电压漂移</strong>：随沟道长度减小，阈值电压降低，导致器件关断特性变差</li>
-                                    <li><strong>亚阈值斜率退化</strong>：亚阈值电流随栅压变化减慢，开关特性变差</li>
-                                    <li><strong>漏致势垒降低(DIBL)</strong>：漏极电压影响源极势垒，导致阈值电压随漏压变化</li>
-                                    <li><strong>速度饱和</strong>：载流子在强电场下漂移速度不再随电场线性增加</li>
-                                    <li><strong>热载流子效应</strong>：高电场下载流子获得足够能量注入氧化层，导致器件退化</li>
-                                </ul>
-                                
-                                <div class="formula-box">
-                                    <h4>阈值电压漂移经验公式</h4>
-                                    <p>ΔV<sub>th</sub> ≈ - (π·ε<sub>si</sub>·t<sub>ox</sub>·V<sub>ds</sub>) / (2·ε<sub>ox</sub>·L<sup>2</sup>)</p>
-                                    <p>其中 ε<sub>si</sub> 和 ε<sub>ox</sub> 分别是硅和二氧化硅的介电常数，t<sub>ox</sub> 是氧化层厚度，V<sub>ds</sub> 是漏源电压，L 是沟道长度</p>
-                                </div>
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">半导体光吸收示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/optical-absorption.svg" alt="光吸收示意图" class="diagram-image">
+                                <div class="diagram-caption">图12-1：半导体中的光吸收过程</div>
                             </div>
                         </div>
                         
-                        <div id="sce-simulator" class="tab-content">
-                            <div class="content-card">
-                                <h3>短沟道效应模拟器</h3>
-                                <p>调整下方参数，观察不同沟道长度下MOSFET的短沟道效应表现：</p>
-                                
-                                <div class="simulator-container">
-                                    <div class="simulator-controls">
-                                        <div class="control-group">
-                                            <label for="channel-length">沟道长度 (nm):</label>
-                                            <input type="range" id="channel-length" min="5" max="100" value="45" step="5">
-                                            <span id="channel-length-value">45 nm</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="oxide-thickness">氧化层厚度 (nm):</label>
-                                            <input type="range" id="oxide-thickness" min="0.5" max="5" value="1.2" step="0.1">
-                                            <span id="oxide-thickness-value">1.2 nm</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="drain-voltage">漏极电压 (V):</label>
-                                            <input type="range" id="drain-voltage" min="0.1" max="1.2" value="0.7" step="0.1">
-                                            <span id="drain-voltage-value">0.7 V</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="doping-concentration">衬底掺杂浓度 (cm<sup>-3</sup>):</label>
-                                            <input type="range" id="doping-concentration" min="15" max="18" value="17" step="0.5">
-                                            <span id="doping-concentration-value">10<sup>17</sup></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="simulator-results">
-                                        <div class="chart-container">
-                                            <canvas id="sce-chart"></canvas>
-                                        </div>
-                                        
-                                        <div class="result-summary">
-                                            <h4>短沟道效应分析结果</h4>
-                                            <div class="result-grid">
-                                                <div class="result-item">
-                                                    <span class="result-label">阈值电压漂移:</span>
-                                                    <span id="vth-shift" class="result-value">-85 mV</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">DIBL系数:</span>
-                                                    <span id="dibl-coefficient" class="result-value">120 mV/V</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">亚阈值斜率:</span>
-                                                    <span id="subthreshold-slope" class="result-value">85 mV/dec</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">开关比:</span>
-                                                    <span id="on-off-ratio" class="result-value">10<sup>5</sup></span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="effect-indicator">
-                                                <span>短沟道效应严重程度:</span>
-                                                <div class="progress-bar">
-                                                    <div id="severity-bar" class="progress-fill" style="width: 65%"></div>
-                                                </div>
-                                                <span id="severity-text">中等</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <h4>光吸收的条件</h4>
+                        <div class="equation-box">
+                            <p class="equation">hν ≥ E<sub>g</sub></p>
+                            <p class="equation-description">其中hν是光子能量，E<sub>g</sub>是半导体的禁带宽度。只有能量大于禁带宽度的光子才能被半导体吸收。</p>
                         </div>
                         
-                        <div id="sce-solutions" class="tab-content">
-                            <div class="content-card">
-                                <h3>短沟道效应解决方案</h3>
-                                <p>为克服短沟道效应带来的挑战，半导体工业开发了多种创新技术：</p>
-                                
-                                <div class="solution-grid">
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-layer-group"></i> 多栅结构</h4>
-                                        <p>通过增加栅极与沟道的接触面积，提高栅极对沟道的控制能力：</p>
-                                        <ul>
-                                            <li><strong>FinFET</strong>：三面环绕栅结构，显著改善静电控制</li>
-                                            <li><strong>GAA-FET</strong>：全环绕栅结构，提供最佳的静电控制</li>
-                                            <li><strong>纳米线FET</strong>：圆柱形沟道，栅极完全环绕</li>
-                                        </ul>
-                                        <div class="benefit-tag">静电控制提升 60-80%</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-atom"></i> 高介电常数栅介质</h4>
-                                        <p>使用高k材料替代传统SiO<sub>2</sub>，在保持物理厚度的同时提供等效电容：</p>
-                                        <ul>
-                                            <li>HfO<sub>2</sub>、ZrO<sub>2</sub>等高k材料</li>
-                                            <li>减少栅极漏电流</li>
-                                            <li>提高栅极电容密度</li>
-                                        </ul>
-                                        <div class="benefit-tag">漏电流降低 100-1000倍</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-compress"></i> 应变硅技术</h4>
-                                        <p>通过引入机械应变改变硅晶格结构，提高载流子迁移率：</p>
-                                        <ul>
-                                            <li><strong>拉伸应变</strong>：提高电子迁移率，适用于NMOS</li>
-                                            <li><strong>压缩应变</strong>：提高空穴迁移率，适用于PMOS</li>
-                                            <li>通过SiGe源漏或应力记忆技术实现</li>
-                                        </ul>
-                                        <div class="benefit-tag">驱动电流提升 20-40%</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-bolt"></i> 源/漏工程</h4>
-                                        <p>优化源漏结构以减少短沟道效应：</p>
-                                        <ul>
-                                            <li><strong>浅结注入</strong>：减少源漏结深，降低电场穿透</li>
-                                            <li><strong>晕环掺杂</strong>：在沟道边缘引入高浓度掺杂区</li>
-                                            <li><strong>提升源漏</strong>：使源漏区域高于沟道平面</li>
-                                        </ul>
-                                        <div class="benefit-tag">DIBL效应降低 30-50%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- 量子效应 -->
-                <section class="section">
-                    <h2 class="section-title">量子效应</h2>
-                    <p>当器件尺寸缩小到纳米尺度时，量子力学效应变得显著，对器件性能产生深远影响。本节探讨量子隧穿、量子限制、库仑阻塞等现象，以及这些效应对器件设计和制造带来的挑战与机遇。</p>
-                    
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" onclick="showTab('quantum-overview')">量子效应概述</button>
-                            <button class="tab-button" onclick="showTab('quantum-simulator')">量子效应模拟器</button>
-                            <button class="tab-button" onclick="showTab('quantum-applications')">量子效应应用</button>
-                        </div>
+                        <h4>不同类型的光吸收</h4>
+                        <ul>
+                            <li><strong>本征吸收</strong>：价带电子直接跃迁到导带，是半导体中最主要的光吸收过程</li>
+                            <li><strong>杂质吸收</strong>：电子从杂质能级跃迁到导带或价带</li>
+                            <li><strong>自由载流子吸收</strong>：导带电子或价带空穴吸收光子能量，在能带内跃迁</li>
+                            <li><strong>激子吸收</strong>：形成激子（电子-空穴对束缚态）的吸收过程</li>
+                        </ul>
                         
-                        <div id="quantum-overview" class="tab-content active">
-                            <div class="content-card">
-                                <h3>纳米尺度下的量子现象</h3>
-                                <p>在纳米尺度半导体器件中，量子力学效应不再是可以忽略的微扰，而是主导器件行为的关键因素：</p>
-                                
-                                <ul>
-                                    <li><strong>量子隧穿</strong>：载流子能够穿越经典禁带区域，导致栅极漏电流增加</li>
-                                    <li><strong>量子限制</strong>：载流子在受限空间内的能级量子化，影响载流子传输</li>
-                                    <li><strong>库仑阻塞</strong>：单电子传输时，电荷量子化导致的电流振荡</li>
-                                    <li><strong>量子干涉</strong>：载流子波动性导致的相位相干效应</li>
-                                    <li><strong>能带结构变化</strong>：尺寸减小导致的能带分裂和有效质量变化</li>
-                                </ul>
-                                
-                                <div class="formula-box">
-                                    <h4>隧穿电流近似公式</h4>
-                                    <p>J<sub>tunnel</sub> ≈ A·E<sup>2</sup>·exp(-B/E)</p>
-                                    <p>其中 E 是电场强度，A 和 B 是与材料属性和势垒高度相关的常数</p>
-                                </div>
-                                
-                                <div class="info-box">
-                                    <h4>关键尺寸阈值</h4>
-                                    <p>当器件尺寸小于以下阈值时，相应的量子效应变得显著：</p>
+                        <h4>直接带隙与间接带隙吸收</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">直接带隙半导体</h3>
+                                <div class="comparison-content">
+                                    <p>导带底和价带顶在k空间同一位置，电子跃迁时动量守恒，光吸收效率高。</p>
                                     <ul>
-                                        <li>栅氧化层厚度 < 1.2 nm：直接隧穿效应显著</li>
-                                        <li>沟道宽度 < 10 nm：量子限制效应明显</li>
-                                        <li>量子点尺寸 < 5 nm：库仑阻塞效应可观测</li>
+                                        <li>代表材料：GaAs、GaN、InP</li>
+                                        <li>吸收系数：~10<sup>4</sup>-10<sup>5</sup> cm<sup>-1</sup></li>
+                                        <li>适合制作发光器件</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">间接带隙半导体</h3>
+                                <div class="comparison-content">
+                                    <p>导带底和价带顶在k空间不同位置，电子跃迁需要声子参与，光吸收效率低。</p>
+                                    <ul>
+                                        <li>代表材料：Si、Ge</li>
+                                        <li>吸收系数：~10<sup>2</sup>-10<sup>3</sup> cm<sup>-1</sup></li>
+                                        <li>适合制作光电探测器和太阳能电池</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div id="quantum-simulator" class="tab-content">
-                            <div class="content-card">
-                                <h3>量子隧穿效应模拟器</h3>
-                                <p>调整下方参数，观察不同条件下量子隧穿电流的变化：</p>
-                                
-                                <div class="simulator-container">
-                                    <div class="simulator-controls">
-                                        <div class="control-group">
-                                            <label for="barrier-height">势垒高度 (eV):</label>
-                                            <input type="range" id="barrier-height" min="0.5" max="3.5" value="1.2" step="0.1">
-                                            <span id="barrier-height-value">1.2 eV</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="barrier-width">势垒宽度 (nm):</label>
-                                            <input type="range" id="barrier-width" min="0.5" max="3" value="1.0" step="0.1">
-                                            <span id="barrier-width-value">1.0 nm</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="electric-field">电场强度 (MV/cm):</label>
-                                            <input type="range" id="electric-field" min="0.1" max="10" value="2.0" step="0.1">
-                                            <span id="electric-field-value">2.0 MV/cm</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="temperature">温度 (K):</label>
-                                            <input type="range" id="temperature" min="77" max="400" value="300" step="10">
-                                            <span id="temperature-value">300 K</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="simulator-results">
-                                        <div class="chart-container">
-                                            <canvas id="quantum-chart"></canvas>
-                                        </div>
-                                        
-                                        <div class="result-summary">
-                                            <h4>量子隧穿分析结果</h4>
-                                            <div class="result-grid">
-                                                <div class="result-item">
-                                                    <span class="result-label">隧穿概率:</span>
-                                                    <span id="tunneling-probability" class="result-value">2.3×10<sup>-3</sup></span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">隧穿电流密度:</span>
-                                                    <span id="tunneling-current" class="result-value">1.7×10<sup>-7</sup> A/cm²</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">德布罗意波长:</span>
-                                                    <span id="de-broglie-wavelength" class="result-value">0.85 nm</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">量子限制能级:</span>
-                                                    <span id="quantum-level" class="result-value">0.15 eV</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="effect-indicator">
-                                                <span>量子效应显著程度:</span>
-                                                <div class="progress-bar">
-                                                    <div id="quantum-severity-bar" class="progress-fill" style="width: 45%"></div>
-                                                </div>
-                                                <span id="quantum-severity-text">中等</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="quantum-applications" class="tab-content">
-                            <div class="content-card">
-                                <h3>量子效应的应用与挑战</h3>
-                                <p>量子效应虽然给传统CMOS器件带来挑战，但也为新器件技术提供了机遇：</p>
-                                
-                                <div class="application-grid">
-                                    <div class="application-card">
-                                        <h4><i class="fas fa-atom"></i> 单电子晶体管</h4>
-                                        <p>利用库仑阻塞效应实现单电子控制，有望实现超低功耗逻辑器件：</p>
-                                        <ul>
-                                            <li>单个电子控制开关状态</li>
-                                            <li>功耗可降至atto焦耳级别</li>
-                                            <li>工作温度需低于10K（当前限制）</li>
-                                        </ul>
-                                        <div class="challenge-tag">挑战：室温工作</div>
-                                    </div>
-                                    
-                                    <div class="application-card">
-                                        <h4><i class="fas fa-microchip"></i> 谐振隧穿器件</h4>
-                                        <p>利用量子隧穿效应实现负微分电阻，可设计新型高频器件：</p>
-                                        <ul>
-                                            <li>超高速开关特性</li>
-                                            <li>多功能逻辑设计</li>
-                                            <li>低功耗振荡器应用</li>
-                                        </ul>
-                                        <div class="benefit-tag">优势：THz频率操作</div>
-                                    </div>
-                                    
-                                    <div class="application-card">
-                                        <h4><i class="fas fa-memory"></i> 量子点存储器</h4>
-                                        <p>利用量子限制效应实现多级存储，提高存储密度：</p>
-                                        <ul>
-                                            <li>单量子点多能级存储</li>
-                                            <li>非挥发性存储特性</li>
-                                            <li>抗辐射能力强</li>
-                                        </ul>
-                                        <div class="benefit-tag">优势：存储密度提升10倍</div>
-                                    </div>
-                                    
-                                    <div class="application-card">
-                                        <h4><i class="fas fa-wave-square"></i> 自旋电子器件</h4>
-                                        <p>利用电子自旋自由度，超越传统电荷器件的限制：</p>
-                                        <ul>
-                                            <li>非易失性逻辑</li>
-                                            <li>超低功耗操作</li>
-                                            <li>与CMOS工艺兼容</li>
-                                        </ul>
-                                        <div class="challenge-tag">挑战：自旋注入效率</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </section>
-
-                <!-- 功耗挑战 -->
-                <section class="section">
-                    <h2 class="section-title">功耗挑战</h2>
-                    <p>随着集成度不断提高，芯片功耗已成为制约半导体技术发展的关键因素。本节分析静态功耗、动态功耗的物理机制，探讨低功耗设计策略，以及新兴的近阈值和亚阈值计算技术。</p>
                     
-                    <div class="tab-container">
-                        <div class="tab-buttons">
-                            <button class="tab-button active" onclick="showTab('power-overview')">功耗分析</button>
-                            <button class="tab-button" onclick="showTab('power-simulator')">功耗模拟器</button>
-                            <button class="tab-button" onclick="showTab('power-solutions')">低功耗技术</button>
+                    <div id="recombination" class="tab-pane">
+                        <h3>半导体中的辐射复合</h3>
+                        <p>当导带中的电子与价带中的空穴复合时，如果能量以光子的形式释放，这种复合过程称为辐射复合。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">辐射复合示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/radiative-recombination.svg" alt="辐射复合示意图" class="diagram-image">
+                                <div class="diagram-caption">图12-2：半导体中的辐射复合过程</div>
+                            </div>
                         </div>
                         
-                        <div id="power-overview" class="tab-content active">
-                            <div class="content-card">
-                                <h3>半导体器件功耗组成</h3>
-                                <p>纳米尺度CMOS器件的总功耗由动态功耗和静态功耗两部分组成：</p>
-                                
-                                <ul>
-                                    <li><strong>动态功耗</strong>：由开关过程中的充放电引起，与工作频率和电容负载相关</li>
-                                    <li><strong>静态功耗</strong>：主要由亚阈值漏电流和栅极漏电流组成，随尺寸缩小而急剧增加</li>
-                                    <li><strong>短路功耗</strong>：输入信号转换过程中的瞬时短路电流</li>
-                                    <li><strong>功耗密度</strong>：单位面积功耗，影响散热和可靠性</li>
-                                </ul>
-                                
-                                <div class="formula-box">
-                                    <h4>功耗计算公式</h4>
-                                    <p><strong>动态功耗</strong>: P<sub>dynamic</sub> = α·C<sub>L</sub>·V<sub>DD</sub><sup>2</sup>·f</p>
-                                    <p><strong>静态功耗</strong>: P<sub>static</sub> = I<sub>leak</sub>·V<sub>DD</sub></p>
-                                    <p><strong>总功耗</strong>: P<sub>total</sub> = P<sub>dynamic</sub> + P<sub>static</sub></p>
-                                    <p>其中 α 是开关活动因子，C<sub>L</sub> 是负载电容，V<sub>DD</sub> 是电源电压，f 是工作频率，I<sub>leak</sub> 是漏电流</p>
-                                </div>
-                                
-                                <div class="info-box">
-                                    <h4>功耗 scaling 趋势</h4>
-                                    <p>随着技术节点演进，功耗组成发生显著变化：</p>
+                        <h4>辐射复合的条件</h4>
+                        <div class="equation-box">
+                            <p class="equation">hν = E<sub>g</sub> + E<sub>n</sub> + E<sub>p</sub></p>
+                            <p class="equation-description">其中E<sub>n</sub>和E<sub>p</sub>分别是电子和空穴的热运动能量，对于直接带隙半导体，辐射复合效率较高。</p>
+                        </div>
+                        
+                        <h4>不同类型的辐射复合</h4>
+                        <ul>
+                            <li><strong>直接辐射复合</strong>：电子直接从导带底跃迁到价带顶，释放光子</li>
+                            <li><strong>间接辐射复合</strong>：电子通过复合中心间接跃迁，需要声子参与</li>
+                            <li><strong>施主-受主对复合</strong>：电子从施主能级跃迁到受主能级</li>
+                            <li><strong>激子复合</strong>：激子（电子-空穴对束缚态）的复合</li>
+                        </ul>
+                        
+                        <h4>受激辐射与自发辐射</h4>
+                        <div class="comparison-grid">
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">自发辐射</h3>
+                                <div class="comparison-content">
+                                    <p>处于激发态的电子自发地跃迁到基态，释放光子，光子相位和方向随机。</p>
                                     <ul>
-                                        <li>130nm及以上：动态功耗占主导（>90%）</li>
-                                        <li>65nm-45nm：静态功耗占比显著增加（20-40%）</li>
-                                        <li>28nm及以下：静态功耗成为主要挑战（>50%）</li>
+                                        <li>发光二极管（LED）的工作原理</li>
+                                        <li>非相干光输出</li>
+                                        <li>发光强度与注入电流成正比</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="comparison-item">
+                                <h3 class="comparison-title">受激辐射</h3>
+                                <div class="comparison-content">
+                                    <p>处于激发态的电子在入射光子的刺激下跃迁到基态，释放出与入射光子同相位、同方向、同频率的光子。</p>
+                                    <ul>
+                                        <li>半导体激光器（LD）的工作原理</li>
+                                        <li>相干光输出</li>
+                                        <li>需要粒子数反转和光学谐振腔</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div id="power-simulator" class="tab-content">
-                            <div class="content-card">
-                                <h3>功耗分析模拟器</h3>
-                                <p>调整下方参数，分析不同设计条件下的功耗分布：</p>
-                                
-                                <div class="simulator-container">
-                                    <div class="simulator-controls">
-                                        <div class="control-group">
-                                            <label for="supply-voltage">电源电压 (V):</label>
-                                            <input type="range" id="supply-voltage" min="0.3" max="1.2" value="0.8" step="0.05">
-                                            <span id="supply-voltage-value">0.8 V</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="operating-frequency">工作频率 (MHz):</label>
-                                            <input type="range" id="operating-frequency" min="10" max="5000" value="1000" step="50">
-                                            <span id="operating-frequency-value">1000 MHz</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="gate-count">逻辑门数量 (K):</label>
-                                            <input type="range" id="gate-count" min="100" max="100000" value="10000" step="500">
-                                            <span id="gate-count-value">10000 K</span>
-                                        </div>
-                                        
-                                        <div class="control-group">
-                                            <label for="activity-factor">开关活动因子:</label>
-                                            <input type="range" id="activity-factor" min="0.01" max="0.5" value="0.1" step="0.01">
-                                            <span id="activity-factor-value">0.1</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="simulator-results">
-                                        <div class="chart-container">
-                                            <canvas id="power-chart"></canvas>
-                                        </div>
-                                        
-                                        <div class="result-summary">
-                                            <h4>功耗分析结果</h4>
-                                            <div class="result-grid">
-                                                <div class="result-item">
-                                                    <span class="result-label">动态功耗:</span>
-                                                    <span id="dynamic-power" class="result-value">12.8 W</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">静态功耗:</span>
-                                                    <span id="static-power" class="result-value">3.2 W</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">总功耗:</span>
-                                                    <span id="total-power" class="result-value">16.0 W</span>
-                                                </div>
-                                                <div class="result-item">
-                                                    <span class="result-label">功耗密度:</span>
-                                                    <span id="power-density" class="result-value">85 W/cm²</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="power-distribution">
-                                                <h4>功耗分布</h4>
-                                                <div class="distribution-bar">
-                                                    <div id="dynamic-bar" class="power-segment dynamic" style="width: 80%"></div>
-                                                    <div id="static-bar" class="power-segment static" style="width: 20%"></div>
-                                                </div>
-                                                <div class="distribution-legend">
-                                                    <span class="legend-item dynamic">动态功耗 80%</span>
-                                                    <span class="legend-item static">静态功耗 20%</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div id="power-solutions" class="tab-content">
-                            <div class="content-card">
-                                <h3>低功耗技术解决方案</h3>
-                                <p>为应对功耗挑战，半导体工业开发了多层次低功耗技术：</p>
-                                
-                                <div class="solution-grid">
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-bolt"></i> 动态电压频率调节</h4>
-                                        <p>根据工作负载动态调整电压和频率，实现功耗-性能平衡：</p>
-                                        <ul>
-                                            <li>实时负载监测与预测</li>
-                                            <li>多级电压/频率状态</li>
-                                            <li>快速电压调节器设计</li>
-                                        </ul>
-                                        <div class="benefit-tag">功耗降低 30-60%</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-power-off"></i> 电源门控技术</h4>
-                                        <p>在空闲时段关闭不工作模块的电源，消除静态功耗：</p>
-                                        <ul>
-                                            <li>细粒度电源门控单元</li>
-                                            <li>状态保持与恢复机制</li>
-                                            <li>多电源域管理</li>
-                                        </ul>
-                                        <div class="benefit-tag">静态功耗降低 90%+</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-tachometer-alt"></i> 近阈值计算</h4>
-                                        <p>在接近阈值电压的区域工作，大幅降低能耗：</p>
-                                        <ul>
-                                            <li>电压降至0.3-0.5V范围</li>
-                                            <li>专用架构设计</li>
-                                            <li>误差容忍与近似计算</li>
-                                        </ul>
-                                        <div class="benefit-tag">能耗降低 5-10倍</div>
-                                    </div>
-                                    
-                                    <div class="solution-card">
-                                        <h4><i class="fas fa-microchip"></i> 异构集成</h4>
-                                        <p>将不同工艺的器件优化集成，实现能效最大化：</p>
-                                        <ul>
-                                            <li>逻辑-存储异构集成</li>
-                                            <li>模拟-数字混合工艺</li>
-                                            <li>3D堆叠与TSV技术</li>
-                                        </ul>
-                                        <div class="benefit-tag">系统能效提升 2-4倍</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </section>
-
-                <!-- 未来展望 -->
-                <section class="section">
-                    <h2 class="section-title">未来展望</h2>
-                    <p>面对纳米尺度器件的物理极限，半导体技术正探索多元化发展路径。本节展望新兴器件技术、新材料应用、异构集成等未来发展方向，以及这些技术如何推动半导体产业持续创新。</p>
-                    
-                    <div class="content-card">
-                        <h3>后摩尔时代的半导体技术</h3>
-                        <p>当传统CMOS scaling接近物理极限时，半导体技术正通过多种创新路径延续发展：</p>
-                        
-                        <div class="future-grid">
-                            <div class="future-card">
-                                <h4><i class="fas fa-project-diagram"></i> 新兴计算范式</h4>
-                                <p>超越传统冯·诺依曼架构的新型计算模式：</p>
-                                <ul>
-                                    <li><strong>神经形态计算</strong>：模拟大脑神经网络结构，实现高效智能计算</li>
-                                    <li><strong>量子计算</strong>：利用量子叠加和纠缠特性，解决特定复杂问题</li>
-                                    <li><strong>近似计算</strong>：容忍一定误差，换取大幅能效提升</li>
-                                    <li><strong>存内计算</strong>：消除数据搬运瓶颈，提高计算效率</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="future-card">
-                                <h4><i class="fas fa-atom"></i> 新材料革命</h4>
-                                <p>超越硅的新材料体系带来性能突破：</p>
-                                <ul>
-                                    <li><strong>二维材料</strong>：MoS<sub>2</sub>、WSe<sub>2</sub>等过渡金属二硫化物</li>
-                                    <li><strong>宽禁带半导体</strong>：GaN、SiC等高频高功率应用</li>
-                                    <li><strong>有机半导体</strong>：柔性电子和低成本应用</li>
-                                    <li><strong>拓扑材料</strong>：新型量子器件应用</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="future-card">
-                                <h4><i class="fas fa-cubes"></i> 先进集成技术</h4>
-                                <p>通过三维集成和异质集成突破平面限制：</p>
-                                <ul>
-                                    <li><strong>3D集成</strong>：多层芯片堆叠，提高集成密度</li>
-                                    <li><strong>异质集成</strong>：不同材料、工艺的优化组合</li>
-                                    <li><strong>微系统级封装</strong>：芯片、传感器、执行器的系统级集成</li>
-                                    <li><strong>光电子集成</strong>：光子与电子器件的协同设计</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="future-card">
-                                <h4><i class="fas fa-industry"></i> 智能制造</h4>
-                                <p>AI驱动的半导体制造新模式：</p>
-                                <ul>
-                                    <li><strong>智能工艺控制</strong>：实时监测与自适应调整</li>
-                                    <li><strong>预测性维护</strong>：设备故障提前预警</li>
-                                    <li><strong>良率优化</strong>：大数据分析与机器学习</li>
-                                    <li><strong>柔性制造</strong>：快速响应市场需求变化</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-container">
-                            <h4>半导体技术发展路线图</h4>
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-marker">2025</div>
-                                    <div class="timeline-content">
-                                        <h5>3nm节点量产</h5>
-                                        <p>GAA结构全面应用，高k/金属栅技术成熟</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker">2027</div>
-                                    <div class="timeline-content">
-                                        <h5>2nm节点量产</h5>
-                                        <p>纳米片晶体管，背面供电网络</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker">2030</div>
-                                    <div class="timeline-content">
-                                        <h5>1.4nm节点</h5>
-                                        <p>CFET结构，二维材料初步应用</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker">2035</div>
-                                    <div class="timeline-content">
-                                        <h5>1nm及以下</h5>
-                                        <p>量子器件，新计算范式实用化</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- 章节导航 -->
-            <div class="chapter-nav">
-                <a href="chapter11.html" class="nav-btn prev-btn">
-                    <i class="fas fa-chevron-left"></i> 上一章
-                </a>
-                <div class="nav-center">
-                    <span class="progress-indicator">12 / 12</span>
                 </div>
-                <a href="#" class="nav-btn next-btn disabled">
-                    下一章 <i class="fas fa-chevron-right"></i>
-                </a>
             </div>
-        </main>
+        </div>
+        
+        <div class="section" id="led-ld">
+            <h2 class="section-title">发光二极管与半导体激光器</h2>
+            <p>发光二极管（LED）和半导体激光器（LD）是利用半导体辐射复合原理制成的电致发光器件，广泛应用于照明、显示、通信等领域。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('led')">发光二极管（LED）</button>
+                    <button class="tab-button" onclick="showTab('ld')">半导体激光器（LD）</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="led" class="tab-pane active">
+                        <h3>发光二极管（LED）</h3>
+                        <p>LED是一种将电能转化为光能的半导体器件，通过正向偏置PN结，利用电子和空穴的辐射复合产生光输出。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">LED结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/led-structure.svg" alt="LED结构" class="diagram-image">
+                                <div class="diagram-caption">图12-3：LED基本结构</div>
+                            </div>
+                        </div>
+                        
+                        <h4>LED的工作原理</h4>
+                        <ol>
+                            <li>正向偏置PN结，电子从N区注入P区，空穴从P区注入N区</li>
+                            <li>注入的少数载流子与多数载流子在结区附近复合</li>
+                            <li>复合过程中，电子从导带跃迁到价带，释放光子</li>
+                            <li>光子通过半导体材料和封装材料向外辐射</li>
+                        </ol>
+                        
+                        <h4>LED的特性参数</h4>
+                        <ul>
+                            <li><strong>发光波长</strong>：由半导体禁带宽度决定，λ ≈ 1240/E<sub>g</sub>（nm）</li>
+                            <li><strong>发光效率</strong>：输出光功率与输入电功率的比值</li>
+                            <li><strong>光谱半宽</strong>：发光光谱的半峰全宽，反映光的单色性</li>
+                            <li><strong>正向电压</strong>：正常工作时的正向电压降</li>
+                            <li><strong>发光强度</strong>：单位立体角内的光通量</li>
+                        </ul>
+                        
+                        <h4>LED的材料与应用</h4>
+                        <div class="material-applications">
+                            <table class="comparison-table">
+                                <thead>
+                                    <tr>
+                                        <th>半导体材料</th>
+                                        <th>禁带宽度 (eV)</th>
+                                        <th>发光波长 (nm)</th>
+                                        <th>颜色</th>
+                                        <th>主要应用</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>GaAs</td>
+                                        <td>1.42</td>
+                                        <td>870</td>
+                                        <td>红外</td>
+                                        <td>遥控器、光纤通信</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GaP</td>
+                                        <td>2.26</td>
+                                        <td>550</td>
+                                        <td>绿色</td>
+                                        <td>交通信号灯、显示屏</td>
+                                    </tr>
+                                    <tr>
+                                        <td>GaN</td>
+                                        <td>3.45</td>
+                                        <td>365</td>
+                                        <td>紫外</td>
+                                        <td>杀菌、固化</td>
+                                    </tr>
+                                    <tr>
+                                        <td>InGaN</td>
+                                        <td>1.9-3.4</td>
+                                        <td>365-650</td>
+                                        <td>蓝、绿、紫</td>
+                                        <td>白光LED、全彩显示</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AlGaInP</td>
+                                        <td>1.8-2.3</td>
+                                        <td>560-650</td>
+                                        <td>红、橙、黄</td>
+                                        <td>交通信号灯、显示屏</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div id="ld" class="tab-pane">
+                        <h3>半导体激光器（LD）</h3>
+                        <p>半导体激光器是一种利用受激辐射原理，产生相干光输出的半导体器件，具有高亮度、高方向性和高单色性等特点。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">LD结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/ld-structure.svg" alt="LD结构" class="diagram-image">
+                                <div class="diagram-caption">图12-4：半导体激光器基本结构</div>
+                            </div>
+                        </div>
+                        
+                        <h4>LD的工作原理</h4>
+                        <ol>
+                            <li>正向偏置PN结，实现粒子数反转（导带电子数大于价带空穴数）</li>
+                            <li>通过光学谐振腔（由两个平行反射面组成），使光子在腔内往返传播，产生光放大</li>
+                            <li>当光增益大于光损耗时，产生激光振荡，输出相干光</li>
+                        </ol>
+                        
+                        <h4>LD的关键条件</h4>
+                        <ul>
+                            <li><strong>粒子数反转</strong>：导带电子浓度大于价带空穴浓度，需要高注入电流</li>
+                            <li><strong>光学谐振腔</strong>：提供光反馈，实现光放大</li>
+                            <li><strong>增益大于损耗</strong>：光增益必须大于吸收、散射和透射等损耗</li>
+                        </ul>
+                        
+                        <h4>LD的特性参数</h4>
+                        <ul>
+                            <li><strong>阈值电流</strong>：产生激光输出所需的最小注入电流</li>
+                            <li><strong>斜率效率</strong>：阈值以上，光功率随电流变化的斜率</li>
+                            <li><strong>激光波长</strong>：由禁带宽度和腔长决定</li>
+                            <li><strong>谱线宽度</strong>：激光光谱的半峰全宽，通常小于1nm</li>
+                            <li><strong>发散角</strong>：激光束的发散程度，通常为几度到几十度</li>
+                        </ul>
+                        
+                        <h4>LD的类型与应用</h4>
+                        <div class="ld-types">
+                            <h5>主要类型</h5>
+                            <ul>
+                                <li><strong>Fabry-Perot (FP)激光器</strong>：多纵模输出，结构简单</li>
+                                <li><strong>分布反馈 (DFB)激光器</strong>：单纵模输出，波长稳定性好</li>
+                                <li><strong>垂直腔面发射激光器 (VCSEL)</strong>：垂直于芯片表面出光，适合阵列应用</li>
+                                <li><strong>量子阱激光器</strong>：利用量子限制效应，阈值电流低，效率高</li>
+                            </ul>
+                            
+                            <h5>主要应用</h5>
+                            <ul>
+                                <li>光纤通信系统</li>
+                                <li>光盘存储（CD、DVD、Blu-ray）</li>
+                                <li>激光打印和扫描</li>
+                                <li>激光测距和雷达</li>
+                                <li>医疗诊断和治疗</li>
+                                <li>工业加工和制造</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="photodetectors">
+            <h2 class="section-title">光电探测器与太阳能电池</h2>
+            <p>光电探测器和太阳能电池都是利用半导体的光吸收原理，将光能转化为电能的器件，广泛应用于光通信、光传感和可再生能源等领域。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('detectors')">光电探测器</button>
+                    <button class="tab-button" onclick="showTab('solar-cell')">太阳能电池</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="detectors" class="tab-pane active">
+                        <h3>光电探测器</h3>
+                        <p>光电探测器是一种将光信号转换为电信号的半导体器件，通过吸收光子产生电子-空穴对，在外电场作用下形成光电流。</p>
+                        
+                        <h4>光电探测器的工作原理</h4>
+                        <ol>
+                            <li>光子被半导体吸收，产生电子-空穴对</li>
+                            <li>电子和空穴在电场作用下向相反方向漂移</li>
+                            <li>漂移电流在外部电路中形成光电流信号</li>
+                            <li>光电流大小与入射光功率成正比</li>
+                        </ol>
+                        
+                        <h4>主要类型的光电探测器</h4>
+                        <div class="detector-types">
+                            <div class="detector-card">
+                                <h5>PIN光电二极管</h5>
+                                <p>PIN光电二极管在P型和N型半导体之间插入一层本征（I型）半导体，具有以下特点：</p>
+                                <ul>
+                                    <li>大的耗尽区宽度，提高光吸收效率</li>
+                                    <li>低暗电流，高灵敏度</li>
+                                    <li>高速响应特性</li>
+                                    <li>适合光通信和光传感应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detector-card">
+                                <h5>雪崩光电二极管（APD）</h5>
+                                <p>APD利用雪崩倍增效应，使光生载流子在强电场下产生碰撞电离，具有以下特点：</p>
+                                <ul>
+                                    <li>内部增益，高灵敏度</li>
+                                    <li>响应速度快</li>
+                                    <li>工作电压高</li>
+                                    <li>适合微弱光信号检测</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detector-card">
+                                <h5>光电晶体管</h5>
+                                <p>光电晶体管是一种基于BJT或FET的光电探测器，具有以下特点：</p>
+                                <ul>
+                                    <li>高电流增益</li>
+                                    <li>结构简单，成本低</li>
+                                    <li>响应速度较慢</li>
+                                    <li>适合可见光探测应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detector-card">
+                                <h5>CCD/CMOS图像传感器</h5>
+                                <p>阵列式光电探测器，将光信号转换为数字图像信号：</p>
+                                <ul>
+                                    <li>高分辨率</li>
+                                    <li>高灵敏度</li>
+                                    <li>CCD：低噪声，高动态范围</li>
+                                    <li>CMOS：集成度高，功耗低</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h4>光电探测器的特性参数</h4>
+                        <ul>
+                            <li><strong>响应度</strong>：单位入射光功率产生的光电流</li>
+                            <li><strong>量子效率</strong>：产生的电子-空穴对数与入射光子数的比值</li>
+                            <li><strong>暗电流</strong>：无光照时的漏电流</li>
+                            <li><strong>响应时间</strong>：光信号变化到电信号响应的时间</li>
+                            <li><strong>光谱响应</strong>：响应度随波长的变化关系</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="solar-cell" class="tab-pane">
+                        <h3>太阳能电池</h3>
+                        <p>太阳能电池（光伏电池）是一种将太阳光能直接转化为电能的半导体器件，基于PN结的光伏效应工作。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">太阳能电池工作原理</h3>
+                            <div class="diagram-container">
+                                <img src="../images/solar-cell.svg" alt="太阳能电池原理" class="diagram-image">
+                                <div class="diagram-caption">图12-4：太阳能电池工作原理</div>
+                            </div>
+                        </div>
+                        
+                        <h4>光伏效应</h4>
+                        <p>光伏效应是指当光照射到PN结上时，产生的电子-空穴对在结电场作用下分离，形成光生电动势的现象。</p>
+                        
+                        <h4>太阳能电池的工作过程</h4>
+                        <ol>
+                            <li>太阳光照射到太阳能电池表面</li>
+                            <li>光子被半导体吸收，产生电子-空穴对</li>
+                            <li>电子和空穴在PN结内建电场作用下分离</li>
+                            <li>电子向N区漂移，空穴向P区漂移</li>
+                            <li>在电池两端形成光生电动势（开路电压）</li>
+                            <li>连接外部负载，产生光电流</li>
+                        </ol>
+                        
+                        <h4>太阳能电池的特性参数</h4>
+                        <ul>
+                            <li><strong>短路电流</strong>：外电路短路时的输出电流，与光照强度成正比</li>
+                            <li><strong>开路电压</strong>：外电路开路时的输出电压，与材料禁带宽度有关</li>
+                            <li><strong>最大功率点</strong>：输出功率最大时的工作点</li>
+                            <li><strong>转换效率</strong>：输出电功率与入射光功率的比值</li>
+                            <li><strong>填充因子</strong>：实际最大功率与理想最大功率的比值</li>
+                        </ul>
+                        
+                        <h4>太阳能电池的类型</h4>
+                        <div class="solar-cell-types">
+                            <div class="solar-card">
+                                <h5>晶体硅太阳能电池</h5>
+                                <ul>
+                                    <li>单晶硅：效率高（18-25%），成本高</li>
+                                    <li>多晶硅：效率适中（15-20%），成本较低</li>
+                                    <li>非晶硅：效率低（8-12%），成本低，适合柔性应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solar-card">
+                                <h5>化合物半导体太阳能电池</h5>
+                                <ul>
+                                    <li>GaAs：效率高（25-30%），耐高温，适合太空应用</li>
+                                    <li>CdTe：效率较高（15-22%），成本低，规模化生产</li>
+                                    <li>CIGS：效率高（18-23%），适合柔性应用</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solar-card">
+                                <h5>薄膜太阳能电池</h5>
+                                <ul>
+                                    <li>厚度薄（几微米），材料消耗少</li>
+                                    <li>可柔性化，适合多种应用场景</li>
+                                    <li>效率相对较低，但成本优势明显</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solar-card">
+                                <h5>叠层太阳能电池</h5>
+                                <ul>
+                                    <li>多层不同禁带宽度的半导体堆叠</li>
+                                    <li>充分利用不同波长的太阳光</li>
+                                    <li>实验室效率已突破45%</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="quantum-devices">
+            <h2 class="section-title">量子效应器件</h2>
+            <p>量子效应器件是利用量子力学原理设计的新型半导体器件，具有传统器件无法实现的独特性能，如负微分电阻、单电子控制等。</p>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('rtd')">共振隧穿二极管（RTD）</button>
+                    <button class="tab-button" onclick="showTab('set')">单电子晶体管（SET）</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="rtd" class="tab-pane active">
+                        <h3>共振隧穿二极管（RTD）</h3>
+                        <p>RTD是一种利用量子隧穿效应和共振态原理工作的两端器件，具有负微分电阻特性，可用于高速振荡器、高速开关和逻辑电路。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">RTD结构与能带图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/rtd-structure.svg" alt="RTD结构" class="diagram-image">
+                                <div class="diagram-caption">图12-5：RTD的量子阱结构与能带图</div>
+                            </div>
+                        </div>
+                        
+                        <h4>RTD的工作原理</h4>
+                        <p>RTD由两个势垒层和一个中间势阱层组成，形成量子阱结构：</p>
+                        <ul>
+                            <li>当入射电子能量与量子阱中的能级匹配时，发生共振隧穿，电流达到峰值</li>
+                            <li>当电子能量高于共振能级时，隧穿概率下降，电流减小，出现负微分电阻</li>
+                            <li>负微分电阻特性可用于高速振荡和开关应用</li>
+                        </ul>
+                        
+                        <h4>RTD的特性曲线</h4>
+                        <p>RTD的I-V特性曲线呈现明显的负微分电阻区域，具有以下特点：</p>
+                        <ul>
+                            <li>峰值电流I<sub>P</sub>：共振隧穿时的最大电流</li>
+                            <li>谷值电流I<sub>V</sub>：负阻区结束时的最小电流</li>
+                            <li>峰值电压V<sub>P</sub>：峰值电流对应的电压</li>
+                            <li>谷值电压V<sub>V</sub>：谷值电流对应的电压</li>
+                            <li>峰值谷值比（PVR）：I<sub>P</sub>/I<sub>V</sub>，衡量负阻特性的优劣</li>
+                        </ul>
+                        
+                        <h4>RTD的应用</h4>
+                        <ul>
+                            <li>高速振荡器（可达THz频率）</li>
+                            <li>高速开关电路</li>
+                            <li>共振隧穿晶体管（RTT）</li>
+                            <li>多值逻辑电路</li>
+                            <li>毫米波通信系统</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="set" class="tab-pane">
+                        <h3>单电子晶体管（SET）</h3>
+                        <p>SET是一种基于库仑阻塞效应的纳米电子器件，能够实现对单个电子的精确控制，具有超低功耗的潜力。</p>
+                        
+                        <div class="concept-diagram">
+                            <h3 class="diagram-title">SET结构示意图</h3>
+                            <div class="diagram-container">
+                                <img src="../images/set-structure.svg" alt="SET结构" class="diagram-image">
+                                <div class="diagram-caption">图12-6：单电子晶体管结构</div>
+                            </div>
+                        </div>
+                        
+                        <h4>库仑阻塞效应</h4>
+                        <p>库仑阻塞效应是指当体系电容极小时，由于电荷量子化，添加单个电子需要克服库仑能，导致电流被阻塞的现象。</p>
+                        
+                        <div class="equation-box">
+                            <p class="equation">E<sub>C</sub> = e<sup>2</sup>/(2C)</p>
+                            <p class="equation-description">其中E<sub>C</sub>是库仑能，e是电子电荷，C是体系电容。当kT << E<sub>C</sub>时，库仑阻塞效应显著。</p>
+                        </div>
+                        
+                        <h4>SET的工作原理</h4>
+                        <p>SET由源极、漏极和一个被隧道结包围的量子点组成：</p>
+                        <ul>
+                            <li>量子点作为电荷岛，通过两个隧道结与源漏连接</li>
+                            <li>栅极电压控制量子点的电势，调节库仑能</li>
+                            <li>当栅极电压变化时，通过库仑阻塞和共振隧穿，电流呈现周期性振荡</li>
+                            <li>每个振荡周期对应一个电子的隧穿过程</li>
+                        </ul>
+                        
+                        <h4>SET的特性</h4>
+                        <ul>
+                            <li>单电子隧穿特性，电流-栅压曲线呈现库仑振荡</li>
+                            <li>超低功耗，理论上每个开关事件仅需一个电子</li>
+                            <li>极高的电荷灵敏度，可用于单电子检测</li>
+                            <li>需要低温工作环境（通常< 1K）</li>
+                            <li>对电荷噪声敏感</li>
+                        </ul>
+                        
+                        <h4>SET的应用前景</h4>
+                        <ul>
+                            <li>超高密度存储器</li>
+                            <li>单电子逻辑电路</li>
+                            <li>电荷传感器和单电子探测器</li>
+                            <li>量子计算中的量子比特</li>
+                            <li>生物分子检测</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="chapter-summary">
+            <h2 class="section-title">本章小结</h2>
+            <p>本章详细介绍了光电子器件和量子效应器件的工作原理、特性和应用。光电子器件基于半导体的光吸收和辐射复合原理，实现了光与电之间的相互转换；量子效应器件则利用量子力学原理，展现出传统器件无法实现的独特性能。</p>
+            
+            <h3>核心要点</h3>
+            <ul>
+                <li>半导体中的光吸收和辐射复合是光电子器件的物理基础</li>
+                <li>LED利用自发辐射原理工作，发出非相干光；LD利用受激辐射原理工作，发出相干激光</li>
+                <li>光电探测器将光信号转换为电信号，太阳能电池将光能直接转换为电能</li>
+                <li>RTD利用共振隧穿效应实现负微分电阻，可用于高速器件</li>
+                <li>SET基于库仑阻塞效应，实现单电子控制，具有超低功耗潜力</li>
+            </ul>
+            
+            <h3>学习成果</h3>
+            <p>通过本章的学习，您应该能够：</p>
+            <ul>
+                <li>理解半导体光吸收和辐射复合的基本过程</li>
+                <li>掌握LED和LD的工作原理和特性差异</li>
+                <li>分析光电探测器和太阳能电池的工作机制</li>
+                <li>解释RTD的负微分电阻特性和SET的库仑振荡</li>
+                <li>了解各类光电子和量子效应器件的应用场景</li>
+            </ul>
+        </div>
+        
+        <div class="progress-indicator">
+            学习进度: <span id="progress">0%</span>
+        </div>
     </div>
 
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="back-to-top" aria-label="返回顶部">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script src="../js/main.js"></script>
     <script>
-        // 章节特定的JavaScript代码
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化短沟道效应模拟器
-            initSCESimulator();
+        // 实验计数器
+        let optoExperiments = 0;
+        let quantumExperiments = 0;
+        
+        // 标签页切换功能
+        function showTab(tabId) {
+            // 隐藏所有标签内容
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            tabPanes.forEach(pane => pane.classList.remove('active'));
             
-            // 初始化量子效应模拟器
-            initQuantumSimulator();
+            // 移除所有标签按钮的活动状态
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
             
-            // 初始化功耗模拟器
-            initPowerSimulator();
-        });
-
-        // 短沟道效应模拟器
-        function initSCESimulator() {
-            const channelLength = document.getElementById('channel-length');
-            const oxideThickness = document.getElementById('oxide-thickness');
-            const drainVoltage = document.getElementById('drain-voltage');
-            const dopingConcentration = document.getElementById('doping-concentration');
+            // 显示选中的标签内容
+            document.getElementById(tabId).classList.add('active');
             
-            // 更新显示值
-            channelLength.addEventListener('input', function() {
-                document.getElementById('channel-length-value').textContent = this.value + ' nm';
-                updateSCEAnalysis();
-            });
-            
-            oxideThickness.addEventListener('input', function() {
-                document.getElementById('oxide-thickness-value').textContent = this.value + ' nm';
-                updateSCEAnalysis();
-            });
-            
-            drainVoltage.addEventListener('input', function() {
-                document.getElementById('drain-voltage-value').textContent = this.value + ' V';
-                updateSCEAnalysis();
-            });
-            
-            dopingConcentration.addEventListener('input', function() {
-                document.getElementById('doping-concentration-value').textContent = '10<sup>' + this.value + '</sup>';
-                updateSCEAnalysis();
-            });
-            
-            // 初始化图表
-            const ctx = document.getElementById('sce-chart').getContext('2d');
-            const sceChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: '长沟道器件',
-                        data: [],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: false,
-                        tension: 0.4
-                    }, {
-                        label: '短沟道器件',
-                        data: [],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: false,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: '栅极电压 (V)'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: '漏极电流 (μA)'
-                            },
-                            type: 'logarithmic'
-                        }
-                    }
-                }
-            });
-            
-            // 更新分析函数
-            function updateSCEAnalysis() {
-                const L = parseFloat(channelLength.value);
-                const tox = parseFloat(oxideThickness.value);
-                const Vds = parseFloat(drainVoltage.value);
-                const Na = Math.pow(10, parseFloat(dopingConcentration.value));
-                
-                // 计算短沟道效应参数
-                const VthShift = -85 * (100 / L) * (1.2 / tox) * (Vds / 0.7);
-                const DIBL = 120 * (100 / L) * (1.2 / tox);
-                const SS = 65 + 20 * (100 / L);
-                const onOffRatio = Math.pow(10, 6 - (100 - L) / 20);
-                
-                // 更新结果显示
-                document.getElementById('vth-shift').textContent = VthShift.toFixed(0) + ' mV';
-                document.getElementById('dibl-coefficient').textContent = DIBL.toFixed(0) + ' mV/V';
-                document.getElementById('subthreshold-slope').textContent = SS.toFixed(0) + ' mV/dec';
-                document.getElementById('on-off-ratio').innerHTML = '10<sup>' + Math.log10(onOffRatio).toFixed(0) + '</sup>';
-                
-                // 更新严重程度指示器
-                const severity = Math.min(100, Math.max(0, (100 - L) / 95 * 100));
-                document.getElementById('severity-bar').style.width = severity + '%';
-                document.getElementById('severity-text').textContent = 
-                    severity < 30 ? '轻微' : severity < 70 ? '中等' : '严重';
-                
-                // 更新图表数据
-                const VgsValues = [];
-                const longChannelCurrent = [];
-                const shortChannelCurrent = [];
-                
-                for (let Vgs = 0; Vgs <= 1.2; Vgs += 0.05) {
-                    VgsValues.push(Vgs.toFixed(2));
-                    
-                    // 长沟道器件电流模型
-                    const Vth_long = 0.4;
-                    if (Vgs > Vth_long) {
-                        const Id_long = 100 * Math.pow(Vgs - Vth_long, 2) * (1 + 0.01 * Vds);
-                        longChannelCurrent.push(Id_long);
-                    } else {
-                        longChannelCurrent.push(1e-6);
-                    }
-                    
-                    // 短沟道器件电流模型（考虑短沟道效应）
-                    const Vth_short = 0.4 + VthShift / 1000;
-                    const DIBL_effect = DIBL / 1000 * Vds;
-                    if (Vgs > Vth_short - DIBL_effect) {
-                        const Id_short = 100 * Math.pow(Vgs - Vth_short + DIBL_effect, 1.5) * (1 + 0.05 * Vds);
-                        shortChannelCurrent.push(Id_short);
-                    } else {
-                        const subthreshold_slope = SS / 1000;
-                        const Id_sub = 1e-6 * Math.pow(10, (Vgs - Vth_short + DIBL_effect) / subthreshold_slope);
-                        shortChannelCurrent.push(Id_sub);
-                    }
-                }
-                
-                sceChart.data.labels = VgsValues;
-                sceChart.data.datasets[0].data = longChannelCurrent;
-                sceChart.data.datasets[1].data = shortChannelCurrent;
-                sceChart.update();
-            }
-            
-            // 初始化分析
-            updateSCEAnalysis();
+            // 激活对应的标签按钮
+            event.target.classList.add('active');
         }
-
-        // 量子效应模拟器
-        function initQuantumSimulator() {
-            const barrierHeight = document.getElementById('barrier-height');
-            const barrierWidth = document.getElementById('barrier-width');
-            const electricField = document.getElementById('electric-field');
-            const temperature = document.getElementById('temperature');
-            
-            // 更新显示值
-            barrierHeight.addEventListener('input', function() {
-                document.getElementById('barrier-height-value').textContent = this.value + ' eV';
-                updateQuantumAnalysis();
-            });
-            
-            barrierWidth.addEventListener('input', function() {
-                document.getElementById('barrier-width-value').textContent = this.value + ' nm';
-                updateQuantumAnalysis();
-            });
-            
-            electricField.addEventListener('input', function() {
-                document.getElementById('electric-field-value').textContent = this.value + ' MV/cm';
-                updateQuantumAnalysis();
-            });
-            
-            temperature.addEventListener('input', function() {
-                document.getElementById('temperature-value').textContent = this.value + ' K';
-                updateQuantumAnalysis();
-            });
-            
-            // 初始化图表
-            const ctx = document.getElementById('quantum-chart').getContext('2d');
-            const quantumChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: '隧穿概率',
-                        data: [],
-                        borderColor: '#9b59b6',
-                        backgroundColor: 'rgba(155, 89, 182, 0.1)',
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: '能量 (eV)'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: '隧穿概率'
-                            },
-                            type: 'logarithmic'
-                        }
-                    }
-                }
-            });
-            
-            // 更新分析函数
-            function updateQuantumAnalysis() {
-                const phi = parseFloat(barrierHeight.value);
-                const a = parseFloat(barrierWidth.value);
-                const E = parseFloat(electricField.value);
-                const T = parseFloat(temperature.value);
-                
-                // 计算量子隧穿参数（简化模型）
-                const hbar = 6.582e-16; // 约化普朗克常数 (eV·s)
-                const m0 = 9.11e-31; // 电子质量 (kg)
-                const q = 1.602e-19; // 电子电荷 (C)
-                const m_eff = 0.3 * m0; // 有效质量
-                
-                // WKB近似计算隧穿概率
-                const tunneling_prob = Math.exp(-2 * a * 1e-9 * Math.sqrt(2 * m_eff * q * phi) / hbar);
-                
-                // 隧穿电流密度（简化模型）
-                const A = 1.5e-6; // 前置因子 (A/cm²)
-                const B = 6.83e9; // 指数因子 (V/m)
-                const tunneling_current = A * Math.pow(E * 1e8, 2) * Math.exp(-B / (E * 1e8));
-                
-                // 德布罗意波长
-                const kT = 8.617e-5 * T; // kT (eV)
-                const de_broglie = hbar / Math.sqrt(2 * m_eff * q * kT) * 1e9; // nm
-                
-                // 量子限制能级
-                const quantum_level = Math.pow(Math.PI * hbar / (a * 1e-9), 2) / (2 * m_eff * q); // eV
-                
-                // 更新结果显示
-                document.getElementById('tunneling-probability').innerHTML = tunneling_prob.toExponential(1);
-                document.getElementById('tunneling-current').innerHTML = tunneling_current.toExponential(1) + ' A/cm²';
-                document.getElementById('de-broglie-wavelength').textContent = de_broglie.toFixed(2) + ' nm';
-                document.getElementById('quantum-level').textContent = quantum_level.toFixed(2) + ' eV';
-                
-                // 更新量子效应显著程度
-                const quantumSeverity = Math.min(100, Math.max(0, 
-                    (3.5 - phi) / 3 * 40 + 
-                    (3 - a) / 2.5 * 30 + 
-                    E / 10 * 30));
-                document.getElementById('quantum-severity-bar').style.width = quantumSeverity + '%';
-                document.getElementById('quantum-severity-text').textContent = 
-                    quantumSeverity < 30 ? '轻微' : quantumSeverity < 70 ? '中等' : '显著';
-                
-                // 更新图表数据
-                const energyValues = [];
-                const tunnelingProbValues = [];
-                
-                for (let E = 0; E <= phi * 1.2; E += 0.05) {
-                    energyValues.push(E.toFixed(2));
-                    
-                    // 计算每个能量下的隧穿概率
-                    let prob;
-                    if (E < phi) {
-                        // WKB近似
-                        const kappa = Math.sqrt(2 * m_eff * q * (phi - E)) / hbar;
-                        prob = Math.exp(-2 * kappa * a * 1e-9);
-                    } else {
-                        // 能量高于势垒，透射概率接近1
-                        prob = 0.9;
-                    }
-                    tunnelingProbValues.push(prob);
-                }
-                
-                quantumChart.data.labels = energyValues;
-                quantumChart.data.datasets[0].data = tunnelingProbValues;
-                quantumChart.update();
-            }
-            
-            // 初始化分析
-            updateQuantumAnalysis();
-        }
-
-        // 功耗模拟器
-        function initPowerSimulator() {
-            const supplyVoltage = document.getElementById('supply-voltage');
-            const operatingFrequency = document.getElementById('operating-frequency');
-            const gateCount = document.getElementById('gate-count');
-            const activityFactor = document.getElementById('activity-factor');
-            
-            // 更新显示值
-            supplyVoltage.addEventListener('input', function() {
-                document.getElementById('supply-voltage-value').textContent = this.value + ' V';
-                updatePowerAnalysis();
-            });
-            
-            operatingFrequency.addEventListener('input', function() {
-                document.getElementById('operating-frequency-value').textContent = this.value + ' MHz';
-                updatePowerAnalysis();
-            });
-            
-            gateCount.addEventListener('input', function() {
-                document.getElementById('gate-count-value').textContent = this.value + ' K';
-                updatePowerAnalysis();
-            });
-            
-            activityFactor.addEventListener('input', function() {
-                document.getElementById('activity-factor-value').textContent = this.value;
-                updatePowerAnalysis();
-            });
-            
-            // 初始化图表
-            const ctx = document.getElementById('power-chart').getContext('2d');
-            const powerChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['动态功耗', '静态功耗', '短路功耗'],
-                    datasets: [{
-                        label: '功耗分布',
-                        data: [],
-                        backgroundColor: [
-                            'rgba(52, 152, 219, 0.7)',
-                            'rgba(231, 76, 60, 0.7)',
-                            'rgba(241, 196, 15, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(52, 152, 219, 1)',
-                            'rgba(231, 76, 60, 1)',
-                            'rgba(241, 196, 15, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '功耗 (W)'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // 更新分析函数
-            function updatePowerAnalysis() {
-                const Vdd = parseFloat(supplyVoltage.value);
-                const f = parseFloat(operatingFrequency) * 1e6; // Hz
-                const N = parseFloat(gateCount) * 1e3; // 门数
-                const alpha = parseFloat(activityFactor);
-                
-                // 假设参数
-                const C_gate = 1e-15; // 每个门的电容 (F)
-                const I_leak_base = 1e-9 * Math.pow(10, (1.2 - Vdd) / 0.1); // 基础漏电流
-                const I_short_factor = 0.1; // 短路功耗因子
-                
-                // 计算功耗
-                const C_total = N * C_gate;
-                const P_dynamic = alpha * C_total * Vdd * Vdd * f;
-                const P_static = I_leak_base * N * Vdd;
-                const P_short = I_short_factor * P_dynamic;
-                const P_total = P_dynamic + P_static + P_short;
-                
-                // 计算功耗密度（假设芯片面积）
-                const chipArea = 2.0; // cm²
-                const powerDensity = P_total / chipArea;
-                
-                // 更新结果显示
-                document.getElementById('dynamic-power').textContent = P_dynamic.toFixed(1) + ' W';
-                document.getElementById('static-power').textContent = P_static.toFixed(1) + ' W';
-                document.getElementById('total-power').textContent = P_total.toFixed(1) + ' W';
-                document.getElementById('power-density').textContent = powerDensity.toFixed(0) + ' W/cm²';
-                
-                // 更新功耗分布图表
-                powerChart.data.datasets[0].data = [P_dynamic, P_static, P_short];
-                powerChart.update();
-                
-                // 更新功耗分布条
-                const dynamicPercent = (P_dynamic / P_total * 100).toFixed(0);
-                const staticPercent = (P_static / P_total * 100).toFixed(0);
-                
-                document.getElementById('dynamic-bar').style.width = dynamicPercent + '%';
-                document.getElementById('static-bar').style.width = staticPercent + '%';
-                document.querySelector('.legend-item.dynamic').textContent = `动态功耗 ${dynamicPercent}%`;
-                document.querySelector('.legend-item.static').textContent = `静态功耗 ${staticPercent}%`;
-            }
-            
-            // 初始化分析
-            updatePowerAnalysis();
+        
+        // 更新学习进度
+        function updateProgress() {
+            const totalExperiments = optoExperiments + quantumExperiments;
+            const maxExperiments = 10; // 最大实验次数
+            const progress = Math.min(Math.round((totalExperiments / maxExperiments) * 100), 100);
+            document.getElementById('progress').textContent = progress + '%';
         }
     </script>
 </body>

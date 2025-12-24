@@ -3,13 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第7章：专用功能器件 - SEMI_PROJ</title>
+    <title>第7章：PN结与金属-半导体接触 - SEMI_PROJ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/chapter-styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
 </head>
 <body>
     <header class="header">
@@ -51,1019 +48,528 @@
                     <i class="fas fa-home"></i> 返回主页
                 </a>
                 
-                <a href="chapter1.html" class="chapter-nav-item ">
-                    第1章：半导体行业与技术演进
+                <a href="preface.html" class="chapter-nav-item">
+                    序言：硅基文明与信息时代
                 </a>
-                <a href="chapter2.html" class="chapter-nav-item ">
-                    第2章：半导体材料基础
+                <a href="chapter1.html" class="chapter-nav-item">
+                    第1章：量子力学基础与固体中的电子
                 </a>
-                <a href="chapter3.html" class="chapter-nav-item ">
-                    第3章：基础半导体器件
+                <a href="chapter2.html" class="chapter-nav-item">
+                    第2章：半导体材料与晶体结构
                 </a>
-                <a href="chapter4.html" class="chapter-nav-item ">
-                    第4章：MOSFET核心技术
+                <a href="chapter3.html" class="chapter-nav-item">
+                    第3章：载流子统计与热平衡
                 </a>
-                <a href="chapter5.html" class="chapter-nav-item ">
-                    第5章：数字集成器件
+                <a href="chapter4.html" class="chapter-nav-item">
+                    第4章：载流子输运现象
                 </a>
-                <a href="chapter6.html" class="chapter-nav-item ">
-                    第6章：模拟集成器件
+                <a href="chapter5.html" class="chapter-nav-item">
+                    第5章：非平衡载流子与复合动力学
+                </a>
+                <a href="chapter6.html" class="chapter-nav-item">
+                    第6章：高场效应与量子输运
                 </a>
                 <a href="chapter7.html" class="chapter-nav-item active">
-                    第7章：特殊功能器件
+                    第7章：PN结与金属-半导体接触
                 </a>
-                <a href="chapter8.html" class="chapter-nav-item ">
-                    第8章：衬底与晶圆制备
+                <a href="chapter8.html" class="chapter-nav-item">
+                    第8章：MOS结构物理
                 </a>
-                <a href="chapter9.html" class="chapter-nav-item ">
-                    第9章：器件图形化工艺
+                <a href="chapter9.html" class="chapter-nav-item">
+                    第9章：异质结与能带调控
                 </a>
-                <a href="chapter10.html" class="chapter-nav-item ">
-                    第10章：器件掺杂与薄膜工艺
+                <a href="chapter10.html" class="chapter-nav-item">
+                    第10章：金属-氧化物-半导体场效应晶体管（MOSFET）
                 </a>
-                <a href="chapter11.html" class="chapter-nav-item ">
-                    第11章：器件互连与封装
+                <a href="chapter11.html" class="chapter-nav-item">
+                    第11章：双极结型晶体管（BJT）与特种器件
                 </a>
-                <a href="chapter12.html" class="chapter-nav-item ">
-                    第12章：纳米尺度器件挑战与解决方案
+                <a href="chapter12.html" class="chapter-nav-item">
+                    第12章：光电子与量子效应器件
                 </a>
-                <a href="chapter13.html" class="chapter-nav-item ">
-                    第13章：宽禁带半导体器件
+                <a href="chapter13.html" class="chapter-nav-item">
+                    第13章：晶圆制备与薄膜工程
                 </a>
-                <a href="chapter14.html" class="chapter-nav-item ">
-                    第14章：后摩尔时代器件技术
+                <a href="chapter14.html" class="chapter-nav-item">
+                    第14章：图形化与掺杂技术
                 </a>
-                <a href="chapter15.html" class="chapter-nav-item ">
-                    第15章：器件设计与仿真工具
+                <a href="chapter15.html" class="chapter-nav-item">
+                    第15章：工艺集成与后端互连
                 </a>
-                <a href="chapter16.html" class="chapter-nav-item ">
-                    第16章：故障排查与测试技术
+                <a href="chapter16.html" class="chapter-nav-item">
+                    第16章：半导体材料与器件表征
                 </a>
-                <a href="chapter17.html" class="chapter-nav-item ">
-                    第17章：行业资源汇总
+                <a href="chapter17.html" class="chapter-nav-item">
+                    第17章：紧凑模型与电路仿真
+                </a>
+                <a href="chapter18.html" class="chapter-nav-item">
+                    第18章：VLSI与SoC设计基础
+                </a>
+                <a href="chapter19.html" class="chapter-nav-item">
+                    第19章：互连、功耗与可靠性
+                </a>
+                <a href="chapter20.html" class="chapter-nav-item">
+                    第20章：超越传统硅基CMOS
                 </a>
             </nav>
-            
-            
-                <div class="current-chapter-nav">
-                    <h4>当前章节</h4>
-                    <nav class="section-nav">
-
-                    <a href="#power-devices" class="section-nav-item">
-                        功率器件
-                    </a>
-                    <a href="#rf-devices" class="section-nav-item">
-                        射频器件
-                    </a>
-                    <a href="#sensor-devices" class="section-nav-item">
-                        传感器件
-                    </a>
-                    <a href="#chapter-summary" class="section-nav-item">
-                        本章小结
-                    </a>
-                    </nav>
-                </div>
         </div>
     </aside>
     
-
     <main class="main-content">
         <div class="chapter-container">
             <div class="breadcrumb">
-                <p><a href="../index.html">首页</a> &gt; <a href="../index.html#basics">基础原理</a> &gt; 第七章：专用功能器件</p>
+                <p><a href="../index.html">首页</a> &gt; 第7章：PN结与金属-半导体接触</p>
             </div>
-        <div class="chapter-header">
-            <h1>第七章：专用功能器件</h1>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">传感器件</h2>
-            <p>传感器件是将物理量、化学量或生物量转换为电信号的器件，是物联网和智能系统的核心组件。本节介绍各类传感器件的工作原理、特性和应用场景。</p>
+            <div class="chapter-header">
+                <h1>第7章：PN结与金属-半导体接触</h1>
+            </div>
             
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('sensors-overview')">传感器概述</button>
-                    <button class="tab-button" onclick="showTab('sensors-interactive')">传感器交互实验室</button>
+            <div class="chapter-core">
+                <h3>核心内容</h3>
+                <p>详解PN结的能带图、内建电场、耗尽区宽度、电容等特性。推导理想PN结的电流-电压（I-V）特性方程。讲解齐纳击穿与雪崩击穿机制。阐述金属-半导体接触，区分肖特基势垒与欧姆接触的形成条件与物理。</p>
+            </div>
+            
+            <div class="chapter-objectives">
+                <h3>章节目标</h3>
+                <ul>
+                    <li>掌握PN结这一最基本半导体器件的静态特性与工作原理</li>
+                    <li>理解金属与半导体接触的两种基本形式及其应用</li>
+                    <li>能够分析PN结在不同偏置条件下的行为</li>
+                    <li>掌握击穿现象的物理机制</li>
+                </ul>
+            </div>
+            
+            <div class="chapter-keywords">
+                <h3>关键词</h3>
+                <div class="keywords-list">
+                    <span class="keyword">PN结</span>
+                    <span class="keyword">耗尽区</span>
+                    <span class="keyword">内建电势</span>
+                    <span class="keyword">I-V特性</span>
+                    <span class="keyword">击穿</span>
+                    <span class="keyword">肖特基势垒</span>
+                    <span class="keyword">欧姆接触</span>
+                    <span class="keyword">理查森常数</span>
                 </div>
-                
-                <div class="tab-content">
-                    <div id="sensors-overview" class="tab-pane active">
-                        <div class="sensor-grid">
-                            <div class="sensor-card" onclick="selectSensor('temperature')">
-                                <div class="sensor-icon"><i class="fas fa-thermometer-half"></i></div>
-                                <div class="sensor-name">温度传感器</div>
-                                <div class="sensor-description">基于热敏电阻、热电偶或PN结温度特性，测量环境温度变化</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectSensor('pressure')">
-                                <div class="sensor-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                <div class="sensor-name">压力传感器</div>
-                                <div class="sensor-description">利用压阻效应或电容变化，测量气体或液体压力</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectSensor('light')">
-                                <div class="sensor-icon"><i class="fas fa-sun"></i></div>
-                                <div class="sensor-name">光传感器</div>
-                                <div class="sensor-description">基于光电效应，测量光强度、颜色或光谱分布</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectSensor('motion')">
-                                <div class="sensor-icon"><i class="fas fa-running"></i></div>
-                                <div class="sensor-name">运动传感器</div>
-                                <div class="sensor-description">利用加速度计、陀螺仪或磁力计，检测物体运动状态</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectSensor('gas')">
-                                <div class="sensor-icon"><i class="fas fa-wind"></i></div>
-                                <div class="sensor-name">气体传感器</div>
-                                <div class="sensor-description">基于化学反应或电导率变化，检测特定气体成分和浓度</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectSensor('humidity')">
-                                <div class="sensor-icon"><i class="fas fa-tint"></i></div>
-                                <div class="sensor-name">湿度传感器</div>
-                                <div class="sensor-description">测量空气或材料中的水分含量，基于电容或电阻变化</div>
+            </div>
+
+            <div class="content">
+                <section class="intro">
+                    <p>PN结是半导体器件的基础，几乎所有半导体器件都包含PN结结构。PN结的发现和理解标志着半导体技术的重要突破，为晶体管、二极管、集成电路等现代电子器件奠定了基础。本章将详细介绍PN结的物理特性、工作原理以及金属-半导体接触的相关知识。</p>
+                </section>
+
+                <section class="pn-junction-basics">
+                    <h2>7.1 PN结的形成与能带图</h2>
+                    <p>当P型半导体和N型半导体通过特定工艺结合在一起时，在它们的交界处会形成一个特殊的区域，即PN结。</p>
+                    
+                    <div class="concept-box">
+                        <h3>PN结的形成过程</h3>
+                        <ol>
+                            <li><strong>载流子扩散</strong>：由于P型半导体中的空穴浓度远高于N型半导体，而N型半导体中的电子浓度远高于P型半导体，载流子会从高浓度区域向低浓度区域扩散。</li>
+                            <li><strong>空间电荷区形成</strong>：扩散的结果是在交界处P型侧失去空穴，留下带负电的受主离子；N型侧失去电子，留下带正电的施主离子，形成空间电荷区。</li>
+                            <li><strong>内建电场建立</strong>：空间电荷区的正负电荷产生内建电场，方向从N区指向P区，阻碍载流子的进一步扩散。</li>
+                            <li><strong>热平衡状态</strong>：当扩散电流与内建电场产生的漂移电流相等时，PN结达到热平衡状态，空间电荷区宽度稳定。</li>
+                        </ol>
+                    </div>
+
+                    <div class="interactive-container">
+                        <h3>PN结能带图交互演示</h3>
+                        <div class="diagram-container">
+                            <div class="diagram-box">
+                                <div class="band-diagram">
+                                    <div class="band-region p-type">
+                                        <div class="band-label">P型半导体</div>
+                                        <div class="valence-band">价带</div>
+                                        <div class="fermi-level">E_F</div>
+                                        <div class="conduction-band">导带</div>
+                                    </div>
+                                    <div class="junction-region">
+                                        <div class="band-label">PN结</div>
+                                        <div class="depletion-region">耗尽区</div>
+                                        <div class="built-in-field">内建电场</div>
+                                    </div>
+                                    <div class="band-region n-type">
+                                        <div class="band-label">N型半导体</div>
+                                        <div class="valence-band">价带</div>
+                                        <div class="fermi-level">E_F</div>
+                                        <div class="conduction-band">导带</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </section>
+
+                <section class="pn-junction-iv">
+                    <h2>7.2 PN结的电流-电压特性</h2>
+                    <p>PN结的电流-电压特性是其最重要的特性之一，描述了不同偏置条件下流过PN结的电流与施加电压的关系。</p>
                     
-                    <div id="sensors-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">传感器响应特性模拟器</h3>
+                    <div class="formula-box">
+                        <h3>理想PN结的I-V方程</h3>
+                        <div class="formula">
+                            <p>I = Iₛ (e^(qV/kT) - 1)</p>
+                        </div>
+                        <div class="formula-explanation">
+                            <p>其中：</p>
+                            <ul>
+                                <li>I：流过PN结的总电流</li>
+                                <li>Iₛ：反向饱和电流</li>
+                                <li>q：电子电荷量 (1.6×10⁻¹⁹ C)</li>
+                                <li>V：施加在PN结上的电压</li>
+                                <li>k：玻尔兹曼常数 (1.38×10⁻²³ J/K)</li>
+                                <li>T：绝对温度</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="concept-box">
+                        <h3>PN结的偏置条件</h3>
+                        <div class="bias-conditions">
+                            <div class="bias-condition">
+                                <h4>正向偏置</h4>
+                                <p>当P区接电源正极，N区接电源负极时，施加的外电场与内建电场方向相反，削弱了内建电场，使空间电荷区变窄，多数载流子能够顺利通过PN结，形成较大的正向电流。</p>
+                            </div>
+                            <div class="bias-condition">
+                                <h4>反向偏置</h4>
+                                <p>当P区接电源负极，N区接电源正极时，施加的外电场与内建电场方向相同，增强了内建电场，使空间电荷区变宽，多数载流子难以通过PN结，只有少数载流子形成很小的反向饱和电流。</p>
+                            </div>
+                            <div class="bias-condition">
+                                <h4>零偏置</h4>
+                                <p>当PN结两端没有施加电压时，处于热平衡状态，正向电流与反向电流相等，总电流为零。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interactive-container">
+                        <h3>PN结I-V特性模拟器</h3>
+                        <div class="simulator-container">
                             <div class="controls">
                                 <div class="control-group">
-                                    <label for="sensor-type">传感器类型</label>
-                                    <select id="sensor-type">
-                                        <option value="temperature">温度传感器</option>
-                                        <option value="pressure">压力传感器</option>
-                                        <option value="light">光传感器</option>
-                                        <option value="gas">气体传感器</option>
-                                    </select>
+                                    <label for="voltage-slider">施加电压 (V)</label>
+                                    <input type="range" id="voltage-slider" min="-5" max="5" step="0.1" value="0">
+                                    <span id="voltage-value">0.0 V</span>
                                 </div>
                                 <div class="control-group">
-                                    <label for="stimulus-range">刺激范围</label>
-                                    <input type="range" id="stimulus-range" min="0" max="100" value="50">
-                                    <span id="stimulus-value">50</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="noise-level">噪声水平</label>
-                                    <input type="range" id="noise-level" min="0" max="20" value="5">
-                                    <span id="noise-value">5%</span>
+                                    <label for="temperature-slider">温度 (°C)</label>
+                                    <input type="range" id="temperature-slider" min="-50" max="200" step="10" value="25">
+                                    <span id="temperature-value">25 °C</span>
                                 </div>
                             </div>
                             <div class="chart-container">
-                                <canvas id="sensor-response-chart"></canvas>
-                            </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">传感器输出</span>
-                                    <span class="result-value" id="sensor-output">2.5 V</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">灵敏度</span>
-                                    <span class="result-value" id="sensor-sensitivity">10 mV/单位</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">响应时间</span>
-                                    <span class="result-value" id="response-time">100 ms</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">信噪比</span>
-                                    <span class="result-value" id="signal-noise-ratio">20 dB</span>
-                                </div>
+                                <canvas id="pn-iv-chart"></canvas>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">功率器件</h2>
-            <p>功率器件是处理高电压、大电流的半导体器件，是电力电子系统的核心。本节介绍各类功率器件的结构、工作原理和性能特点。</p>
-            
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('power-overview')">功率器件概述</button>
-                    <button class="tab-button" onclick="showTab('power-interactive')">功率器件模拟器</button>
-                </div>
-                
-                <div class="tab-content">
-                    <div id="power-overview" class="tab-pane active">
-                        <div class="sensor-grid">
-                            <div class="sensor-card" onclick="selectPowerDevice('mosfet')">
-                                <div class="sensor-icon"><i class="fas fa-microchip"></i></div>
-                                <div class="sensor-name">功率MOSFET</div>
-                                <div class="sensor-description">高速开关，低导通电阻，适用于高频开关电源</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectPowerDevice('igbt')">
-                                <div class="sensor-icon"><i class="fas fa-bolt"></i></div>
-                                <div class="sensor-name">IGBT</div>
-                                <div class="sensor-description">结合MOSFET和BJT优点，适用于高压大功率应用</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectPowerDevice('thyristor')">
-                                <div class="sensor-icon"><i class="fas fa-toggle-on"></i></div>
-                                <div class="sensor-name">晶闸管</div>
-                                <div class="sensor-description">可控整流器件，适用于高压大电流控制</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectPowerDevice('gan')">
-                                <div class="sensor-icon"><i class="fas fa-gem"></i></div>
-                                <div class="sensor-name">GaN器件</div>
-                                <div class="sensor-description">宽禁带半导体，高电子迁移率，适用于高频高效应用</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectPowerDevice('sic')">
-                                <div class="sensor-icon"><i class="fas fa-diamond"></i></div>
-                                <div class="sensor-name">SiC器件</div>
-                                <div class="sensor-description">宽禁带半导体，高击穿电压，适用于高温高压应用</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectPowerDevice('diode')">
-                                <div class="sensor-icon"><i class="fas fa-arrow-right"></i></div>
-                                <div class="sensor-name">功率二极管</div>
-                                <div class="sensor-description">高耐压、低导通压降，用于整流和续流</div>
-                            </div>
-                        </div>
-                    </div>
+                </section>
+
+                <section class="pn-junction-breakdown">
+                    <h2>7.3 PN结的击穿现象</h2>
+                    <p>当PN结承受的反向电压超过一定值时，反向电流会急剧增加，这种现象称为PN结击穿。根据击穿机制的不同，可以分为齐纳击穿和雪崩击穿两种类型。</p>
                     
-                    <div id="power-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">功率器件特性分析器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="power-device">器件类型</label>
-                                    <select id="power-device">
-                                        <option value="mosfet">功率MOSFET</option>
-                                        <option value="igbt">IGBT</option>
-                                        <option value="gan">GaN器件</option>
-                                        <option value="sic">SiC器件</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="drain-voltage">漏极电压 (V)</label>
-                                    <input type="range" id="drain-voltage" min="0" max="600" value="100">
-                                    <span id="drain-voltage-value">100 V</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="gate-voltage">栅极电压 (V)</label>
-                                    <input type="range" id="gate-voltage" min="0" max="15" value="5">
-                                    <span id="gate-voltage-value">5 V</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="temperature">结温 (°C)</label>
-                                    <input type="range" id="temperature" min="25" max="175" value="25">
-                                    <span id="temperature-value">25°C</span>
-                                </div>
+                    <div class="concept-box">
+                        <h3>击穿机制</h3>
+                        <div class="breakdown-mechanisms">
+                            <div class="breakdown-mechanism">
+                                <h4>齐纳击穿</h4>
+                                <p><strong>发生条件</strong>：掺杂浓度很高的PN结，空间电荷区很窄，反向电压较低（通常小于5V）时发生。</p>
+                                <p><strong>物理机制</strong>：强电场直接将价带中的电子拉向导带，产生大量的电子-空穴对，导致反向电流急剧增加。</p>
+                                <p><strong>应用</strong>：齐纳二极管，用于电压稳压。</p>
                             </div>
-                            <div class="chart-container">
-                                <canvas id="power-characteristic-chart"></canvas>
-                            </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">漏极电流</span>
-                                    <span class="result-value" id="drain-current">10 A</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">导通电阻</span>
-                                    <span class="result-value" id="on-resistance">10 mΩ</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">功率损耗</span>
-                                    <span class="result-value" id="power-loss">1.0 W</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">效率</span>
-                                    <span class="result-value" id="efficiency">98.5%</span>
-                                </div>
+                            <div class="breakdown-mechanism">
+                                <h4>雪崩击穿</h4>
+                                <p><strong>发生条件</strong>：掺杂浓度较低的PN结，空间电荷区较宽，反向电压较高（通常大于5V）时发生。</p>
+                                <p><strong>物理机制</strong>：反向电场使少数载流子加速，获得足够能量后与晶格原子碰撞，将价带电子激发到导带，产生新的电子-空穴对。新产生的载流子再次被加速碰撞，形成雪崩式倍增效应。</p>
+                                <p><strong>应用</strong>：雪崩二极管，用于高压整流和稳压。</p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">光电器件</h2>
-            <p>光电器件是光能与电能相互转换的半导体器件，是现代通信、显示和照明技术的核心。本节介绍各类光电器件的工作原理和特性。</p>
-            
-            <div class="tab-container">
-                <div class="tab-buttons">
-                    <button class="tab-button active" onclick="showTab('optical-overview')">光电器件概述</button>
-                    <button class="tab-button" onclick="showTab('optical-interactive')">光电器件模拟器</button>
-                </div>
-                
-                <div class="tab-content">
-                    <div id="optical-overview" class="tab-pane active">
-                        <div class="sensor-grid">
-                            <div class="sensor-card" onclick="selectOpticalDevice('led')">
-                                <div class="sensor-icon"><i class="fas fa-lightbulb"></i></div>
-                                <div class="sensor-name">LED</div>
-                                <div class="sensor-description">发光二极管，电光转换器件，用于显示和照明</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectOpticalDevice('laser')">
-                                <div class="sensor-icon"><i class="fas fa-broadcast-tower"></i></div>
-                                <div class="sensor-name">激光二极管</div>
-                                <div class="sensor-description">相干光源，用于通信、存储和精密测量</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectOpticalDevice('photodiode')">
-                                <div class="sensor-icon"><i class="fas fa-solar-panel"></i></div>
-                                <div class="sensor-name">光电二极管</div>
-                                <div class="sensor-description">光电转换器件，用于光检测和光伏发电</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectOpticalDevice('phototransistor')">
-                                <div class="sensor-icon"><i class="fas fa-microchip"></i></div>
-                                <div class="sensor-name">光电晶体管</div>
-                                <div class="sensor-description">具有放大功能的光电检测器件</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectOpticalDevice('ccd')">
-                                <div class="sensor-icon"><i class="fas fa-camera"></i></div>
-                                <div class="sensor-name">CCD/CMOS</div>
-                                <div class="sensor-description">图像传感器，用于数字成像和视频采集</div>
-                            </div>
-                            <div class="sensor-card" onclick="selectOpticalDevice('oled')">
-                                <div class="sensor-icon"><i class="fas fa-tv"></i></div>
-                                <div class="sensor-name">OLED</div>
-                                <div class="sensor-description">有机发光二极管，用于柔性显示和照明</div>
-                            </div>
+
+                    <div class="diagram-container">
+                        <h3>PN结击穿特性曲线</h3>
+                        <div class="chart-container small">
+                            <canvas id="breakdown-chart"></canvas>
                         </div>
                     </div>
+                </section>
+
+                <section class="metal-semiconductor-contact">
+                    <h2>7.4 金属-半导体接触</h2>
+                    <p>金属与半导体的接触是半导体器件中的重要结构，根据接触特性的不同，可以分为肖特基势垒接触和欧姆接触两种类型。</p>
                     
-                    <div id="optical-interactive" class="tab-pane">
-                        <div class="interactive-tool">
-                            <h3 class="tool-title">光电器件特性模拟器</h3>
-                            <div class="controls">
-                                <div class="control-group">
-                                    <label for="optical-device">器件类型</label>
-                                    <select id="optical-device">
-                                        <option value="led">LED</option>
-                                        <option value="laser">激光二极管</option>
-                                        <option value="photodiode">光电二极管</option>
-                                        <option value="solar">太阳能电池</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="forward-current">正向电流 (mA)</label>
-                                    <input type="range" id="forward-current" min="0" max="100" value="20">
-                                    <span id="forward-current-value">20 mA</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="wavelength">波长 (nm)</label>
-                                    <input type="range" id="wavelength" min="380" max="780" value="550">
-                                    <span id="wavelength-value">550 nm</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="temperature">温度 (°C)</label>
-                                    <input type="range" id="optical-temperature" min="-40" max="125" value="25">
-                                    <span id="optical-temperature-value">25°C</span>
-                                </div>
+                    <div class="concept-box">
+                        <h3>肖特基势垒接触</h3>
+                        <p>当金属与半导体接触时，如果金属的功函数与半导体的功函数不同，会在接触界面形成势垒，称为肖特基势垒。</p>
+                        
+                        <div class="schottky-conditions">
+                            <div class="condition-item">
+                                <h4>金属功函数 > 半导体功函数（N型半导体）</h4>
+                                <p>在N型半导体表面形成电子势垒，阻碍电子从半导体流向金属。</p>
                             </div>
-                            <div class="chart-container">
-                                <canvas id="optical-characteristic-chart"></canvas>
+                            <div class="condition-item">
+                                <h4>金属功函数 < 半导体功函数（P型半导体）</h4>
+                                <p>在P型半导体表面形成空穴势垒，阻碍空穴从半导体流向金属。</p>
                             </div>
-                            <div class="result-display">
-                                <div class="result-item">
-                                    <span class="result-label">光功率</span>
-                                    <span class="result-value" id="optical-power">10 mW</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">发光效率</span>
-                                    <span class="result-value" id="luminous-efficacy">100 lm/W</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">色温</span>
-                                    <span class="result-value" id="color-temperature">6500 K</span>
-                                </div>
-                                <div class="result-item">
-                                    <span class="result-label">正向压降</span>
-                                    <span class="result-value" id="forward-voltage">2.1 V</span>
-                                </div>
+                        </div>
+
+                        <p>肖特基势垒接触具有单向导电性，类似于PN结，但具有更快的开关速度，广泛应用于肖特基二极管、肖特基势垒场效应晶体管等器件中。</p>
+                    </div>
+
+                    <div class="concept-box">
+                        <h3>欧姆接触</h3>
+                        <p>欧姆接触是指金属与半导体之间的接触电阻很小，且电流与电压呈线性关系，不具有单向导电性。</p>
+                        
+                        <div class="ohmic-conditions">
+                            <div class="condition-item">
+                                <h4>金属功函数 < 半导体功函数（N型半导体）</h4>
+                                <p>在N型半导体表面形成电子积累层，电子可以自由通过接触界面。</p>
+                            </div>
+                            <div class="condition-item">
+                                <h4>金属功函数 > 半导体功函数（P型半导体）</h4>
+                                <p>在P型半导体表面形成空穴积累层，空穴可以自由通过接触界面。</p>
+                            </div>
+                            <div class="condition-item">
+                                <h4>重掺杂半导体</h4>
+                                <p>即使金属与半导体功函数不匹配，通过对半导体表面进行重掺杂，使势垒宽度变得很窄，载流子可以通过隧道效应穿过势垒，形成欧姆接触。</p>
+                            </div>
+                        </div>
+
+                        <p>欧姆接触在半导体器件中用于连接金属电极与半导体，确保电流能够高效地流入和流出器件，是器件制造中的关键工艺之一。</p>
+                    </div>
+
+                    <div class="interactive-container">
+                        <h3>金属-半导体接触类型判断</h3>
+                        <div class="quiz-box">
+                            <p>请根据以下条件判断金属-半导体接触类型：</p>
+                            <div class="quiz-conditions">
+                                <p>金属功函数：4.8 eV</p>
+                                <p>半导体：N型硅，功函数：4.0 eV</p>
+                                <p>半导体掺杂浓度：1×10¹⁹ cm⁻³（重掺杂）</p>
+                            </div>
+                            <div class="quiz-options">
+                                <button class="quiz-option" data-correct="false">肖特基势垒接触</button>
+                                <button class="quiz-option" data-correct="true">欧姆接触</button>
+                                <button class="quiz-option" data-correct="false">无法判断</button>
+                            </div>
+                            <div class="quiz-feedback" id="quiz-feedback"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pn-junction-capacitance">
+                    <h2>7.5 PN结电容</h2>
+                    <p>PN结的空间电荷区可以看作是一个电容器，其电容特性对半导体器件的高频性能有重要影响。</p>
+                    
+                    <div class="concept-box">
+                        <h3>势垒电容</h3>
+                        <p>势垒电容是由于空间电荷区宽度随外加电压变化而引起的电容效应。当外加电压变化时，空间电荷区的宽度发生变化，相当于电容器极板间距的变化，从而引起电容的变化。</p>
+                        
+                        <div class="formula-box">
+                            <h4>势垒电容公式</h4>
+                            <div class="formula">
+                                <p>C_T = frac{Aepsilon_s}{W}
+                            </div>
+                            <div class="formula-explanation">
+                                <p>其中：</p>
+                                <ul>
+                                    <li>A：PN结面积</li>
+                                    <li>ε_s：半导体介电常数</li>
+                                    <li>W：空间电荷区宽度</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="concept-box">
+                        <h3>扩散电容</h3>
+                        <p>扩散电容是由于少数载流子在扩散过程中的积累和复合引起的电容效应。当PN结处于正向偏置时，多数载流子会穿过PN结，在对方区域形成少数载流子的积累，当外加电压变化时，积累的少数载流子数量发生变化，从而引起电容的变化。</p>
+                        
+                        <div class="formula-box">
+                            <h4>扩散电容公式</h4>
+                            <div class="formula">
+                                <p>C_D = frac{τI}{nV_T}
+                            </div>
+                            <div class="formula-explanation">
+                                <p>其中：</p>
+                                <ul>
+                                    <li>τ：少数载流子寿命</li>
+                                    <li>I：正向电流</li>
+                                    <li>n：理想因子</li>
+                                    <li>V_T：热电压 (kT/q)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="summary">
+                    <h2>本章小结</h2>
+                    <p>本章详细介绍了PN结与金属-半导体接触的物理特性和工作原理，主要内容包括：</p>
+                    
+                    <ul>
+                        <li>PN结的形成过程：载流子扩散、空间电荷区形成、内建电场建立和热平衡状态</li>
+                        <li>PN结的能带图和不同偏置条件下的特性：正向偏置、反向偏置和零偏置</li>
+                        <li>理想PN结的I-V特性方程及其物理意义</li>
+                        <li>PN结的击穿机制：齐纳击穿和雪崩击穿</li>
+                        <li>金属-半导体接触的两种类型：肖特基势垒接触和欧姆接触，以及它们的形成条件和应用</li>
+                        <li>PN结的电容特性：势垒电容和扩散电容</li>
+                    </ul>
+                    
+                    <p>PN结是半导体器件的基础，理解PN结的工作原理对于学习和设计半导体器件至关重要。金属-半导体接触则是半导体器件与外部电路连接的关键结构，其特性直接影响器件的性能。</p>
+                </section>
             </div>
-        </div>
-        
-        <div class="chapter-summary">
-            <h3>本章小结</h3>
-            <p>专用功能器件是半导体技术的重要分支，针对特定应用场景优化设计。传感器件将物理量转换为电信号，是物联网的感知层；功率器件处理高电压大电流，是电力电子系统的核心；光电器件实现光能与电能的转换，是现代通信和显示技术的基础。掌握这些器件的特性和设计方法，对于开发高性能电子系统至关重要。</p>
-        </div>
-        
-        <div class="next-chapter">
-            <h3>下一章预告</h3>
-            <p>第8章将深入半导体制造的基础工艺，带你了解"衬底如何制备？""晶圆如何加工？"，并通过交互式模拟器直观感受半导体制造的核心流程。前往第8章</p>
-        </div>
-        
-        <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="window.location.href='chapter6.html'">
-                <i class="fas fa-arrow-left"></i> 上一章：模拟集成器件
-            </button>
-            <button class="btn" onclick="window.location.href='../index.html'">
-                <i class="fas fa-home"></i> 返回主页
-            </button>
-            <button class="btn" onclick="window.location.href='chapter8.html'">
-                下一章：衬底与晶圆制备 <i class="fas fa-arrow-right"></i>
-            </button>
+
+            <section class="next-chapter">
+                <h2>下一章预告</h2>
+                <p>第8章将深入探讨MOS结构物理，包括理想MOS电容的能带图、三种工作状态、平带电压与阈值电压的概念，以及实际MOS系统的非理想效应和C-V特性。</p>
+                <a href="chapter8.html" class="btn btn-primary">前往第8章</a>
+            </section>
         </div>
     </main>
     
-    <div class="progress-indicator">
-        <i class="fas fa-tasks"></i> 学习进度: <span id="progress">0</span>%
-    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SEMI_PROJ. 半导体器件与制造技术交互式指南</p>
+        </div>
+    </footer>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="../js/main.js"></script>
     <script>
-        // 全局变量
-        let sensorExperiments = 0;
-        let powerExperiments = 0;
-        let opticalExperiments = 0;
-        let sensorChart, powerChart, opticalChart;
+        // PN结I-V特性模拟器
+        const voltageSlider = document.getElementById('voltage-slider');
+        const voltageValue = document.getElementById('voltage-value');
+        const temperatureSlider = document.getElementById('temperature-slider');
+        const temperatureValue = document.getElementById('temperature-value');
+        const pnIvChartCanvas = document.getElementById('pn-iv-chart').getContext('2d');
         
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            initSensorSimulator();
-            initPowerSimulator();
-            initOpticalSimulator();
-            updateProgress();
+        let pnIvChart = new Chart(pnIvChartCanvas, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'PN结电流',
+                    data: [],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '电压 (V)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '电流 (A)'
+                        },
+                        type: 'logarithmic'
+                    }
+                }
+            }
         });
         
-        // 标签切换功能
-        function showTab(tabId) {
-            // 获取当前标签容器
-            const tabContainer = event.target.closest('.tab-container');
+        function updatePnIvChart() {
+            const temp = parseFloat(temperatureSlider.value) + 273.15; // 转换为开尔文
+            const V_T = 8.617333262145e-5 * temp; // 热电压
+            const I_s = 1e-12; // 反向饱和电流
             
-            // 移除所有活动状态
-            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                pane.classList.remove('active');
-            });
+            const voltages = [];
+            const currents = [];
             
-            // 添加活动状态到选中的标签
-            event.target.classList.add('active');
-            document.getElementById(tabId).classList.add('active');
+            for (let v = -5; v <= 5; v += 0.1) {
+                const I = I_s * (Math.exp(v / V_T) - 1);
+                voltages.push(v.toFixed(1));
+                currents.push(Math.abs(I) < 1e-12 ? 1e-12 : I); // 避免对数刻度下的零值
+            }
+            
+            pnIvChart.data.labels = voltages;
+            pnIvChart.data.datasets[0].data = currents;
+            pnIvChart.update();
         }
         
-        // 传感器选择
-        function selectSensor(sensorType) {
-            // 更新传感器类型选择器
-            document.getElementById('sensor-type').value = sensorType;
-            
-            // 切换到交互标签
-            const tabContainer = document.querySelector('#sensors-overview').closest('.tab-container');
-            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                pane.classList.remove('active');
-            });
-            
-            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
-            document.getElementById('sensors-interactive').classList.add('active');
-            
-            // 更新传感器模拟器
-            updateSensorSimulator();
-        }
+        voltageSlider.addEventListener('input', function() {
+            voltageValue.textContent = this.value + ' V';
+        });
         
-        // 功率器件选择
-        function selectPowerDevice(deviceType) {
-            // 更新器件类型选择器
-            document.getElementById('power-device').value = deviceType;
-            
-            // 切换到交互标签
-            const tabContainer = document.querySelector('#power-overview').closest('.tab-container');
-            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                pane.classList.remove('active');
-            });
-            
-            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
-            document.getElementById('power-interactive').classList.add('active');
-            
-            // 更新功率器件模拟器
-            updatePowerSimulator();
-        }
+        temperatureSlider.addEventListener('input', function() {
+            temperatureValue.textContent = this.value + ' °C';
+            updatePnIvChart();
+        });
         
-        // 光电器件选择
-        function selectOpticalDevice(deviceType) {
-            // 更新器件类型选择器
-            document.getElementById('optical-device').value = deviceType;
-            
-            // 切换到交互标签
-            const tabContainer = document.querySelector('#optical-overview').closest('.tab-container');
-            tabContainer.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            tabContainer.querySelectorAll('.tab-pane').forEach(pane => {
-                pane.classList.remove('active');
-            });
-            
-            tabContainer.querySelectorAll('.tab-button')[1].classList.add('active');
-            document.getElementById('optical-interactive').classList.add('active');
-            
-            // 更新光电器件模拟器
-            updateOpticalSimulator();
-        }
+        // 初始化图表
+        updatePnIvChart();
         
-        // 初始化传感器模拟器
-        function initSensorSimulator() {
-            const sensorType = document.getElementById('sensor-type');
-            const stimulusRange = document.getElementById('stimulus-range');
-            const noiseLevel = document.getElementById('noise-level');
-            
-            const stimulusValue = document.getElementById('stimulus-value');
-            const noiseValue = document.getElementById('noise-value');
-            
-            const sensorOutput = document.getElementById('sensor-output');
-            const sensorSensitivity = document.getElementById('sensor-sensitivity');
-            const responseTime = document.getElementById('response-time');
-            const signalNoiseRatio = document.getElementById('signal-noise-ratio');
-            
-            // 创建图表
-            const ctx = document.getElementById('sensor-response-chart').getContext('2d');
-            sensorChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['0s', '1s', '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', '10s'],
-                    datasets: [{
-                        label: '传感器输出',
-                        data: [0, 0.5, 1.0, 1.5, 2.0, 2.5, 2.5, 2.5, 2.5, 2.5, 2.5],
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '输出信号 (V)'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '时间 (s)'
-                            }
+        // 击穿特性曲线
+        const breakdownChartCanvas = document.getElementById('breakdown-chart').getContext('2d');
+        
+        new Chart(breakdownChartCanvas, {
+            type: 'line',
+            data: {
+                labels: ['-10', '-9', '-8', '-7', '-6', '-5', '-4', '-3', '-2', '-1', '0', '1', '2', '3', '4', '5'],
+                datasets: [{
+                    label: '反向电流',
+                    data: [1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 1e-12, 0, 1e-5, 1e-3, 0.1, 10, 1000],
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: '电压 (V)'
                         }
-                    }
-                }
-            });
-            
-            function updateSensor() {
-                const type = sensorType.value;
-                const stimulus = parseFloat(stimulusRange.value);
-                const noise = parseFloat(noiseLevel.value);
-                
-                // 更新显示值
-                stimulusValue.textContent = stimulus;
-                noiseValue.textContent = `${noise}%`;
-                
-                // 计算传感器参数（简化模型）
-                let output, sensitivity, response, snr;
-                
-                switch(type) {
-                    case 'temperature':
-                        output = 0.5 + stimulus * 0.02;
-                        sensitivity = '10 mV/°C';
-                        response = 100 + stimulus * 2;
-                        snr = 40 - noise * 0.5;
-                        break;
-                    case 'pressure':
-                        output = 0.5 + stimulus * 0.015;
-                        sensitivity = '15 mV/kPa';
-                        response = 50 + stimulus;
-                        snr = 35 - noise * 0.5;
-                        break;
-                    case 'light':
-                        output = 0.1 + stimulus * 0.025;
-                        sensitivity = '25 mV/lux';
-                        response = 20 + stimulus * 0.5;
-                        snr = 45 - noise * 0.5;
-                        break;
-                    case 'gas':
-                        output = 0.2 + stimulus * 0.01;
-                        sensitivity = '5 mV/ppm';
-                        response = 1000 + stimulus * 10;
-                        snr = 30 - noise * 0.5;
-                        break;
-                }
-                
-                // 添加噪声影响
-                output = output * (1 + (Math.random() - 0.5) * noise / 100);
-                
-                // 更新显示
-                sensorOutput.textContent = `${output.toFixed(2)} V`;
-                sensorSensitivity.textContent = sensitivity;
-                responseTime.textContent = `${response.toFixed(0)} ms`;
-                signalNoiseRatio.textContent = `${snr.toFixed(1)} dB`;
-                
-                // 更新图表
-                const timePoints = 11;
-                const responseData = [];
-                
-                for (let i = 0; i < timePoints; i++) {
-                    let value;
-                    if (i < 5) {
-                        // 上升阶段
-                        value = output * (i / 5);
-                    } else {
-                        // 稳定阶段（添加噪声）
-                        value = output * (1 + (Math.random() - 0.5) * noise / 100);
-                    }
-                    responseData.push(value);
-                }
-                
-                sensorChart.data.datasets[0].data = responseData;
-                sensorChart.update();
-                
-                // 更新进度
-                if (sensorExperiments < 2) {
-                    sensorExperiments++;
-                    updateProgress();
-                }
-            }
-            
-            sensorType.addEventListener('change', updateSensor);
-            stimulusRange.addEventListener('input', updateSensor);
-            noiseLevel.addEventListener('input', updateSensor);
-            
-            // 初始化
-            updateSensor();
-        }
-        
-        // 初始化功率器件模拟器
-        function initPowerSimulator() {
-            const powerDevice = document.getElementById('power-device');
-            const drainVoltage = document.getElementById('drain-voltage');
-            const gateVoltage = document.getElementById('gate-voltage');
-            const temperature = document.getElementById('temperature');
-            
-            const drainVoltageValue = document.getElementById('drain-voltage-value');
-            const gateVoltageValue = document.getElementById('gate-voltage-value');
-            const temperatureValue = document.getElementById('temperature-value');
-            
-            const drainCurrent = document.getElementById('drain-current');
-            const onResistance = document.getElementById('on-resistance');
-            const powerLoss = document.getElementById('power-loss');
-            const efficiency = document.getElementById('efficiency');
-            
-            // 创建图表
-            const ctx = document.getElementById('power-characteristic-chart').getContext('2d');
-            powerChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['0V', '1V', '2V', '3V', '4V', '5V', '6V', '7V', '8V', '9V', '10V'],
-                    datasets: [{
-                        label: '漏极电流 (A)',
-                        data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '漏极电流 (A)'
-                            }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '电流 (A)'
                         },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '漏极电压 (V)'
-                            }
-                        }
+                        type: 'logarithmic'
                     }
-                }
-            });
-            
-            function updatePower() {
-                const device = powerDevice.value;
-                const Vd = parseFloat(drainVoltage.value);
-                const Vg = parseFloat(gateVoltage.value);
-                const T = parseFloat(temperature.value);
-                
-                // 更新显示值
-                drainVoltageValue.textContent = `${Vd} V`;
-                gateVoltageValue.textContent = `${Vg} V`;
-                temperatureValue.textContent = `${T}°C`;
-                
-                // 计算功率器件参数（简化模型）
-                let Id, Ron, Ploss, eff;
-                
-                switch(device) {
-                    case 'mosfet':
-                        Id = Vg > 3 ? (Vg - 3) * 2 * (1 - (T - 25) / 200) : 0;
-                        Ron = 10 * (1 + (T - 25) / 100) / (Vg / 5);
-                        Ploss = Id * Id * Ron / 1000;
-                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
-                        break;
-                    case 'igbt':
-                        Id = Vg > 4 ? (Vg - 4) * 1.5 * (1 - (T - 25) / 250) : 0;
-                        Ron = 20 * (1 + (T - 25) / 150) / (Vg / 8);
-                        Ploss = Id * Id * Ron / 1000 + Vd * 0.1 / 1000;
-                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
-                        break;
-                    case 'gan':
-                        Id = Vg > 2 ? (Vg - 2) * 3 * (1 - (T - 25) / 300) : 0;
-                        Ron = 5 * (1 + (T - 25) / 200) / (Vg / 4);
-                        Ploss = Id * Id * Ron / 1000;
-                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
-                        break;
-                    case 'sic':
-                        Id = Vg > 5 ? (Vg - 5) * 1.8 * (1 - (T - 25) / 400) : 0;
-                        Ron = 15 * (1 + (T - 25) / 300) / (Vg / 10);
-                        Ploss = Id * Id * Ron / 1000;
-                        eff = 100 - Ploss / (Vd * Id / 100) * 100;
-                        break;
-                }
-                
-                // 更新显示
-                drainCurrent.textContent = `${Id.toFixed(1)} A`;
-                onResistance.textContent = `${Ron.toFixed(1)} mΩ`;
-                powerLoss.textContent = `${Ploss.toFixed(2)} W`;
-                efficiency.textContent = `${eff.toFixed(1)}%`;
-                
-                // 更新图表
-                const voltagePoints = 11;
-                const currentData = [];
-                
-                for (let i = 0; i < voltagePoints; i++) {
-                    const V = i;
-                    let I;
-                    
-                    switch(device) {
-                        case 'mosfet':
-                            I = Vg > 3 ? (Vg - 3) * 2 * (1 - (T - 25) / 200) * Math.min(1, V / 10) : 0;
-                            break;
-                        case 'igbt':
-                            I = Vg > 4 ? (Vg - 4) * 1.5 * (1 - (T - 25) / 250) * Math.min(1, V / 15) : 0;
-                            break;
-                        case 'gan':
-                            I = Vg > 2 ? (Vg - 2) * 3 * (1 - (T - 25) / 300) * Math.min(1, V / 8) : 0;
-                            break;
-                        case 'sic':
-                            I = Vg > 5 ? (Vg - 5) * 1.8 * (1 - (T - 25) / 400) * Math.min(1, V / 20) : 0;
-                            break;
-                    }
-                    
-                    currentData.push(I);
-                }
-                
-                powerChart.data.datasets[0].data = currentData;
-                powerChart.update();
-                
-                // 更新进度
-                if (powerExperiments < 2) {
-                    powerExperiments++;
-                    updateProgress();
                 }
             }
-            
-            powerDevice.addEventListener('change', updatePower);
-            drainVoltage.addEventListener('input', updatePower);
-            gateVoltage.addEventListener('input', updatePower);
-            temperature.addEventListener('input', updatePower);
-            
-            // 初始化
-            updatePower();
-        }
+        });
         
-        // 初始化光电器件模拟器
-        function initOpticalSimulator() {
-            const opticalDevice = document.getElementById('optical-device');
-            const forwardCurrent = document.getElementById('forward-current');
-            const wavelength = document.getElementById('wavelength');
-            const opticalTemperature = document.getElementById('optical-temperature');
-            
-            const forwardCurrentValue = document.getElementById('forward-current-value');
-            const wavelengthValue = document.getElementById('wavelength-value');
-            const opticalTemperatureValue = document.getElementById('optical-temperature-value');
-            
-            const opticalPower = document.getElementById('optical-power');
-            const luminousEfficacy = document.getElementById('luminous-efficacy');
-            const colorTemperature = document.getElementById('color-temperature');
-            const forwardVoltage = document.getElementById('forward-voltage');
-            
-            // 创建图表
-            const ctx = document.getElementById('optical-characteristic-chart').getContext('2d');
-            opticalChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['380nm', '450nm', '500nm', '550nm', '600nm', '650nm', '700nm', '750nm', '780nm'],
-                    datasets: [{
-                        label: '相对光谱响应',
-                        data: [0.2, 0.8, 0.9, 1.0, 0.7, 0.5, 0.3, 0.1, 0.05],
-                        borderColor: '#f39c12',
-                        backgroundColor: 'rgba(243, 156, 18, 0.1)',
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: '相对响应'
-                            }
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: '波长'
-                            }
-                        }
-                    }
-                }
-            });
-            
-            function updateOptical() {
-                const device = opticalDevice.value;
-                const If = parseFloat(forwardCurrent.value);
-                const wl = parseFloat(wavelength.value);
-                const T = parseFloat(opticalTemperature.value);
-                
-                // 更新显示值
-                forwardCurrentValue.textContent = `${If} mA`;
-                wavelengthValue.textContent = `${wl} nm`;
-                opticalTemperatureValue.textContent = `${T}°C`;
-                
-                // 计算光电器件参数（简化模型）
-                let Popt, efficacy, cct, Vf;
-                
-                switch(device) {
-                    case 'led':
-                        Popt = If * 0.2 * (1 - (T - 25) / 150);
-                        efficacy = 100 - Math.abs(wl - 550) * 0.2 - (T - 25) * 0.1;
-                        cct = 4700 - (wl - 550) * 20;
-                        Vf = 1.8 + If * 0.01 + (T - 25) * 0.002;
-                        break;
-                    case 'laser':
-                        Popt = If * 0.5 * (1 - (T - 25) / 100);
-                        efficacy = 200 - Math.abs(wl - 650) * 0.3 - (T - 25) * 0.2;
-                        cct = 6500 - (wl - 650) * 30;
-                        Vf = 2.0 + If * 0.02 + (T - 25) * 0.003;
-                        break;
-                    case 'photodiode':
-                        Popt = If * 0.1 * (1 - (T - 25) / 200);
-                        efficacy = 80 - Math.abs(wl - 500) * 0.1 - (T - 25) * 0.05;
-                        cct = 5500 - (wl - 500) * 10;
-                        Vf = 0.5 + If * 0.005 + (T - 25) * 0.001;
-                        break;
-                    case 'solar':
-                        Popt = If * 0.15 * (1 - (T - 25) / 180);
-                        efficacy = 120 - Math.abs(wl - 600) * 0.15 - (T - 25) * 0.08;
-                        cct = 5800 - (wl - 600) * 15;
-                        Vf = 0.6 + If * 0.008 + (T - 25) * 0.0015;
-                        break;
-                }
-                
-                // 更新显示
-                opticalPower.textContent = `${Popt.toFixed(1)} mW`;
-                luminousEfficacy.textContent = `${efficacy.toFixed(0)} lm/W`;
-                colorTemperature.textContent = `${cct.toFixed(0)} K`;
-                forwardVoltage.textContent = `${Vf.toFixed(2)} V`;
-                
-                // 更新图表
-                const wavelengthPoints = [380, 450, 500, 550, 600, 650, 700, 750, 780];
-                const responseData = [];
-                
-                for (let i = 0; i < wavelengthPoints.length; i++) {
-                    const w = wavelengthPoints[i];
-                    let response;
-                    
-                    switch(device) {
-                        case 'led':
-                            response = Math.exp(-Math.pow((w - wl) / 100, 2));
-                            break;
-                        case 'laser':
-                            response = Math.exp(-Math.pow((w - wl) / 20, 2));
-                            break;
-                        case 'photodiode':
-                            response = Math.exp(-Math.pow((w - wl) / 150, 2));
-                            break;
-                        case 'solar':
-                            response = Math.exp(-Math.pow((w - wl) / 120, 2));
-                            break;
-                    }
-                    
-                    responseData.push(response);
-                }
-                
-                opticalChart.data.datasets[0].data = responseData;
-                opticalChart.update();
-                
-                // 更新进度
-                if (opticalExperiments < 2) {
-                    opticalExperiments++;
-                    updateProgress();
-                }
-            }
-            
-            opticalDevice.addEventListener('change', updateOptical);
-            forwardCurrent.addEventListener('input', updateOptical);
-            wavelength.addEventListener('input', updateOptical);
-            opticalTemperature.addEventListener('input', updateOptical);
-            
-            // 初始化
-            updateOptical();
-        }
+        // 测验交互
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const quizFeedback = document.getElementById('quiz-feedback');
         
-        // 更新传感器模拟器
-        function updateSensorSimulator() {
-            const event = new Event('change');
-            document.getElementById('sensor-type').dispatchEvent(event);
-        }
-        
-        // 更新功率器件模拟器
-        function updatePowerSimulator() {
-            const event = new Event('change');
-            document.getElementById('power-device').dispatchEvent(event);
-        }
-        
-        // 更新光电器件模拟器
-        function updateOpticalSimulator() {
-            const event = new Event('change');
-            document.getElementById('optical-device').dispatchEvent(event);
-        }
-        
-        // 更新进度
-        function updateProgress() {
-            const totalExperiments = 6; // 每个章节最多6次实验
-            const completedExperiments = sensorExperiments + powerExperiments + opticalExperiments;
-            const progress = Math.min(100, Math.round((completedExperiments / totalExperiments) * 100));
-            
-            document.getElementById('progress').textContent = progress;
-        }
-        
-        // 章节页面侧边栏初始化
-        function initChapterSidebar() {
-            const sidebarToggle = document.querySelector('.sidebar-toggle');
-            const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
-            const sidebar = document.querySelector('.sidebar');
-            
-            if (!sidebar || !sidebarToggle) return;
-            
-            // 从localStorage恢复侧边栏状态
-            const savedState = localStorage.getItem('sidebarState');
-            if (savedState === 'collapsed') {
-                sidebar.classList.add('collapsed');
-            } else if (savedState === 'auto-hidden') {
-                // 如果上次是自动隐藏状态，默认显示为正常状态
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-                localStorage.setItem('sidebarState', 'normal');
-            } else {
-                sidebar.classList.remove('collapsed', 'auto-hidden');
-            }
-            
-            // 侧边栏折叠/展开按钮
-            sidebarToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                sidebar.classList.toggle('collapsed');
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                const isCorrect = this.dataset.correct === 'true';
                 
-                // 保存状态到localStorage
-                const newState = sidebar.classList.contains('collapsed') ? 'collapsed' : 'normal';
-                localStorage.setItem('sidebarState', newState);
-            });
-            
-            // 侧边栏隐藏按钮
-            if (sidebarHideBtn) {
-                sidebarHideBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    sidebar.classList.add('auto-hidden');
-                    localStorage.setItem('sidebarState', 'auto-hidden');
+                // 重置所有选项样式
+                quizOptions.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
                 });
-            }
-            
-            // 鼠标悬停显示自动隐藏的侧边栏
-            sidebar.addEventListener('mouseenter', function() {
-                if (sidebar.classList.contains('auto-hidden')) {
-                    sidebar.classList.remove('auto-hidden');
-                    sidebar.classList.add('hover-show');
+                
+                // 设置当前选项样式
+                this.classList.add(isCorrect ? 'correct' : 'incorrect');
+                
+                // 显示反馈
+                if (isCorrect) {
+                    quizFeedback.textContent = '回答正确！虽然金属功函数大于N型半导体功函数，但由于半导体重掺杂，载流子可以通过隧道效应穿过势垒，形成欧姆接触。';
+                    quizFeedback.className = 'quiz-feedback correct';
+                } else {
+                    quizFeedback.textContent = '回答错误，请再仔细思考一下。';
+                    quizFeedback.className = 'quiz-feedback incorrect';
                 }
             });
-            
-            sidebar.addEventListener('mouseleave', function() {
-                if (sidebar.classList.contains('hover-show')) {
-                    sidebar.classList.remove('hover-show');
-                    sidebar.classList.add('auto-hidden');
-                }
-            });
-            
-            console.log('Chapter 7 sidebar initialized');
-        }
-        
-        // 页面加载完成后初始化侧边栏
-        document.addEventListener('DOMContentLoaded', function() {
-            initChapterSidebar();
         });
     </script>
 </body>
