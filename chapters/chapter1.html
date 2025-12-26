@@ -6,6 +6,7 @@
     <title>第1章：量子力学基础与固体中的电子 - SEMI_PROJ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/ai-assistant.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
 </head>
 <body>
@@ -767,7 +768,14 @@
         document.getElementById('material-type').addEventListener('change', updateEkRelationChart);
         
         // 初始化
-        document.addEventListener('DOMContentLoaded', initCharts);
+        document.addEventListener('DOMContentLoaded', function() {
+            initCharts();
+            
+            // 加载AI助手
+            const script = document.createElement('script');
+            script.src = '../js/ai-assistant.js';
+            document.head.appendChild(script);
+        });
     </script>
 </body>
 </html>

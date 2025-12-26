@@ -11,8 +11,30 @@ document.addEventListener('DOMContentLoaded', function() {
     initInteractiveDemo();
     initTabs();
     initNotifications();
-    initSidebar();
+    
+    // 仅在侧边栏元素存在时初始化侧边栏
+    if (document.querySelector('.sidebar')) {
+        initSidebar();
+    } else {
+        console.log('Sidebar element not found in DOM, skipping initSidebar');
+    }
+    
     initScrollHeader();
+    
+    // 初始化移动端优化
+    if (window.mobileOptimizer) {
+        console.log('Mobile optimizer already initialized');
+    } else {
+        // 检测是否为移动设备
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                         (window.innerWidth <= 768 && 'ontouchstart' in window);
+        
+        if (isMobile) {
+            const script = document.createElement('script');
+            script.src = 'js/mobile-optimization.js';
+            document.head.appendChild(script);
+        }
+    }
 });
 
 // 导航功能
@@ -1023,7 +1045,7 @@ function showNotification(message, type = 'info') {
 
 // 开始学习按钮
 document.getElementById('start-learning')?.addEventListener('click', function() {
-    window.location.href = 'chapters/chapter1.html';
+    window.location.href = 'chapters/preface.html';
 });
 
 // 工具函数：格式化数字
@@ -1049,6 +1071,12 @@ function initSidebar() {
     const sidebarHideBtn = document.querySelector('.sidebar-hide-btn');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
+    
+    // 如果侧边栏不存在，则不执行初始化
+    if (!sidebar) {
+        console.log('Sidebar element not found, skipping sidebar initialization');
+        return;
+    }
     
     // 创建提示元素
     const sidebarHint = document.createElement('div');

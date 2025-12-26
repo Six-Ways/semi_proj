@@ -1,0 +1,417 @@
+/* SEMI_PROJ 响应式设计增强 - 适应移动互联网和AI时代 */
+
+/* 移动优先的响应式设计 */
+/* 小屏幕设备 (手机竖屏) */
+@media (max-width: 576px) {
+    /* 容器和布局 */
+    .container {
+        padding: 0 12px;
+    }
+    
+    /* 标题和字体 */
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* 头部导航 */
+    .header {
+        padding: 0.8rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+    
+    .header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 12px;
+    }
+    
+    .logo {
+        flex: 1;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    
+    .logo p {
+        font-size: 0.7rem;
+        margin: 0;
+    }
+    
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .main-nav.active {
+        display: block;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        padding: 1rem 0;
+    }
+    
+    .main-nav li {
+        margin: 0.5rem 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .main-nav a {
+        display: block;
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 101;
+    }
+    
+    /* 主要内容区域 */
+    .main-content {
+        margin-top: 80px;
+    }
+    
+    /* 英雄区域 */
+    .hero {
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    .hero h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        padding: 0.8rem 1rem;
+    }
+    
+    /* 特性卡片 */
+    .features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+    
+    /* 章节卡片 */
+    .chapter-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .chapter-card {
+        padding: 1.5rem;
+    }
+    
+    .chapter-features {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .feature-tag {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    /* 模态框 */
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    /* 表单元素 */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-control {
+        padding: 0.8rem;
+    }
+    
+    /* 表格 */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 代码块 */
+    pre {
+        padding: 1rem;
+        font-size: 0.8rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* 图表容器 */
+    .chart-container {
+        height: 250px;
+    }
+    
+    /* 交互式演示 */
+    .demo-container {
+        padding: 1rem;
+    }
+    
+    .control-panel {
+        flex-direction: column;
+    }
+    
+    .control-group {
+        margin-bottom: 1rem;
+    }
+    
+    /* 侧边栏 */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        margin-bottom: 1rem;
+    }
+    
+    .sidebar-toggle {
+        display: block;
+    }
+    
+    /* AI助手调整 */
+    .ai-assistant {
+        width: calc(100vw - 24px);
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+    }
+    
+    .ai-assistant-body {
+        max-height: 70vh;
+    }
+    
+    #ai-chat {
+        height: 60vh;
+    }
+}
+
+/* 中等屏幕设备 (手机横屏/小平板) */
+@media (min-width: 577px) and (max-width: 768px) {
+    /* 头部导航 */
+    .header .container {
+        padding: 1rem 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo p {
+        font-size: 0.8rem;
+    }
+    
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .main-nav li {
+        margin: 0 0.5rem;
+    }
+    
+    /* 英雄区域 */
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    /* 章节卡片 */
+    .chapter-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* 特性卡片 */
+    .features {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    /* AI助手调整 */
+    .ai-assistant {
+        width: 320px;
+    }
+}
+
+/* 大屏幕设备 (平板) */
+@media (min-width: 769px) and (max-width: 992px) {
+    /* 章节卡片 */
+    .chapter-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    /* 特性卡片 */
+    .features {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    /* 英雄区域 */
+    .hero h2 {
+        font-size: 2.5rem;
+    }
+    
+    /* 侧边栏 */
+    .sidebar {
+        width: 250px;
+    }
+    
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+/* 超大屏幕设备 (桌面) */
+@media (min-width: 1200px) {
+    /* 章节卡片 */
+    .chapter-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    /* 特性卡片 */
+    .features {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    /* 英雄区域 */
+    .hero h2 {
+        font-size: 3rem;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 增大触摸目标 */
+    .btn, button, .nav-link {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* 移除悬停效果，使用点击效果 */
+    .btn:hover, .nav-link:hover {
+        transform: none;
+    }
+    
+    .btn:active, .nav-link:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    /* 调整滚动条样式 */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* 使用更高分辨率的图标和图片 */
+    .icon {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --light-color: #1f1f1f;
+        --text-color: #e0e0e0;
+        --light-text: #a0a0a0;
+        --border-color: #404040;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    .header {
+        background: rgba(31, 31, 31, 0.95);
+    }
+    
+    .hero {
+        background: linear-gradient(135deg, rgba(26, 115, 232, 0.2), rgba(66, 133, 244, 0.2));
+    }
+    
+    .feature-card, .chapter-card {
+        background: rgba(31, 31, 31, 0.8);
+    }
+    
+    .modal-content {
+        background: #2a2a2a;
+        color: #e0e0e0;
+    }
+}
+
+/* 减少动画效果 (针对偏好减少动态效果的用户) */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
