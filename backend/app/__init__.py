@@ -1,0 +1,1 @@
+# 创建空的__init__.py文件使app成为一个Python包
