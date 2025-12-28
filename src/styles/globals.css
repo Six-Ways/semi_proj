@@ -1,0 +1,125 @@
+/* 交互式组件样式 */
+
+/* 滑块样式 */
+.slider-container {
+  @apply w-full my-6;
+}
+
+.slider-label {
+  @apply block text-sm font-medium mb-2 text-primary;
+}
+
+.slider {
+  @apply w-full h-2 bg-border rounded-lg appearance-none cursor-pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  @apply appearance-none w-5 h-5 bg-primary rounded-full cursor-pointer;
+}
+
+.slider::-moz-range-thumb {
+  @apply w-5 h-5 bg-primary rounded-full cursor-pointer border-0;
+}
+
+/* 卡片样式 */
+.card {
+  @apply bg-background border border-border rounded-lg p-6 shadow-sm;
+}
+
+.card-header {
+  @apply border-b border-border pb-4 mb-4;
+}
+
+.card-title {
+  @apply text-xl font-serif font-semibold text-foreground;
+}
+
+.card-description {
+  @apply text-secondary mt-2;
+}
+
+/* 按钮样式 */
+.btn {
+  @apply px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.btn-primary {
+  @apply bg-primary text-foreground hover:bg-primary/90 focus:ring-primary;
+}
+
+.btn-secondary {
+  @apply bg-accent text-foreground hover:bg-accent/90 focus:ring-accent;
+}
+
+.btn-outline {
+  @apply border border-border text-foreground hover:bg-accent focus:ring-border;
+}
+
+/* 导航样式 */
+.nav-link {
+  @apply text-secondary hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium;
+}
+
+.nav-link.active {
+  @apply text-primary bg-accent;
+}
+
+/* 章节样式 */
+.chapter-container {
+  @apply max-w-4xl mx-auto px-6 py-8;
+}
+
+.chapter-title {
+  @apply text-3xl font-serif font-bold mb-6 text-foreground;
+}
+
+.chapter-subtitle {
+  @apply text-xl font-serif mb-8 text-secondary;
+}
+
+/* 交互式可视化容器 */
+.visualization-container {
+  @apply my-8 p-6 bg-accent rounded-lg border border-border;
+}
+
+.visualization-title {
+  @apply text-lg font-serif font-semibold mb-4 text-foreground;
+}
+
+/* 公式容器 */
+.formula-container {
+  @apply my-6 p-4 bg-muted rounded-lg overflow-x-auto border border-border;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  @apply w-64 bg-background border-r border-border h-full overflow-y-auto;
+}
+
+.sidebar-item {
+  @apply block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-accent transition-colors;
+}
+
+.sidebar-item.active {
+  @apply text-primary bg-accent border-r-2 border-primary;
+}
+
+/* 内容区域样式 */
+.content-area {
+  @apply flex-1 overflow-y-auto;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .chapter-container {
+    @apply px-4 py-6;
+  }
+  
+  .sidebar {
+    @apply fixed inset-y-0 left-0 z-50 w-64 transform -translate-x-full transition-transform duration-300 ease-in-out;
+  }
+  
+  .sidebar.open {
+    @apply translate-x-0;
+  }
+}
