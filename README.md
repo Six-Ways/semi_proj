@@ -1,177 +1,26 @@
-# SEMI_PROJ：半导体器件与制造技术交互式指南
+# Semi Project
 
-一个全面的半导体器件与制造技术的交互式学习平台，提供从基础原理到先进技术的完整知识体系。
+This is a comprehensive project about semiconductor technology and silicon-based civilization.
 
-## 项目特点
+## Project Structure
 
-- **器件为核心**：深入解析半导体器件的结构、工作机制与性能优化
-- **工艺为支撑**：全面介绍器件制造的关键工艺与技术
-- **交互为工具**：通过可视化、模拟器等交互工具深化理解
-- **响应式设计**：适配不同设备，提供良好的学习体验
-- **结构化学习**：清晰的章节划分，从基础到进阶的学习路径
+- **backend/**: Python FastAPI backend application
+- **website/**: Next.js frontend application
+- **chapters_md/**: Markdown files for project content
 
-## 项目结构
+## Getting Started
 
-```
-semi_proj/
-├── index.html              # 首页
-├── css/                    # 样式文件
-│   └── styles.css          # 主要样式表
-├── js/                     # JavaScript文件
-│   └── main.js             # 主要JavaScript文件
-├── chapters/               # 章节内容
-│   ├── chapter1.html       # 第1章：半导体器件导论
-│   ├── chapter2.html       # 第2章：半导体材料与物理基础
-│   ├── chapter3.html       # 第3章：基础离散器件
-│   ├── chapter4.html       # 第4章：MOSFET核心技术
-│   ├── chapter5.html       # 第5章：数字集成器件
-│   ├── chapter6.html       # 第6章：模拟集成器件
-│   ├── chapter7.html       # 第7章：专用功能器件
-│   ├── chapter8.html       # 第8章：衬底与晶圆制备
-│   ├── chapter9.html       # 第9章：器件图形化工艺
-│   ├── chapter10.html      # 第10章：器件掺杂与薄膜工艺
-│   ├── chapter11.html      # 第11章：器件互连与封装
-│   ├── chapter12.html      # 第12章：纳米尺度器件挑战与解决方案
-│   ├── chapter13.html      # 第13章：宽禁带半导体器件
-│   ├── chapter14.html      # 第14章：后摩尔时代器件技术
-│   ├── chapter15.html      # 第15章：器件设计与仿真工具
-│   ├── chapter16.html      # 第16章：故障排查与测试技术
-│   ├── chapter17.html      # 第17章：行业资源汇总
-│   └── interactive-demo.html # 交互式演示
-├── assets/                 # 资源文件（图片、图标等）
-├── deploy.sh               # 部署脚本
-└── README.md               # 项目说明
-```
+### Backend Setup
+1. Navigate to the backend directory
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the backend: `python main.py`
 
-## 快速开始
+### Frontend Setup
+1. Navigate to the website directory
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. For production build: `npm run build` and `npm run export`
 
-### 本地运行
+## License
 
-1. **克隆或下载项目**
-   将项目文件下载到本地目录
-
-2. **启动本地服务器**
-   
-   - 使用Python：
-     ```bash
-     python -m http.server 8000
-     ```
-   
-   - 使用Node.js：
-     ```bash
-     npm install -g http-server
-     http-server -p 8000
-     ```
-   
-   - 使用其他HTTP服务器软件
-
-3. **访问网站**
-   在浏览器中访问 `http://localhost:8000`
-
-### 部署到服务器
-
-1. **生成静态文件**
-   运行部署脚本：
-   ```bash
-   ./deploy.sh
-   ```
-   这将生成一个 `dist` 目录，包含所有需要部署的静态文件
-
-2. **上传到服务器**
-   将 `dist` 目录中的所有文件上传到您的Web服务器
-
-3. **配置服务器**
-   确保服务器支持静态文件访问
-
-## 章节内容
-
-### 第一部分：半导体器件基础原理
-- 第1章：半导体器件导论
-- 第2章：半导体材料与物理基础
-- 第3章：基础离散器件
-- 第4章：MOSFET核心技术
-
-### 第二部分：集成器件与模块设计
-- 第5章：数字集成器件
-- 第6章：模拟集成器件
-- 第7章：专用功能器件
-
-### 第三部分：器件制造核心工艺
-- 第8章：衬底与晶圆制备
-- 第9章：器件图形化工艺
-- 第10章：器件掺杂与薄膜工艺
-- 第11章：器件互连与封装
-
-### 第四部分：先进器件与技术趋势
-- 第12章：纳米尺度器件挑战与解决方案
-- 第13章：宽禁带半导体器件
-- 第14章：后摩尔时代器件技术
-- 第15章：器件设计与仿真工具
-- 第16章：故障排查与测试技术
-- 第17章：行业资源汇总
-
-## 交互功能
-
-- **材料探索游戏**：对比不同半导体材料的特性
-- **掺杂模拟器**：观察掺杂对半导体导电性的影响
-- **能带图模拟器**：直观理解半导体的能带结构
-- **MOSFET开关演示**：观察MOSFET的开关过程
-- **I-V特性曲线**：模拟不同器件的电流-电压特性
-- **器件3D结构**：查看器件的三维结构
-
-## 技术栈
-
-- **HTML5**：页面结构
-- **CSS3**：样式设计
-- **JavaScript**：交互功能
-- **Chart.js**：数据可视化
-- **Canvas API**：绘图功能
-- **响应式设计**：适配不同设备
-
-## 浏览器支持
-
-- Chrome (推荐)
-- Firefox
-- Safari
-- Edge
-
-## 开发说明
-
-### 开发环境
-
-1. **编辑器**：推荐使用VS Code、Sublime Text或Atom
-2. **浏览器开发者工具**：用于调试
-3. **本地服务器**：用于测试
-
-### 代码规范
-
-- HTML：语义化标签，合理的嵌套结构
-- CSS：使用CSS变量，模块化设计
-- JavaScript：简洁清晰的代码，注释说明
-
-### 贡献指南
-
-欢迎提交Issue和Pull Request来改进项目。
-
-## 许可证
-
-本项目采用 MIT 许可证，详情请查看 LICENSE 文件。
-
-## 联系方式
-
-如有任何问题或建议，欢迎通过以下方式联系：
-
-- 邮箱：info@semiproj.edu
-- 项目地址：https://github.com/yourusername/semi_proj
-
-## 更新日志
-
-### v1.0.0 (2023-12-22)
-- 初始版本发布
-- 完成17个章节的基础内容
-- 实现主要交互功能
-- 添加部署脚本
-
-## 致谢
-
-感谢所有为半导体行业做出贡献的科学家、工程师和教育工作者，以及为本项目提供参考的各种文献和资源。
+This project is open source and available under the MIT License.
