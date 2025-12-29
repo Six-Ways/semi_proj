@@ -160,3 +160,55 @@ img {
   border-radius: 6px;
   margin: 1rem 0;
 }
+
+/* 中英文混排优化 */
+.text-mixed {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* 中英文之间增加空格 */
+.text-mixed-en-zh {
+  /* 为中英文之间添加适当的空格 */
+}
+
+/* 英文数字和中文之间添加空格 */
+.text-mixed .en-zh-space:before,
+.text-mixed .zh-en-space:after {
+  content: " ";
+  display: inline-block;
+  width: 0.25em;
+}
+
+/* 英文单词保持完整 */
+.text-mixed .en-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* 代码和中文之间的间距 */
+.text-mixed code {
+  margin: 0 0.2em;
+}
+
+/* 数学公式和中文之间的间距 */
+.text-mixed .math-inline {
+  margin: 0 0.3em;
+}
+
+/* 专有名词处理 */
+.text-mixed .term {
+  font-style: italic;
+  color: var(--primary);
+  margin: 0 0.1em;
+}
+
+/* 针对半导体术语的特殊处理 */
+.text-mixed .semiconductor-term {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background-color: var(--code-bg);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  margin: 0 0.2em;
+}
