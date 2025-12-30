@@ -13,7 +13,8 @@ import {
   Settings,
   RotateCcw,
   Play,
-  Pause
+  Pause,
+  ChevronRight
 } from "lucide-react";
 
 // 实验室风格滑块组件
@@ -431,7 +432,7 @@ export function LabGauge({
           
           {/* 指针 */}
           <motion.g
-            transformOrigin={`${currentSize.width / 2} ${currentSize.height}`}
+            style={{ transformOrigin: `${currentSize.width / 2}px ${currentSize.height}px` }}
             animate={{ rotate: angle }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >

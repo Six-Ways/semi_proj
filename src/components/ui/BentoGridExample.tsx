@@ -24,7 +24,8 @@ import {
   TrendingUp,
   BarChart3,
   PieChart,
-  LineChart
+  LineChart,
+  Power
 } from "lucide-react";
 
 // 示例内容组件

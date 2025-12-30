@@ -1,0 +1,139 @@
+1:"$Sreact.fragment"
+2:I[29483,["/_next/static/chunks/623ce74f8dda5b0a.js","/_next/static/chunks/d301321ff45e2923.js"],"ChapterTransitionProvider"]
+3:I[7908,["/_next/static/chunks/623ce74f8dda5b0a.js","/_next/static/chunks/d301321ff45e2923.js"],"MainNavigation"]
+4:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"default"]
+5:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"default"]
+7:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"OutletBoundary"]
+8:"$Sreact.suspense"
+a:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"ViewportBoundary"]
+c:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"MetadataBoundary"]
+e:I[68027,[],"default"]
+:HL["/_next/static/chunks/906f61d541ed6167.css","style"]
+:HL["/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"P":null,"b":"cfaujSdiHmwUKwuIyQcd_","c":["","chapters","part0","ch0",""],"q":"","i":false,"f":[[["",{"children":["chapters",{"children":["part0",{"children":["ch0",{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/906f61d541ed6167.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/623ce74f8dda5b0a.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/d301321ff45e2923.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"className":"inter_7b064e0d-module__MOT0tq__variable font-sans antialiased","children":["$","$L2",null,{"children":[["$","$L3",null,{}],["$","main",null,{"className":"min-h-screen","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L6",[["$","script","script-0",{"src":"/_next/static/chunks/f6956e1949ec3cc1.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/fd97edb81556d92f.js","async":true,"nonce":"$undefined"}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false]},null,false,false],["$","$1","h",{"children":[null,["$","$La",null,{"children":"$Lb"}],["$","div",null,{"hidden":true,"children":["$","$Lc",null,{"children":["$","$8",null,{"name":"Next.Metadata","children":"$Ld"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$e",[]],"S":true}
+f:I[43709,["/_next/static/chunks/623ce74f8dda5b0a.js","/_next/static/chunks/d301321ff45e2923.js","/_next/static/chunks/f6956e1949ec3cc1.js","/_next/static/chunks/fd97edb81556d92f.js"],"ChapterTemplateClient"]
+10:T23d0,
+## 本章逻辑位
+
+注入”灵根“
+
+## 章节目标
+
+- 建立"技术-社会-未来"的宏观视野
+- 认识从晶体管到集成电路的革命性发展
+- 掌握摩尔定律的本质与尺度微缩的驱动力
+- 了解纳米尺度下半导体技术面临的挑战
+- 探索后摩尔时代的三大新方向：3D集成、新材料革命、新器件原理
+- 激发对半导体"从原子到系统"完整链条的探索兴趣。
+
+## 核心内容
+
+从手机、芯片到航天设备，阐述半导体技术如何定义信息时代；回顾关键里程碑（晶体管发明→集成电路→摩尔定律迭代）；解析"尺度微缩"的核心驱动力与瓶颈（短沟道效应、功耗墙）；预判后摩尔时代的技术范式（3D集成、新材料、新器件）。
+
+## 关键词
+
+半导体革命，摩尔定律，集成电路（IC），尺度微缩，后摩尔时代，技术瓶颈
+
+## 前置认知提示
+
+一介凡人初遇仙门，无需专业基础，仅需具备基本物理（力、电、能量）常识。
+
+## 起手式
+
+你有没有试过一天不用任何含半导体的东西？早上醒来，手机的闹钟是它在工作；上班路上，导航的卫星、地铁的控制系统里藏着它；办公室里，电脑、打印机、路由器离不开它；甚至医院的 CT 机、天上的航天火箭、家里的智能家电 —— 几乎所有定义现代生活的设备，核心都嵌着一块小小的 “硅片”。这不是魔法，而是 “硅基文明” 的力量。半导体，这个以硅为核心的神奇材料，就像信息时代的 “细胞”，支撑着从个人通信到人类探索宇宙的每一步。它没有钢铁坚硬，没有黄金珍贵，却凭借 “能导电又能控电” 的独特本领，彻底改变了世界的运行规则。
+
+## 正文
+
+### 一场从 “单个零件” 到 “亿万器件” 的革命
+
+70 多年前，当贝尔实验室的科学家发明第一只晶体管时，没人想到这个指甲盖大小的元件，会开启一场技术革命。在此之前，电子设备靠笨重的真空管工作 —— 一台收音机比冰箱还大，一台计算机需要一间屋子才能装下。晶体管的出现，第一次让 “控制电流” 变得小巧又可靠。但真正的飞跃，来自 “集成电路” 的诞生。就像把分散的零件组装成一台完整的机器，科学家们把成千上万的晶体管、电阻、电容 “刻” 在同一块硅片上，让它们协同工作。这一下，电子设备的体积越做越小，性能却越来越强。1965 年，戈登・摩尔（Intel 创始人之一）做了个大胆预测：每隔 18-24 个月，一块硅片上的晶体管数量会翻倍，而成本会减半。这就是著名的 “摩尔定律”—— 它不是物理定律，却成了技术演进的 “指南针”，驱动着半导体行业狂奔了半个多世纪。从 1971 年第一颗微处理器只有 2300 个晶体管，到如今一块高端芯片的晶体管数量突破 1000 亿个；从早期电脑每秒运算几千次，到现在超级计算机每秒运算百亿亿次 —— 摩尔定律的本质，是 “尺度微缩” 的艺术：把晶体管越做越小，让更多器件挤在同一块硅片上。
+
+### 越小越好？尺度微缩的甜蜜与烦恼
+
+为什么要把晶体管做得这么小？答案很简单：**更小 = 更快、更省、更便宜**。想象一下，把晶体管比作 “电子开关”—— 开关越小，电子从一端跑到另一端的距离就越短，开关速度自然更快；同样大小的硅片上能放更多开关，就能实现更复杂的功能；而批量生产时，“挤下更多器件” 意味着每个器件的成本被摊薄，最终惠及每个人。这就是尺度微缩的 “甜蜜”，也是摩尔定律能持续的核心驱动力。但天下没有免费的午餐。当晶体管的尺寸缩小到纳米级别（1 纳米 = 10 亿分之一米，比单个原子大不了多少），麻烦开始出现了：
+
+- **短沟道效应**：就像把房子建得太小，邻居的声音会互相干扰 —— 晶体管的 “沟道”（电子流动的通道）太短，漏极的电场会穿透到源极，导致开关关不严，出现 “漏电”；
+
+- **功耗墙**：开关太小，电流通过时的电阻会变大，发热也会剧增 —— 一块芯片的功耗如果不控制，会像灯泡一样发烫，甚至烧毁；
+
+- **物理极限**：晶体管不能无限小，最终会触及原子尺度的物理规律 —— 你总不能把开关做得比原子还小吧？
+
+到了 21 世纪第二个十年，摩尔定律的脚步明显慢了下来。尺度微缩的边际效益越来越低，继续 “做小” 的成本越来越高。这不是技术的失败，而是提醒我们：该换一种思路了。
+
+### 后摩尔时代：从 “做小” 到 “做好” 的新范式
+
+摩尔定律的放缓，不是半导体技术的终点，而是新起点。就像当平面的房子建到极限，人们会开始盖高楼、换建材 —— 半导体行业正在开启 “后摩尔时代” 的三大新方向：
+
+- **3D 集成**：不再执着于 “平面缩小”，而是把多块芯片像叠积木一样堆叠起来，用垂直互连替代平面互连，既提升集成度，又减少信号延迟；
+
+- **新材料革命**：用更优秀的材料替代传统硅，比如用氮化镓（GaN）做高压功率器件，用二维材料（如 MoS₂）做原子级薄的晶体管，突破硅的性能限制；
+
+- **新器件原理**：不再依赖传统的 “场效应” 控制电流，而是利用量子力学的隧穿效应、自旋电子等新机制，制造更低功耗、更快速度的新型器件。
+
+这些新方向，不再是单一技术的迭代，而是 “材料、器件、工艺、系统” 的协同创新 —— 这也正是我们打造这个网站的核心逻辑。
+
+## 本章小结
+
+半导体技术看似高深，但其本质是 “从原子到系统” 的逻辑链条：原子的排列决定材料特性，材料特性决定载流子行为，载流子行为决定器件功能，器件功能通过工艺实现，最终集成到系统中服务于人类。这个网站不会让你死记硬背公式，也不会堆砌晦涩的术语。我们会从 “硅原子的排列” 开始，一步步带你理解：电子如何在半导体中运动？PN 结为什么能 “单向导电”？MOSFET 如何成为 “电子开关之王”？芯片是怎么 “刻” 出来的？后摩尔时代的技术又在突破什么？你不需要专业基础，只要具备初中物理的 “力、电、能量” 常识，就能跟着逻辑链探索。我们会用费曼式的通俗比喻，把量子力学、能带理论这些抽象概念变得直观；用交互式工具，让你亲手调整参数，看到 “结构变化如何影响性能”；用真实的工业案例，让你明白 “技术如何落地为产品”。半导体的故事，是人类用智慧驯服微观世界的故事。它始于一块普通的硅石，却最终构建了我们的信息文明。现在，就让我们一起，从原子出发，揭开这个神奇世界的面纱。
+
+## 章节逻辑链：
+
+材料→性质→功能→用途
+
+材料决定性质，性质决定功能，功能决定用途。伟大导师马克思教育我们，物质基础决定上层建筑，上层建筑反作用于物质基础。通过“材料、器件、工艺、系统” 的协同创新，硅基文明定能再创辉煌。
+
+## 欲知后事如何，且听下回分解。
+
+接下来我们会从晶体结构开始，看芯片中最底层的打工人电子是在怎样的舞台上翩翩起舞。
+
+## 宗门心法
+
+【总纲（灵根篇）】
+
+半导体之道，始于灵根（晶体管）初成。昔者肖克利祖师以单根筑基，开创硅基修真之路。后有摩尔老祖传下天阶功法《微缩真经》，言明每十八月便可将灵根压缩一倍，晶体管如恒河沙数，聚于方寸硅片之上，终成改天换地之硅基文明。
+
+然修炼一途，欲速则不达。当灵根凝练至纳米之境（金丹期），便遭遇天劫：短沟道心魔扰动，漏电不止；功耗烈焰焚身，热力反噬。此乃天道法则所限，非人力可强行突破。
+
+【破劫三式（飞升篇）】
+
+大道五十，天衍四九。我辈修士当如何破劫飞升？有三条通天之路：
+
+第一式·筑灵塔：不再于平面苦修，而是层层叠立，以垂直之道突破空间桎梏，筑就3D集成灵塔，集成度倍增。
+
+第二式·换灵根：舍弃凡体硅身，炼化氮化镓（GaN）之躯，得宽禁带之体，可耐高压、抗高温，肉身成圣。
+
+第三式·悟天道：不再拘泥于古法场效应之术，转而感悟量子隧穿、自旋大道等新法则，开辟前所未见之神通（量子器件）。
+
+【心法要诀】
+
+此三条路皆非单一功法，乃材料、器件、工艺、系统之大融合。尔等初入仙门，无需惊才绝艳，只需掌握基础物理之常识，便可随本心法，从原子之境开始，一步步参透半导体大道，最终成就从原子到系统之真仙境界！修成道祖也非毫无希望！本功法窃取天机，切记谨慎外传。11:Tfcd,### 一场从 “单个零件” 到 “亿万器件” 的革命
+
+70 多年前，当贝尔实验室的科学家发明第一只晶体管时，没人想到这个指甲盖大小的元件，会开启一场技术革命。在此之前，电子设备靠笨重的真空管工作 —— 一台收音机比冰箱还大，一台计算机需要一间屋子才能装下。晶体管的出现，第一次让 “控制电流” 变得小巧又可靠。但真正的飞跃，来自 “集成电路” 的诞生。就像把分散的零件组装成一台完整的机器，科学家们把成千上万的晶体管、电阻、电容 “刻” 在同一块硅片上，让它们协同工作。这一下，电子设备的体积越做越小，性能却越来越强。1965 年，戈登・摩尔（Intel 创始人之一）做了个大胆预测：每隔 18-24 个月，一块硅片上的晶体管数量会翻倍，而成本会减半。这就是著名的 “摩尔定律”—— 它不是物理定律，却成了技术演进的 “指南针”，驱动着半导体行业狂奔了半个多世纪。从 1971 年第一颗微处理器只有 2300 个晶体管，到如今一块高端芯片的晶体管数量突破 1000 亿个；从早期电脑每秒运算几千次，到现在超级计算机每秒运算百亿亿次 —— 摩尔定律的本质，是 “尺度微缩” 的艺术：把晶体管越做越小，让更多器件挤在同一块硅片上。
+
+### 越小越好？尺度微缩的甜蜜与烦恼
+
+为什么要把晶体管做得这么小？答案很简单：**更小 = 更快、更省、更便宜**。想象一下，把晶体管比作 “电子开关”—— 开关越小，电子从一端跑到另一端的距离就越短，开关速度自然更快；同样大小的硅片上能放更多开关，就能实现更复杂的功能；而批量生产时，“挤下更多器件” 意味着每个器件的成本被摊薄，最终惠及每个人。这就是尺度微缩的 “甜蜜”，也是摩尔定律能持续的核心驱动力。但天下没有免费的午餐。当晶体管的尺寸缩小到纳米级别（1 纳米 = 10 亿分之一米，比单个原子大不了多少），麻烦开始出现了：
+
+- **短沟道效应**：就像把房子建得太小，邻居的声音会互相干扰 —— 晶体管的 “沟道”（电子流动的通道）太短，漏极的电场会穿透到源极，导致开关关不严，出现 “漏电”；
+
+- **功耗墙**：开关太小，电流通过时的电阻会变大，发热也会剧增 —— 一块芯片的功耗如果不控制，会像灯泡一样发烫，甚至烧毁；
+
+- **物理极限**：晶体管不能无限小，最终会触及原子尺度的物理规律 —— 你总不能把开关做得比原子还小吧？
+
+到了 21 世纪第二个十年，摩尔定律的脚步明显慢了下来。尺度微缩的边际效益越来越低，继续 “做小” 的成本越来越高。这不是技术的失败，而是提醒我们：该换一种思路了。
+
+### 后摩尔时代：从 “做小” 到 “做好” 的新范式
+
+摩尔定律的放缓，不是半导体技术的终点，而是新起点。就像当平面的房子建到极限，人们会开始盖高楼、换建材 —— 半导体行业正在开启 “后摩尔时代” 的三大新方向：
+
+- **3D 集成**：不再执着于 “平面缩小”，而是把多块芯片像叠积木一样堆叠起来，用垂直互连替代平面互连，既提升集成度，又减少信号延迟；
+
+- **新材料革命**：用更优秀的材料替代传统硅，比如用氮化镓（GaN）做高压功率器件，用二维材料（如 MoS₂）做原子级薄的晶体管，突破硅的性能限制；
+
+- **新器件原理**：不再依赖传统的 “场效应” 控制电流，而是利用量子力学的隧穿效应、自旋电子等新机制，制造更低功耗、更快速度的新型器件。
+
+这些新方向，不再是单一技术的迭代，而是 “材料、器件、工艺、系统” 的协同创新 —— 这也正是我们打造这个网站的核心逻辑。6:["$","$Lf",null,{"chapterData":{"slug":"part0/ch0","metadata":{"title":"序言：硅基文明的基石与演进","chapterNumber":0},"content":"$10","sections":[{"title":"本章逻辑位","content":"注入”灵根“","component":"LogicalPosition"},{"title":"章节目标","content":"- 建立\"技术-社会-未来\"的宏观视野\n- 认识从晶体管到集成电路的革命性发展\n- 掌握摩尔定律的本质与尺度微缩的驱动力\n- 了解纳米尺度下半导体技术面临的挑战\n- 探索后摩尔时代的三大新方向：3D集成、新材料革命、新器件原理\n- 激发对半导体\"从原子到系统\"完整链条的探索兴趣。","component":"ChapterObjectives"},{"title":"核心内容","content":"从手机、芯片到航天设备，阐述半导体技术如何定义信息时代；回顾关键里程碑（晶体管发明→集成电路→摩尔定律迭代）；解析\"尺度微缩\"的核心驱动力与瓶颈（短沟道效应、功耗墙）；预判后摩尔时代的技术范式（3D集成、新材料、新器件）。","component":"CoreContent"},{"title":"关键词","content":"半导体革命，摩尔定律，集成电路（IC），尺度微缩，后摩尔时代，技术瓶颈","component":"Keywords"},{"title":"前置认知提示","content":"一介凡人初遇仙门，无需专业基础，仅需具备基本物理（力、电、能量）常识。","component":"PrerequisitePrompt"},{"title":"起手式","content":"你有没有试过一天不用任何含半导体的东西？早上醒来，手机的闹钟是它在工作；上班路上，导航的卫星、地铁的控制系统里藏着它；办公室里，电脑、打印机、路由器离不开它；甚至医院的 CT 机、天上的航天火箭、家里的智能家电 —— 几乎所有定义现代生活的设备，核心都嵌着一块小小的 “硅片”。这不是魔法，而是 “硅基文明” 的力量。半导体，这个以硅为核心的神奇材料，就像信息时代的 “细胞”，支撑着从个人通信到人类探索宇宙的每一步。它没有钢铁坚硬，没有黄金珍贵，却凭借 “能导电又能控电” 的独特本领，彻底改变了世界的运行规则。","component":"OpeningLine"},{"title":"正文","content":"$11","component":"MainContent"},{"title":"本章小结","content":"半导体技术看似高深，但其本质是 “从原子到系统” 的逻辑链条：原子的排列决定材料特性，材料特性决定载流子行为，载流子行为决定器件功能，器件功能通过工艺实现，最终集成到系统中服务于人类。这个网站不会让你死记硬背公式，也不会堆砌晦涩的术语。我们会从 “硅原子的排列” 开始，一步步带你理解：电子如何在半导体中运动？PN 结为什么能 “单向导电”？MOSFET 如何成为 “电子开关之王”？芯片是怎么 “刻” 出来的？后摩尔时代的技术又在突破什么？你不需要专业基础，只要具备初中物理的 “力、电、能量” 常识，就能跟着逻辑链探索。我们会用费曼式的通俗比喻，把量子力学、能带理论这些抽象概念变得直观；用交互式工具，让你亲手调整参数，看到 “结构变化如何影响性能”；用真实的工业案例，让你明白 “技术如何落地为产品”。半导体的故事，是人类用智慧驯服微观世界的故事。它始于一块普通的硅石，却最终构建了我们的信息文明。现在，就让我们一起，从原子出发，揭开这个神奇世界的面纱。","component":"ChapterSummary"},{"title":"章节逻辑链：","content":"材料→性质→功能→用途\n\n材料决定性质，性质决定功能，功能决定用途。伟大导师马克思教育我们，物质基础决定上层建筑，上层建筑反作用于物质基础。通过“材料、器件、工艺、系统” 的协同创新，硅基文明定能再创辉煌。","component":"LogicalChain"},{"title":"欲知后事如何，且听下回分解。","content":"接下来我们会从晶体结构开始，看芯片中最底层的打工人电子是在怎样的舞台上翩翩起舞。","component":"NextChapterPreview"},{"title":"宗门心法","content":"【总纲（灵根篇）】\n\n半导体之道，始于灵根（晶体管）初成。昔者肖克利祖师以单根筑基，开创硅基修真之路。后有摩尔老祖传下天阶功法《微缩真经》，言明每十八月便可将灵根压缩一倍，晶体管如恒河沙数，聚于方寸硅片之上，终成改天换地之硅基文明。\n\n然修炼一途，欲速则不达。当灵根凝练至纳米之境（金丹期），便遭遇天劫：短沟道心魔扰动，漏电不止；功耗烈焰焚身，热力反噬。此乃天道法则所限，非人力可强行突破。\n\n【破劫三式（飞升篇）】\n\n大道五十，天衍四九。我辈修士当如何破劫飞升？有三条通天之路：\n\n第一式·筑灵塔：不再于平面苦修，而是层层叠立，以垂直之道突破空间桎梏，筑就3D集成灵塔，集成度倍增。\n\n第二式·换灵根：舍弃凡体硅身，炼化氮化镓（GaN）之躯，得宽禁带之体，可耐高压、抗高温，肉身成圣。\n\n第三式·悟天道：不再拘泥于古法场效应之术，转而感悟量子隧穿、自旋大道等新法则，开辟前所未见之神通（量子器件）。\n\n【心法要诀】\n\n此三条路皆非单一功法，乃材料、器件、工艺、系统之大融合。尔等初入仙门，无需惊才绝艳，只需掌握基础物理之常识，便可随本心法，从原子之境开始，一步步参透半导体大道，最终成就从原子到系统之真仙境界！修成道祖也非毫无希望！本功法窃取天机，切记谨慎外传。","component":"SectMentality"}]},"sections":"$6:props:chapterData:sections"}]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+12:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/7340adf74ff47ec0.js"],"IconMark"]
+9:null
+d:[["$","title","0",{"children":"半导体物理与器件 - 可探索式解释"}],["$","meta","1",{"name":"description","content":"一个关于半导体物理与器件的交互式教育网站"}],["$","link","2",{"rel":"icon","href":"/favicon.ico?favicon.0b3bf435.ico","sizes":"256x256","type":"image/x-icon"}],["$","$L12","3",{}]]

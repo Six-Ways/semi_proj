@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ChapterTransitionProvider } from "@/components/templates/ChapterTransition";
+import { MainNavigation } from "@/components/ui/MainNavigation";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,7 +26,10 @@ export default function RootLayout({
         className={`${inter.variable} font-sans antialiased`}
       >
         <ChapterTransitionProvider>
-          {children}
+          <MainNavigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
         </ChapterTransitionProvider>
       </body>
     </html>

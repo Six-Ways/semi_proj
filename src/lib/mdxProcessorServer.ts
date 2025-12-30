@@ -7,26 +7,44 @@ export interface Section {
 
 // 将MDX内容分割成节
 export function splitMDXContent(source: string): Section[] {
-  // 将内容按二级标题分割
-  const sections = source.split(/^## (.+)$/gm);
+  // 匹配所有顶级二级标题（非嵌套在正文内的）
+  // 使用正则表达式查找所有顶级二级标题的位置
+  const topLevelSectionsRegex = /(^## (.+)$)/gm;
+  const matches = [];
+  let match;
   
-  // 第一个元素是空字符串（因为内容以##开头）
-  if (sections.length > 0 && sections[0].trim() === '') {
-    sections.shift();
+  while ((match = topLevelSectionsRegex.exec(source)) !== null) {
+    matches.push({
+      index: match.index,
+      title: match[2].trim(),
+      fullMatch: match[0]
+    });
   }
   
   const result: Section[] = [];
   
-  // 处理每个节
-  for (let i = 0; i < sections.length; i += 2) {
-    const title = sections[i]?.trim();
-    const sectionContent = sections[i + 1]?.trim() || '';
+  // 处理每个顶级节
+  for (let i = 0; i < matches.length; i++) {
+    const currentMatch = matches[i];
+    const nextMatch = matches[i + 1];
     
-    if (!title) continue;
+    // 获取当前节的内容（从当前标题到下一个标题或文件末尾）
+    const contentStart = currentMatch.index + currentMatch.fullMatch.length;
+    const contentEnd = nextMatch ? nextMatch.index : source.length;
+    let content = source.substring(contentStart, contentEnd).trim();
+    
+    // 处理正文（MainContent）特殊情况 - 保留所有嵌套的二级标题
+    if (currentMatch.title === '正文') {
+      // 正文内容包括所有嵌套的二级标题和内容
+      // 我们不需要额外处理，因为上面的content已经包含了所有内容
+    } else {
+      // 对于其他节，我们需要确保内容中不包含顶级二级标题（这应该不会发生，但以防万一）
+      content = content.split(/^## (.+)$/gm)[0]?.trim() || content;
+    }
     
     // 根据标题确定组件类型
     let component = 'default';
-    switch (title) {
+    switch (currentMatch.title) {
       case '章节目标':
         component = 'ChapterObjectives';
         break;
@@ -78,8 +96,8 @@ export function splitMDXContent(source: string): Section[] {
     }
     
     result.push({
-      title,
-      content: sectionContent,
+      title: currentMatch.title,
+      content,
       component
     });
   }

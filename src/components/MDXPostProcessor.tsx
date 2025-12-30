@@ -53,7 +53,7 @@ export function MDXPostProcessor({ children }: MDXPostProcessorProps) {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
-    const elements = Array.from(container.children);
+    const elements = Array.from(container.children) as HTMLElement[];
     const sections: ReactNode[] = [];
     let currentSection: { title: string; elements: HTMLElement[] } | null = null;
 
@@ -114,8 +114,8 @@ export function MDXPostProcessor({ children }: MDXPostProcessorProps) {
     if (currentSection) {
       sections.push(
         getSectionComponent(
-          currentSection.title,
-          currentSection.elements.map((el, index) => (
+          (currentSection as { title: string; elements: HTMLElement[] }).title,
+          (currentSection as { title: string; elements: HTMLElement[] }).elements.map((el, index) => (
             <div key={index} dangerouslySetInnerHTML={{ __html: el.outerHTML }} />
           ))
         )

@@ -1,8 +1,8 @@
 import type { MDXComponents } from 'mdx/types';
 import { MathFormula } from '@/components/math/MathFormula';
-import { CrystalStructure } from '@/components/interactive/CrystalStructure';
-import { FermiDistribution } from '@/components/interactive/FermiDistribution';
-import { InteractiveSimulator } from '@/components/templates/InteractiveSimulator';
+// import { CrystalStructure } from '@/components/interactive/CrystalStructure';
+// import { FermiDistribution } from '@/components/interactive/FermiDistribution';
+// import { InteractiveSimulator } from '@/components/templates/InteractiveSimulator';
 import {
   LogicalPosition,
   ChapterObjectives,
@@ -61,9 +61,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     
     // 添加自定义组件
     MathFormula,
-    CrystalStructure,
-    FermiDistribution,
-    InteractiveSimulator,
+    // CrystalStructure,
+    // FermiDistribution,
+    // InteractiveSimulator,
     LogicalPosition,
     ChapterObjectives,
     CoreContent,

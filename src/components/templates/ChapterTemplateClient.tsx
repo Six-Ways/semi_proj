@@ -63,10 +63,35 @@ export function ChapterTemplateClient({
   const openingLine = sections?.find(s => s.component === 'OpeningLine')?.content || '';
   
   // 处理其他特殊部分
-  const mainContent = sections?.find(s => s.component === 'MainContent')?.content
-    ?.split('\n\n')
-    .filter(p => p.trim())
-    .map(p => ({ content: p })) || [];
+  // 解析正文内容，保留嵌套的二级标题
+  const parseMainContent = (content: string) => {
+    if (!content) return [];
+    
+    // 使用正则表达式匹配所有二级标题（##）及其内容
+    const sectionRegex = /##\s+([^\n]+)\n\n([\s\S]*?)(?=(?:^##\s+[^\n]+\n\n|$))/gm;
+    const sections: Array<{title?: string; content: string}> = [];
+    let match;
+    
+    // 查找所有匹配的二级标题和内容
+    while ((match = sectionRegex.exec(content)) !== null) {
+      sections.push({
+        title: match[1].trim(),
+        content: match[2].trim()
+      });
+    }
+    
+    // 如果没有找到任何二级标题，将整个内容作为一个部分
+    if (sections.length === 0) {
+      return [{
+        content: content.trim()
+      }];
+    }
+    
+    return sections;
+  };
+  
+  const mainContent = parseMainContent(sections?.find(s => s.component === 'MainContent')?.content || '');
+
   
   const chapterSummary = sections?.find(s => s.component === 'ChapterSummary')?.content || '';
   const logicalChain = sections?.find(s => s.component === 'LogicalChain')?.content || '';
@@ -74,7 +99,7 @@ export function ChapterTemplateClient({
   
   // 处理宗门心法
   const sectMentalityContent = sections?.find(s => s.component === 'SectMentality')?.content || '';
-  const sectMentality = {
+  const sectMentality: { overview: string; breakthrough: string[]; corePrinciple: string } = {
     overview: sectMentalityContent.split('【总纲（灵根篇）】')[1]?.split('【破劫三式（飞升篇）】')[0]?.trim() || "",
     breakthrough: [],
     corePrinciple: ""
