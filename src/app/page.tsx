@@ -80,11 +80,12 @@ export default function HomePage() {
             return (
               <Card
                 key={project.id}
-                className={`relative transition-all duration-300 hover:shadow-xl ${isHovered ? "scale-105" : ""}`}
+                className={`relative transition-all duration-300 hover:shadow-xl ${isHovered ? "scale-105" : ""} cursor-pointer`}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
+                onClick={() => project.isActive && router.push(project.path)}
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-5`}></div>
+                <div className={`absolute inset-0 bg-gradient-to-r ${project.color} opacity-5 pointer-events-none`}></div>
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className={`flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${project.color} text-white`}>

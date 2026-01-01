@@ -7,6 +7,7 @@ interface CardProps {
   className?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
 }
 
 interface CardHeaderProps {
@@ -29,9 +30,9 @@ interface CardContentProps {
   className?: string;
 }
 
-export function Card({ title, description, children, className = "", onMouseEnter, onMouseLeave }: CardProps) {
+export function Card({ title, description, children, className = "", onMouseEnter, onMouseLeave, onClick }: CardProps) {
   return (
-    <div className={`card ${className}`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+    <div className={`card ${className}`} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onClick}>
       {(title || description) && (
         <div className="card-header">
           {title && <h3 className="card-title">{title}</h3>}

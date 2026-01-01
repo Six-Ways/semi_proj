@@ -4,6 +4,7 @@ import { ChapterTemplate } from '@/components/templates/ChapterTemplate';
 import { MDXContentRenderer, Section } from '@/components/MDXContentRenderer';
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 // 简化的章节模板，只渲染MDX内容
 export function SimpleChapterTemplate({ 
@@ -41,11 +42,19 @@ export function SimpleChapterTemplate({
 // ChapterTemplateClient组件 - 客户端组件用于处理交互
 export function ChapterTemplateClient({ 
   chapterData, 
-  sections
+  sections,
+  navigation,
+  toc
 }: { 
   chapterData: any; 
   sections?: Section[];
+  navigation?: { prev?: string | null; next?: string | null };
+  toc?: Array<{ level: number; text: string; id: string }>;
 }) {
+  // 从sections中提取章节标题（如果有一级标题）
+  const chapterTitleSection = sections?.find(s => s.component === 'ChapterTitle');
+  const title = chapterTitleSection?.title || chapterData.metadata.title;
+  
   // 从sections中提取数据并映射到ChapterTemplate的属性
   const logicalPosition = sections?.find(s => s.component === 'LogicalPosition')?.content || '';
   const objectives = sections?.find(s => s.component === 'ChapterObjectives')?.content
@@ -53,8 +62,9 @@ export function ChapterTemplateClient({
     .filter(line => line.trim().startsWith('- '))
     .map(line => line.replace('- ', '').trim()) || [];
   const coreContent = sections?.find(s => s.component === 'CoreContent')?.content
-    ?.split('\n\n')
-    .filter(p => p.trim()) || [];
+    ?.split('\n')
+    .filter(line => line.trim().startsWith('- '))
+    .map(line => line.replace('- ', '').trim()) || [];
   const keywords = sections?.find(s => s.component === 'Keywords')?.content
     ?.split(/[,，]/)  // 支持中英文逗号分割
     .map(keyword => keyword.trim()) 
@@ -62,35 +72,38 @@ export function ChapterTemplateClient({
   const prerequisitePrompt = sections?.find(s => s.component === 'PrerequisitePrompt')?.content || '';
   const openingLine = sections?.find(s => s.component === 'OpeningLine')?.content || '';
   
-  // 处理其他特殊部分
-  // 解析正文内容，保留嵌套的二级标题
-  const parseMainContent = (content: string) => {
-    if (!content) return [];
-    
-    // 使用正则表达式匹配所有二级标题（##）及其内容
-    const sectionRegex = /##\s+([^\n]+)\n\n([\s\S]*?)(?=(?:^##\s+[^\n]+\n\n|$))/gm;
-    const sections: Array<{title?: string; content: string}> = [];
-    let match;
-    
-    // 查找所有匹配的二级标题和内容
-    while ((match = sectionRegex.exec(content)) !== null) {
-      sections.push({
-        title: match[1].trim(),
-        content: match[2].trim()
-      });
-    }
-    
-    // 如果没有找到任何二级标题，将整个内容作为一个部分
-    if (sections.length === 0) {
-      return [{
-        content: content.trim()
-      }];
-    }
-    
-    return sections;
-  };
+  // 处理正文内容
+  // 从sections中提取所有非预定义组件的节（这些是正文的三级标题分割）
+  const predefinedComponents = [
+    'ChapterTitle',
+    'LogicalPosition',
+    'ChapterObjectives',
+    'CoreContent',
+    'Keywords',
+    'PrerequisitePrompt',
+    'OpeningLine',
+    'ChapterSummary',
+    'LogicalChain',
+    'NextChapterPreview',
+    'SectMentality',
+    'MainContent'
+  ];
   
-  const mainContent = parseMainContent(sections?.find(s => s.component === 'MainContent')?.content || '');
+  // 提取正文部分的节
+  const mainContentSections = sections
+    ?.filter(s => !predefinedComponents.includes(s.component))
+    .map(section => ({
+      title: section.title,
+      content: section.content
+    })) || [];
+  
+  // 如果没有三级标题分割，查找MainContent组件
+  const mainContent = mainContentSections.length > 0 ? mainContentSections : [
+    {
+      title: undefined,
+      content: sections?.find(s => s.component === 'MainContent')?.content || ''
+    }
+  ];
 
   
   const chapterSummary = sections?.find(s => s.component === 'ChapterSummary')?.content || '';
@@ -99,29 +112,56 @@ export function ChapterTemplateClient({
   
   // 处理宗门心法
   const sectMentalityContent = sections?.find(s => s.component === 'SectMentality')?.content || '';
+  
+  // 简化处理：将所有内容作为overview显示，不再严格要求特定子标题结构
   const sectMentality: { overview: string; breakthrough: string[]; corePrinciple: string } = {
-    overview: sectMentalityContent.split('【总纲（灵根篇）】')[1]?.split('【破劫三式（飞升篇）】')[0]?.trim() || "",
+    overview: sectMentalityContent.trim(),
     breakthrough: [],
     corePrinciple: ""
   };
-  
-  // 提取突破要点
-  const breakthroughSection = sectMentalityContent.split('【破劫三式（飞升篇）】')[1]?.split('【心法要诀】')[0]?.trim() || "";
-  if (breakthroughSection) {
-    const breakthroughMatches = breakthroughSection.match(/第[一二三]式[^：]*：([^第]+)/g);
-    if (breakthroughMatches) {
-      sectMentality.breakthrough = breakthroughMatches.map(match => match.replace(/第[一二三]式[^：]*：/, '').trim());
+
+  // 从slug中提取章节编号（如从'part1/ch1'提取'01'）
+  const getChapterNumberFromSlug = (slug: string): string => {
+    if (!slug || typeof slug !== 'string') {
+      return '00';
     }
-  }
-  
-  // 提取核心心法
-  const corePrincipleSection = sectMentalityContent.split('【心法要诀】')[1]?.trim() || "";
-  sectMentality.corePrinciple = corePrincipleSection;
+    
+    // 提取所有数字
+    const numbers = slug.match(/[0-9]+/g);
+    if (numbers) {
+      // 找到章节部分的数字（通常是第二个数字）
+      // 例如 'part0/ch0' → ['0', '0'] → 取第二个'0'
+      // 'part1/ch1' → ['1', '1'] → 取第二个'1'
+      if (numbers.length >= 2) {
+        return numbers[1].padStart(2, '0');
+      }
+      // 如果只有一个数字，就用它
+      return numbers[0].padStart(2, '0');
+    }
+    
+    return '00';
+  };
+
+  const chapterNumber = `CH.${getChapterNumberFromSlug(chapterData.slug)}`;
+  const router = useRouter();
+
+  // 导航处理函数
+  const handlePreviousChapter = () => {
+    if (navigation?.prev) {
+      router.push(`/chapters/${navigation.prev}`);
+    }
+  };
+
+  const handleNextChapter = () => {
+    if (navigation?.next) {
+      router.push(`/chapters/${navigation.next}`);
+    }
+  };
 
   return (
     <ChapterTemplate
-      title={chapterData.metadata.title}
-      chapterNumber={`CH.${chapterData.metadata.chapterNumber.toString().padStart(2, '0')}`}
+      title={title}
+      chapterNumber={chapterNumber}
       logicalPosition={logicalPosition}
       objectives={objectives}
       coreContent={coreContent}
@@ -133,6 +173,9 @@ export function ChapterTemplateClient({
       chapterSummary={chapterSummary}
       nextChapterPreview={nextChapterPreview}
       sectMentality={sectMentality}
+      toc={toc || []}
+      onPreviousChapter={navigation?.prev ? handlePreviousChapter : undefined}
+      onNextChapter={navigation?.next ? handleNextChapter : undefined}
     />
   );
 }

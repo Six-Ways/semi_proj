@@ -4,21 +4,33 @@ import matter from 'gray-matter';
 
 const contentDirectory = path.join(process.cwd(), 'content');
 
+// 章节slug映射表，将简化的slug（如part0/ch0）映射到实际的文件名
+export const chapterSlugMap: Record<string, string> = {
+  'part0/ch0': 'part0/ch0-preface',
+  'part1/ch1': 'part1/ch1-Crystal-Structures',
+  'part1/ch2': 'part1/ch2-Quantum-Energy-Band',
+  'part1/ch3': 'part1/ch3-Statistics-Thermal-Equilibrium',
+  'part3/ch4': 'part3/ch4-Carrier-Transport'
+};
+
 export function getChapterBySlug(slug: string) {
   try {
+    // 首先检查是否有映射的slug
+    const mappedSlug = chapterSlugMap[slug] || slug;
+    
     // 尝试多种可能的文件路径
     const possiblePaths = [
-      path.join(contentDirectory, `chapters/${slug}.mdx`),
-      path.join(contentDirectory, `chapters/${slug}.md`),
-      path.join(contentDirectory, `chapters/${slug}/index.mdx`),
-      path.join(contentDirectory, `chapters/${slug}/index.md`),
+      path.join(contentDirectory, `chapters/${mappedSlug}.mdx`),
+      path.join(contentDirectory, `chapters/${mappedSlug}.md`),
+      path.join(contentDirectory, `chapters/${mappedSlug}/index.mdx`),
+      path.join(contentDirectory, `chapters/${mappedSlug}/index.md`),
     ];
     
-    // 如果slug包含路径分隔符，说明是子目录中的文件
-    if (slug.includes('/')) {
+    // 如果mappedSlug包含路径分隔符，说明是子目录中的文件
+    if (mappedSlug.includes('/')) {
       possiblePaths.push(
-        path.join(contentDirectory, `chapters/${slug}.mdx`),
-        path.join(contentDirectory, `chapters/${slug}.md`)
+        path.join(contentDirectory, `chapters/${mappedSlug}.mdx`),
+        path.join(contentDirectory, `chapters/${mappedSlug}.md`)
       );
     }
     
@@ -99,5 +111,41 @@ export function getChapterContent(slug: string) {
   return {
     metadata: chapter.metadata,
     content: chapter.content
+  };
+}
+
+// 获取所有章节的顺序列表
+export function getChapterOrder() {
+  return Object.keys(chapterSlugMap).sort((a, b) => {
+    // 解析章节编号并排序
+    const parseSlug = (slug: string) => {
+      const parts = slug.split('/');
+      const partNum = parseInt(parts[0].replace('part', ''));
+      const chapterNum = parseInt(parts[1].replace('ch', ''));
+      return { partNum, chapterNum };
+    };
+    
+    const aParts = parseSlug(a);
+    const bParts = parseSlug(b);
+    
+    if (aParts.partNum !== bParts.partNum) {
+      return aParts.partNum - bParts.partNum;
+    }
+    return aParts.chapterNum - bParts.chapterNum;
+  });
+}
+
+// 获取章节的上一章和下一章
+export function getChapterNavigation(currentSlug: string) {
+  const chapterOrder = getChapterOrder();
+  const currentIndex = chapterOrder.indexOf(currentSlug);
+  
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  
+  return {
+    prev: currentIndex > 0 ? chapterOrder[currentIndex - 1] : null,
+    next: currentIndex < chapterOrder.length - 1 ? chapterOrder[currentIndex + 1] : null
   };
 }

@@ -132,7 +132,7 @@ n \\cdot p &= n_{i}^2
             
             <Button 
               className="bg-blue-500 hover:bg-blue-600 text-sm px-4 py-2"
-              onClick={() => router.push('/chapters/preface')}
+              onClick={() => router.push('/chapters/part0/ch0')}
             >
               开始学习
               <ArrowRight className="ml-2 h-3 w-3" />
@@ -244,24 +244,24 @@ n \\cdot p &= n_{i}^2
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
                       {section.chapters.map((chapter) => {
-                        // 确定章节所在的部分
-                        const chapterNum = parseInt(chapter.number.slice(3));
-                        let targetPath = '';
+                        // 根据章节编号和部分ID确定路径
+                        const partId = section.id;
+                        let chapterId = '';
                         
-                        // 根据实际目录结构的导航路径映射
-                        if (chapterNum === 0) {
-                          // CH.00 对应 part0/ch0
-                          targetPath = '/chapters/part0/ch0';
-                        } else if (chapterNum === 1) {
-                          // CH.01 对应 part1/ch1
-                          targetPath = '/chapters/part1/ch1';
-                        } else if (chapterNum === 2) {
-                          // CH.02 对应 part1/ch2（需要确认是否存在）
-                          targetPath = '/chapters/part1/ch2';
+                        if (partId === 'part0' && chapter.number === 'CH.00') {
+                          chapterId = 'ch0';
+                        } else if (partId === 'part1') {
+                          if (chapter.number === 'CH.01') chapterId = 'ch1';
+                          else if (chapter.number === 'CH.02') chapterId = 'ch2';
+                          else if (chapter.number === 'CH.03') chapterId = 'ch3';
+                        } else if (partId === 'part3' && chapter.number === 'CH.04') {
+                          chapterId = 'ch4';
                         } else {
-                          // 其他章节暂时指向现有页面，避免404
-                          targetPath = '/chapters/part1/ch1';
+                          // 默认路径，避免404
+                          chapterId = 'ch1';
                         }
+                        
+                        const targetPath = `/chapters/${partId}/${chapterId}`;
                         
                         return (
                           <div 
@@ -324,7 +324,7 @@ n \\cdot p &= n_{i}^2
             <div className="mt-6 text-center">
               <Button 
                 className="bg-blue-500 hover:bg-blue-600 text-sm px-6 py-2"
-                onClick={() => router.push('/chapters/preface')}
+                onClick={() => router.push('/chapters/part0/ch0')}
               >
                 开始学习之旅
                 <ArrowRight className="ml-2 h-3 w-3" />
