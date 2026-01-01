@@ -50,16 +50,28 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
       {/* 英雄区域 */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" aria-hidden="true"></div>
+        {/* 背景图片 - 半导体芯片微观结构 */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-70 z-0" 
+          style={{ 
+            backgroundImage: 'url("https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80")',
+            backgroundPosition: 'center center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat'
+          }}
+          aria-hidden="true"
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 to-slate-800/30 z-10" aria-hidden="true"></div>
+        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] z-20" aria-hidden="true"></div>
         <div className="relative container mx-auto px-6 py-24 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-serif">
-              知识全景
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-serif leading-tight">
+              硅基文明求索
             </h1>
-            <p className="mt-6 text-lg leading-8 text-slate-300">
+            <p className="mt-6 text-lg leading-8 text-slate-300 max-w-2xl">
               探索前沿技术领域的完整知识体系，从基础原理到应用实践
             </p>
           </div>
@@ -187,11 +199,11 @@ export default function HomePage() {
       </main>
 
       {/* 页脚 */}
-      <footer className="bg-slate-900 text-white py-12 mt-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center">
+      <footer className="bg-slate-900 text-white py-8 mt-auto">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-sm md:text-base">
             <p className="text-gray-400">
-              © 2025 知识全景 - 探索前沿技术的完整知识体系
+              © 2025 硅基文明求索 - 探索前沿技术的完整知识体系
             </p>
           </div>
         </div>

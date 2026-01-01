@@ -1,7 +1,18 @@
 "use client";
 
 import React from "react";
-import { InlineMath as KatexInlineMath, BlockMath as KatexBlockMath } from "react-katex";
+// 使用动态导入，仅在需要时加载katex组件，实现代码分割
+import dynamic from 'next/dynamic';
+
+// 动态导入katex组件，禁用SSR以避免服务端渲染问题
+const KatexInlineMath = dynamic(() => import('react-katex').then(mod => mod.InlineMath), { 
+  ssr: false,
+  loading: () => <span className="text-gray-500 italic">Loading formula...</span>
+});
+const KatexBlockMath = dynamic(() => import('react-katex').then(mod => mod.BlockMath), { 
+  ssr: false,
+  loading: () => <div className="h-16 w-full bg-gray-100 animate-pulse"></div>
+});
 
 interface MathFormulaProps {
   formula: string;

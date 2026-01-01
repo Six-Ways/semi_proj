@@ -11,8 +11,23 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "半导体物理与器件 - 可探索式解释",
-  description: "一个关于半导体物理与器件的交互式教育网站",
+  title: "半导体学习平台 - 从原子到系统的完整知识体系",
+  description: "探索半导体技术的完整知识链，从微观基石到未来趋势。涵盖量子物理、材料科学、器件原理、工艺技术和系统设计。",
+  keywords: "半导体, 半导体物理, 半导体器件, 半导体工艺, 量子物理, 材料科学, 器件原理, 工艺技术, 系统设计",
+  authors: [{ name: "半导体学习平台" }],
+  creator: "半导体学习平台",
+  publisher: "半导体学习平台",
+  openGraph: {
+    title: "半导体学习平台 - 从原子到系统的完整知识体系",
+    description: "探索半导体技术的完整知识链，从微观基石到未来趋势。涵盖量子物理、材料科学、器件原理、工艺技术和系统设计。",
+    type: "website",
+    siteName: "半导体学习平台",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "半导体学习平台 - 从原子到系统的完整知识体系",
+    description: "探索半导体技术的完整知识链，从微观基石到未来趋势。涵盖量子物理、材料科学、器件原理、工艺技术和系统设计。",
+  },
 };
 
 export default function RootLayout({

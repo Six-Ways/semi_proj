@@ -1,10 +1,14 @@
 'use client';
 
 import { ChapterTemplate } from '@/components/templates/ChapterTemplate';
-import { MDXContentRenderer, Section } from '@/components/MDXContentRenderer';
 import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+// 动态导入MDXContentRenderer，实现代码分割
+const MDXContentRenderer = dynamic(() => import('@/components/MDXContentRenderer').then((mod) => mod.MDXContentRenderer));
+type Section = import('@/components/MDXContentRenderer').Section;
 
 // 简化的章节模板，只渲染MDX内容
 export function SimpleChapterTemplate({ 

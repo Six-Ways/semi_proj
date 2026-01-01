@@ -32,6 +32,37 @@ export default function SettingsPage() {
   const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState("zh-CN");
   const [fontSize, setFontSize] = useState("medium");
+  // 无障碍设置状态
+  const [keyboardNavigation, setKeyboardNavigation] = useState(true);
+  const [screenReader, setScreenReader] = useState(true);
+  const [highContrast, setHighContrast] = useState(false);
+  
+  // 应用高对比度模式
+  React.useEffect(() => {
+    if (highContrast) {
+      document.documentElement.classList.add('high-contrast');
+    } else {
+      document.documentElement.classList.remove('high-contrast');
+    }
+  }, [highContrast]);
+  
+  // 应用屏幕阅读器优化
+  React.useEffect(() => {
+    if (screenReader) {
+      document.documentElement.setAttribute('aria-live', 'polite');
+    } else {
+      document.documentElement.removeAttribute('aria-live');
+    }
+  }, [screenReader]);
+  
+  // 应用键盘导航增强
+  React.useEffect(() => {
+    if (keyboardNavigation) {
+      document.documentElement.classList.add('enhanced-keyboard');
+    } else {
+      document.documentElement.classList.remove('enhanced-keyboard');
+    }
+  }, [keyboardNavigation]);
 
   const settingsSections: SettingsSection[] = [
     {
@@ -252,8 +283,15 @@ export default function SettingsPage() {
                       <p className="text-sm text-gray-500">启用增强的键盘导航支持</p>
                     </div>
                   </div>
-                  <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-indigo-600">
-                    <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-6" />
+                  <button
+                    onClick={() => setKeyboardNavigation(!keyboardNavigation)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${keyboardNavigation ? "bg-indigo-600" : "bg-gray-200"}`}
+                    aria-label={keyboardNavigation ? "禁用键盘导航" : "启用键盘导航"}
+                    aria-pressed={keyboardNavigation}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${keyboardNavigation ? "translate-x-6" : "translate-x-1"}`}
+                    />
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
@@ -264,8 +302,15 @@ export default function SettingsPage() {
                       <p className="text-sm text-gray-500">优化屏幕阅读器体验</p>
                     </div>
                   </div>
-                  <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-indigo-600">
-                    <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-6" />
+                  <button
+                    onClick={() => setScreenReader(!screenReader)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${screenReader ? "bg-indigo-600" : "bg-gray-200"}`}
+                    aria-label={screenReader ? "禁用屏幕阅读器优化" : "启用屏幕阅读器优化"}
+                    aria-pressed={screenReader}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${screenReader ? "translate-x-6" : "translate-x-1"}`}
+                    />
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
@@ -276,8 +321,15 @@ export default function SettingsPage() {
                       <p className="text-sm text-gray-500">增加界面元素的对比度</p>
                     </div>
                   </div>
-                  <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200">
-                    <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-1" />
+                  <button
+                    onClick={() => setHighContrast(!highContrast)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${highContrast ? "bg-indigo-600" : "bg-gray-200"}`}
+                    aria-label={highContrast ? "禁用高对比度" : "启用高对比度"}
+                    aria-pressed={highContrast}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${highContrast ? "translate-x-6" : "translate-x-1"}`}
+                    />
                   </button>
                 </div>
               </div>

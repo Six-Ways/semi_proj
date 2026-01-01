@@ -123,7 +123,7 @@ n \\cdot p &= n_{i}^2
           <div className="flex items-center justify-between">
             <div>
               <h1 className="font-serif text-2xl font-semibold text-[#0f172a] mb-1">
-                半导体器件与工艺全景
+                硅基文明求索
               </h1>
               <p className="text-sm text-gray-500">
                 从微观基石到未来趋势的完整学习路径
@@ -131,7 +131,8 @@ n \\cdot p &= n_{i}^2
             </div>
             
             <Button 
-              className="bg-blue-500 hover:bg-blue-600 text-sm px-4 py-2"
+              variant="primary"
+              size="md"
               onClick={() => router.push('/chapters/part0/ch0')}
             >
               开始学习
@@ -246,28 +247,20 @@ n \\cdot p &= n_{i}^2
                       {section.chapters.map((chapter) => {
                         // 根据章节编号和部分ID确定路径
                         const partId = section.id;
-                        let chapterId = '';
+                        // 从章节编号中提取数字，生成对应的chapterId
+                        const chapterNumber = parseInt(chapter.number.replace('CH.', ''));
+                        const chapterId = `ch${chapterNumber}`;
+                        const slug = `${partId}/${chapterId}`;
                         
-                        if (partId === 'part0' && chapter.number === 'CH.00') {
-                          chapterId = 'ch0';
-                        } else if (partId === 'part1') {
-                          if (chapter.number === 'CH.01') chapterId = 'ch1';
-                          else if (chapter.number === 'CH.02') chapterId = 'ch2';
-                          else if (chapter.number === 'CH.03') chapterId = 'ch3';
-                        } else if (partId === 'part3' && chapter.number === 'CH.04') {
-                          chapterId = 'ch4';
-                        } else {
-                          // 默认路径，避免404
-                          chapterId = 'ch1';
-                        }
-                        
-                        const targetPath = `/chapters/${partId}/${chapterId}`;
+                        // 只生成chapterSlugMap中存在的章节链接
+                        // 这样可以避免生成不存在的章节链接，导致用户点击后出现错误
+                        const isChapterExists = chapterSlugMap.hasOwnProperty(slug);
                         
                         return (
                           <div 
                             key={chapter.number} 
-                            className="bg-white rounded-md p-3 hover:bg-slate-50 border border-slate-100 cursor-pointer transition-all duration-200"
-                            onClick={() => router.push(targetPath)}
+                            className={`bg-white rounded-md p-3 border transition-all duration-200 ${isChapterExists ? 'hover:bg-slate-50 border-slate-100 cursor-pointer' : 'bg-gray-50 border-gray-200 cursor-not-allowed opacity-60'}`}
+                            onClick={() => isChapterExists && router.push(`/chapters/${slug}`)}
                           >
                             <div className="font-mono text-xs font-medium text-blue-600 mb-1 opacity-80">
                               {chapter.number}
@@ -323,7 +316,8 @@ n \\cdot p &= n_{i}^2
             
             <div className="mt-6 text-center">
               <Button 
-                className="bg-blue-500 hover:bg-blue-600 text-sm px-6 py-2"
+                variant="primary"
+                size="md"
                 onClick={() => router.push('/chapters/part0/ch0')}
               >
                 开始学习之旅

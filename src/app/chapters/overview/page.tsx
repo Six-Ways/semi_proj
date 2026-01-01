@@ -123,8 +123,9 @@ n \\cdot p &= n_{i}^2
             </div>
             
             <Button 
-              className="bg-blue-500 hover:bg-blue-600 text-sm px-4 py-2"
-              onClick={() => router.push('/chapters/preface')}
+              variant="primary"
+              size="md"
+              onClick={() => router.push('/chapters/part0/ch0')}
             >
               开始学习
               <ArrowRight className="ml-2 h-3 w-3" />

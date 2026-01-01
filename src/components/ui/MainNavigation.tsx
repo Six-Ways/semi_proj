@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "./ThemeToggle";
 import { 
   BookOpen, 
   Home, 
@@ -18,8 +19,12 @@ import {
   Beaker,
   BrainCircuit,
   Zap,
-  Activity
+  Activity,
+  Sun,
+  Moon
 } from "lucide-react";
+import { FontSizeToggle } from "./FontSizeToggle";
+import { Search } from "./Search";
 
 interface NavItem {
   name: string;
@@ -229,8 +234,22 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
 
   const navigationItems: NavItem[] = generateNavigationItems();
 
+  // 切换下拉菜单
   const toggleDropdown = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
+  };
+
+  // 处理键盘事件
+  const handleDropdownKeyDown = (e: React.KeyboardEvent, name: string) => {
+    // 向下箭头或Enter键打开下拉菜单
+    if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleDropdown(name);
+    }
+    // Escape键关闭所有下拉菜单
+    if (e.key === 'Escape') {
+      setOpenDropdown(null);
+    }
   };
 
   const isActive = (href: string) => {
@@ -246,8 +265,38 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <Cpu className="h-8 w-8 text-indigo-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">半导体学习平台</span>
+              {/* 硅基文明求索 Logo */}
+              <svg className="h-12 w-12 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {/* 硅基文明核心：硅原子（14号元素） */}
+                <circle cx="12" cy="12" r="3" />
+                {/* 硅原子电子构型：2-8-4 */}
+                <circle cx="12" cy="12" r="5" strokeDasharray="1 3" />
+                <circle cx="12" cy="12" r="7" strokeDasharray="2 2" />
+                {/* 四个外层电子 */}
+                <circle cx="12" cy="5" r="1" />
+                <circle cx="19" cy="12" r="1" />
+                <circle cx="12" cy="19" r="1" />
+                <circle cx="5" cy="12" r="1" />
+                
+                {/* 探索求真：指南针/探索符号 */}
+                <path d="M12 2v2" strokeWidth="3" />
+                <path d="M12 20v2" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                
+                {/* 硅基技术载体：芯片轮廓 */}
+                <rect x="6" y="6" width="12" height="12" rx="2" />
+                
+                {/* 知识网络：连接线路 */}
+                <path d="M8 8l8 8" />
+                <path d="M8 16l8-8" />
+                <path d="M12 8l0 8" />
+                <path d="M8 12l8 0" />
+                
+                {/* 文明进步：上升轨迹 */}
+                <path d="M9 15l3-6 3 6" />
+              </svg>
+              <span className="ml-2 text-xl font-bold text-gray-900">硅基文明求索</span>
             </Link>
           </div>
           
@@ -259,11 +308,16 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                   <div>
                     <button
                       onClick={() => toggleDropdown(item.name)}
+                      onKeyDown={(e) => handleDropdownKeyDown(e, item.name)}
                       className={`flex items-center px-3 py-2 rounded-md text-sm font-medium ${
                         isActive(item.href)
                           ? "text-indigo-700 bg-indigo-50"
                           : "text-gray-700 hover:text-indigo-700 hover:bg-gray-50"
                       }`}
+                      aria-expanded={openDropdown === item.name}
+                      aria-haspopup="true"
+                      aria-controls={`${item.name}-dropdown`}
+                      id={`${item.name}-button`}
                     >
                       {item.icon && <span className="mr-2">{item.icon}</span>}
                       {item.name}
@@ -272,11 +326,17 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                         className={`ml-1 transition-transform ${
                           openDropdown === item.name ? "rotate-180" : ""
                         }`}
+                        aria-hidden="true"
                       />
                     </button>
                     
                     {openDropdown === item.name && (
-                      <div className="absolute z-500 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                      <div 
+                        id={`${item.name}-dropdown`}
+                        className="absolute z-500 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                        role="menu"
+                        aria-labelledby={`${item.name}-button`}
+                      >
                         <div className="py-1">
                           {item.children.map((child) => (
                             <Link
@@ -288,6 +348,8 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                                   : "text-gray-700 hover:text-indigo-700 hover:bg-gray-50"
                               }`}
                               onClick={() => setOpenDropdown(null)}
+                              role="menuitem"
+                              tabIndex={0}
                             >
                               {child.icon && <span className="mr-2">{child.icon}</span>}
                               {child.name}
@@ -312,6 +374,12 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                 )}
               </div>
             ))}
+            {/* 搜索功能 */}
+            <Search />
+            {/* 字体大小调节 */}
+            <FontSizeToggle />
+            {/* 主题切换按钮 */}
+            <ThemeToggle />
           </div>
           
           {/* Mobile menu button */}
@@ -338,11 +406,16 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                   <div>
                     <button
                       onClick={() => toggleDropdown(item.name)}
+                      onKeyDown={(e) => handleDropdownKeyDown(e, item.name)}
                       className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
                         isActive(item.href)
                           ? "text-indigo-700 bg-indigo-50"
                           : "text-gray-700 hover:text-indigo-700 hover:bg-gray-50"
                       }`}
+                      aria-expanded={openDropdown === item.name}
+                      aria-haspopup="true"
+                      aria-controls={`mobile-${item.name}-dropdown`}
+                      id={`mobile-${item.name}-button`}
                     >
                       <div className="flex items-center">
                         {item.icon && <span className="mr-2">{item.icon}</span>}
@@ -353,11 +426,17 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                         className={`transition-transform ${
                           openDropdown === item.name ? "rotate-180" : ""
                         }`}
+                        aria-hidden="true"
                       />
                     </button>
                     
                     {openDropdown === item.name && (
-                      <div className="pl-6 pr-2 py-2 space-y-1">
+                      <div 
+                        id={`mobile-${item.name}-dropdown`}
+                        className="pl-6 pr-2 py-2 space-y-1"
+                        role="menu"
+                        aria-labelledby={`mobile-${item.name}-button`}
+                      >
                         {item.children.map((child) => (
                           <Link
                             key={child.href}
@@ -371,6 +450,8 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                               setOpenDropdown(null);
                               setIsMenuOpen(false);
                             }}
+                            role="menuitem"
+                            tabIndex={0}
                           >
                             {child.icon && <span className="mr-2">{child.icon}</span>}
                             {child.name}
@@ -395,6 +476,18 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
                 )}
               </div>
             ))}
+            {/* 搜索功能 */}
+            <div className="px-3 py-2">
+              <Search className="w-full justify-start" />
+            </div>
+            {/* 字体大小调节 */}
+            <div className="px-3 py-2">
+              <FontSizeToggle className="w-full justify-start" />
+            </div>
+            {/* 主题切换按钮 */}
+            <div className="px-3 py-2">
+              <ThemeToggle className="w-full justify-start" />
+            </div>
           </div>
         </div>
       )}

@@ -136,28 +136,87 @@ export function ScrollIndicator({
 interface ScrollProgressBarProps {
   color?: string;
   height?: number;
+  totalWords?: number;
+  currentWordCount?: number;
+  showPercentage?: boolean;
+  showWordCount?: boolean;
 }
 
 export function ScrollProgressBar({ 
   color = "#007AFF", 
-  height = 4 
+  height = 4, 
+  totalWords = 0,
+  currentWordCount = 0,
+  showPercentage = true,
+  showWordCount = false
 }: ScrollProgressBarProps) {
   const { scrollYProgress } = useScroll();
+  const [progress, setProgress] = useState(0);
+
+  // 更新进度值
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((latest) => {
+      setProgress(latest);
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
+
+  // 处理点击事件，跳转到对应位置
+  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = clickX / rect.width;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollTo = percentage * documentHeight;
+    
+    window.scrollTo({ 
+      top: scrollTo, 
+      behavior: "smooth" 
+    });
+  };
+
+  // 格式化字数显示
+  const formatWordCount = (count: number) => {
+    return count.toLocaleString();
+  };
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 right-0 z-50"
-      style={{ height }}
+    <div 
+      className="fixed top-0 left-0 right-0 z-50 cursor-pointer"
+      onClick={handleProgressClick}
+      role="progressbar"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(progress * 100)}
     >
+      {/* 背景轨道 */}
+      <div className="absolute inset-0 bg-gray-200 dark:bg-gray-700" style={{ height }} />
+      
+      {/* 进度条 */}
       <motion.div
-        className="h-full"
+        className="absolute inset-0"
         style={{
           backgroundColor: color,
           scaleX: scrollYProgress,
-          transformOrigin: "left"
+          transformOrigin: "left",
+          height
         }}
       />
-    </motion.div>
+      
+      {/* 进度指示器 */}
+      <div className="absolute right-0 top-0 transform -translate-y-full mt-2 mr-4 flex items-center space-x-2">
+        {showPercentage && (
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2 py-1 rounded shadow-md">
+            {Math.round(progress * 100)}%
+          </span>
+        )}
+        {showWordCount && totalWords > 0 && (
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 px-2 py-1 rounded shadow-md">
+            {formatWordCount(currentWordCount)} / {formatWordCount(totalWords)}
+          </span>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -200,13 +259,18 @@ export function ScrollText({
 }
 
 // 滚动触发的图片动画
+import { ResponsiveImage } from "@/components/ui/ResponsiveImage";
+
 interface ScrollImageProps {
   src: string;
   alt: string;
   className?: string;
+  aspectRatio?: number;
+  priority?: boolean;
+  lazy?: boolean;
 }
 
-export function ScrollImage({ src, alt, className = "" }: ScrollImageProps) {
+export function ScrollImage({ src, alt, className = "", aspectRatio = 16/9, priority = false, lazy = true }: ScrollImageProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -222,12 +286,16 @@ export function ScrollImage({ src, alt, className = "" }: ScrollImageProps) {
       className={`overflow-hidden ${className}`}
       style={{ opacity }}
     >
-      <motion.img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-        style={{ scale }}
-      />
+      <motion.div style={{ scale }}>
+        <ResponsiveImage
+          src={src}
+          alt={alt}
+          className="w-full h-full"
+          aspectRatio={aspectRatio}
+          priority={priority}
+          lazy={lazy}
+        />
+      </motion.div>
     </motion.div>
   );
 }
