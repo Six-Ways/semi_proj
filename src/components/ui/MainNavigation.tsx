@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "./ThemeToggle";
+import Image from "next/image";
 import { 
   BookOpen, 
   Home, 
@@ -265,37 +266,14 @@ export function MainNavigation({ className = "" }: MainNavigationProps) {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              {/* 硅基文明求索 Logo */}
-              <svg className="h-12 w-12 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                {/* 硅基文明核心：硅原子（14号元素） */}
-                <circle cx="12" cy="12" r="3" />
-                {/* 硅原子电子构型：2-8-4 */}
-                <circle cx="12" cy="12" r="5" strokeDasharray="1 3" />
-                <circle cx="12" cy="12" r="7" strokeDasharray="2 2" />
-                {/* 四个外层电子 */}
-                <circle cx="12" cy="5" r="1" />
-                <circle cx="19" cy="12" r="1" />
-                <circle cx="12" cy="19" r="1" />
-                <circle cx="5" cy="12" r="1" />
-                
-                {/* 探索求真：指南针/探索符号 */}
-                <path d="M12 2v2" strokeWidth="3" />
-                <path d="M12 20v2" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                
-                {/* 硅基技术载体：芯片轮廓 */}
-                <rect x="6" y="6" width="12" height="12" rx="2" />
-                
-                {/* 知识网络：连接线路 */}
-                <path d="M8 8l8 8" />
-                <path d="M8 16l8-8" />
-                <path d="M12 8l0 8" />
-                <path d="M8 12l8 0" />
-                
-                {/* 文明进步：上升轨迹 */}
-                <path d="M9 15l3-6 3 6" />
-              </svg>
+              {/* 使用用户提供的logo资源 */}
+              <Image 
+                src="/logo.png" 
+                alt="硅基文明求索" 
+                width={48} 
+                height={48} 
+                className="h-12 w-12 object-contain" 
+              />
               <span className="ml-2 text-xl font-bold text-gray-900">硅基文明求索</span>
             </Link>
           </div>

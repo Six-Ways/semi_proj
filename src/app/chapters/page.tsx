@@ -252,15 +252,12 @@ n \\cdot p &= n_{i}^2
                         const chapterId = `ch${chapterNumber}`;
                         const slug = `${partId}/${chapterId}`;
                         
-                        // 只生成chapterSlugMap中存在的章节链接
-                        // 这样可以避免生成不存在的章节链接，导致用户点击后出现错误
-                        const isChapterExists = chapterSlugMap.hasOwnProperty(slug);
-                        
+                        // 对于客户端组件，直接生成链接，由服务器端处理不存在的情况
                         return (
                           <div 
                             key={chapter.number} 
-                            className={`bg-white rounded-md p-3 border transition-all duration-200 ${isChapterExists ? 'hover:bg-slate-50 border-slate-100 cursor-pointer' : 'bg-gray-50 border-gray-200 cursor-not-allowed opacity-60'}`}
-                            onClick={() => isChapterExists && router.push(`/chapters/${slug}`)}
+                            className="bg-white rounded-md p-3 border transition-all duration-200 hover:bg-slate-50 border-slate-100 cursor-pointer"
+                            onClick={() => router.push(`/chapters/${slug}`)}
                           >
                             <div className="font-mono text-xs font-medium text-blue-600 mb-1 opacity-80">
                               {chapter.number}

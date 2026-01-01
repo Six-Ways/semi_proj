@@ -211,7 +211,6 @@ export function ChapterTemplate({
   // 点击正文区域时隐藏目录
   const handleMainContentClick = () => {
     setIsTocOpen(false);
-    setIsTocHovered(false);
   };
   
   // 生成唯一ID
@@ -430,8 +429,6 @@ export function ChapterTemplate({
                   className="fixed left-0 top-1/2 transform -translate-y-1/2 lg:block hidden z-40 bg-[#007AFF] text-white p-2 rounded-r-full hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-[#007AFF]"
                   aria-expanded={isTocOpen}
                   aria-label={isTocOpen ? "关闭目录" : "打开目录"}
-                  onMouseEnter={() => setIsTocHovered(true)}
-                  onMouseLeave={() => setIsTocHovered(false)}
                 >
                   <BookOpen className="h-5 w-5" />
                 </button>

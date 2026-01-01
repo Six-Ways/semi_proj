@@ -66,7 +66,7 @@ export default function HomePage() {
         ></div>
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/30 to-slate-800/30 z-10" aria-hidden="true"></div>
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px] z-20" aria-hidden="true"></div>
-        <div className="relative container mx-auto px-6 py-24 lg:px-8">
+        <div className="relative container mx-auto px-6 py-24 lg:px-8 z-30">
           <div className="max-w-4xl">
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-serif leading-tight">
               硅基文明求索

@@ -108,7 +108,7 @@ export function getChapterBySlug(slug: string): Chapter | null {
     }
     
     if (!fullPath) {
-      throw new Error(`File not found for slug: ${slug}`);
+      return null;
     }
     
     const { data, content } = matter(fileContents);

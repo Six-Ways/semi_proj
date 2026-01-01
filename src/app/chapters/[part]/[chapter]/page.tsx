@@ -49,30 +49,19 @@ export default async function ChapterPage({ params }: { params: Promise<{ part: 
 
 // 生成所有静态路由参数，用于静态导出
 export async function generateStaticParams() {
-  // 生成所有可能的路由参数，包括那些可能不存在的路径
-  // 这是为了满足output: 'export'配置的要求
-  // 不存在的路径会在getChapterData函数中处理，返回404
+  // 手动返回所有实际存在的章节路由参数
+  // 这确保与output: export配置兼容
   return [
-    // 手动添加所有可能的路由参数
+    // Part 0
     { part: 'part0', chapter: 'ch0' },
+    // Part 1
     { part: 'part1', chapter: 'ch1' },
     { part: 'part1', chapter: 'ch2' },
     { part: 'part1', chapter: 'ch3' },
+    // Part 2
     { part: 'part2', chapter: 'ch4' },
     { part: 'part2', chapter: 'ch5' },
     { part: 'part2', chapter: 'ch6' },
-    // 移除part3相关的路由参数，因为part3文件夹已不存在
-    { part: 'part4', chapter: 'ch10' },
-    { part: 'part4', chapter: 'ch11' },
-    { part: 'part4', chapter: 'ch12' },
-    { part: 'part5', chapter: 'ch13' },
-    { part: 'part5', chapter: 'ch14' },
-    { part: 'part5', chapter: 'ch15' },
-    { part: 'part6', chapter: 'ch16' },
-    { part: 'part6', chapter: 'ch17' },
-    { part: 'part6', chapter: 'ch18' },
-    { part: 'part7', chapter: 'ch19' },
-    { part: 'part7', chapter: 'ch20' },
   ];
 }
 
