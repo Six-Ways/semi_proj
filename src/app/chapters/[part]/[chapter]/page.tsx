@@ -1,6 +1,6 @@
 import { getChapterBySlug, getChapterNavigation } from '@/lib/content';
 import { ChapterTemplateClient } from '@/components/templates/ChapterTemplateClient';
-import { splitMDXContent, extractTocFromMDX } from '@/lib/mdxProcessorServer';
+import { splitMDXContent, extractTocFromMDX, extractChapterMetadata, extractMainContent } from '@/lib/mdxProcessorServer';
 import { notFound } from 'next/navigation';
 import { chapterSlugMap } from '@/lib/content';
 
@@ -14,14 +14,20 @@ async function getChapterData(part: string, chapter: string) {
   }
   
   // 分割MDX内容
-  const sections = splitMDXContent(chapterContent.content);
+  const sections = splitMDXContent(chapterContent.content, slug);
   // 提取目录
   const toc = extractTocFromMDX(chapterContent.content);
+  // 提取非正文内容到结构化对象
+  const metadata = extractChapterMetadata(sections);
+  // 提取正文内容
+  const mainContent = extractMainContent(sections);
   
   return {
     ...chapterContent,
     sections,
-    toc
+    toc,
+    metadata,
+    mainContent
   };
 }
 
@@ -72,7 +78,7 @@ export async function generateMetadata({ params }: { params: Promise<{ part: str
   
   if (!chapterData) {
     return {
-      title: "章节不存在 - 半导体学习平台",
+      title: "章节不存在 - 硅基文明求索",
       description: "您访问的章节不存在，请检查URL或返回首页。"
     };
   }
@@ -81,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ part: str
   const keywords = chapterData.metadata.tags || [];
   
   return {
-    title: `${chapterData.metadata.title} - 半导体学习平台`,
+    title: `${chapterData.metadata.title} - 硅基文明求索`,
     description: chapterData.metadata.description || `深入学习${chapterData.metadata.title}的相关知识`,
     keywords: keywords.join(', ')
   };

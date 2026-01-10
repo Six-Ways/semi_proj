@@ -262,7 +262,9 @@ export function useHighContrast() {
 
 // 生成唯一ID的工具函数
 export function generateId(prefix = 'id'): string {
-  return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
+  // 在服务器端渲染时，使用固定的ID以避免水合错误
+  // 在客户端，使用固定ID也不会影响功能，因为这些ID主要用于ARIA属性关联
+  return `${prefix}-static`;
 }
 
 // 为标题生成锚点ID

@@ -18,17 +18,19 @@ export function FontSizeToggle({ className = "" }: FontSizeToggleProps) {
   const { trackSettingChange } = useAnalytics();
   
   // 字体大小索引状态
-  const [fontSizeIndex, setFontSizeIndex] = useState<number>(() => {
-    // 从localStorage获取保存的字体大小偏好
+  // 初始值使用DEFAULT_FONT_SIZE_INDEX确保服务器和客户端初始渲染一致
+  const [fontSizeIndex, setFontSizeIndex] = useState<number>(DEFAULT_FONT_SIZE_INDEX);
+
+  // 在客户端水合完成后，从localStorage读取保存的字体大小偏好
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedFontSize = localStorage.getItem("font_size_index");
       if (savedFontSize) {
         const index = parseInt(savedFontSize);
-        return FONT_SIZES.includes(FONT_SIZES[index]) ? index : DEFAULT_FONT_SIZE_INDEX;
+        setFontSizeIndex(FONT_SIZES.includes(FONT_SIZES[index]) ? index : DEFAULT_FONT_SIZE_INDEX);
       }
     }
-    return DEFAULT_FONT_SIZE_INDEX;
-  });
+  }, []);
 
   // 当前字体大小
   const currentFontSize = FONT_SIZES[fontSizeIndex];

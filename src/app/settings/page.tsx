@@ -504,10 +504,10 @@ export default function SettingsPage() {
               <h3 className="text-lg font-medium mb-4">关于</h3>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-sm text-gray-600 mb-2">
-                  半导体物理与器件学习平台 v1.0.0
+                  硅基文明求索 v1.0.0
                 </p>
                 <p className="text-sm text-gray-600 mb-2">
-                  © 2023 半导体学习平台. 保留所有权利.
+                  © 2023 硅基文明求索. 保留所有权利.
                 </p>
                 <div className="flex space-x-4 text-sm">
                   <a href="#" className="text-indigo-600 hover:text-indigo-800">服务条款</a>

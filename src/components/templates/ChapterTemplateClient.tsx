@@ -5,23 +5,29 @@ import { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { getChapterTheme } from '@/lib/chapterThemes';
 
 // 动态导入MDXContentRenderer，实现代码分割
 const MDXContentRenderer = dynamic(() => import('@/components/MDXContentRenderer').then((mod) => mod.MDXContentRenderer));
-type Section = import('@/components/MDXContentRenderer').Section;
+type Section = import('@/lib/mdxProcessorServer').Section;
 
 // 简化的章节模板，只渲染MDX内容
 export function SimpleChapterTemplate({ 
   title,
   chapterNumber,
-  children
+  children,
+  chapterSlug
 }: { 
   title: string;
   chapterNumber: string;
   children: ReactNode;
+  chapterSlug?: string;
 }) {
+  // 获取章节主题
+  const theme = chapterSlug ? getChapterTheme(chapterSlug) : getChapterTheme('default');
+  
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-[#1e293b]">
+    <div className={`min-h-screen bg-[${theme.backgroundColor}] text-[${theme.textColor}]`}>
       {/* 标题 */}
       <motion.section
         className="mb-8"
@@ -29,10 +35,10 @@ export function SimpleChapterTemplate({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="font-serif text-4xl font-bold text-[#1e293b] mb-4 text-center">
+        <h1 className={`font-serif text-4xl font-bold mb-4 text-center text-[${theme.headingColor}]`}>
           {title}
         </h1>
-        <div className="text-center font-mono text-lg text-[#007AFF]">
+        <div className={`text-center font-mono text-lg text-[${theme.primaryColor}]`}>
           {chapterNumber}
         </div>
       </motion.section>
@@ -59,63 +65,20 @@ export function ChapterTemplateClient({
   const chapterTitleSection = sections?.find(s => s.component === 'ChapterTitle');
   const title = chapterTitleSection?.title || chapterData.metadata.title;
   
-  // 从sections中提取数据并映射到ChapterTemplate的属性
-  const logicalPosition = sections?.find(s => s.component === 'LogicalPosition')?.content || '';
-  const objectives = sections?.find(s => s.component === 'ChapterObjectives')?.content
-    ?.split('\n')
-    .filter(line => line.trim().startsWith('- '))
-    .map(line => line.replace('- ', '').trim()) || [];
-  const coreContent = sections?.find(s => s.component === 'CoreContent')?.content
-    ?.split('\n')
-    .filter(line => line.trim().startsWith('- '))
-    .map(line => line.replace('- ', '').trim()) || [];
-  const keywords = sections?.find(s => s.component === 'Keywords')?.content
-    ?.split(/[,，]/)  // 支持中英文逗号分割
-    .map(keyword => keyword.trim()) 
-    .filter(keyword => keyword.length > 0) || [];
-  const prerequisitePrompt = sections?.find(s => s.component === 'PrerequisitePrompt')?.content || '';
-  const openingLine = sections?.find(s => s.component === 'OpeningLine')?.content || '';
+  // 使用新的章节元数据结构
+  const { metadata, mainContent } = chapterData;
   
-  // 处理正文内容
-  // 从sections中提取所有非预定义组件的节（这些是正文的三级标题分割）
-  const predefinedComponents = [
-    'ChapterTitle',
-    'LogicalPosition',
-    'ChapterObjectives',
-    'CoreContent',
-    'Keywords',
-    'PrerequisitePrompt',
-    'OpeningLine',
-    'ChapterSummary',
-    'LogicalChain',
-    'NextChapterPreview',
-    'SectMentality',
-    'MainContent'
-  ];
-  
-  // 提取正文部分的节
-  const mainContentSections = sections
-    ?.filter(s => !predefinedComponents.includes(s.component))
-    .map(section => ({
-      title: section.title,
-      content: section.content
-    })) || [];
-  
-  // 如果没有三级标题分割，查找MainContent组件
-  const mainContent = mainContentSections.length > 0 ? mainContentSections : [
-    {
-      title: undefined,
-      content: sections?.find(s => s.component === 'MainContent')?.content || ''
-    }
-  ];
-
-  
-  const chapterSummary = sections?.find(s => s.component === 'ChapterSummary')?.content || '';
+  // 从metadata中提取非正文内容
+  const logicalPosition = metadata.logicalPosition || '';
+  const keywords = metadata.keywords || [];
+  const prerequisitePrompt = metadata.prerequisitePrompt || metadata['先修提示'] || '';
+  const openingLine = metadata.openingLine || metadata['起手式'] || '';
+  const chapterSummary = metadata.chapterSummary || '';
   const logicalChain = sections?.find(s => s.component === 'LogicalChain')?.content || '';
-  const nextChapterPreview = sections?.find(s => s.component === 'NextChapterPreview')?.content || '';
+  const nextChapterPreview = metadata.nextChapterPreview || '';
   
   // 处理宗门心法
-  const sectMentalityContent = sections?.find(s => s.component === 'SectMentality')?.content || '';
+  const sectMentalityContent = metadata.sectMentality || '';
   
   // 简化处理：将所有内容作为overview显示，不再严格要求特定子标题结构
   const sectMentality: { overview: string; breakthrough: string[]; corePrinciple: string } = {
@@ -162,17 +125,20 @@ export function ChapterTemplateClient({
     }
   };
 
+  // 获取章节主题
+  const theme = getChapterTheme(chapterData.slug);
+
   return (
     <ChapterTemplate
       title={title}
       chapterNumber={chapterNumber}
       logicalPosition={logicalPosition}
-      objectives={objectives}
-      coreContent={coreContent}
+      objectives={[]}
+      coreContent={[]} // 使用空数组，避免undefined错误
       keywords={keywords}
       prerequisitePrompt={prerequisitePrompt}
       openingLine={openingLine}
-      mainContent={mainContent}
+      mainContent={[]}
       logicalChain={logicalChain}
       chapterSummary={chapterSummary}
       nextChapterPreview={nextChapterPreview}
@@ -180,6 +146,15 @@ export function ChapterTemplateClient({
       toc={toc || []}
       onPreviousChapter={navigation?.prev ? handlePreviousChapter : undefined}
       onNextChapter={navigation?.next ? handleNextChapter : undefined}
-    />
+      theme={theme}
+    >
+      {/* 传递所有sections给MDXContentRenderer组件，每个二级标题对应一个组件 */}
+      <MDXContentRenderer 
+        sections={sections || []} 
+        theme={theme} 
+        chapterSlug={chapterData.slug} 
+        metadata={metadata} // 传递metadata参数，用于渲染三个section模块
+      />
+    </ChapterTemplate>
   );
 }

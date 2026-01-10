@@ -135,64 +135,12 @@ n \\cdot p &= n_{i}^2
       </motion.header>
 
       <div className="container mx-auto px-4 py-8">
-        {/* 知识体系概述 */}
-        <section className="mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-lg p-6 border border-slate-100"
-          >
-            <h2 className="font-serif text-xl font-semibold text-[#0f172a] mb-4">
-              半导体：硅基文明的基石
-            </h2>
-            
-            <div className="space-y-5">
-              <p className="text-gray-600 leading-relaxed text-sm">
-                半导体技术是现代信息社会的核心，从智能手机到超级计算机，从人工智能到物联网，
-                几乎所有的电子设备都依赖于半导体器件。本知识体系将带你从量子物理的微观世界出发，
-                逐步探索半导体技术的完整知识链。
-              </p>
-              
-              <div className="bg-slate-50 border-l-3 border-blue-500 p-4 rounded-r">
-                <h3 className="font-medium text-blue-700 mb-2 text-sm">摩尔定律的延续</h3>
-                <p className="text-blue-600 mb-3 text-sm">
-                  摩尔定律预测晶体管数量每18-24个月翻一番，这一定律推动了半导体技术的快速发展。
-                </p>
-                <div className="bg-white p-3 rounded border border-slate-100">
-                  <BlockMath formula={mooreLaw} />
-                </div>
-              </div>
-              
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-slate-50 border-l-3 border-blue-500 p-4 rounded-r">
-                  <h3 className="font-medium text-blue-700 mb-2 text-sm">能带理论基础</h3>
-                  <p className="text-blue-600 mb-3 text-sm">
-                    能带理论解释了半导体为什么能够导电以及其独特的电学特性。
-                  </p>
-                  <div className="bg-white p-3 rounded border border-slate-100">
-                    <BlockMath formula={bandTheory} />
-                  </div>
-                </div>
-                
-                <div className="bg-slate-50 border-l-3 border-blue-500 p-4 rounded-r">
-                  <h3 className="font-medium text-blue-700 mb-2 text-sm">载流子浓度</h3>
-                  <p className="text-blue-600 mb-3 text-sm">
-                    载流子浓度决定了半导体的导电能力，是理解半导体器件工作原理的关键。
-                  </p>
-                  <div className="bg-white p-3 rounded border border-slate-100">
-                    <BlockMath formula={carrierConcentration} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
+
 
         {/* 知识体系结构 */}
         <section>
           <h2 className="font-serif text-xl font-semibold text-[#0f172a] mb-6 text-center">
-            完整知识体系结构
+            半导体器件与工艺全景
           </h2>
           
           <div className="space-y-8">
